@@ -3,6 +3,14 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
+		<div class="product-bar">
+			<p><a>Smart DIH</a>
+			</p>
+		</div>
         <h1>Topologies</h1>
         <h1><a name="primary-backup-topology"></a>Primary Backup Topology</h1>
         <p>A Primary-Backup topology (also known as Active-Passive) consists of a group of space instances that are part of the same replication group, one of the space instances is elected and serves as the primary space instance of the group. The application interaction is done with the primary instance while the other instances are serving as the backups of the primary. The backup space instances are an exact replica of the primary and if the primary instance fails they are in place to replace it when such failure occurs without losing any data and in a transparent manner to the proxy connected to the spaces. In order to maintain this reliability with no data loss, the default replication mode between the space instances in this key is <a href="synchronous-replication.html">Synchronous Replication</a>. The common usage of this topology is to have it together with a partitioned space, such that each partition is isolated in terms of replication. This means that each partition consists a <span class="tc-bold">separate</span> replication group of space instances such that in each partition only one primary will be elected and all the other members of the partition will serve as its backups. There is no replication taking place across partitions. After a primary is elected, each remaining backup member will first recover its state from the primary before becoming available.</p>

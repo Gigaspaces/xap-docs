@@ -3,6 +3,14 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
+		<div class="product-bar">
+			<p><a>Smart DIH</a>
+			</p>
+		</div>
         <h1>Synchronous Replication</h1>
         <p>In a synchronous replication, the client receives acknowledgement for any replicated operations only after all the space instances in the replication group have performed the operation. This topology is most fitting for the Primary backup topology, where the application needs a guarantee that during a failure of the primary space instance, no already executed operations or saved data will be lost. As a result, this replication type has the highest performance penalty because each operation is not completed until all the target space instances in the group have received and acknowledge the operation.</p>
         <h1><a name="how-to-turn-on-synchronous-replication"></a>How to Turn on Synchronous Replication?</h1>

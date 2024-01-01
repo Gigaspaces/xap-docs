@@ -3,10 +3,21 @@
     <head>
     </head>
     <body>
+        <div class="product-bar">
+            <p><a>Smart Cache</a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle"><MadCap:variable name="General.CompanyName" /> Data Modeling</h1>
         <div>
             <h1>What Kinds of Data Stores are Available in <MadCap:variable name="General.ProductNameXAP" />?</h1>
-            <p>When a Data Store object is defined in <MadCap:variable name="General.ProductNameXAP" />, the object can be defined as a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">Space Object</a> or a <a href="https://docs.gigaspaces.com/latest/dev-java/document-overview.html">Space Document</a>.</p>
+            <div class="tc-admon-note">
+                <p>POJO is available, but in Smart DIH, by default, only <a href="document-overview.html">Space Document</a> is used.</p>
+            </div>
+            <p>When a Data Store object is defined in <MadCap:variable name="General.ProductNameXAP" />, the object can be defined as a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">Space Object</a> or a <a href="document-overview.html">Space Document</a>.</p>
             <p>Within each object type, the data schema can be defined with:</p>
             <ul>
                 <li>Fixed or static properties (columns), sometimes referred to as  <i>schema on write</i>,</li>

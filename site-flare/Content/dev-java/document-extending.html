@@ -1,24 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Extended Document</h1>
-  
-
-<p>While documents provide us with a dynamic schema, they force us to give up Java's type-safety for working with type less key-value pairs. GigaSpaces supports extending the SpaceDocument class to provide a type-safe wrapper for documents which is much easier to code with, while maintaining the dynamic schema.</p>
-
-<h1><a name="definition"></a>Definition</h1>
-
-<p>Let's create a type-safe document wrapper for the <span class="tc-bold">Product</span> type described in the <a href="document-api.html">Document Support</a> page. The extensions are:</p>
-
-<ul>
-<li>Provide a parameter less constructor, since the type name is fixed.</li>
-<li>Provide type-safe properties, but instead of using private fields to store/retrieve the values, use the getProperty/setProperty methods from the SpaceDocument class.</li>
-</ul>
-
-<p>Here's an example (only parts of the properties have been implemented to keep the example short):</p>
-
-<pre><code class="language-java">public class ProductDocument extends SpaceDocument {
+    <head>
+    </head>
+    <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
+		<div class="product-bar">
+			<p><a>Smart DIH</a>
+			</p>
+		</div>
+        <h1>Extended Document</h1>
+        <p>While documents provide us with a dynamic schema, they force us to give up Java's type-safety for working with type less key-value pairs. GigaSpaces supports extending the SpaceDocument class to provide a type-safe wrapper for documents which is much easier to code with, while maintaining the dynamic schema.</p>
+        <h1><a name="definition"></a>Definition</h1>
+        <p>Let's create a type-safe document wrapper for the <span class="tc-bold">Product</span> type described in the <a href="document-api.html">Document Support</a> page. The extensions are:</p>
+        <ul>
+            <li>Provide a parameter less constructor, since the type name is fixed.</li>
+            <li>Provide type-safe properties, but instead of using private fields to store/retrieve the values, use the getProperty/setProperty methods from the SpaceDocument class.</li>
+        </ul>
+        <p>Here's an example (only parts of the properties have been implemented to keep the example short):</p><pre><code class="language-java">public class ProductDocument extends SpaceDocument {
     private static final String TYPE_NAME = "Product";
     private static final String PROPERTY_CATALOG_NUMBER = "CatalogNumber";
     private static final String PROPERTY_NAME = "Name";
@@ -53,13 +54,9 @@
     }
 }
 </code></pre>
-
-<h1><a name="registration"></a>Registration</h1>
-
-<p>If your only intention is to write/update document entries, creating the extension class is sufficient - from the space's perspective it is equivalent to a <code>SpaceDocument</code> instance. However, if you attempt to read/take entries from the space, the results will be <code>SpaceDocument</code> instances, and the cast to <code>ProductDocument</code> will throw an exception.
-To overcome that, we need to include the document wrapper class in the type introduction:</p>
-
-<pre><code class="language-java">public void registerProductType(GigaSpace gigaspace) {
+        <h1><a name="registration"></a>Registration</h1>
+        <p>If your only intention is to write/update document entries, creating the extension class is sufficient - from the space's perspective it is equivalent to a <code>SpaceDocument</code> instance. However, if you attempt to read/take entries from the space, the results will be <code>SpaceDocument</code> instances, and the cast to <code>ProductDocument</code> will throw an exception.
+To overcome that, we need to include the document wrapper class in the type introduction:</p><pre><code class="language-java">public void registerProductType(GigaSpace gigaspace) {
     // Create type descriptor:
     SpaceTypeDescriptor typeDescriptor =
         new SpaceTypeDescriptorBuilder("Product")
@@ -70,14 +67,9 @@ To overcome that, we need to include the document wrapper class in the type intr
     gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 }
 </code></pre>
-
-<p>This wrapper type-registration is kept in the proxy and not propagated to the server, so that from the server's perspective this is still a virtual document type with no affiliated POJO class.</p>
-
-<h1><a name="usage"></a>Usage</h1>
-
-<p>The following code snippet demonstrate usage of the <code>ProductDocument</code> extensions we've created to write and read documents from the space.</p>
-
-<pre><code class="language-java">public void example(GigaSpace gigaSpace) {
+        <p>This wrapper type-registration is kept in the proxy and not propagated to the server, so that from the server's perspective this is still a virtual document type with no affiliated POJO class.</p>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>The following code snippet demonstrate usage of the <code>ProductDocument</code> extensions we've created to write and read documents from the space.</p><pre><code class="language-java">public void example(GigaSpace gigaSpace) {
     // Create a product document:
     ProductDocument product = new ProductDocument()
         .setCatalogNumber("hw-1234")
@@ -98,19 +90,14 @@ To overcome that, we need to include the document wrapper class in the type intr
     ProductDocument result3 = gigaSpace.readById(new IdQuery&lt;ProductDocument&gt;("Product", "hw-1234"));
 }
 </code></pre>
-
-<h1><a name="inheritance-support"></a>Inheritance  Support</h1>
-
-<p>SpaceDocument query supports inheritance relationships so that entries of a sub-class are visible in the context of the super class, but not the other way around. For example, suppose class EmployeeDoc extends class PersonDoc and PersonDoc extends from <code>SpaceDocument</code>, you can register
-the the sub classes in the following way:</p>
-
-<pre><code class="language-java">SpaceTypeDescriptor employeeDescriptor = new SpaceTypeDescriptorBuilder(
+        <h1><a name="inheritance-support"></a>Inheritance  Support</h1>
+        <p>SpaceDocument query supports inheritance relationships so that entries of a sub-class are visible in the context of the super class, but not the other way around. For example, suppose class EmployeeDoc extends class PersonDoc and PersonDoc extends from <code>SpaceDocument</code>, you can register
+the the sub classes in the following way:</p><pre><code class="language-java">SpaceTypeDescriptor employeeDescriptor = new SpaceTypeDescriptorBuilder(
                 "Subclass Document Type Name", parentSpaceTypeDescriptor).create();
 </code></pre>
-
-<p>Here is an example:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" PersonDoc" style="padding:10px"><pre><code class="language-java">public class PersonDoc extends SpaceDocument {
+        <p>Here is an example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" PersonDoc" style="padding:10px"><pre><code class="language-java">public class PersonDoc extends SpaceDocument {
 
     public static final String TYPE_ID = "ID";
     public static final String TYPE_NAME = "PersonDoc";
@@ -149,9 +136,8 @@ the the sub classes in the following way:</p>
     }
 }
 </code></pre>
-</div>
-
-<div title=" EmployeeDoc" style="padding:10px"><pre><code class="language-java">public class EmployeeDoc extends PersonDoc {
+            </div>
+            <div title=" EmployeeDoc" style="padding:10px"><pre><code class="language-java">public class EmployeeDoc extends PersonDoc {
 
     public static final String TYPE_NAME = "EmployeeDoc";
     public static final String EMPLOYE_NUMBER = "EMPLOYE_NUMBER";
@@ -170,9 +156,8 @@ the the sub classes in the following way:</p>
     }
 }
 </code></pre>
-</div>
-
-<div title=" RegisterDocument" style="padding:10px"><pre><code class="language-java">    static public void registerDocument(GigaSpace space) {
+            </div>
+            <div title=" RegisterDocument" style="padding:10px"><pre><code class="language-java">    static public void registerDocument(GigaSpace space) {
         SpaceTypeDescriptor personDescriptor = new SpaceTypeDescriptorBuilder(
                 PersonDoc.TYPE_NAME).documentWrapperClass(PersonDoc.class).
                 idProperty(PersonDoc.TYPE_ID).create();
@@ -185,9 +170,8 @@ the the sub classes in the following way:</p>
         space.getTypeManager().registerTypeDescriptor(employeeDescriptor);
     }
 </code></pre>
-</div>
-
-<div title=" Program" style="padding:10px"><pre><code class="language-java">public static void main(String[] args) {
+            </div>
+            <div title=" Program" style="padding:10px"><pre><code class="language-java">public static void main(String[] args) {
 
         // Create the Space
         GigaSpace space = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer(
@@ -229,8 +213,7 @@ the the sub classes in the following way:</p>
 }
 
 </code></pre>
-</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>

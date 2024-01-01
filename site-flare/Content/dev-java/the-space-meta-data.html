@@ -1,17 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Data Type Metadata</h1>
-  
-
-<p><MadCap:variable name="General.ProductNameXAP" /> provides the ability to obtain and modify class metadata of objects stored in the Space during runtime.</p>
-
-<h1><a name="metadata-discovery"></a>Metadata Discovery</h1>
-
-<p>The actual class names are discovered with the <span class="tc-bold">Admin interface</span>  through the <code>Space</code> interface.</p>
-
-<pre><code class="language-java">import org.openspaces.admin.AdminFactory;
+    <head>
+    </head>
+    <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
+		<div class="product-bar">
+			<p><a>Smart DIH</a>
+			</p>
+		</div>
+        <h1>Data Type Metadata</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides the ability to obtain and modify class metadata of objects stored in the Space during runtime.</p>
+        <div class="tc-admon-note">
+            <p>POJO is available, but in Smart DIH, by default, only <a href="document-overview.html">Space Document</a> is used.</p>
+        </div>
+        <h1><a name="metadata-discovery"></a>Metadata Discovery</h1>
+        <p>The actual class names are discovered with the <span class="tc-bold">Admin interface</span>  through the <code>Space</code> interface.</p><pre><code class="language-java">import org.openspaces.admin.AdminFactory;
 import org.openspaces.admin.space.Space;
 ...
 
@@ -22,22 +28,14 @@ Space space = admin.getSpaces().waitFor(spaceName  , 10 , TimeUnit.SECONDS);
 String SpaceClassNames[] = space.getRuntimeDetails().getClassNames();
 ...
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>For  detailed information on the <code>AdminFactory</code> see <a href="administration-and-monitoring-overview.html">AdminFactory</a>.</p>
-</div>
-
-<p>The <code>GigaSpaceTypeManager</code> is retrieved from the Space instance and will give us the detailed information for each class:</p>
-
-<pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer(spaceName).lookupGroups("TEST")).gigaSpace();
+        <div class="tc-admon-refer">
+            <p>For  detailed information on the <code>AdminFactory</code> see <a href="administration-and-monitoring-overview.html">AdminFactory</a>.</p>
+        </div>
+        <p>The <code>GigaSpaceTypeManager</code> is retrieved from the Space instance and will give us the detailed information for each class:</p><pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer(spaceName).lookupGroups("TEST")).gigaSpace();
 ....
 GigaSpaceTypeManager gigaSpaceTypeManager = gigaSpace.getTypeManager();
 </code></pre>
-
-<p>We can iterate over all classes that are present in the Space and obtain their metadata:</p>
-
-<pre><code class="language-java">for (int j = 0; j &lt; SpaceClassNames.length; j++) {
+        <p>We can iterate over all classes that are present in the Space and obtain their metadata:</p><pre><code class="language-java">for (int j = 0; j &lt; SpaceClassNames.length; j++) {
     String spaceClass = SpaceClassNames[j];
 
     SpaceTypeDescriptor typeManager = gigaSpaceTypeManager.getTypeDescriptor(spaceClass);
@@ -46,12 +44,11 @@ GigaSpaceTypeManager gigaSpaceTypeManager = gigaSpace.getTypeManager();
     .......
 }
 </code></pre>
-
-<p><span class="tc-bold">Example</span></p>
-
-<p>Lets assume that we have an abstract super class <span class="tc-bold">Entity</span> and two sub-classes, <span class="tc-bold">Bank</span> and <span class="tc-bold">Supplier</span>.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Entity" style="padding:10px"><pre><code class="language-java">import java.util.UUID;
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <p>Lets assume that we have an abstract super class <span class="tc-bold">Entity</span> and two sub-classes, <span class="tc-bold">Bank</span> and <span class="tc-bold">Supplier</span>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Entity" style="padding:10px"><pre><code class="language-java">import java.util.UUID;
 
 import com.gigaspaces.annotation.pojo.SpaceId;
 
@@ -82,9 +79,8 @@ public abstract class Entity {
 }
 
 </code></pre>
-</div>
-
-<div title="Bank" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
+            </div>
+            <div title="Bank" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceIndex;
 
 @SpaceClass
@@ -115,9 +111,8 @@ public class Bank extends Entity {
 }
 
 </code></pre>
-</div>
-
-<div title="Supplier" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
+            </div>
+            <div title="Supplier" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
 
 @SpaceClass
 public class Supplier extends Entity {
@@ -139,18 +134,14 @@ public class Supplier extends Entity {
 }
 
 </code></pre>
-</div>
-
-<div title="ESupplierType" style="padding:10px"><pre><code class="language-java">public enum ESupplierType {
+            </div>
+            <div title="ESupplierType" style="padding:10px"><pre><code class="language-java">public enum ESupplierType {
     NATIONAL, INTERNATIONAL
 }
 </code></pre>
-</div>
-</div>
-
-<p>Here is an example that uses the <code>GigaSpaceTypeManager</code> to explore the Space for metadata:</p>
-
-<pre><code class="language-java">@Test
+            </div>
+        </div>
+        <p>Here is an example that uses the <code>GigaSpaceTypeManager</code> to explore the Space for metadata:</p><pre><code class="language-java">@Test
 public void test() throws InterruptedException {
     String spaceName = "mySpace";
 
@@ -214,10 +205,7 @@ public void test() throws InterruptedException {
     System.exit(0);
 }
 </code></pre>
-
-<p>The above program will produce the following output when executed:</p>
-
-<pre><code class="language-bash">This test will write 2 space objects into the space , each using different classes and will use the SpaceTypeDescriptor to retrieve the space class meta data back
+        <p>The above program will produce the following output when executed:</p><pre><code class="language-bash">This test will write 2 space objects into the space , each using different classes and will use the SpaceTypeDescriptor to retrieve the space class meta data back
 
 Meta Data       :java.lang.Object
 Super Type Name :java.lang.Object
@@ -257,21 +245,16 @@ Properties:
   Name:category Type:xap.sandbox.type.ESupplierType Storage Type:OBJECT
   Name:number Type:java.lang.Integer Storage Type:OBJECT
 </code></pre>
-
-<p>All information per class (super, sub and embedded class), properties, indexes, IDs etc. is displayed.</p>
-
-<h1><a name="modifying-existing-classes"></a>Modifying Existing Classes</h1>
-
-<p>It is possible to modify existing classes in the Space. For example, we can add indexes during runtime.</p>
-
-<p>Lets take our example <span class="tc-bold">Bank</span>, we want to add an additional index for the columns <span class="tc-bold">iban</span> :</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Equal Index" style="padding:10px"><pre><code class="language-java">AsyncFuture&lt;AddTypeIndexesResult&gt; asyncAddIndex = gigaSpace.getTypeManager().asyncAddIndex("xap.sandbox.type.Bank",
+        <p>All information per class (super, sub and embedded class), properties, indexes, IDs etc. is displayed.</p>
+        <h1><a name="modifying-existing-classes"></a>Modifying Existing Classes</h1>
+        <p>It is possible to modify existing classes in the Space. For example, we can add indexes during runtime.</p>
+        <p>Lets take our example <span class="tc-bold">Bank</span>, we want to add an additional index for the columns <span class="tc-bold">iban</span> :</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Equal Index" style="padding:10px"><pre><code class="language-java">AsyncFuture&lt;AddTypeIndexesResult&gt; asyncAddIndex = gigaSpace.getTypeManager().asyncAddIndex("xap.sandbox.type.Bank",
                    SpaceIndexFactory.createPropertyIndex("iban", SpaceIndexType.EQUAL));
 </code></pre>
-</div>
-
-<div title="Output" style="padding:10px"><pre><code class="language-bash">Meta Data :xap.sandbox.type.Bank
+            </div>
+            <div title="Output" style="padding:10px"><pre><code class="language-bash">Meta Data :xap.sandbox.type.Bank
 Super Type Name :xap.sandbox.type.Entity
 Id Property Name:id
 Indexes :{id=SpaceIndex[name=id, type=EQUAL, unique=true], swift=SpaceIndex[name=swift, type=EQUAL, unique=false], iban=SpaceIndex[name=iban, type=EQUAL, unique=false]}
@@ -283,17 +266,15 @@ Properties:
  Name:iban Type:java.lang.String Storage Type:OBJECT
  Name:swift Type:java.lang.String Storage Type:OBJECT
 </code></pre>
-</div>
-</div>
-
-<p>It is also possible to add a <span class="tc-bold">CompoundIndex</span>.  Lets take our <span class="tc-bold">Supplier</span> class, we want to add a compound index for the columns <span class="tc-bold">number</span> and <span class="tc-bold">category</span> :</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Compound Index" style="padding:10px"><pre><code class="language-java">AsyncFuture&lt;AddTypeIndexesResult&gt; indexesResultAsyncFuture = gigaSpace.getTypeManager()
+            </div>
+        </div>
+        <p>It is also possible to add a <span class="tc-bold">CompoundIndex</span>.  Lets take our <span class="tc-bold">Supplier</span> class, we want to add a compound index for the columns <span class="tc-bold">number</span> and <span class="tc-bold">category</span> :</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Compound Index" style="padding:10px"><pre><code class="language-java">AsyncFuture&lt;AddTypeIndexesResult&gt; indexesResultAsyncFuture = gigaSpace.getTypeManager()
             .asyncAddIndex("xap.sandbox.type.Supplier", new CompoundIndex(new String[] { "number", "category" }));
 </code></pre>
-</div>
-
-<div title="Output" style="padding:10px"><pre><code class="language-bash">Meta Data :xap.sandbox.type.Supplier
+            </div>
+            <div title="Output" style="padding:10px"><pre><code class="language-bash">Meta Data :xap.sandbox.type.Supplier
 Super Type Name :xap.sandbox.type.Entity
 Id Property Name:id
 Indexes :{number+category=SpaceIndex[name=number+category, type=EQUAL, unique=false], id=SpaceIndex[name=id, type=EQUAL, unique=true]}
@@ -304,19 +285,15 @@ Properties:
  Name:category Type:xap.sandbox.type.ESupplierType Storage Type:OBJECT
  Name:number Type:java.lang.Integer Storage Type:OBJECT
 </code></pre>
-</div>
-</div>
-
-<div class="tc-admon-note">
-  
-  <p>Removing an index or changing an index type is currently not supported.</p>
-</div>
-
-<h1><a name="adding-space-document"></a>Adding Space Document</h1>
-
-<p>New <code>SpaceDocuments</code> can be introduced during runtime:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="Space Document" style="padding:10px"><pre><code class="language-java">// Create type descriptor:
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>Removing an index or changing an index type is currently not supported.</p>
+        </div>
+        <h1><a name="adding-space-document"></a>Adding Space Document</h1>
+        <p>New <code>SpaceDocuments</code> can be introduced during runtime:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Space Document" style="padding:10px"><pre><code class="language-java">// Create type descriptor:
 SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")
         .addPropertyIndex("name", SpaceIndexType.EQUAL)
 // ... Other type settings
@@ -324,9 +301,8 @@ SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")
 
 gigaSpace.getTypeManager().registerTypeDescriptor(typeDescriptor);
 </code></pre>
-</div>
-
-<div title="Output" style="padding:10px"><pre><code class="language-bash">Meta Data :Product
+            </div>
+            <div title="Output" style="padding:10px"><pre><code class="language-bash">Meta Data :Product
 Super Type Name :java.lang.Object
 Id Property Name:_spaceId
 Indexes :{name=SpaceIndex[name=name, type=EQUAL, unique=false]}
@@ -341,13 +317,10 @@ Indexes :{}
 Document Wrapper :class com.gigaspaces.document.SpaceDocument
 Properties:
 </code></pre>
-</div>
-</div>
-
-<div class="tc-admon-refer">
-  
-  <p>See <a href="document-overview.html">Space Document</a> for more information.</p>
-</div>
-
-</body>
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p>See <a href="document-overview.html">Space Document</a> for more information.</p>
+        </div>
+    </body>
 </html>

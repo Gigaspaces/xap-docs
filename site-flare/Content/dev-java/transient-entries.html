@@ -3,6 +3,14 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
+		<div class="product-bar">
+			<p><a>Smart DIH</a>
+			</p>
+		</div>
         <h1>Transient Entries</h1>
         <p>When using a persistent space there are situations where not all the space objects need to be persistent (saved within the database). You can specify a space Object to be stored only in the space, without storing it also in the persistent store, by setting its <code>persist</code> mode to have a <span class="tc-bold">false</span> value. You should set this value at the space class level or at the object level. When setting it at the object level you should have it set to false before writing it into the space. After the space object has been written to the space you cannot change its persist mode.</p>
         <p>Transient Space objects are treated the same as persistent objects, but when you call the write operation, only persistent objects are saved to the persistent store. All space operations, including batch operations, are valid for transient space object.</p>

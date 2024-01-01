@@ -3,6 +3,10 @@
     <head>
     </head>
     <body>
+        <div class="product-bar">
+            <p><a>Smart Cache</a>
+            </p>
+        </div>
         <h1>FIFO Support</h1>
         <p>The default space behavior is non-FIFO. The reason is that FIFO support comes at a cost: the space needs to organize and maintain the entries internally in a more complex fashion to support FIFO queries, thus slowing down concurrent write operations. To enable FIFO operations users need to turn on FIFO support for classes which will participate in such operations. If a FIFO operation is performed on an entry whose class does not support FIFO, an exception will be thrown.</p>
         <p>Setting FIFO support for a class can be done via the <code>fifoSupport</code> attribute on the <code>@SpaceClass</code> annotation:</p><pre><code class="language-java">@SpaceClass(fifoSupport=FifoSupport.OPERATION)

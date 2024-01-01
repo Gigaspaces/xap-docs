@@ -3,6 +3,14 @@
     <head>
     </head>
     <body>
+        <div class="product-bar">
+            <p><a>Smart Cache</a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle">Intelligent Data Tiering</h1>
         <p>As the data requirements for your applications increase, you may reach a point where you must make a smart decision how to tier your data storage -- which data should be in rapid-access RAM, and which data can be stored in lower cost media. </p>
         <p><MadCap:variable name="General.ProductNameIE" /> provides several ways to manage the automatic data life cycle for multiple storage tiers, so you can balance your storage media costs and required performance for different data that you wish to store and process.</p>
@@ -30,8 +38,11 @@
             </li>
             <li>
                 <p><a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">MemoryXtend</a> — Tier RAM and SSD, but keep all indexes in RAM for better performance. MemoryXtend is designed for operational workloads.</p>
+                <div class="tc-admon-note">
+                    <p>MemoryXtend is NOT supported in Kubnernetes Orchestration Installations</p>
+                </div>
             </li>
-            <li>
+            <li MadCap:conditions="Version.16-0-died">
                 <p><a href="https://docs.gigaspaces.com/latest/dev-java/data-lake-acceleration.html">AnalyticsXtreme</a> — Real-time data analytics over a data lake of real-time and historical data</p>
             </li>
         </ul>

@@ -3,6 +3,14 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
+		<div class="product-bar">
+			<p><a>Smart DIH</a>
+			</p>
+		</div>
         <h1>Replication Filters</h1>
         <p>When constructing a replicated space topology you may need to call some business logic when data is replicated. GigaSpaces provides the <code>IReplicationFilter</code> plug-in interface <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/cluster/IReplicationFilter.html">com.j_spaces.core.cluster.IReplicationFilter</a>, that allows you to build business logic that is called when data is sent through the replication channel.</p>
         <p>The <code>IReplicationFilter</code> methods are called before data is sent to the replication channel from the source space (output mode) and after coming out from the replication channel - i.e. before written to the target space (input mode). The replication filter should implement the <code>IReplicationFilter</code> interface methods.</p>

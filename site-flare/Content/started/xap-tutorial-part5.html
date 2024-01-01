@@ -3,6 +3,14 @@
     <head>
     </head>
     <body>
+        <div class="product-bar">
+            <p><a>Smart Cache</a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
         <h1>Creating a Processing Unit</h1>
         <p>The PU is the fundamental unit of deployment in <MadCap:variable name="General.DataGrid" />. The PU itself runs within a Processing Unit Container and is deployed onto the Service Grid. Once a PU is deployed, a PU instance is the actual runtime entity.</p>
         <p>There are two types of Processing Unit Containers:</p>
@@ -37,10 +45,12 @@ A Processing Unit Container which runs within a Grid Service Container. It enabl
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/web-application-overview.html">Web Application Support</a> section in the developer guide.</p>
         </div>
-        <h2><a name="mule-pu"></a>Mule PU</h2>
-        <p><MadCap:variable name="General.DataGridInitCap" />'s Mule integration allows you to run a pure Mule application (with or without <MadCap:variable name="General.DataGrid" /> special extension points and transports) as a PU.</p>
-        <div class="tc-admon-note">
-            <p>For more information, see the <a href="../dev-java/mule-esb.html">Mule ESB Integration</a> section in the developer guide.</p>
+        <div MadCap:conditions="Version.16-0-died">
+            <h2><a name="mule-pu"></a>Mule PU</h2>
+            <p><MadCap:variable name="General.DataGridInitCap" />'s Mule integration allows you to run a pure Mule application (with or without <MadCap:variable name="General.DataGrid" /> special extension points and transports) as a PU.</p>
+            <div class="tc-admon-note">
+                <p>For more information, see the <a href="../dev-java/mule-esb.html">Mule ESB Integration</a> section in the developer guide.</p>
+            </div>
         </div>
         <h1><a name="the-pu-jar-file"></a>The PU JAR File</h1>
         <p>Much like a JEE web application or an OSGi bundle, The PU is packaged as a .jar file and follows a certain directory structure which enables the <MadCap:variable name="General.DataGrid" /> runtime environment to easily locate the deployment descriptor and load its classes and the libraries it depends on. A typical PU looks as follows:</p><pre><code class="language-bash">|----META-INF
@@ -179,8 +189,9 @@ A Processing Unit Container which runs within a Grid Service Container. It enabl
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/configuring-processing-unit-elements.html">Configuration</a> page in the Processing Unit section of the developer guide.</p>
         </div>
-        <h1><a name="service-level-agreement-sla"></a>Service Level Agreement (SLA)</h1>
-        <p>The SLA definitions can be provided as part of the PU package or during the PU's deployment process. They define the number of PU instances that should be running and deploy-time requirements such as clustering topology for PU's which contain a space. The GSM reads the SLA definition, and deploys the PU onto the available GSCs according to it.
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1><a name="service-level-agreement-sla"></a>Service Level Agreement (SLA)</h1>
+            <p>The SLA definitions can be provided as part of the PU package or during the PU's deployment process. They define the number of PU instances that should be running and deploy-time requirements such as clustering topology for PU's which contain a space. The GSM reads the SLA definition, and deploys the PU onto the available GSCs according to it.
 A sample SLA definition is shown below:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-sla="http://www.openspaces.org/schema/sla"
@@ -190,9 +201,9 @@ A sample SLA definition is shown below:</p><pre MadCap:conditions="Version.14-5-
 
       &lt;os-sla:sla cluster-schema="partitioned"
             number-of-instances="2" number-of-backups="1"</code></pre>
-        <div class="tc-admon-note">
-            <p>The number of backups per partition is zero or one.</p>
-        </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
+            <div class="tc-admon-note">
+                <p>The number of backups per partition is zero or one.</p>
+            </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
             max-instances-per-vm="1"&gt;
        &lt;/os-sla:sla&gt;
 &lt;/beans&gt;
@@ -205,24 +216,26 @@ A sample SLA definition is shown below:</p><pre MadCap:conditions="Version.14-5-
 
       &lt;os-sla:sla cluster-schema="partitioned"
             number-of-instances="2" number-of-backups="1"</code></pre>
-        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
-            <p>The number of backups per partition is zero or one.</p>
-        </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+            <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                <p>The number of backups per partition is zero or one.</p>
+            </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
             max-instances-per-vm="1"&gt;
        &lt;/os-sla:sla&gt;
 &lt;/beans&gt;
 </code></pre>
-        <div class="tc-admon-note">
-            <p>For more information, see the <a href="../admin/the-sla-overview.html">Service Level Agreement (SLA)</a> section in the Administration guide.</p>
+            <div class="tc-admon-note">
+                <p>For more information, see the <a href="../admin/the-sla-overview.html">Service Level Agreement (SLA)</a> section in the Administration guide.</p>
+            </div>
         </div>
-        <h1><a name="deployment"></a>Deployment</h1>
-        <p>When deploying the PU to the <MadCap:variable name="General.ProductNameXAP" /> Service Grid, the PU JAR file is uploaded to the <MadCap:variable name="General.ProductNameXAP" /> Manager (GSM) and extracted to the deploy directory of the local <MadCap:variable name="General.ProductNameXAP" /> installation (located by default under <MadCap:variable name="General.HomePath" />/deploy).
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1><a name="deployment"></a>Deployment</h1>
+            <p>When deploying the PU to the <MadCap:variable name="General.ProductNameXAP" /> Service Grid, the PU JAR file is uploaded to the <MadCap:variable name="General.ProductNameXAP" /> Manager (GSM) and extracted to the deploy directory of the local <MadCap:variable name="General.ProductNameXAP" /> installation (located by default under <MadCap:variable name="General.HomePath" />/deploy).
 Once extracted, the GSM processes the deployment descriptor and based on that provisions PU instances to the running <MadCap:variable name="General.DataGrid" /> containers.</p>
-        <p>Each GSC to which a certain instance was provisioned, downloads the PU JAR file from the GSM, extracts it to its local working directory (located by default under <MadCap:variable name="General.HomePath" />/work/deployed-processing-units) and starts the PU instance.</p>
-        <h1><a name="example"></a>Example</h1>
-        <p>Our Online Payment system is expected to handle a large amount of concurrent users performing transactions. The system also needs to be highly available. This is where <MadCap:variable name="General.DataGrid" />'s PU comes into play. We will create a polling container that takes a payment event as input and processes it. Then, we will deploy this code as a PU onto the data grid. Payment events are being written into a space and the polling container will pick up the events and process them. We will use the pu.xml file to define the deployment and add an SLA configuration to it to provide failover and scalability.</p>
-        <h3><a name="polling-container"></a>Polling Container</h3>
-        <p>First we define a polling container that will handle the business logic upon receiving a payment event. In our example we define a polling container that will receive events when a new payment is created:</p><pre><code class="language-java">@EventDriven
+            <p>Each GSC to which a certain instance was provisioned, downloads the PU JAR file from the GSM, extracts it to its local working directory (located by default under <MadCap:variable name="General.HomePath" />/work/deployed-processing-units) and starts the PU instance.</p>
+            <h1><a name="example"></a>Example</h1>
+            <p>Our Online Payment system is expected to handle a large amount of concurrent users performing transactions. The system also needs to be highly available. This is where <MadCap:variable name="General.DataGrid" />'s PU comes into play. We will create a polling container that takes a payment event as input and processes it. Then, we will deploy this code as a PU onto the data grid. Payment events are being written into a space and the polling container will pick up the events and process them. We will use the pu.xml file to define the deployment and add an SLA configuration to it to provide failover and scalability.</p>
+            <h3><a name="polling-container"></a>Polling Container</h3>
+            <p>First we define a polling container that will handle the business logic upon receiving a payment event. In our example we define a polling container that will receive events when a new payment is created:</p><pre><code class="language-java">@EventDriven
 @Polling
 @NotifyType(write = true)
 public class PaymentProcessor {
@@ -245,8 +258,8 @@ public class PaymentProcessor {
     }
 }
 </code></pre>
-        <h2><a name="create-pu-xml"></a>Creating the pu.xml</h2>
-        <p>In this step will create the configuration file for the PU deployment.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+            <h2><a name="create-pu-xml"></a>Creating the pu.xml</h2>
+            <p>In this step will create the configuration file for the PU deployment.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-events="http://www.openspaces.org/schema/events"
@@ -319,42 +332,42 @@ public class PaymentProcessor {
 
 &lt;/beans&gt;
 </code></pre>
-        <h2><a name="deployment-1"></a>Deployment</h2>
-        <p>Now we have all the pieces that are necessary to create the JAR file for the PU. After we have created the JAR file its time to deploy the PU onto the data grid. Again, you can do this in three ways; by script, Java code or via the Web Managment Console. In our example will use the scripts to deploy the PU.</p>
-        <p>First we start the <MadCap:variable name="General.ProductNameXAP" /> Agent (GSA) that will create our data grid on this machine:</p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs-agent.bat
+            <h2><a name="deployment-1"></a>Deployment</h2>
+            <p>Now we have all the pieces that are necessary to create the JAR file for the PU. After we have created the JAR file its time to deploy the PU onto the data grid. Again, you can do this in three ways; by script, Java code or via the Web Managment Console. In our example will use the scripts to deploy the PU.</p>
+            <p>First we start the <MadCap:variable name="General.ProductNameXAP" /> Agent (GSA) that will create our data grid on this machine:</p>
+            <div class="easyui-tabs" plain="true" data-options="">
+                <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs-agent.bat
 </code></pre>
-            </div>
-            <div title="Linux CLI" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs-agent.sh
+                </div>
+                <div title="Linux CLI" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs-agent.sh
 </code></pre>
-            </div>
-            <div title="REST" style="padding:10px"><pre><code class="language-bash"># start the agent with the REST interface
+                </div>
+                <div title="REST" style="padding:10px"><pre><code class="language-bash"># start the agent with the REST interface
 # Windows
 gs-agent.bat --manager-local --gsc=2
 # Unix
 ./gs-agent.sh --manager-local --gsc=2
 </code></pre>
+                </div>
             </div>
-        </div>
-        <p>And now we deploy the PU onto the data grid:</p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="CLI" style="padding:10px"><pre><code class="language-bash">GS_HOME\bin\gs.sh deploy  eventPU.jar
+            <p>And now we deploy the PU onto the data grid:</p>
+            <div class="easyui-tabs" plain="true" data-options="">
+                <div title="CLI" style="padding:10px"><pre><code class="language-bash">GS_HOME\bin\gs.sh deploy  eventPU.jar
 </code></pre>
-            </div>
-            <div title="REST" style="padding:10px"><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ 
+                </div>
+                <div title="REST" style="padding:10px"><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ 
    "name": "eventPU", 
    "resource": "...path..to\eventPU.jar"  
  }' 'http://localhost:8090/v1/deployments'
 </code></pre>
+                </div>
             </div>
-        </div>
-        <p>We assume that the JAR ar we created is named eventPU.jar.</p>
-        <p>If you start the Web Management Console, you will be able to see that through the deployment a space called eventSpace was created and a PU named with the JAR name.</p>
-        <h2><a name="client-interface"></a>Client Interface</h2>
-        <p>Now its time to create a client that creates events and writes them into the space. We will attach a listener on the client side to the space that will receive events when the payment is processed.</p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="  Client Listener " style="padding:10px"><pre><code class="language-java">@EventDriven
+            <p>We assume that the JAR ar we created is named eventPU.jar.</p>
+            <p>If you start the Web Management Console, you will be able to see that through the deployment a space called eventSpace was created and a PU named with the JAR name.</p>
+            <h2><a name="client-interface"></a>Client Interface</h2>
+            <p>Now its time to create a client that creates events and writes them into the space. We will attach a listener on the client side to the space that will receive events when the payment is processed.</p>
+            <div class="easyui-tabs" plain="true" data-options="">
+                <div title="  Client Listener " style="padding:10px"><pre><code class="language-java">@EventDriven
 @Polling
 @NotifyType(write = true)
 public class ClientListener {
@@ -375,8 +388,8 @@ public class ClientListener {
     }
 }
 </code></pre>
-            </div>
-            <div title="  Client " style="padding:10px"><pre><code class="language-java">public void postPayment() {
+                </div>
+                <div title="  Client " style="padding:10px"><pre><code class="language-java">public void postPayment() {
     // Register the event handler on the Space
     this.registerPollingListener();
 
@@ -399,60 +412,61 @@ public void registerPollingListener() {
      pollingEventListenerContainer.start();
 }
 </code></pre>
+                </div>
             </div>
-        </div>
-        <p>When you run this code you should see that the PU deployed onto the IMDG is processing the event, changes the status of the payment to PROCESSED and writes the event back into the space. The client then will receive an event because it has registered a listener that listens for processed payment events.</p>
-        <h2><a name="deploy-a-pu-with-the-web-admin-ui"></a>Deploy a PU with the Web Management Console </h2>
-        <p>There is complete example available of  a PU on GitHub. You can download, build and deploy this example. Here is an example how you deploy a PU with the Web Management Console.</p>
-        <table class="tc-borderless">
-            <tr>
-                <td style="width:25%;">
-                    <p>Deploy PU</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/qsg/EventPU1.png" class="tc-thumbnail" />
-                    </p>
-                </td>
-                <td style="width:25%;">
-                    <p>Applications deployed</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/qsg/EventPU2.png" class="tc-thumbnail" />
-                    </p>
-                </td>
-                <td style="width:25%;">
-                    <p>Data Grid</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/qsg/EventPU3.png" class="tc-thumbnail" />
-                    </p>
-                </td>
-                <td style="width:25%;">
-                    <p>Statistics
+            <p>When you run this code you should see that the PU deployed onto the IMDG is processing the event, changes the status of the payment to PROCESSED and writes the event back into the space. The client then will receive an event because it has registered a listener that listens for processed payment events.</p>
+            <h2><a name="deploy-a-pu-with-the-web-admin-ui"></a>Deploy a PU with the Web Management Console </h2>
+            <p>There is complete example available of  a PU on GitHub. You can download, build and deploy this example. Here is an example how you deploy a PU with the Web Management Console.</p>
+            <table class="tc-borderless">
+                <tr>
+                    <td style="width:25%;">
+                        <p>Deploy PU</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/qsg/EventPU1.png" class="tc-thumbnail" />
+                        </p>
+                    </td>
+                    <td style="width:25%;">
+                        <p>Applications deployed</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/qsg/EventPU2.png" class="tc-thumbnail" />
+                        </p>
+                    </td>
+                    <td style="width:25%;">
+                        <p>Data Grid</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/qsg/EventPU3.png" class="tc-thumbnail" />
+                        </p>
+                    </td>
+                    <td style="width:25%;">
+                        <p>Statistics
 </p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/qsg/EventPU4.png" class="tc-thumbnail" />
-                    </p>
-                </td>
-            </tr>
-        </table>
-        <h2><a name="failover-and-scalability"></a>Failover and Scalability</h2>
-        <p>One of our non functional requirements for our online payment system is that it is highly available and it can handle a large amount of concurrent transactions. This can be accomplish in a couple of ways. We can deploy the PU with multiple concurrent threads and or multiple PU instances on top of the grid.</p>
-        <h2><a name="multi-threaded-pu"></a>Multi-Threaded PU</h2>
-        <p>By default the PU is single threaded. With a simple annotation you can tell <MadCap:variable name="General.DataGrid" /> how many threads the PU should run with.</p><pre><code class="language-java">@EventDriven
+                        <p>
+                            <img src="../Resources/Static/attachment_files/qsg/EventPU4.png" class="tc-thumbnail" />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <h2><a name="failover-and-scalability"></a>Failover and Scalability</h2>
+            <p>One of our non functional requirements for our online payment system is that it is highly available and it can handle a large amount of concurrent transactions. This can be accomplish in a couple of ways. We can deploy the PU with multiple concurrent threads and or multiple PU instances on top of the grid.</p>
+            <h2><a name="multi-threaded-pu"></a>Multi-Threaded PU</h2>
+            <p>By default the PU is single threaded. With a simple annotation you can tell <MadCap:variable name="General.DataGrid" /> how many threads the PU should run with.</p><pre><code class="language-java">@EventDriven
 @Polling @Polling(concurrentConsumers = 3, maxConcurrentConsumers = 10)
 @NotifyType(write = true)
 public class PaymentProcessor {
 }
 </code></pre>
-        <h2><a name="multiple-pu-s"></a>Multiple PUs</h2>
-        <p>Lets assume that we have two machines available for our deployment. We want to deploy 4 instances of our PU, two on each machine.</p>
-        <p>The deployment script for this scenario looks like this:</p><pre><code class="language-bash">
+            <h2><a name="multiple-pu-s"></a>Multiple PUs</h2>
+            <p>Lets assume that we have two machines available for our deployment. We want to deploy 4 instances of our PU, two on each machine.</p>
+            <p>The deployment script for this scenario looks like this:</p><pre><code class="language-bash">
 With a statefull PU, embedded space
 ./gs.sh deploy -cluster schema=partitioned total_members=4,0 -max-instances-per-machine 2 eventPU.jar
 
 With a stateless PU
 ./gs.sh deploy -cluster total_members=4 -max-instances-per-machine 2 eventPU.jar
 </code></pre>
-        <div class="tc-admon-note">
-            <p>For more information, see the <a href="../admin/tools-cli.html">Deploy Command Line Interface</a> topic in the Administration guide.</p>
+            <div class="tc-admon-note">
+                <p>For more information, see the <a href="../admin/tools-cli.html">Deploy Command Line Interface</a> topic in the Administration guide.</p>
+            </div>
         </div>
     </body>
 </html>

@@ -3,8 +3,12 @@
     <head>
     </head>
     <body>
+        <div class="product-bar">
+            <p><a>Smart Cache</a>
+            </p>
+        </div>
         <h1>Dynamic Properties</h1>
-		<MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
         <p>POJO entries properties are bound by the schema of the POJO class definition, which means a property cannot be added without changing the class, and since changing the class requires restarting the space this can be a long and tiresome project.</p>
         <p>Starting with version 8.0, GigaSpaces provides the <a href="document-api.html">Document API</a>, which is schema free, and enables users to add properties freely without worrying about the schema. However, some users still prefer to continue working with POJO but would like to enjoy the benefits of dynamic properties.</p>
         <p>Dynamic properties can be used with POJOs as well. This provides better interoperability between POJO and document entries, and provides excellent schema evolution support without switching from POJO to document.</p>

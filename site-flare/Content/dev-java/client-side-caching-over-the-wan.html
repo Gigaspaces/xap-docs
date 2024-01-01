@@ -3,7 +3,12 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1>Caching over the WAN</h1>
+        <p>&#160;</p>
         <p>A common use case of the local cache or the local view is with remote geographical sites where most of the activities are read only. In this case each site may use an application server or a web application running a local view/cache caching a subset of the data or the entire data set.</p>
         <div class="tc-align-center">
             <p>
@@ -14,7 +19,7 @@
         <p>Any read operations conducted at each site by the local users will be served first from the local cache. If the data had not been loaded into the local cache, it is read from the master cache (over the WAN) and loaded into the local cache. The next read operation for the same data item will not require any remote call to the master cache cluster.</p>
         <p>Write/update/delete operations will be conducted against the remote master cache in a synchronous manner. This means they will suffer from the latency between the local site and the remote master cache since they are fully acknowledged when the master cache will be fully committing these.</p>
         <div class="tc-admon-note">
-            <p>For more advanced WAN based topologies, see the <a href="multi-site-replication-overview.html">Multi-Site Replication over the WAN</a> section.</p>
+            <p>For more advanced WAN based topologies, see the <a href="multi-site-replication-overview.html">Multi-Site Replication over the WAN</a> section. &#160;For WAN&#160;GW clusters there is also the option for <a href="client-side-caching.html">client caching</a> between both clusters.</p>
         </div>
     </body>
 </html>
