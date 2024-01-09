@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
 <h1>Local Cache Policy</h1>
   <p>The <a href="../dev-java/local-cache.html">local cache</a> is used as a client-side cache that stores objects read from the Space by the client application. Holding the objects in the local cache speeds up repeated read operations of the same data. The <code>readById</code>/<code>readByIds</code> operation has a special optimization with a local cache that speeds up the retrieval time of the object from the local cache, if the object is already stored there. The local cache evicts objects when a threshold is met. For client applications with a large heap size, you may want to configure the local cache eviction parameters as follows in order to control the eviction behavior:</p>
 

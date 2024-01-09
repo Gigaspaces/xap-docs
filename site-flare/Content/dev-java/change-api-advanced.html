@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1>Advanced Implementations</h1>
         <h1><a name="change-and-spacesynchronizationendpoint"></a>Change and SpaceSynchronizationEndpoint</h1>
         <p>A <code>SpaceSynchronizationEndpoint</code> implementation can make use of the <a href="change-api-overview.html">Change API</a> and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a <code>DataSyncOperation</code>.</p>

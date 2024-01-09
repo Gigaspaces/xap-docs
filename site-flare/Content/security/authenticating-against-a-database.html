@@ -3,6 +3,10 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1>Database Authentication</h1>
         <p>Spring's Security <code>DaoAuthenticationProvider</code> is a simple authentication provider that uses a Data Access Object (DAO) to retrieve user information from a relational database. It leverages a <code>UserDetailsService</code> (as a DAO) in order to lookup the username, password and <code>GrantedAuthority</code> s. It authenticates the user simply by comparing the password submitted in a <code>UsernamePasswordAuthenticationToken</code>  against the one loaded by the <code>UserDetailsService</code>.</p>
         <p>Configuring the provider is quite simple:</p><pre><code class="language-xml">&lt;bean id="daoAuthenticationProvider"

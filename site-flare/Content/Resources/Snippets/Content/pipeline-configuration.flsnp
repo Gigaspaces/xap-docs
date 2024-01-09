@@ -79,30 +79,40 @@
         <p><span style="color: #ff0000;">2:</span> Go to previous Space Type entry</p>
         <p><span style="color: #ff0000;">3.</span> Go to next Space Type entry</p>
         <p><span style="color: #ff0000;">4.</span> The <b>Indexes</b> area contains the following fields and options:</p>
+        <div class="tc-admon-note">
+            <p>Both EQUAL, ORDERED and EQUAL AND&#160;ORDERED index types are supported. For more information refer to the <a href="../../../dev-java/indexing.html">Space Index</a> page.</p>
+        </div>
         <ul>
             <li>
-                <p><b>Index Name</b> – Supply an index name</p>
+                <p><b>Index Name</b> – Supply an index name. This can be anything.</p>
             </li>
             <li>
                 <p><b>Properties</b> – Select the  columns to be part of this index</p>
             </li>
         </ul>
         <p><span style="color: #ff0000;">5</span> The <b>Space ID</b> area contains the following fields and options:</p>
+        <div class="tc-admon-note">
+            <p>For more information refer to the <a href="../../../dev-java/space-object-id-operations.html">Space Object ID</a> page.</p>
+        </div>
         <ul>
             <li>
                 <p><b>Position</b> – In the case of a compound key (multiple keys in the same key), the position of every field in a key needs to be identified (first column, second column, etc.). For a single column, it should always be 1 (default).</p>
             </li>
             <li>
-                <p><b>Primary Key</b> - Serves as a unique identifier in a table (space type)</p>
+                <p><b>Primary Key</b> - Serves as a unique identifier in a table (space type).&#160;The default index will be EQUAL if no index is added.</p>
             </li>
         </ul>
         <p><span style="color: #ff0000;">6:</span> The  <b>Routing ID</b> area contains the following fields and options:</p>
+        <div class="tc-admon-note">
+            <p>For more information refer to the <a href="../../../admin/data-partitioning-practical.html">Data Partitioning: Routing In Partitioned Spaces</a> page.</p>
+        </div>
         <ul>
             <li>
                 <p><b>Routing ID</b> – Select a column in order to change the routing key.</p>
             </li>
         </ul>
         <p>It is possible to change the name of the Space Type to be different to that of the table name.</p>
+        <p>Once the Pipeline is running, the Index, Space ID and Routing ID information can be found in the <a href="../../../spacedeck/spacedeck-spaces-status-details.html#View Space Types_–_Properties">Spaces menu</a>. </p>
         <h5>Tiered storage will be part of a future release.</h5>
         <h2>Add/Remove Table</h2>
         <p>It is possible to update tables by either adding or removing them once the pipeline has been started. As mentioned above, editing can only be performed during the initial setup and configuration process. The pipeline has to be deleted and configured from new in order to edit them again.</p>

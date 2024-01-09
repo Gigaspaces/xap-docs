@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1>File Descriptors</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> LRMI communication layer opens network connections dynamically. With large-scale applications, or with clients that are running a large number of threads accessing the data grid, you might end up having a large number of file descriptors used both on the client and server side. You may also have multiple JVMs running on the machine. If so, you may have to increase the default max user processes value.</p>
         <p>For Linux environments, if you don't have the correct file descriptor settings, there will be <span class="tc-bold">Too many open files</span> error messages in the <MadCap:variable name="General.ProductNameXAP" /> processes log files or on the client side. Low file descriptor values will affect application stability, along with the ability of clients to connect to the <MadCap:variable name="General.ProductNameXAP" /> in-memory data grid.  Set both the <span class="tc-bold">System</span> level File Descriptor Limit and the <span class="tc-bold">Process</span> level File Descriptor Limit to high values to avoid these problems (see below for instructions).</p>

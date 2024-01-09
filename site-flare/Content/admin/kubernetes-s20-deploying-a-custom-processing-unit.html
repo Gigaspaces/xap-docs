@@ -3,6 +3,14 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart DIH</a>
+			</p>
+		</div>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1 class="tc-pagetitle">Deploying a Custom Processing Unit</h1>
         <p>This topic describes how to deploy a custom GigaSpaces processing unit (PU) in a Kubernetes environment. </p>
         <div class="tc-admon-note">
@@ -28,7 +36,7 @@
                 <p>Docker image repository</p>
             </li>
             <li>
-                <p>kubectl installed and connected to the DIH&#160;Kubernetes cluster</p>
+                <p>kubectl installed and connected to the Kubernetes cluster</p>
             </li>
             <li>
                 <p>Helm</p>
@@ -53,7 +61,7 @@
                 <li>
                     <p>Type <code>blueprint generate</code>. This begins the configuration work flow.</p>
                 </li>
-                <li>A list of available blueprints is displayed. Press <span class="tc-bold">4</span> to select the blueprint for a stateless PU.<br /><img src="../Resources/Static/images/kubernetes-s20-select-blueprint-4.png" /><br /></li>
+                <li>A list of available blueprints is displayed. Select <span class="tc-bold">4</span> which is the blueprint for a stateless PU.<br /><img src="../Resources/Static/images/kubernetes-s20-select-blueprint-4.png" /><br /></li>
                 <li>Choose the default target path (my-pu-state;ess) and "n" to take all of the other defaults..<br /><img src="../Resources/Static/images/kubernetes-s20-take-blueprint-4-defaults.png" /><br /></li>
                 <li>
                     <p>The project is created, and the target path is displayed. You are prompted to open the project in your default file explorer. Choose "y" to see the project tree.</p>
