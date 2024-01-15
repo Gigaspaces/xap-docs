@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle" style="text-align: left;">Smart DIH - Network &amp;&#160;System Integration</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
+        <h2>Environment Flexibility</h2>
+        <p><MadCap:variable name="General.CompanyName" /> Smart DIH solution can be deployed on several environments with different network isolation models, ranging from air-gapped to a cloud zero-trust model.</p>
+        <p>Following are the environments on which the platform can be installed:</p>
+        <ol>
+            <li>
+                <p>A customer’s VPC (cloud’s virtual private network)</p>
+            </li>
+            <li>
+                <p>A customer’s on-premise network</p>
+            </li>
+            <li>
+                <p><MadCap:variable name="General.CompanyName" /> cloud account (PAAS - with Cloud Store as SOR*)</p>
+            </li>
+            <li>
+                <p>A customer’s cloud cluster (via Google Marketplace with Cloud Store as SOR only*)</p>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>For environments 3 &amp; 4 the data source is the cloud's object store (e.g. S3, GCS)</p>
+        </div>
+        <h2>Data Sources</h2>
+        <p>There are several out-of-the-box supported data sources, including:</p>
+        <ul>
+            <li>
+                <p>Oracle</p>
+            </li>
+            <li>
+                <p>MSSQL</p>
+            </li>
+            <li>
+                <p>DB2 (z/OS, LUW, AS-400)</p>
+            </li>
+            <li>
+                <p>Cloud Stores (AWS/GCP)</p>
+            </li>
+        </ul>
+        <h2>Network Connectivity and Isolation</h2>
+        <p><MadCap:variable name="General.CompanyName" /> Smart DIH  provides access to its internal network for both data and control purposes. These access points can be classified by the following three categories.</p>
+        <ol>
+            <li>
+                <p><b>Data Ingestion from Customer Data Sources</b>
+                </p>
+                <p>The agent which is installed adjacent to the database, facilitates the transfer of change events, allowing the ingestion of data into the system.</p>
+            </li>
+            <li>
+                <p><b>Application Servicing</b>
+                </p>
+                <p>This involves applications that utilize data from the platform, which can include mobile applications or those designed for business-to-business (B2B) interactions.</p>
+            </li>
+            <li>
+                <p><b>Connectivity for Monitoring and Control</b>
+                </p>
+                <p>This allows operational personnel to manage the system. <MadCap:variable name="General.CompanyName" /> user interface, <a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a>, utilizes this network connectivity to control and monitor the platform. Additionally, the Grafana dashboard can be employed for metrics and alerts.</p>
+            </li>
+        </ol>
+        <p>&#160;</p>
+        <p>There are several ways to connect the customer network and users to the platform, following are some examples:</p>
+        <ol>
+            <li>
+                <p><b>VPN</b> - Allowing sharing a private network between the customer database network and the platform.</p>
+            </li>
+            <li>
+                <p><b>VPC Peering</b> - Allowing sharing a private network between cloud VPCs.</p>
+            </li>
+            <li>
+                <p><b>Direct-Link (e.g. AWS)</b> - Using a interfacing facility, within the same cloud , to connect customer and platform network.</p>
+            </li>
+            <li>
+                <p><b>Zero-Trust</b> - Connecting from the internet to the control and services aspects of the platform using an API-Gateway. Special security measures are added when using this type of connectivity.</p>
+            </li>
+        </ol>
+        <h3>Connection Matrix</h3>
+        <table style="width: 857px;" class="tc-standard">
+            <col />
+            <col style="width: 170px;" />
+            <col style="width: 229px;" />
+            <col style="width: 227px;" />
+            <thead>
+                <tr>
+                    <th>&#160;</th>
+                    <th>Data Ingestion</th>
+                    <th>Application Servicing</th>
+                    <th>Control/Monitoring</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>VPN</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Peering</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Direct-Link</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Zero-Trust (public)</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Images/CheckMark.png" style="width: 28px;height: 28px;" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>In addition, a dreict feed to an internal Kafka can be supported.</p>
+        <p>Another aspect is the platform’s control and monitoring facilities. See the Control and Monitoring section.</p>
+        <p>&#160;</p>
+        <p>
+            <img src="../Resources/Images/DIH/DIH network -High Level.drawio (1).png" style="width: 528px;height: 653px;" />
+        </p>
+        <h3>Data Integration</h3>
+        <ol>
+            <li>
+                <p><b>System of Record Agent</b>
+                </p>
+                <p>This thin agent which resides close to the System of Record (e.g., DB2), fetches raw data changes from the data source and sends it over to the transformation stage.</p>
+            </li>
+            <li>
+                <p><b>Change Data Capture (CDC) Technology for Real-time Events</b>
+                </p>
+                <p>Implements CDC tools to capture real-time changes from the on-premise System of Record. These tools capture and propagate changes to downstream systems.</p>
+            </li>
+            <li>
+                <p><b>Kafka Bus for Event Sourcing</b>
+                </p>
+                <p>Uses Apache Kafka as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
+            </li>
+            <li>
+                <p><b>Data Catalog</b>
+                </p>
+                <p>The DIH platform learns the source's data structures and creates a catalog where the source and data-grid metadata is kept.</p>
+            </li>
+            <li>
+                <p><b>Data Transformation</b>
+                </p>
+                <p>A layer that extracts and transforms the incoming data into an effective data structure. Multiple on-line functions can be applied on-the-run.</p>
+            </li>
+        </ol>
+        <h3>Caching and Backup</h3>
+        <ol>
+            <li>
+                <p><b><MadCap:variable name="General.CompanyName" /> Data Hub</b>
+                </p>
+                <p>An in-memory data grid (IMDG) for high-performance caching. It provides fast access to frequently accessed data and enhances the  system's overall responsiveness.</p>
+            </li>
+            <li>
+                <p><b>Tiered Storage</b>
+                </p>
+                <p>Through tiered storage, data can extend beyond the data-grid. The data grid oversees the persistence of data using a rule-based process.</p>
+            </li>
+        </ol>
+        <h3>Data Services</h3>
+        <ol>
+            <li>
+                <p><b>Micro-Services</b>
+                </p>
+                <p>Using Smart DIH, micro-services or server-less functions can be created be consuming data from data-grid. These services cover specific business logic, providing a scalable and modular architecture.</p>
+            </li>
+            <li>
+                <p><b>API&#160;Gateway</b>
+                </p>
+                <p>API Gateway Integration (e.g., AWS API Gateway, Azure API Management) manages and exposes APIs for data access and integration. The API Gateway can enforce security policies, rate limiting, and handle authentication.</p>
+            </li>
+        </ol>
+        <h2>Extensions</h2>
+        <p>The following enhancements can be tailored to the needs of our customers:</p>
+        <ol>
+            <li>
+                <p><b>Mirror to Persistence Database</b>
+                </p>
+                <p>With the mirror customization functionality a cloud-based datastore (e.g., Amazon RDS, Azure Database for PostgreSQL) can be used to replicate data persistently. This database serves as a replica of the on-premise System of Record.</p>
+            </li>
+            <li>
+                <p><b>Event Driven Application Push</b>
+                </p>
+                <p>Implements CDC tools to capture real-time changes from the on-premise System of Record. These tools capture and propagate changes to downstream systems.</p>
+            </li>
+            <li>
+                <p><b>Network&#160;Data Sync</b>
+                </p>
+                <p>Uses Apache Kafka as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
+            </li>
+        </ol>
+        <p>&#160;</p>
+    </body>
+</html>

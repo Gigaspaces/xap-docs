@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle" style="text-align: left;">Smart DIH - Orchestration &amp;&#160;Network Details (AWS)</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
+        <h2>Orchestration</h2>
+        <p>Orchestration of the Smart DIH platform is performed using Kubernetes. Using a Kubernetes orchestration has the following advantages:</p>
+        <ul>
+            <li>
+                <p>Automation of the infrastructure which is supported by built-in controllers and customized operators</p>
+            </li>
+            <li>
+                <p>System monitoring and control</p>
+            </li>
+            <li>
+                <p>Using best practices for handling the IT infrastructure</p>
+            </li>
+            <li>
+                <p>Extensibility - adding more services, more compute, etc.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>For installation instructions refer to our <a href="../admin/DIH-installation-kubernetes.html">Smart DIH&#160;Kubernetes Installation</a> guide </p>
+        </div>
+        <h2>DNS &amp;&#160;TLS</h2>
+        <p>When deploying the Smart DIH platform. the cloud services for DNS and TLS termination can be used. Customer certificates can be used as well. Endpoints of ingestion, servicing and control should have DNS allocation and apply TLS termination. The details depend on the cloud or on-premise facilities.</p>
+        <h2>Deployment Procedure</h2>
+        <p>Smart DIH is deployed using IAC (Infra As Code) tools (e.g. Terraform). The IAC code is parameterized and customized for each of the main clouds: AWS, AZure and GCP. Using this approach, upgrades can also be performed only on the infrastructure, separate from the Kubernetes and application upgrades.</p>
+        <h2>Installation&#160;Methods</h2>
+        <p>There are several installation methods for Smart DIH:</p>
+        <ol>
+            <li>
+                <p>A field expert can install the DIH helm charts and attach a license. Kubernetes and network setup is a prerequisite. Helm values should be updated appropriately. </p>
+                <div class="tc-admon-note">
+                    <p>For installation instructions refer to our <a href="../admin/DIH-installation-kubernetes.html">Smart DIH&#160;Kubernetes Installation Guide</a></p>
+                </div>
+            </li>
+            <li>
+                <p>Paas installation. Gigaspaces performs the installation of Smart DIH as a service.</p>
+            </li>
+            <li>
+                <p>Terraforms (IAC). Using a few parameters a full installation of Smart DIH can be performed. This includes network, Kubernetes and application. Our Smart DIH terraform code support 3 major cloud providers (AWS, GCP and Azure).</p>
+            </li>
+        </ol>
+        <p>From the architectural point of view there are two types of parameters given to the terraform code:</p>
+        <ol>
+            <li>
+                <p><b>System</b> - Nnetworks, compute, memory, load-balancer, etc.</p>
+            </li>
+            <li>
+                <p><b>Application</b> - Helm values.</p>
+                <div class="tc-admon-note">
+                    <p>Refer to our Smart DIH <a href="../admin/config-details-smart-dih.htm">Detailed Configuration</a> page in our Installation Guide. </p>
+                </div>
+            </li>
+        </ol>
+        <h3>IAC&#160;Parameters</h3>
+        <p>System Parameters</p>
+        <table style="width: 1127px;" class="tc-standard">
+            <col style="width: 226px;" />
+            <col style="width: 600px;" />
+            <col style="width: 298px;" />
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th style="text-align: left;">Description</th>
+                    <th style="text-align: left;">Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cluster Name</td>
+                    <td style="text-align: left;">Name of cluster</td>
+                    <td style="text-align: left;">
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cloud</td>
+                    <td style="text-align: left;">Which cloud</td>
+                    <td style="text-align: left;">AWS/GCP/Azure</td>
+                </tr>
+                <tr>
+                    <td>CIDR&#160;Block</td>
+                    <td style="text-align: left;">The CIDR&#160;block</td>
+                    <td style="text-align: left;">e.g. 10.0.0.0/16</td>
+                </tr>
+                <tr>
+                    <td>AZ&#160;Count</td>
+                    <td style="text-align: left;">How many availability zones</td>
+                    <td style="text-align: left;">2-4</td>
+                </tr>
+                <tr>
+                    <td>Region</td>
+                    <td style="text-align: left;">Region to deploy</td>
+                    <td style="text-align: left;">e.g. us-east-1</td>
+                </tr>
+                <tr>
+                    <td>Domain Name</td>
+                    <td style="text-align: left;">Domain name of the customer or <MadCap:variable name="General.CompanyName" /></td>
+                    <td style="text-align: left;">e.g. gigaspaces.net</td>
+                </tr>
+                <tr>
+                    <td>Public Ingress</td>
+                    <td style="text-align: left;">Whether the ingress is open to the public</td>
+                    <td style="text-align: left;">Yes/No</td>
+                </tr>
+                <tr>
+                    <td>Own Certificate</td>
+                    <td style="text-align: left;">Whether the customer has a certificate</td>
+                    <td style="text-align: left;">Yes/No</td>
+                </tr>
+                <tr>
+                    <td>Worker Nodes&#160;Type</td>
+                    <td style="text-align: left;">Type of nodes used for holding data-grid data</td>
+                    <td style="text-align: left;">e.g. m5.2xlarge</td>
+                </tr>
+                <tr>
+                    <td>Ingress Node Type</td>
+                    <td style="text-align: left;">Type of node for nginx</td>
+                    <td style="text-align: left;">e.g. t2.xlarge</td>
+                </tr>
+                <tr>
+                    <td>Control Nodes Type</td>
+                    <td style="text-align: left;">Type of nodes for other pods</td>
+                    <td style="text-align: left;">e.g. t3.xlarge</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+    </body>
+</html>

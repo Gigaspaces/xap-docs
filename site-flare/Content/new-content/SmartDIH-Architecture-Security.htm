@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle" style="text-align: left;">Smart DIH - Security</h1>
+        <p style="text-align: left;">The Smart DIH security controls can be illustrated in layers:</p>
+        <p style="text-align: left;"><span style="background-color: #ffff00;">[PLACEHOLDER&#160;FOR&#160;DIAGRAM]</span>
+        </p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <ol>
+            <li>
+                <p>Vulnerability Scans</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p>The components in the platform are constantly tested against the CVE database.</p>
+                    </li>
+                    <li>
+                        <p>Docker images that are used are also checked for CVEs.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Encryption, Authorization and Authentication</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p>The data in the data-grid can be encrypted.</p>
+                    </li>
+                    <li>
+                        <p>Data in Kafka is encrypted using volume encryption provided by the underlying blob store.</p>
+                    </li>
+                    <li>
+                        <p>Access to data in the data-grid is provided only to trusted users (see IDP and Oauth2 sections).</p>
+                    </li>
+                    <li>
+                        <p>RBAC rules are defined for data-grid access by the data entity (see Roles and Privileges sections).</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Node Access Control</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p>Processes in the nodes run in dockers where access is limited to docker entities by enforcing specific user:group access.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Cloud Private Network Security</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p>All nodes are running within the private network.</p>
+                    </li>
+                    <li>
+                        <p>Opening security groups to specific ports and entities (gateways load-balancers).</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Gateways/Routers</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p>Gateways are setup for VPN access to avoid any other connectivity.</p>
+                    </li>
+                    <li>
+                        <p>Routers have routing roles specific to the topology.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>SSL/TLS termination</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p>Communication to and from the platform is performed in TLS (TLS 1.2).</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>WAF/Gateway</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p>For services that are exposed to external users (intranet or internet) an  API Gateway is added. The API Gateway authorizes the service request (accessing the servicing part of the platform).</p>
+                    </li>
+                    <li>
+                        <p>WAF is optional and added mainly in zero-trust cases where additional rules are applied.</p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <h2>IDP Integration</h2>
+        <p><MadCap:variable name="General.CompanyName" /> supports integration with identity providers (IDP) which support OpenId Connect protocol like Okta and Azure AD. Users or SpaceDeck (platform control and monitoring) are managed via the IDP and user groups in the IDP are mapped to Roles.</p>
+        <div class="tc-admon-note">
+            <p>For IDP setup details refer to our <a href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO IDP Setup</a> page found in our User Guide</p>
+        </div>
+        <h2>Service Accounts</h2>
+        <p>Service accounts represent components which integrate with the data-grid. An advanced user can write additional components and plug them into the system. These components must enroll in the Service Accounts section in SpaceDeck.</p>
+        <div class="tc-admon-note">
+            <p>For details about Service Accounts refer to our <a href="../spacedeck/spacedeck-idp-details.html" style="background-color: #ffff00;">SpaceDeck - Service Accounts</a> page found in our User Guide</p>
+        </div>
+        <h2>Roles &amp;&#160;Privileges</h2>
+        <p>User and service accounts can be assigned to roles which limit their access to the data-grid and platform control. A role is a collection of privileges, each defines an allowed operation for a resource. Some privileges are system level and some are associated to specific resources which are either a data-grid level, a Space or a table.</p>
+        <div class="tc-admon-note">
+            <p>For details about Roles &amp;&#160;Privileges refer to the <a href="../spacedeck/spacedeck-admin.html#Roles-Mangement" style="background-color: #ffffff;">SpaceDeck - Role Management</a> information found in our User Guide</p>
+        </div>
+        <h2>Auditing</h2>
+        <p>Each operation performed by SpaceDeck (pipelines, services, data-grid/Spaces) is audited and can be found in a log containing both the user ID and the operation performed. The IDP logs user logins and logouts.</p>
+    </body>
+</html>
