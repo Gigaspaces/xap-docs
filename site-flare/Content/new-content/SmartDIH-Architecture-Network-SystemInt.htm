@@ -8,7 +8,6 @@
             </p>
         </div>
         <h1 class="tc-pagetitle" style="text-align: left;">Smart DIH - Network &amp;&#160;System Integration</h1>
-        <MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
         <h2>Environment Flexibility</h2>
         <p><MadCap:variable name="General.CompanyName" /> Smart DIH solution can be deployed on several environments with different network isolation models, ranging from air-gapped to a cloud zero-trust model.</p>
         <p>Following are the environments on which the platform can be installed:</p>
@@ -143,87 +142,6 @@
                 </tr>
             </tbody>
         </table>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <p>In addition, a dreict feed to an internal Kafka can be supported.</p>
-        <p>Another aspect is the platform’s control and monitoring facilities. See the Control and Monitoring section.</p>
-        <p>&#160;</p>
-        <p>
-            <img src="../Resources/Images/DIH/DIH network -High Level.drawio (1).png" style="width: 528px;height: 653px;" />
-        </p>
-        <h3>Data Integration</h3>
-        <ol>
-            <li>
-                <p><b>System of Record Agent</b>
-                </p>
-                <p>This thin agent which resides close to the System of Record (e.g., DB2), fetches raw data changes from the data source and sends it over to the transformation stage.</p>
-            </li>
-            <li>
-                <p><b>Change Data Capture (CDC) Technology for Real-time Events</b>
-                </p>
-                <p>Implements CDC tools to capture real-time changes from the on-premise System of Record. These tools capture and propagate changes to downstream systems.</p>
-            </li>
-            <li>
-                <p><b>Kafka Bus for Event Sourcing</b>
-                </p>
-                <p>Uses Apache Kafka as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
-            </li>
-            <li>
-                <p><b>Data Catalog</b>
-                </p>
-                <p>The DIH platform learns the source's data structures and creates a catalog where the source and data-grid metadata is kept.</p>
-            </li>
-            <li>
-                <p><b>Data Transformation</b>
-                </p>
-                <p>A layer that extracts and transforms the incoming data into an effective data structure. Multiple on-line functions can be applied on-the-run.</p>
-            </li>
-        </ol>
-        <h3>Caching and Backup</h3>
-        <ol>
-            <li>
-                <p><b><MadCap:variable name="General.CompanyName" /> Data Hub</b>
-                </p>
-                <p>An in-memory data grid (IMDG) for high-performance caching. It provides fast access to frequently accessed data and enhances the  system's overall responsiveness.</p>
-            </li>
-            <li>
-                <p><b>Tiered Storage</b>
-                </p>
-                <p>Through tiered storage, data can extend beyond the data-grid. The data grid oversees the persistence of data using a rule-based process.</p>
-            </li>
-        </ol>
-        <h3>Data Services</h3>
-        <ol>
-            <li>
-                <p><b>Micro-Services</b>
-                </p>
-                <p>Using Smart DIH, micro-services or server-less functions can be created be consuming data from data-grid. These services cover specific business logic, providing a scalable and modular architecture.</p>
-            </li>
-            <li>
-                <p><b>API&#160;Gateway</b>
-                </p>
-                <p>API Gateway Integration (e.g., AWS API Gateway, Azure API Management) manages and exposes APIs for data access and integration. The API Gateway can enforce security policies, rate limiting, and handle authentication.</p>
-            </li>
-        </ol>
-        <h2>Extensions</h2>
-        <p>The following enhancements can be tailored to the needs of our customers:</p>
-        <ol>
-            <li>
-                <p><b>Mirror to Persistence Database</b>
-                </p>
-                <p>With the mirror customization functionality a cloud-based datastore (e.g., Amazon RDS, Azure Database for PostgreSQL) can be used to replicate data persistently. This database serves as a replica of the on-premise System of Record.</p>
-            </li>
-            <li>
-                <p><b>Event Driven Application Push</b>
-                </p>
-                <p>Implements CDC tools to capture real-time changes from the on-premise System of Record. These tools capture and propagate changes to downstream systems.</p>
-            </li>
-            <li>
-                <p><b>Network&#160;Data Sync</b>
-                </p>
-                <p>Uses Apache Kafka as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
-            </li>
-        </ol>
         <p>&#160;</p>
     </body>
 </html>
