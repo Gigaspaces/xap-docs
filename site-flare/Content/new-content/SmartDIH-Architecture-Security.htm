@@ -8,14 +8,16 @@
             </p>
         </div>
         <h1 class="tc-pagetitle" style="text-align: left;">Smart DIH - Security</h1>
-        <p style="text-align: left;">The Smart DIH security controls can be illustrated in layers:</p>
-        <p style="text-align: left;"><span style="background-color: #ffff00;">[PLACEHOLDER&#160;FOR&#160;DIAGRAM]</span>
+        <p style="text-align: left;">The Smart DIH security controls can be illustrated in the following layers:</p>
+        <p style="text-align: left;">&#160;</p>
+        <p style="text-align: left;">
+            <img src="../Resources/Images/DIH/DIH_Security.png" style="width: 565px;height: 537px;" />
         </p>
-        <p>&#160;</p>
         <p>&#160;</p>
         <ol>
             <li>
-                <p>Vulnerability Scans</p>
+                <p><b>Vulnerability Scans</b>
+                </p>
                 <ul style="list-style-type: circle;">
                     <li>
                         <p>The components in the platform are constantly tested against the CVE database.</p>
@@ -26,7 +28,8 @@
                 </ul>
             </li>
             <li>
-                <p>Encryption, Authorization and Authentication</p>
+                <p><b>Encryption, Authorization and Authentication</b>
+                </p>
                 <ul style="list-style-type: circle;">
                     <li>
                         <p>The data in the data-grid can be encrypted.</p>
@@ -43,7 +46,8 @@
                 </ul>
             </li>
             <li>
-                <p>Node Access Control</p>
+                <p><b>Node Access Control</b>
+                </p>
                 <ul style="list-style-type: circle;">
                     <li>
                         <p>Processes in the nodes run in dockers where access is limited to docker entities by enforcing specific user:group access.</p>
@@ -51,7 +55,8 @@
                 </ul>
             </li>
             <li>
-                <p>Cloud Private Network Security</p>
+                <p><b>Security Groups &amp;&#160;ACLs - Cloud Private Network Security</b>
+                </p>
                 <ul style="list-style-type: circle;">
                     <li>
                         <p>All nodes are running within the private network.</p>
@@ -62,7 +67,8 @@
                 </ul>
             </li>
             <li>
-                <p>Gateways/Routers</p>
+                <p><b>Gateway, Routers, Firewalls</b>
+                </p>
                 <ul style="list-style-type: circle;">
                     <li>
                         <p>Gateways are setup for VPN access to avoid any other connectivity.</p>
@@ -73,7 +79,8 @@
                 </ul>
             </li>
             <li>
-                <p>SSL/TLS termination</p>
+                <p><b>SSL/TLS Termination</b>
+                </p>
                 <ul style="list-style-type: circle;">
                     <li>
                         <p>Communication to and from the platform is performed in TLS (TLS 1.2).</p>
@@ -81,7 +88,8 @@
                 </ul>
             </li>
             <li>
-                <p>WAF/Gateway</p>
+                <p><b>WAF API-Gateway</b>
+                </p>
                 <ul style="list-style-type: circle;">
                     <li>
                         <p>For services that are exposed to external users (intranet or internet) an  API Gateway is added. The API Gateway authorizes the service request (accessing the servicing part of the platform).</p>
@@ -109,5 +117,8 @@
         </div>
         <h2>Auditing</h2>
         <p>Each operation performed by SpaceDeck (pipelines, services, data-grid/Spaces) is audited and can be found in a log containing both the user ID and the operation performed. The IDP logs user logins and logouts.</p>
+        <p>&#160;</p>
+        <p>For information about Smart DIH refer back to the <a href="SmartDIH-Architecture-Intro.htm">Smart DIH contents page </a>and choose another topic.</p>
+        <p>&#160;</p>
     </body>
 </html>
