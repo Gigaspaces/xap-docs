@@ -22,7 +22,7 @@
                 <p>Data Servicing</p>
             </li>
         </ol>
-        <p>Another aspect is the platform’s control and monitoring facilities. More information can be found in the <a href="SmartDIH-Architecture-Lifecycle-Perf.htm">Application Lifecycle</a> page.</p>
+        <p>Another aspect is the platform’s control and monitoring facilities. More information about this can be found in the <a href="SmartDIH-Architecture-Lifecycle-Perf.htm#ControlLoggingMonitoring">Application Lifecycle</a> page.</p>
         <p>&#160;</p>
         <p style="text-align: left;">
             <img src="../Resources/Images/DIH/DIH network -High Level.drawio (1).png" style="width: 459px;height: 567px;" />
@@ -37,12 +37,12 @@
             <li>
                 <p><b>Change Data Capture (CDC) Technology for Real-time Events</b>
                 </p>
-                <p>Implements CDC tools to capture real-time changes from the on-premise System of Record. These tools capture and propagate changes to downstream systems.</p>
+                <p>CDC tools are implemented to capture real-time changes from the on-premise System of Record. These tools capture and propagate changes to downstream systems.</p>
             </li>
             <li>
                 <p><b>Kafka Bus for Event Sourcing</b>
                 </p>
-                <p>Uses Apache Kafka as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
+                <p> Apache Kafka is used as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
             </li>
             <li>
                 <p><b>Data Catalog</b>
@@ -65,7 +65,7 @@
             <li>
                 <p><b>Tiered Storage</b>
                 </p>
-                <p>Through tiered storage, data can extend beyond the data-grid. The data grid oversees the persistence of data using a rule-based process.</p>
+                <p>Through <a href="SmartDIH-Architecture-Lifecycle-Perf.htm"><MadCap:xref href="../dev-java/intelligent-tiering-intro.html">Intelligent Data Tiering</MadCap:xref></a>, data can extend beyond the data-grid. The data grid oversees the persistence of data using a rule-based process.</p>
             </li>
         </ol>
         <h3>Data Services</h3>
@@ -73,7 +73,7 @@
             <li>
                 <p><b>Micro-Services</b>
                 </p>
-                <p>Using Smart DIH, micro-services or server-less functions can be created be consuming data from data-grid. These services cover specific business logic, providing a scalable and modular architecture.</p>
+                <p>Using Smart DIH, micro-services or server-less functions can be created be consuming data from data grid. These services cover specific business logic, providing a scalable and modular architecture. Refer to <MadCap:xref href="../spacedeck/spacedeck-services.html">SpaceDeck – Services</MadCap:xref> to see how micro-services can be created through SpaceDeck.</p>
             </li>
             <li>
                 <p><b>API&#160;Gateway</b>
@@ -87,17 +87,17 @@
             <li>
                 <p><b>Mirror to Persistence Database</b>
                 </p>
-                <p>With the mirror customization functionality a cloud-based datastore (e.g., Amazon RDS, Azure Database for PostgreSQL) can be used to replicate data persistently. This database serves as a replica of the on-premise System of Record.</p>
+                <p>With the mirror customization functionality a cloud-based data-store (e.g., Amazon RDS, Azure Database for PostgreSQL) can be used to replicate data persistently. This database serves as a replica of the on-premise System of Record.</p>
             </li>
             <li>
                 <p><b>Event Driven Application Push</b>
                 </p>
-                <p>Implements CDC tools to capture real-time changes from the on-premise System of Record. These tools capture and propagate changes to downstream systems.</p>
+                <p> CDC tools are implemented to capture real-time changes from the on-premise Systems of Record. These tools capture and propagate changes to downstream systems.</p>
             </li>
             <li>
                 <p><b>Network&#160;Data Sync</b>
                 </p>
-                <p>Uses Apache Kafka as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
+                <p> Apache Kafka is used as a message bus to stream data change events from the agent to the data hub. Kafka ensures reliable and scalable data streaming.</p>
             </li>
         </ol>
         <p>&#160;</p>
