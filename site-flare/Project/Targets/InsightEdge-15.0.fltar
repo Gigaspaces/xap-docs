@@ -16,7 +16,9 @@
   MasterPage="/Content/Resources/MasterPages/content.flmsp"
   MobileBreakpoint="820"
   ConditionTagExpression="exclude[Default.DoNotShow or NewSet.LatestOnly or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-2-born or Version.15-2-only or Version.15-5-born or Version.15-5-only or Version.15-8-born or Version.15-8-only or Version.16-0-born or Version.16-0-only or Version.16-1-1-born or Version.16-1-1-only or Version.16-1-born or Version.16-1-only or Version.16-2-1-born or Version.16-2-1-only or Version.16-2-born or Version.16-2-only or Version.16-3-born or Version.16-3-only or Version.16-4-born or Version.16-4-only]"
-  ContentInclusionType="Toc">
+  ContentInclusionType="Toc"
+  EnableSitemap="true"
+  SitemapWebUrl="https://docs-staging.gigaspaces.com/15.0/ ">
   <PrintedOutput
     CollapseMargins="true"
     GenerateTOCProxy="true"
@@ -91,4 +93,16 @@
       Name="General/EnvVariablePrefix">GS</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
+  <MicroContentSearch>
+    <FeaturedSnippets
+      type="AllFiles"
+      numberOfResults="1">
+      <microContentSubset />
+    </FeaturedSnippets>
+    <KnowledgePanel
+      type="Empty"
+      numberOfResults="1">
+      <microContentSubset />
+    </KnowledgePanel>
+  </MicroContentSearch>
 </CatapultTarget>
