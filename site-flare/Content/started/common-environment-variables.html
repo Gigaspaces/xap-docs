@@ -3,6 +3,10 @@
     <head>
     </head>
     <body>
+        <div class="product-bar">
+            <p><a>Smart Cache</a>
+            </p>
+        </div>
         <h1>Configuring the Environment Variables</h1>
         <p>This topic explains how the <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> environments are configured, and how to customize them to suit your specific application needs.</p>
         <h2><a name="xap"></a><MadCap:variable name="General.ProductNameXAP" />
@@ -160,40 +164,41 @@
             </tbody>
         </table>
         <p><span class="tc-iconexcl">&#160;</span> When running in <code>./gs-agent --manager</code> configuration, this environment variable is ignored.</p>
-        <h1><a name="insightedge-environment-variables"></a><MadCap:variable name="General.ProductNameIE" /> Environment Variables</h1>
-        <p>The following list describes <MadCap:variable name="General.ProductNameIE" />-related environment variables:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th align="left">Name</th>
-                    <th align="left">Description</th>
-                    <th align="left">Default Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td align="left">SPARK_HOME</td>
-                    <td align="left">The directory where Spark is installed</td>
-                    <td align="left"><code><MadCap:variable name="General.EnvVariablePrefix" />_HOME/insightedge</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left">INSIGHTEDGE_CLASSPATH_EXT</td>
-                    <td align="left">Extra classpath to append to <MadCap:variable name="General.ProductNameIE" /> components</td>
-                    <td align="left">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left">INSIGHTEDGE_SPACE_NAME</td>
-                    <td align="left">Space name to use in <MadCap:variable name="General.ProductNameIE" /> scripts and examples</td>
-                    <td align="left"><code>demo</code>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div MadCap:conditions="Version.16-0-died">
+            <h1><a name="insightedge-environment-variables"></a><MadCap:variable name="General.ProductNameIE" /> Environment Variables</h1>
+            <p>The following list describes <MadCap:variable name="General.ProductNameIE" />-related environment variables:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Name</th>
+                        <th align="left">Description</th>
+                        <th align="left">Default Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left">SPARK_HOME</td>
+                        <td align="left">The directory where Spark is installed</td>
+                        <td align="left"><code><MadCap:variable name="General.EnvVariablePrefix" />_HOME/insightedge</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">INSIGHTEDGE_CLASSPATH_EXT</td>
+                        <td align="left">Extra classpath to append to <MadCap:variable name="General.ProductNameIE" /> components</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left">INSIGHTEDGE_SPACE_NAME</td>
+                        <td align="left">Space name to use in <MadCap:variable name="General.ProductNameIE" /> scripts and examples</td>
+                        <td align="left"><code>demo</code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p>In addition, you can also use standard Spark environment variables. The <MadCap:variable name="General.ProductNameIEP" /> loads Spark components in a manner that preserves their usage. For example, set <code>SPARK_MASTER_PORT</code> to override the default <code>7077</code> port.</p>
-        <h1><a name="upgrading-from-previous-versions"></a>Upgrading from Previous Versions</h1>
-        <p MadCap:conditions="Version.15-0-born">Environment variables in <MadCap:variable name="General.ProductNameIE" /> 15.0 and higher are modified to start with a GS_ prefix in place of the previous XAP_ prefix. To support existing scripts that include environment variables with the XAP_ prefix,  the product reads <MadCap:variable name="General.ProductNameIE" />-specific environment variables,  with both a GS_ prefix and a XAP_ prefix. Therefore if you are upgrading from a previous version, you don't have to modify your scripts right away (although we recommend that you do it eventually).</p>
+        <h1 MadCap:conditions="Version.16-0-died"><a name="upgrading-from-previous-versions"></a>Upgrading from Previous Versions</h1>
+        <p MadCap:conditions="Version.16-0-died">Environment variables in <MadCap:variable name="General.ProductNameIE" /> 15.0 and higher are modified to start with a GS_ prefix in place of the previous XAP_ prefix. To support existing scripts that include environment variables with the XAP_ prefix,  the product reads <MadCap:variable name="General.ProductNameIE" />-specific environment variables,  with both a GS_ prefix and a XAP_ prefix. Therefore if you are upgrading from a previous version, you don't have to modify your scripts right away (although we recommend that you do it eventually).</p>
         <p MadCap:conditions="Version.15-0-died">In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with <MadCap:variable name="General.ProductNameXAP" /> 11.0, all <MadCap:variable name="General.ProductNameXAP" />-related environment variables were renamed with a <code>XAP_</code> prefix, so they're easier to identify. The following table maps the pre-11.0 names to the current names:</p>
         <table MadCap:conditions="Version.15-0-died">
             <thead>
