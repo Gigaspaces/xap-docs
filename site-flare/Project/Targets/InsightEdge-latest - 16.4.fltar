@@ -15,13 +15,13 @@
   DefaultUrl="/Content/landing.html"
   MasterPage="/Content/Resources/MasterPages/inner-pages-new.flmsp"
   MobileBreakpoint="820"
-  ConditionTagExpression="include[Version.16-5-born or Version.16-5-only], exclude[Default.DoNotShow or NewSet.LatestOnly or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-5-only or Version.15-8-died or Version.15-8-only or Version.16-0-died or Version.16-0-only or Version.16-1-1-died or Version.16-1-1-only or Version.16-1-died or Version.16-1-only or Version.16-2-1-died or Version.16-2-1-only or Version.16-2-died or Version.16-2-only or Version.16-3-died or Version.16-3-only or Version.16-4-died or Version.16-4-only or Version.16-5-died]"
+  ConditionTagExpression="include[NewSet.LatestOnly], exclude[Default.DoNotShow or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-5-only or Version.15-8-died or Version.15-8-only or Version.16-0-died or Version.16-0-only or Version.16-1-1-died or Version.16-1-1-only or Version.16-1-died or Version.16-1-only or Version.16-2-1-died or Version.16-2-1-only or Version.16-2-died or Version.16-2-only or Version.16-3-died or Version.16-3-only or Version.16-4-died]"
   ContentInclusionType="Toc"
   MasterStylesheet="/Content/Resources/Stylesheets/tc-styles-2023.css"
   MasterStylesheetOverride="true"
   TopNavTocPath="true"
   EnableSitemap="true"
-  SitemapWebUrl="https://docs-staging.gigaspaces.com/16.5/ ">
+  SitemapWebUrl="https://docs-staging.gigaspaces.com/latest/ ">
   <PrintedOutput
     CollapseMargins="true"
     GenerateTOCProxy="true"
@@ -30,9 +30,9 @@
     OutputFormat="doc" />
   <Variables>
     <Variable
-      Name="Versions/maven-version-MX">16.5.0-m1</Variable>
+      Name="Versions/maven-version-MX">16.4.0-m1</Variable>
     <Variable
-      Name="Versions/product-version-long">16.5.0</Variable>
+      Name="Versions/product-version-long">16.4.0</Variable>
     <Variable
       Name="Versions/rest-version">v2</Variable>
     <Variable
@@ -40,23 +40,23 @@
     <Variable
       Name="Versions/spark-version">2.4.4</Variable>
     <Variable
-      Name="Versions/product-version-short">16.5</Variable>
+      Name="Versions/product-version-short">16.4</Variable>
     <Variable
-      Name="Versions/helm-version-MX">16.5.0-m1</Variable>
+      Name="Versions/helm-version-MX">16.4.0-m1</Variable>
     <Variable
       Name="Versions/gshome-directory">gigaspaces-xap-enterprise-16.4.0</Variable>
     <Variable
-      Name="Versions/gshome-directory-oss">gigaspaces-xap-16.5.0</Variable>
+      Name="Versions/gshome-directory-oss">gigaspaces-xap-16.4.0</Variable>
     <Variable
-      Name="Versions/default-lookup-group">xap-16.5.0</Variable>
+      Name="Versions/default-lookup-group">xap-16.4.0</Variable>
     <Variable
-      Name="Versions/xap-release">16.5</Variable>
+      Name="Versions/xap-release">16.4</Variable>
     <Variable
-      Name="Versions/xap-version">16.5</Variable>
+      Name="Versions/xap-version">16.4</Variable>
     <Variable
-      Name="Versions/msi-filename">gigaspaces-xap.net-16.5.0.msi</Variable>
+      Name="Versions/msi-filename">gigaspaces-xap.net-16.4.0.msi</Variable>
     <Variable
-      Name="Versions/gshome-net-directory">XAP.NET-16.5.0-x64</Variable>
+      Name="Versions/gshome-net-directory">XAP.NET-16.4.0-x64</Variable>
     <Variable
       Name="Versions/spring-short">5.1</Variable>
     <Variable
@@ -86,13 +86,13 @@
     <Variable
       Name="Versions/scala">2.11.6</Variable>
     <Variable
-      Name="Versions/product-version-svc-pack-MX">16.5.0-m1</Variable>
+      Name="Versions/product-version-svc-pack-MX">16.4.0-m1</Variable>
     <Variable
       Name="Versions/spring-long">5.1.7</Variable>
     <Variable
       Name="Versions/java-version">11</Variable>
     <Variable
-      Name="Versions/hibernate-short">16.5.0</Variable>
+      Name="Versions/hibernate-short">16.4.0</Variable>
     <Variable
       Name="General/EnvVariablePrefix">GS</Variable>
     <Variable
@@ -102,9 +102,7 @@
     <Variable
       Name="HTML2023_Variables/JS">custom-2023.js</Variable>
     <Variable
-      Name="Links/ApiDotNetDoc">https://resources.gigaspaces.com/api/16.5.0/dotnet/html</Variable>
-    <Variable
-      Name="Links/ApiJavaDoc">https://resources.gigaspaces.com/api/16.5.0/java</Variable>
+      Name="Links/ApiDotNetDoc">https://resources.gigaspaces.com/api/16.4.0/dotnet/html</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
   <MicroContentSearch>
