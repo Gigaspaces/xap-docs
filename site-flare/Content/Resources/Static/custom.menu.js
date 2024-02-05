@@ -2,9 +2,10 @@
 	
 
 
-  '16.4': { 'url': '/16.4/landing.html', 'label': '16.4', 'hide': true }, // current
-  'latest': { 'url': '/latest/landing.html', 'label': '16.4' },	// also current
+  '16.5': { 'url': '/16.5/landing.html', 'label': '16.5', 'hide': true }, // current
+  'latest': { 'url': '/latest/landing.html', 'label': '16.5' },	// also current
 
+  '16.4': { 'url': '/16.4/landing.html', 'label': '16.4', 'topicBanner': 'old' }, 	
   '16.3': { 'url': '/16.3/landing.html', 'label': '16.3',  'topicBanner': 'old' },
   '16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1',  'topicBanner': 'old' },	
   '16.2': { 'url': '/16.2/landing.html', 'label': '16.2',  'topicBanner': 'old' },
@@ -51,6 +52,6 @@ var buttonsData = [
 ];
 
 var topicBanner = {
-  old: '<div class="tc-topic-banner old"><p>This page describes an older version of the product. The latest stable version is <a href="/latest/rn/latest.html">16.4</a>.</p></div>',
-  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest/rn/latest.html">16.4</a>.</p></div>'
+  old: '<div class="tc-topic-banner old"><p>This page describes an older version of the product. The latest stable version is <a href="/latest/rn/latest.html">16.5</a>.</p></div>',
+  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest/rn/latest.html">16.5</a>.</p></div>'
 };
