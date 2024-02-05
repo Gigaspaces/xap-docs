@@ -41,7 +41,7 @@
                         <p>Access to data in the data-grid is provided only to trusted users (see IDP and Oauth2 sections).</p>
                     </li>
                     <li>
-                        <p>RBAC rules are defined for data-grid access by the data entity (see Roles and Privileges sections).</p>
+                        <p>RBAC rules are defined for data-grid access by the data entity (see <a href="#RolesPrivileges">Roles and Privileges</a> section).</p>
                     </li>
                 </ul>
             </li>
@@ -105,15 +105,17 @@
         <div class="tc-admon-note">
             <p>For IDP setup details refer to our <a href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO IDP Setup</a> page found in our User Guide</p>
         </div>
-        <h2>Service Accounts</h2>
-        <p>Service accounts represent components which integrate with the data-grid. An advanced user can write additional components and plug them into the system. These components must enroll in the Service Accounts section in SpaceDeck.</p>
-        <div class="tc-admon-note">
-            <p>For details about Service Accounts refer to our <a href="../spacedeck/spacedeck-idp-details.html" style="background-color: #ffff00;">SpaceDeck - Service Accounts</a> page found in our User Guide</p>
+        <div MadCap:conditions="Version.16-5-born">
+            <h2>Service Accounts</h2>
+            <p>Service accounts represent components which integrate with the data-grid. An advanced user can write additional components and plug them into the system. These components must enroll in the Service Accounts section in SpaceDeck.</p>
+            <div class="tc-admon-note">
+                <p>For details about Service Accounts refer to our <a href="../security/security-service-account-privilege-mgmt.html">Service Account Privilege Management</a> page found in our Architectural Overview section.</p>
+            </div>
         </div>
-        <h2>Roles &amp;&#160;Privileges</h2>
+        <h2><a name="RolesPrivileges"></a>Roles &amp;&#160;Privileges</h2>
         <p>User and service accounts can be assigned to roles which limit their access to the data-grid and platform control. A role is a collection of privileges, each defines an allowed operation for a resource. Some privileges are system level and some are associated to specific resources which are either a data-grid level, a Space or a table.</p>
         <div class="tc-admon-note">
-            <p>For details about Roles &amp;&#160;Privileges refer to the <a href="../spacedeck/spacedeck-admin.html#Roles-Mangement" style="background-color: #ffffff;">SpaceDeck - Role Management</a> information found in our User Guide</p>
+            <p>For details about Roles &amp;&#160;Privileges refer to the our <a href="../security/security-overview.html">Security Overview</a> page found in our Architectural Overview section.</p>
         </div>
         <h2>Auditing</h2>
         <p>Each operation performed by SpaceDeck (pipelines, services, data-grid/Spaces) is audited and can be found in a log containing both the user ID and the operation performed. The IDP logs user logins and logouts.</p>
