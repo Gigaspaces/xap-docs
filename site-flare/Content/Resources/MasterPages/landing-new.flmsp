@@ -99,11 +99,11 @@
 			$searchBar.find('.search-submit-wrapper').remove();
 			// Add the div#auto to the .search-bar.search-bar-container.needs-pie
 			$searchBar.prepend('			<!-- SearchUnify Code -->
-			<div id="auto">
-				<div ng-controller="SearchautoController">
-					<div bind-html-compile="autocompleteHtml"></div>
-				</div>
-			</div>
+            <div id="auto" class="su__innerPage-autocomplete">
+                <div ng-controller="SearchautoController">
+                    <div bind-html-compile="autocompleteHtml"></div>
+                </div>
+            </div>
 			<!-- SearchUnify Code -->');
 		});
 			new ClipboardJS('.btn'); </script>
