@@ -14,12 +14,12 @@
         <h1 class="tc-pagetitle">Data Definition (DDL) Syntax</h1>
         <h2><a name="Data2"></a>Data Definition Operations</h2>
         <p><b>Create Table:</b>
-        </p><pre class="p_1">CREATE TABLE table_name {( [
+        </p><pre class="p_1" xml:space="preserve">CREATE TABLE table_name {( [
         { column_name data_type [ column_constraint [ ... ] ]
         | table_constraint }
         [PRIMARY KEY (column)]
         [INDEX (column)]
-        [PARTITION BY]
+        [PARTITION BY (column)]
         [BROADCAST]
         ] )
         |
