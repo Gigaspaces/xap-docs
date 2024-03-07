@@ -24,7 +24,7 @@
       _self.ready();
     },
     ready: function () {
-      
+
       /* Responsive resources menu */
 
       $("ul.sidenav").on("loaded", function() {
@@ -97,6 +97,10 @@
 
         if($('.gs-banner').length) {
           $('.gs-banner').prependTo('#mc-main-content');
+        }
+        
+        if($('#last-updated').length) {
+        $('#last-updated').prependTo('#mc-main-content').css('display', 'inline-block');
         }
 
         $('<div id="sidebar-toggle" />')
