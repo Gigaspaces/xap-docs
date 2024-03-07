@@ -1,27 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>User-Defined Metrics</h1>
-  
-
-<p>In addition to the metrics shipped with the product, users can define additional metrics for application-specific data.
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>User-Defined Metrics</h1>
+        <p>In addition to the metrics shipped with the product, users can define additional metrics for application-specific data.
 The metric name provided in the annotation is automatically prefixed with <code>pu_</code> and reported with the processing unit tags, as explained <a href="metrics-bundled.html#processing-unit">here</a>.</p>
-
-<p>For example, suppose we have a <code>FooService</code> bean:</p>
-
-<pre><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"&gt;                                          
+        <p>For example, suppose we have a <code>FooService</code> bean:</p><pre><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"&gt;                                          
     &lt;bean id="FooService" class="com.gigaspaces.demo.FooService" /&gt;
 &lt;/beans&gt;
 </code></pre>
-
-<p>And suppose it processes some application-specific requests:</p>
-
-<pre><code class="language-java">public class FooService {
+        <p>And suppose it processes some application-specific requests:</p><pre><code class="language-java">public class FooService {
 
     private final AtomicInteger processedRequests = new AtomicInteger();
 
@@ -31,14 +24,9 @@ The metric name provided in the annotation is automatically prefixed with <code>
     }
 }
 </code></pre>
-
-<p>and we want to create a metric for the number of processed requests. We can use one of the following techniques:</p>
-
-<h2><a name="using-annotation"></a>Using Annotation</h2>
-
-<p>The simplest option is to use the <code>@ServiceMetric</code> annotation - simply create a method which returns the current value of the metric, and annotate it with <code>@ServiceMetric</code> along with the name you want the metric to be reported with. For example:</p>
-
-<pre><code class="language-java">public class FooService {
+        <p>and we want to create a metric for the number of processed requests. We can use one of the following techniques:</p>
+        <h2><a name="using-annotation"></a>Using Annotation</h2>
+        <p>The simplest option is to use the <code>@ServiceMetric</code> annotation - simply create a method which returns the current value of the metric, and annotate it with <code>@ServiceMetric</code> along with the name you want the metric to be reported with. For example:</p><pre><code class="language-java">public class FooService {
 
     private final AtomicInteger processedRequests = new AtomicInteger();
 
@@ -53,20 +41,14 @@ The metric name provided in the annotation is automatically prefixed with <code>
     }
 }
 </code></pre>
-
-<h2><a name="using-code"></a>Using Code</h2>
-
-<p>If annotations are not granular enough (for example, you wish to dynamically register and unregister metrics at runtime), you can explicitly register metrics in your code. For that end:</p>
-
-<ol>
-<li>The bean should implement the <code>ProcessingUnitContainerContextAware</code> interface.</li>
-<li>Use the injected <code>ProcessingUnitContainerContext</code> to create a <code>BeanMetricManager</code>. You'll need to provide a name which will prefix all the metrics registered using this <code>BeanMetricManager</code>.</li>
-<li>Use the new <code>BeanMetricManager</code> to register a <code>Gauge</code> metric - Implement the <code>getValue()</code> method to return the value you wish to report.</li>
-</ol>
-
-<p>For example:</p>
-
-<pre><code class="language-java">public class FooService implements ProcessingUnitContainerContextAware {
+        <h2><a name="using-code"></a>Using Code</h2>
+        <p>If annotations are not granular enough (for example, you wish to dynamically register and unregister metrics at runtime), you can explicitly register metrics in your code. For that end:</p>
+        <ol>
+            <li>The bean should implement the <code>ProcessingUnitContainerContextAware</code> interface.</li>
+            <li>Use the injected <code>ProcessingUnitContainerContext</code> to create a <code>BeanMetricManager</code>. You'll need to provide a name which will prefix all the metrics registered using this <code>BeanMetricManager</code>.</li>
+            <li>Use the new <code>BeanMetricManager</code> to register a <code>Gauge</code> metric - Implement the <code>getValue()</code> method to return the value you wish to report.</li>
+        </ol>
+        <p>For example:</p><pre><code class="language-java">public class FooService implements ProcessingUnitContainerContextAware {
 
     private BeanMetricManager metricsManager;
     private final AtomicInteger processedRequests = new AtomicInteger();
@@ -88,12 +70,8 @@ The metric name provided in the annotation is automatically prefixed with <code>
     }
 }
 </code></pre>
-
-<p>Another option is to use <code>LongCounter</code> metric instead to simplify metric registration. <code>LongCounter</code> is a built-in metric type used to simplify reporting counters.</p>
-
-<p>For example:</p>
-
-<pre><code class="language-java">public class FooService implements ProcessingUnitContainerContextAware {
+        <p>Another option is to use <code>LongCounter</code> metric instead to simplify metric registration. <code>LongCounter</code> is a built-in metric type used to simplify reporting counters.</p>
+        <p>For example:</p><pre><code class="language-java">public class FooService implements ProcessingUnitContainerContextAware {
 
     private BeanMetricManager metricsManager;
     private final LongCounter processedRequests = new LongCounter();
@@ -110,10 +88,7 @@ The metric name provided in the annotation is automatically prefixed with <code>
     }
 }
 </code></pre>
-
-<h1><a name="prefix-and-tags"></a>Prefix And Tags</h1>
-
-<p>The specified metric name is automatically prefixed with <code>pu_</code> and reported with the processing unit tags, as explained <a href="metrics-bundled.html#processing-unit">here</a>.</p>
-
-</body>
+        <h1><a name="prefix-and-tags"></a>Prefix And Tags</h1>
+        <p>The specified metric name is automatically prefixed with <code>pu_</code> and reported with the processing unit tags, as explained <a href="metrics-bundled.html#processing-unit">here</a>.</p>
+    </body>
 </html>

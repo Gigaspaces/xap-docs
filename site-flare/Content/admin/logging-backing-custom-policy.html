@@ -1,47 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Backing Up Files With a Custom Policy</h1>
-  
-
-<p>A backup policy can be configured to back up files. By default a <code>NullBackupPolicy</code> is configured, which does nothing. It can be replaced by a <code>DeleteBackupPolicy</code> to keep a backup of files for a specified period of time. The <code>BackupPolicy</code> interface allows custom implementations to be plugged-in.</p>
-
-<h1><a name="null-backup-policy"></a>Null Backup Policy</h1>
-
-<p>A null backup policy acts as a placeholder for a "do-nothing' behavior. Used when an exception occurs trying to instantiate a customized backup policy, or if no policy is desired.</p>
-
-<h1><a name="delete-backup-policy"></a>Delete Backup Policy</h1>
-
-<p>A backup policy that deletes any file that is older than the specified backup period, but keeps at least as many of the specified backup files.</p>
-
-<p>By default, a file is kept for a 30-day period. After 30 days, the file is deleted, unless there are less than 10 backup files available. In other words, maintain a history of 10 files, even if there was nothing logged for more than 30 days.</p>
-
-<p>These properties can be configured by modifying the logging configuration file:</p>
-
-<pre><code class="language-bash">com.gigaspaces.logger.RollingFileHandler.backup-policy = com.gigaspaces.logger.DeleteBackupPolicy
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Backing Up Files With a Custom Policy</h1>
+        <p>A backup policy can be configured to back up files. By default a <code>NullBackupPolicy</code> is configured, which does nothing. It can be replaced by a <code>DeleteBackupPolicy</code> to keep a backup of files for a specified period of time. The <code>BackupPolicy</code> interface allows custom implementations to be plugged-in.</p>
+        <h1><a name="null-backup-policy"></a>Null Backup Policy</h1>
+        <p>A null backup policy acts as a placeholder for a "do-nothing' behavior. Used when an exception occurs trying to instantiate a customized backup policy, or if no policy is desired.</p>
+        <h1><a name="delete-backup-policy"></a>Delete Backup Policy</h1>
+        <p>A backup policy that deletes any file that is older than the specified backup period, but keeps at least as many of the specified backup files.</p>
+        <p>By default, a file is kept for a 30-day period. After 30 days, the file is deleted, unless there are less than 10 backup files available. In other words, maintain a history of 10 files, even if there was nothing logged for more than 30 days.</p>
+        <p>These properties can be configured by modifying the logging configuration file:</p><pre><code class="language-bash">com.gigaspaces.logger.RollingFileHandler.backup-policy = com.gigaspaces.logger.DeleteBackupPolicy
 com.gigaspaces.logger.DeleteBackupPolicy.period = 30
 com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
 </code></pre>
-
-<p>The backup properties can also be configured using a system property override:</p>
-
-<pre><code class="language-bash">-Dcom.gigaspaces.logger.DeleteBackupPolicy.[property-name]=[property-value]
+        <p>The backup properties can also be configured using a system property override:</p><pre><code class="language-bash">-Dcom.gigaspaces.logger.DeleteBackupPolicy.[property-name]=[property-value]
 
 For example:
 -Dcom.gigaspaces.logger.DeleteBackupPolicy.period=30
 </code></pre>
-
-<h1><a name="customized-backup-policy"></a>Customized Backup Policy</h1>
-
-<p>The <code>com.gigaspaces.logger.</code><code>BackupPolicy</code> is an interface for a pluggable backup policy. For example, you may wish to write an implementation to zip files if a certain threshold is reached. The interface has a single method, which is used to <span class="tc-bold">track</span> newly created log files. A file is either created upon rollover or at initialization time. Implementation can keep track of files and decide whether to trigger the backup policy.</p>
-
-<pre><code class="language-bash">    public void track(File file);
+        <h1><a name="customized-backup-policy"></a>Customized Backup Policy</h1>
+        <p>The <code>com.gigaspaces.logger.</code><code>BackupPolicy</code> is an interface for a pluggable backup policy. For example, you may wish to write an implementation to zip files if a certain threshold is reached. The interface has a single method, which is used to <span class="tc-bold">track</span> newly created log files. A file is either created upon rollover or at initialization time. Implementation can keep track of files and decide whether to trigger the backup policy.</p><pre><code class="language-bash">    public void track(File file);
 </code></pre>
-
-</body>
+    </body>
 </html>
