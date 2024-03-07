@@ -3,16 +3,16 @@
     <head>
     </head>
     <body style="text-align: left;">
-        <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> Smart Cache </h1>
-        <p style="text-align: left;" MadCap:conditions="Version.16-0-died">GigaSpaces Smart Cache is part of the <a href="smart-overview.html">GigaSpaces Portfolio</a> — Smart Cache, Smart ODS and Smart Augmented Transactions. </p>
-        <p style="text-align: left;" MadCap:conditions="Version.16-0-born">GigaSpaces Smart Cache is part of the <a href="smart-overview.html">GigaSpaces  Portfolio</a> — Smart Cache and Smart DIH. </p>
-        <p style="text-align: left;">Smart Cache provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
-        <h1>Smart Cache Overview</h1>
+        <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> <MadCap:variable name="General.ProductXAP" /> </h1>
+        <p style="text-align: left;" MadCap:conditions="Version.16-0-died">GigaSpaces <MadCap:variable name="General.ProductXAP" /> is part of the <a href="smart-overview.html">GigaSpaces Portfolio</a> — <MadCap:variable name="General.ProductXAP" />, Smart ODS and Smart Augmented Transactions. </p>
+        <p style="text-align: left;" MadCap:conditions="Version.16-0-born">GigaSpaces <MadCap:variable name="General.ProductXAP" /> is part of the <a href="smart-overview.html">GigaSpaces  Portfolio</a> — <MadCap:variable name="General.ProductXAP" /> and Smart DIH. </p>
+        <p style="text-align: left;"><MadCap:variable name="General.ProductXAP" /> provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
+        <h1><MadCap:variable name="General.ProductXAP" /> Overview</h1>
         <p style="text-align: center;">
             <img src="Resources/Static/images/smart-cache-diagram-with-numbers-2.png" class="tc-picture80" />
         </p>
         <div>
-            <p style="text-align: center;">Architecture of Smart Cache</p>
+            <p style="text-align: center;">Architecture of <MadCap:variable name="General.ProductXAP" /></p>
             <h2>1. Connect to Data Source</h2>
             <MadCap:snippetBlock src="Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" MadCap:conditionTagExpression="exclude[SnippetConditions.SnippetCondition01]" />
         </div>
@@ -30,12 +30,12 @@
         </div>
         <h2>3. Optimized Performance</h2>
         <h3>Advanced Indexing</h3>
-        <p>Smart Cache provides unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
+        <p><MadCap:variable name="General.ProductXAP" /> provides unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
         <p>Unlike key-value stores that need to duplicate the entire data store for each defined index,  GigaSpaces  only creates additional indexing data structures on one instance of data. </p>
         <p style="text-align: center;">
             <img src="Resources/Static/images/smart-index-vs-key-value.png" class="tc-picture40" />
         </p>
-        <p style="text-align: center;">Smart Cache advanced indexing</p>
+        <p style="text-align: center;"><MadCap:variable name="General.ProductXAP" /> advanced indexing</p>
         <h3>Server-Side Aggregations</h3>
         <div>
             <p>Perform an <a href="https://docs.gigaspaces.com/latest/dev-java/aggregators.html?Highlight=aggregations">aggregation</a> activity across data stored within space
@@ -75,13 +75,13 @@ Fast scan - No materialization of the original user data grid object when perfor
             <img src="Resources/Static/images/CacheAPIs.png" style="width: 644px;height: 361px;" />
         </p>
         <div>
-            <p style="text-align: center;">Smart Cache APIs</p>
+            <p style="text-align: center;"><MadCap:variable name="General.ProductXAP" /> APIs</p>
         </div>
-        <p>Smart Cache supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
+        <p><MadCap:variable name="General.ProductXAP" /> supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
         <p>Using Java and .NET APIs, advanced capabilities are available — such as object store, and <a href="https://docs.gigaspaces.com/solution-hub/modeling-your-data.html">various data modeling options</a>.
 </p>
         <p><a href="https://docs.gigaspaces.com/latest/admin/admin-rest-manager-api.html?Highlight=rest">REST-API</a> and <a href="https://docs.gigaspaces.com/latest/admin/tools-cli.html">command line</a> interfaces are also available.</p>
-        <p>Smart Cache can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
+        <p><MadCap:variable name="General.ProductXAP" /> can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
         <h1>Deploy Anywhere</h1>
         <div>
             <p>Deployment options include:</p>
@@ -102,19 +102,19 @@ Fast scan - No materialization of the original user data grid object when perfor
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-cache-deploy-anwhere.png" class="tc-picture100" style="width: 786px;height: 360px;" />
             </p>
-            <p style="text-align: center;">Multiple deployment options of Smart Cache</p>
-            <h2><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart Cache.</h2>
+            <p style="text-align: center;">Multiple deployment options of <MadCap:variable name="General.ProductXAP" /></p>
+            <h2><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with <MadCap:variable name="General.ProductXAP" />.</h2>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
-            <h1>Smart Cache Overview — Internal Data Stores</h1>
+            <h1><MadCap:variable name="General.ProductXAP" /> Overview — Internal Data Stores</h1>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
             </p>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
-            <h2 style="text-align: left;">Components of Smart Cache</h2>
+            <h2 style="text-align: left;">Components of <MadCap:variable name="General.ProductXAP" /></h2>
             <h3>One-Click Connect to Existing Data Source</h3>
-            <p style="text-align: left;">Smart Cache's Ops Manager GUI provides built-in connectors to the most popular databases: </p>
+            <p style="text-align: left;"><MadCap:variable name="General.ProductXAP" />'s Ops Manager GUI provides built-in connectors to the most popular databases: </p>
         </div>
         <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
             <img src="Resources/Static/images/smart-one-click-connect.jpg" class="tc-picture60" />
@@ -142,7 +142,7 @@ Fast scan - No materialization of the original user data grid object when perfor
         <div MadCap:conditions="Default.DoNotShow">
             <h3>Hybrid Mix of On-Prem and Cloud Storage</h3>
             <p>Using <MadCap:variable name="General.ProductNameXAP" />'s built-in ElasticGrid, or using Kubernetes, SmartCaching allows a configurable, dynamically changeable combination of on-prem and cloud storage. Data can be stored locally and replicated globally, allowing wide-area access with excellent concurrency and data integrity.</p>
-            <h3><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart Cache.</h3>
+            <h3><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with <MadCap:variable name="General.ProductXAP" />.</h3>
         </div>
         <h3 MadCap:conditions="Default.DoNotShow">Connect and Trigger SQL and Custom SDK queries</h3>
     </body>

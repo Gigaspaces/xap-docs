@@ -1,97 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Hardware Selection</h1>
-  
-
-<p>The general rule when selecting the hardware to run GigaSpaces applications is <span class="tc-bold">the faster the better</span>. Multi-core machines with large amounts of memory are the most cost effective, because they provide the best performance by leveraging large JVM heap size that can handle simultaneous requests with minimal thread context switch overhead.</p>
-
-<p>You can run production systems with 30G-50GB heap size with some JVM tuning when leveraging multi-core machines. The recommended hardware is <a href="https://ark.intel.com/products/series/59213/Legacy-Intel-Xeon-Processors?series=47915">Intel Xeon Processor 5600 Series</a>. Here is an example for <a href="http://www.cisco.com/en/US/products/ps10280/prod_models_comparison.html">recommended server configuration</a>:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Model</th>
-<th align="center">Cisco UCS B200 M2 Blade Server</th>
-<th align="center">Cisco UCS B250 M2 Extended Memory Blade Server</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Processor Sockets</td>
-<td align="center">2</td>
-<td align="center">2</td>
-</tr>
-
-<tr>
-<td align="left">Processors Supported</td>
-<td align="center">Intel Xeon processor 5600 Series</td>
-<td align="center">Intel Xeon processor 5600 Series</td>
-</tr>
-
-<tr>
-<td align="left">Memory Capacity</td>
-<td align="center">12 DIMMs; up to 192 GB</td>
-<td align="center">48 DIMMs; up to 384 GB</td>
-</tr>
-
-<tr>
-<td align="left">Memory Size and Speed</td>
-<td align="center">4, 8, and 16 GB DDR3; 1066 MHz and 1333 MHz</td>
-<td align="center">4 and 8 GB DDR3; 1066 MHz and 1333 MHz</td>
-</tr>
-
-<tr>
-<td align="left">Internal Disk Drive</td>
-<td align="center">2x 2.5-in. SFF SAS or 15mm SATA SSD</td>
-<td align="center">2x 2.5-in. SFF SAS or 15mm SATA SSD</td>
-</tr>
-
-<tr>
-<td align="left">Integrated Raid</td>
-<td align="center">0,1</td>
-<td align="center">0,1</td>
-</tr>
-
-<tr>
-<td align="left">Mezzanine I/O Adapter Slots</td>
-<td align="center">1</td>
-<td align="center">2</td>
-</tr>
-
-<tr>
-<td align="left">I/O Throughput</td>
-<td align="center">Up to 20 Gbps</td>
-<td align="center">Up to 40 Gbps</td>
-</tr>
-
-<tr>
-<td align="left">Form Factor</td>
-<td align="center">Half width</td>
-<td align="center">Full width</td>
-</tr>
-
-<tr>
-<td align="left">Max. Servers per Chassis</td>
-<td align="center">8</td>
-<td align="center">4</td>
-</tr>
-</tbody>
-</table>
-
-<h1><a name="cpu-requirements"></a>CPU Requirements</h1>
-
-<p>Since most of the application activities are conducted in-memory, the CPU speed affects your application performance fairly drastically. You may have a machine with plenty of CPU cores but a slow CPU clock speed, which eventually slows down the application or the data grid response time. As a basic rule, pick the fastest CPU you can find. The data grid itself and its container are highly multi-threaded components, so it is important to use machines with more than a single core to host the GSC to run your data grid or application. A good number for the amount of GSCs per machine is half of the total number of cores.</p>
-
-<h1><a name="disk-space"></a>Disk Space</h1>
-
-<p>With any <MadCap:variable name="General.ProductNameXAP" />-based system, log files will be generated. A good best practice is to allocate at least 100MB of free disk size per machine running GigaSpaces applications. Ensure that you delete old log files or move them to a backup location. The <MadCap:variable name="General.ProductNameXAP" /> data grid may overflow data into the <code>work directory</code> when there is a long replication disconnection or replication delay. The location of the <code>work directory</code> should be on local storage for each <MadCap:variable name="General.ProductNameXAP" /> node in order to make this replication backlog data always available to the node. The storage should have enough disk space to store the replication backlog as explained in <a href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>.</p>
-
-</body>
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Hardware Selection</h1>
+        <p>The general rule when selecting the hardware to run GigaSpaces applications is <span class="tc-bold">the faster the better</span>. Multi-core machines with large amounts of memory are the most cost effective, because they provide the best performance by leveraging large JVM heap size that can handle simultaneous requests with minimal thread context switch overhead.</p>
+        <p>You can run production systems with 30G-50GB heap size with some JVM tuning when leveraging multi-core machines. The recommended hardware is <a href="https://ark.intel.com/products/series/59213/Legacy-Intel-Xeon-Processors?series=47915">Intel Xeon Processor 5600 Series</a>. Here is an example for <a href="http://www.cisco.com/en/US/products/ps10280/prod_models_comparison.html">recommended server configuration</a>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Model</th>
+                    <th align="center">Cisco UCS B200 M2 Blade Server</th>
+                    <th align="center">Cisco UCS B250 M2 Extended Memory Blade Server</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Processor Sockets</td>
+                    <td align="center">2</td>
+                    <td align="center">2</td>
+                </tr>
+                <tr>
+                    <td align="left">Processors Supported</td>
+                    <td align="center">Intel Xeon processor 5600 Series</td>
+                    <td align="center">Intel Xeon processor 5600 Series</td>
+                </tr>
+                <tr>
+                    <td align="left">Memory Capacity</td>
+                    <td align="center">12 DIMMs; up to 192 GB</td>
+                    <td align="center">48 DIMMs; up to 384 GB</td>
+                </tr>
+                <tr>
+                    <td align="left">Memory Size and Speed</td>
+                    <td align="center">4, 8, and 16 GB DDR3; 1066 MHz and 1333 MHz</td>
+                    <td align="center">4 and 8 GB DDR3; 1066 MHz and 1333 MHz</td>
+                </tr>
+                <tr>
+                    <td align="left">Internal Disk Drive</td>
+                    <td align="center">2x 2.5-in. SFF SAS or 15mm SATA SSD</td>
+                    <td align="center">2x 2.5-in. SFF SAS or 15mm SATA SSD</td>
+                </tr>
+                <tr>
+                    <td align="left">Integrated Raid</td>
+                    <td align="center">0,1</td>
+                    <td align="center">0,1</td>
+                </tr>
+                <tr>
+                    <td align="left">Mezzanine I/O Adapter Slots</td>
+                    <td align="center">1</td>
+                    <td align="center">2</td>
+                </tr>
+                <tr>
+                    <td align="left">I/O Throughput</td>
+                    <td align="center">Up to 20 Gbps</td>
+                    <td align="center">Up to 40 Gbps</td>
+                </tr>
+                <tr>
+                    <td align="left">Form Factor</td>
+                    <td align="center">Half width</td>
+                    <td align="center">Full width</td>
+                </tr>
+                <tr>
+                    <td align="left">Max. Servers per Chassis</td>
+                    <td align="center">8</td>
+                    <td align="center">4</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="cpu-requirements"></a>CPU Requirements</h1>
+        <p>Since most of the application activities are conducted in-memory, the CPU speed affects your application performance fairly drastically. You may have a machine with plenty of CPU cores but a slow CPU clock speed, which eventually slows down the application or the data grid response time. As a basic rule, pick the fastest CPU you can find. The data grid itself and its container are highly multi-threaded components, so it is important to use machines with more than a single core to host the GSC to run your data grid or application. A good number for the amount of GSCs per machine is half of the total number of cores.</p>
+        <h1><a name="disk-space"></a>Disk Space</h1>
+        <p>With any <MadCap:variable name="General.ProductNameXAP" />-based system, log files will be generated. A good best practice is to allocate at least 100MB of free disk size per machine running GigaSpaces applications. Ensure that you delete old log files or move them to a backup location. The <MadCap:variable name="General.ProductNameXAP" /> data grid may overflow data into the <code>work directory</code> when there is a long replication disconnection or replication delay. The location of the <code>work directory</code> should be on local storage for each <MadCap:variable name="General.ProductNameXAP" /> node in order to make this replication backlog data always available to the node. The storage should have enough disk space to store the replication backlog as explained in <a href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>.</p>
+    </body>
 </html>

@@ -3,14 +3,14 @@
     <head>
     </head>
     <body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-		<div class="product-bar">
-			<p><a>Smart DIH</a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle">Data Grid Architecture</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> data grid is built from the following sub-systems:</p>
         <div class="tc-align-center">
@@ -53,7 +53,7 @@
             </li>
         </ul>
         <h2><a name="core-api"></a>Core API</h2>
-        <p>Note: .NET version is for Smart Cache only</p>
+        <p>Note: .NET version is for <MadCap:variable name="General.ProductXAP" /> only</p>
         <p>The core package of OpenSpaces provides APIs for direct access to a data grid, internally referred to as a "Space." The main interface is the GigaSpace, which enables the basic interaction with the data grid. The core components include basic infrastructure support such as Space <a href="../dev-java/the-gigaspace-interface-overview.html">Java version</a> |<a href="../dev-dotnet/the-gigaspace-interface-overview.html"> .NET version</a> &#160;construction, simplified API using the <MadCap:variable name="General.ProductNameXAP" /> interface including Transaction Management <a href="../dev-java/transaction-overview.html">Java version</a> |<a href="../dev-dotnet/transaction-overview.html"> .NET version</a> and declarative transaction support. </p>
         <h2><a name="events"></a>Messaging and Events </h2>
         <p>The events package is built on top of the core package, and provides simple object-based event processing components through the event containers, making it roughly equivalent to Java EE's message-driven beans. (The primary differences outside of API semantics are in the power of OpenSpaces' selection criteria and routing.) The event package enables simple construction of event-driven applications.</p>
