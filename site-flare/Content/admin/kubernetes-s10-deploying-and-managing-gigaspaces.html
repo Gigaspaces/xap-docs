@@ -4,11 +4,11 @@
     </head>
     <body>
         <div class="product-bar">
-            <p><a>Smart Cache</a>
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
             </p>
         </div>
-        <h1 class="tc-pagetitle">Smart Cache Kubernetes Installation</h1>
-        <p>This topic describes how to deploy Smart Cache in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full Smart Cache platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
+        <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductXAPSkyline" /> Kubernetes Installation</h1>
+        <p>This topic describes how to deploy <MadCap:variable name="General.ProductXAPSkyline" /> in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full <MadCap:variable name="General.ProductXAPSkyline" /> platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
         <div class="tc-admon-note">
             <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/next-level-getting-started-with-smart-cache.html">Getting Started</a> section before performing the tasks described here.</p>
         </div>
@@ -52,11 +52,11 @@
 helm repo update cache
 </pre>
             <li>
-                <p>Fully install Smart Cache (including Ingress and H/A for SpaceDeck):</p>
+                <p>Fully install <MadCap:variable name="General.ProductXAPSkyline" /> (including Ingress and H/A for SpaceDeck):</p>
             </li><pre xml:space="preserve">helm install cache cache/smart-cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, 
 global.password=rootpassword</pre>
             <li>
-                <p>Smart Cache is now installed in H/A mode. Wait for all pods to be ready.</p>
+                <p><MadCap:variable name="General.ProductXAPSkyline" /> is now installed in H/A mode. Wait for all pods to be ready.</p>
             </li>
             <li>
                 <p>Connect to the SpaceDeck at <code class="language-bash">https://myhost.com/</code></p>
@@ -84,7 +84,7 @@ global.password=rootpassword</pre>
             </li>
         </ul>
         <div class="tc-admon-note" MadCap:conditions="Version.16-3-born">
-            <p>For detailed configuration information refer to the <a href="config-details-smart-cache.htm">Detailed Configuration:&#160;Smart Cache</a> page </p>
+            <p>For detailed configuration information refer to the <a href="config-details-smart-cache.htm">Detailed Configuration:&#160;<MadCap:variable name="General.ProductXAPSkyline" /></a> page </p>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h1>Prerequisites</h1>
@@ -103,11 +103,11 @@ global.password=rootpassword</pre>
             </ul>
             <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. </p>
             <div MadCap:conditions="NewSet.JustAColorForDivs">
-                <h1>Deploying Smart Cache</h1>
+                <h1>Deploying <MadCap:variable name="General.ProductXAPSkyline" /></h1>
                 <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
                 <p>Note that Platform Manager is deployed by using a Helm chart, and further operations can also be performed using the UI, CLI or REST-API tools.</p>
                 <p MadCap:conditions="Default.DoNotShow">Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
-                <h1>Create a local repository from the Helm server and install Smart Cache</h1>
+                <h1>Create a local repository from the Helm server and install <MadCap:variable name="General.ProductXAPSkyline" /></h1>
                 <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
                     <p>The <code style="font-weight: bold;">xap</code> chart used in the following example is an "umbrella" chart that references more than one Helm chart.</p>
                 </div>
@@ -249,8 +249,8 @@ xap-xap-manager-0               1/1     Running   0          17m
                 </li>
             </ul>
         </div>
-        <h1>Next Steps Configuring Smart Cache</h1>
-        <p>The following topics outline additional steps in the Smart Cache setup.</p>
+        <h1>Next Steps Configuring <MadCap:variable name="General.ProductXAPSkyline" /></h1>
+        <p>The following topics outline additional steps in the <MadCap:variable name="General.ProductXAPSkyline" /> setup.</p>
         <ul>
             <li>
                 <p>
@@ -269,7 +269,7 @@ xap-xap-manager-0               1/1     Running   0          17m
             </li>
         </ul>
         <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
-            <p>For detailed configuration refer to the <a href="config-details-smart-cache.htm">Detailed Configuration:&#160;Smart Cache</a> page </p>
+            <p>For detailed configuration refer to the <a href="config-details-smart-cache.htm">Detailed Configuration:&#160;<MadCap:variable name="General.ProductXAPSkyline" /></a> page </p>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h1>WAN Gateway</h1>
