@@ -1,19 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Event Exception Handler</h1>
-  
-
-<p><MadCap:variable name="General.ProductNameXAP" /> provides a mechanism allowing to hook into how exception raised by event listeners are handled, specifically when the event listeners are executed under the context of a transaction.</p>
-
-<p>An event exception handler should implement the following interface:</p>
-
-<pre><code class="language-java">public interface EventExceptionHandler&lt;T&gt; {
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Event Exception Handler</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides a mechanism allowing to hook into how exception raised by event listeners are handled, specifically when the event listeners are executed under the context of a transaction.</p>
+        <p>An event exception handler should implement the following interface:</p><pre><code class="language-java">public interface EventExceptionHandler&lt;T&gt; {
 
     /**
      * A callback when a successful execution of a listener.
@@ -48,10 +44,7 @@
                      GigaSpace gigaSpace, TransactionStatus txStatus, Object source) throws RuntimeException;
 }
 </code></pre>
-
-<p>If we take the following simple implementation of the event listener interface:</p>
-
-<pre><code class="language-java">public class SimpleEventExceptionHandler implements EventExceptionHandler {
+        <p>If we take the following simple implementation of the event listener interface:</p><pre><code class="language-java">public class SimpleEventExceptionHandler implements EventExceptionHandler {
     public void onSuccess(T data, GigaSpace gigaSpace,
                           TransactionStatus txStatus, Object source) throws RuntimeException {
         // process success
@@ -63,10 +56,9 @@
     }
 }
 </code></pre>
-
-<p>Here is how it can be configured:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-java">@EventDriven @Polling
+        <p>Here is how it can be configured:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Annotation " style="padding:10px"><pre><code class="language-java">@EventDriven @Polling
 public class SimpleListener {
 
     @ExceptionHandler
@@ -88,8 +80,8 @@ public class SimpleListener {
     }
 }
 </code></pre>
-</div>
-<div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleExceptionHandler" class="SimpleEventExceptionHandler" /&gt;
+            </div>
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleExceptionHandler" class="SimpleEventExceptionHandler" /&gt;
 
 &lt;os-events:x-container ...&gt;
     &lt;!-- ... --&gt;
@@ -97,8 +89,8 @@ public class SimpleListener {
     &lt;os-events:exception-handler ref="simpleExceptionHandler" /&gt;
 &lt;/os-events&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleExceptionHandler" class="SimpleEventExceptionHandler" /&gt;
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleExceptionHandler" class="SimpleEventExceptionHandler" /&gt;
 
 &lt;bean id="eventContainer" class="..."&gt;
     &lt;!-- ... --&gt;
@@ -106,29 +98,20 @@ public class SimpleListener {
     &lt;property name="exceptionHandler" ref="simpleExceptionHandler" /&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-</div>
-
-<h1><a name="using-the-event-exception-handler"></a>Using the Event Exception Handler</h1>
-
-<p>One of the main use cases that an Exception Handler can be used for is to filter out poison messages. For example, with a polling container, if the event data (the message) can't be processed, and the polling container is transactional, it will continue to retry the message indefinitely. It will start a transaction, perform a take, try and process the message, throwing an exception in the process, and rolling back the transaction causing the take operation to be rolled back.</p>
-
-<p>If the type of the exception is know to be unrecoverable, an exception handler can be registered that will check the exception type (the cause of the ListenerExecutionFailedException), detect it, and not re-throw an exception, but instead write that entry wrapped in a "Poison Message" entry back into the space creating a dead letter queue that can be processed later on.</p>
-
-<p>A retry counter can also be handled by creating a generic interface, for example called <code>RetryMessageEntry</code>, which certain messages will implement. That interface will allow to increment a counter and reset it. The counter field will be part of the entry (i.e. persisted in the space).</p>
-
-<p>When an exception occurs, the retry counter will be incremented. If its under a specific threshold, the data object will be rewritten back to the space with the incremented counter (causing it to be taken again by the polling container). No exception will be raised in this case, as we want the transaction to be committed with the updated counter. Another option is to write a new entry with an updated counter, if there might have been side affects to the listener that the transaction should not commit.</p>
-
-<p>If the threshold has been breached, the same poising message handling described above can be applied.</p>
-
-<p>Its important to note that the exception handler <code>onException</code> and <code>onSuccess</code> operate under the existing on going transaction started by the polling container. Doing something outside of a transaction can be done by using a <code>GigaSpace</code> instance that is not associated with a transaction manager.</p>
-
-<h1><a name="example"></a>Example</h1>
-
-<p>Here is an example where we create Purchase Orders that need to be processed. The <code>NewOrderProcessor</code> will try to process the Purchase Order. If the processing fails it will retry two times. If it can't process the order a <code>PoProcessException</code> is thrown that will be handled by the <code>PoEventExceptionHandler</code>.
+            </div>
+        </div>
+        <h1><a name="using-the-event-exception-handler"></a>Using the Event Exception Handler</h1>
+        <p>One of the main use cases that an Exception Handler can be used for is to filter out poison messages. For example, with a polling container, if the event data (the message) can't be processed, and the polling container is transactional, it will continue to retry the message indefinitely. It will start a transaction, perform a take, try and process the message, throwing an exception in the process, and rolling back the transaction causing the take operation to be rolled back.</p>
+        <p>If the type of the exception is know to be unrecoverable, an exception handler can be registered that will check the exception type (the cause of the ListenerExecutionFailedException), detect it, and not re-throw an exception, but instead write that entry wrapped in a "Poison Message" entry back into the space creating a dead letter queue that can be processed later on.</p>
+        <p>A retry counter can also be handled by creating a generic interface, for example called <code>RetryMessageEntry</code>, which certain messages will implement. That interface will allow to increment a counter and reset it. The counter field will be part of the entry (i.e. persisted in the space).</p>
+        <p>When an exception occurs, the retry counter will be incremented. If its under a specific threshold, the data object will be rewritten back to the space with the incremented counter (causing it to be taken again by the polling container). No exception will be raised in this case, as we want the transaction to be committed with the updated counter. Another option is to write a new entry with an updated counter, if there might have been side affects to the listener that the transaction should not commit.</p>
+        <p>If the threshold has been breached, the same poising message handling described above can be applied.</p>
+        <p>Its important to note that the exception handler <code>onException</code> and <code>onSuccess</code> operate under the existing on going transaction started by the polling container. Doing something outside of a transaction can be done by using a <code>GigaSpace</code> instance that is not associated with a transaction manager.</p>
+        <h1><a name="example"></a>Example</h1>
+        <p>Here is an example where we create Purchase Orders that need to be processed. The <code>NewOrderProcessor</code> will try to process the Purchase Order. If the processing fails it will retry two times. If it can't process the order a <code>PoProcessException</code> is thrown that will be handled by the <code>PoEventExceptionHandler</code>.
 The PoEventExceptionHandler will update the <code>state</code> of the PurchaseOrder to <code>UNPROCESSABLE</code> and write it back into the Space. The order will not be seen by the <code>NewOrderProcessor</code> again since its template specified the status to be <code>NEW</code>.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Program " style="padding:10px"><pre><code class="language-java">public class Program {
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Program " style="padding:10px"><pre><code class="language-java">public class Program {
 
     private static Logger logger = LoggerFactory
             .getLogger(Program.class);
@@ -175,9 +158,8 @@ The PoEventExceptionHandler will update the <code>state</code> of the PurchaseOr
     }
 }
 </code></pre>
-</div>
-
-<div title=" PurchaseOrder " style="padding:10px"><pre><code class="language-java">@SpaceClass
+            </div>
+            <div title=" PurchaseOrder " style="padding:10px"><pre><code class="language-java">@SpaceClass
 public class PurchaseOrder {
 
     private int retryCounter = 0;
@@ -228,9 +210,8 @@ public class PurchaseOrder {
     }
 }
 </code></pre>
-</div>
-
-<div title=" NewOrderProcessor " style="padding:10px"><pre><code class="language-java">@EventDriven
+            </div>
+            <div title=" NewOrderProcessor " style="padding:10px"><pre><code class="language-java">@EventDriven
 @Polling(gigaSpace = "sandboxSpace")
 @TransactionalEvent
 public class NewOrderProcessor {
@@ -283,9 +264,8 @@ public class NewOrderProcessor {
     }
 }
 </code></pre>
-</div>
-
-<div title=" PoEventExceptionHandler " style="padding:10px"><pre><code class="language-java">public class PoEventExceptionHandler implements
+            </div>
+            <div title=" PoEventExceptionHandler " style="padding:10px"><pre><code class="language-java">public class PoEventExceptionHandler implements
         EventExceptionHandler&lt;PurchaseOrder&gt; {
 
     private static Logger logger = LoggerFactory
@@ -311,33 +291,27 @@ public class NewOrderProcessor {
     }
 }
 </code></pre>
-</div>
-
-<div title=" PoProcessingException " style="padding:10px"><pre><code class="language-java">public class PoProcessingException extends Exception{
+            </div>
+            <div title=" PoProcessingException " style="padding:10px"><pre><code class="language-java">public class PoProcessingException extends Exception{
 
     public PoProcessingException(String string) {
         super(string);
     }
 }
 </code></pre>
-</div>
-
-<div title=" EPurchaseOrderState " style="padding:10px"><pre><code class="language-java">public enum EPurchaseOrderState {
+            </div>
+            <div title=" EPurchaseOrderState " style="padding:10px"><pre><code class="language-java">public enum EPurchaseOrderState {
   NEW, PROCESSED, UNPROCESSABLE
 }
 </code></pre>
-</div>
-</div>
-
-<p>When you run the above example you will see the following output:</p>
-
-<pre><code class="language-bash">18:56:58.968 [GS-SimplePollingEventListenerContainer-1] DEBUG x.s.e.e.NewOrderProcessor - handling the exception for the  1 time
+            </div>
+        </div>
+        <p>When you run the above example you will see the following output:</p><pre><code class="language-bash">18:56:58.968 [GS-SimplePollingEventListenerContainer-1] DEBUG x.s.e.e.NewOrderProcessor - handling the exception for the  1 time
 18:56:58.971 [GS-SimplePollingEventListenerContainer-1] DEBUG x.s.e.e.NewOrderProcessor - handling the exception for the 2 time
 18:56:58.971 [GS-SimplePollingEventListenerContainer-1] DEBUG x.s.e.e.NewOrderProcessor - handling the exception for the 3 time
 18:56:58.971 [GS-SimplePollingEventListenerContainer-1] DEBUG x.s.e.e.NewOrderProcessor - Max retry count reached throwing exception
 18:56:58.972 [GS-SimplePollingEventListenerContainer-1] DEBUG x.s.e.e.PoEventExceptionHandler - Dealing with the exception, change the status to UPROCESSABLE and write it back into the space
 18:56:59.968 [main] DEBUG x.s.e.e.Program - PurchaseOrder in Space PurchaseOrder [retryCounter=2, id=c47e2879-ca6a-4531-b073-3f5c09f658cd, number=null, state=UNPROCESSABLE]
 </code></pre>
-
-</body>
+    </body>
 </html>

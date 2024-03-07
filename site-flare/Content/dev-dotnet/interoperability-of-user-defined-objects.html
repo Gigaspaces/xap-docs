@@ -1,27 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>User-Defined Objects</h1>
-  
-
-<p>A deep class is defined as a class in which, at least one of its fields is a user defined class.</p>
-
-<p>Creating a deep class to be interoperability ready, requires defining all its deep fields as fields that will be stored to the space, using its matching Java objects types. Use the property, <code>StorageType = StorageType.Object</code> on the <code>SpaceProperty()</code> attribute, defined to all the fields that are user defined objects.</p>
-
-<p>Class name mapping: when defining interoperability ready classes, class names of the corresponding .NET and Java classes have to match exactly. In order to keep the .NET and Java namespace style conventions, and still create matching classes, we use the <code>AliasName</code> property of the <code>SpaceClass()</code> attribute to map the .NET class name and namespace to the matching Java class name and namespace.</p>
-
-<p>Properties mapping: when defining interoperability of properties the names of the properties of the Java and .NET classes have to match exactly. In order to keep .NET and Java coding conventions and still create matching classes we use <code>AliasName</code> property of the <code>SpaceProperty()</code> attribute to map properties between .NET and Java.</p>
-
-<h1><a name="designing-interoperable-classes"></a>Designing Interoperable Classes</h1>
-
-<p>For the purpose of explaining the subject we'll look at a Person class (a deep class)</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="C#" style="padding:10px"><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>User-Defined Objects</h1>
+        <p>A deep class is defined as a class in which, at least one of its fields is a user defined class.</p>
+        <p>Creating a deep class to be interoperability ready, requires defining all its deep fields as fields that will be stored to the space, using its matching Java objects types. Use the property, <code>StorageType = StorageType.Object</code> on the <code>SpaceProperty()</code> attribute, defined to all the fields that are user defined objects.</p>
+        <p>Class name mapping: when defining interoperability ready classes, class names of the corresponding .NET and Java classes have to match exactly. In order to keep the .NET and Java namespace style conventions, and still create matching classes, we use the <code>AliasName</code> property of the <code>SpaceClass()</code> attribute to map the .NET class name and namespace to the matching Java class name and namespace.</p>
+        <p>Properties mapping: when defining interoperability of properties the names of the properties of the Java and .NET classes have to match exactly. In order to keep .NET and Java coding conventions and still create matching classes we use <code>AliasName</code> property of the <code>SpaceProperty()</code> attribute to map properties between .NET and Java.</p>
+        <h1><a name="designing-interoperable-classes"></a>Designing Interoperable Classes</h1>
+        <p>For the purpose of explaining the subject we'll look at a Person class (a deep class)</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="C#" style="padding:10px"><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
 
 namespace MyCompany.MyProject.Entities
 {
@@ -60,8 +54,8 @@ namespace MyCompany.MyProject.Entities
   }
 }
 </code></pre>
-</div>
-<div title="Java" style="padding:10px"><pre><code class="language-java">package com.mycompany.myproject.entities;
+            </div>
+            <div title="Java" style="padding:10px"><pre><code class="language-java">package com.mycompany.myproject.entities;
 
 public class Person
 {
@@ -83,8 +77,7 @@ public class Address
     public String Country;
 }
 </code></pre>
-</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>

@@ -1,93 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>SqlQuery</h1>
-  
-
-<p>The <code>SqlQuery</code> class is used to query the space using SQL-like syntax. This query can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.</p>
-
-<h1><a name="usage"></a>Usage</h1>
-
-<p>An <code>SqlQuery</code> is composed from the <span class="tc-bold">type</span> of entry to query, an <span class="tc-bold">expression</span> in a SQL syntax and optionally one or more <span class="tc-bold">parameters</span> which provide values for the expression.</p>
-
-<h4><a name="example-1"></a>Example 1</h4>
-
-<p>Read all entries of type <span class="tc-bold">Person</span> whose <span class="tc-bold">Age</span> is greater than or equal to <span class="tc-bold">21</span>.</p>
-
-<pre><code class="language-csharp">Person[] persons = proxy.ReadMultiple&lt;Person&gt;(new SqlQuery&lt;Person&gt;("Age &gt;= 21"));
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>SqlQuery</h1>
+        <p>The <code>SqlQuery</code> class is used to query the space using SQL-like syntax. This query can be passed as a template to the Read, Take, ReadMultiple, TakeMultiple, Count and Clear operations, as well as a template when registering for notification.</p>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>An <code>SqlQuery</code> is composed from the <span class="tc-bold">type</span> of entry to query, an <span class="tc-bold">expression</span> in a SQL syntax and optionally one or more <span class="tc-bold">parameters</span> which provide values for the expression.</p>
+        <h4><a name="example-1"></a>Example 1</h4>
+        <p>Read all entries of type <span class="tc-bold">Person</span> whose <span class="tc-bold">Age</span> is greater than or equal to <span class="tc-bold">21</span>.</p><pre><code class="language-csharp">Person[] persons = proxy.ReadMultiple&lt;Person&gt;(new SqlQuery&lt;Person&gt;("Age &gt;= 21"));
 </code></pre>
-
-<p>Note that the expression is equivalent to the WHERE part of a query. The FROM part is derived from the generic argument of the <code>SqlQuery</code> class, and the SELECT part is not needed since the result is a fully-formed object.</p>
-
-<h4><a name="example-2"></a>Example 2</h4>
-
-<p>Read up to <span class="tc-bold">100</span> entries of type <span class="tc-bold">Person</span> whose <span class="tc-bold">Age</span> is greater than or equal to <span class="tc-bold">21</span>, AND whose <span class="tc-bold">FirstName</span> is <span class="tc-bold">John</span>.</p>
-
-<pre><code class="language-csharp">SqlQuery&lt;Person&gt; query = new SqlQuery&lt;Person&gt;("Age &gt;= ? AND FirstName = ?");
+        <p>Note that the expression is equivalent to the WHERE part of a query. The FROM part is derived from the generic argument of the <code>SqlQuery</code> class, and the SELECT part is not needed since the result is a fully-formed object.</p>
+        <h4><a name="example-2"></a>Example 2</h4>
+        <p>Read up to <span class="tc-bold">100</span> entries of type <span class="tc-bold">Person</span> whose <span class="tc-bold">Age</span> is greater than or equal to <span class="tc-bold">21</span>, AND whose <span class="tc-bold">FirstName</span> is <span class="tc-bold">John</span>.</p><pre><code class="language-csharp">SqlQuery&lt;Person&gt; query = new SqlQuery&lt;Person&gt;("Age &gt;= ? AND FirstName = ?");
 query.SetParameter(1, 21);
 query.SetParameter(2, "John");
 Person[] persons = proxy.ReadMultiple&lt;Person&gt;(query, 100);
 </code></pre>
-
-<p>This time instead of specifying the values directly in the expression we've used question marks to denote expression variables and parameters to specify the values for those variables.</p>
-
-<h1><a name="supported-sql-features"></a>Supported SQL Features</h1>
-
-<p>SqlQuery supports the following:</p>
-
-<ul>
-<li><code>AND</code> / <code>OR</code> operators to combine two or more conditions.</li>
-<li>All basic logical operations to create conditions: <code>=, &lt;&gt;, &lt;,&gt;, &gt;=, &lt;=, like, NOT like, is null, is NOT null, IN</code>.</li>
-<li><a href="aggregators.html">Aggregate</a> functions: COUNT, MAX, MIN, SUM, AVG</li>
-<li><code>BETWEEN</code></li>
-<li><code>ORDER BY (ASC | DESC)</code> for multiple PONO properties. Supported only by readMultiple. <code>ORDER BY</code> supports also nested object fields. <code>ORDER BY</code> supports <code>NULLS LAST</code> to control the order behavior of a field when its value is <code>null</code>.</li>
-<li><code>GROUP BY</code> - performs DISTINCT on the PONO properties. Supported only by readMultiple. <code>GROUP BY</code> supports also nested object fields.</li>
-<li><code>sysdate</code> - current system date and time.</li>
-<li><code>rownum</code> - limits the number of rows to select.</li>
-<li>Sub queries.</li>
-</ul>
-
-<h1><a name="comparing-null-values"></a>Comparing null values</h1>
-
-<p><code>SQLQuery</code> comparisons will evaluate the non-null values for a field. If you want to include objects with null values in a <code>SQLQuery</code> you will need to add another condition to your clause.</p>
-
-<p>For example, if you have an object with a property named message of type <code>String</code>, which is set to <code>null</code> and you write it to the space, then you write a <code>SQLQuery</code> with the where clause is:
+        <p>This time instead of specifying the values directly in the expression we've used question marks to denote expression variables and parameters to specify the values for those variables.</p>
+        <h1><a name="supported-sql-features"></a>Supported SQL Features</h1>
+        <p>SqlQuery supports the following:</p>
+        <ul>
+            <li><code>AND</code> / <code>OR</code> operators to combine two or more conditions.</li>
+            <li>All basic logical operations to create conditions: <code>=, &lt;&gt;, &lt;,&gt;, &gt;=, &lt;=, like, NOT like, is null, is NOT null, IN</code>.</li>
+            <li><a href="aggregators.html">Aggregate</a> functions: COUNT, MAX, MIN, SUM, AVG</li>
+            <li><code>BETWEEN</code>
+            </li>
+            <li><code>ORDER BY (ASC | DESC)</code> for multiple PONO properties. Supported only by readMultiple. <code>ORDER BY</code> supports also nested object fields. <code>ORDER BY</code> supports <code>NULLS LAST</code> to control the order behavior of a field when its value is <code>null</code>.</li>
+            <li><code>GROUP BY</code> - performs DISTINCT on the PONO properties. Supported only by readMultiple. <code>GROUP BY</code> supports also nested object fields.</li>
+            <li><code>sysdate</code> - current system date and time.</li>
+            <li><code>rownum</code> - limits the number of rows to select.</li>
+            <li>Sub queries.</li>
+        </ul>
+        <h1><a name="comparing-null-values"></a>Comparing null values</h1>
+        <p><code>SQLQuery</code> comparisons will evaluate the non-null values for a field. If you want to include objects with null values in a <code>SQLQuery</code> you will need to add another condition to your clause.</p>
+        <p>For example, if you have an object with a property named message of type <code>String</code>, which is set to <code>null</code> and you write it to the space, then you write a <code>SQLQuery</code> with the where clause is:
 <code>"message &lt;&gt; 'abcd'"</code>.</p>
-
-<p>You may expect that the object with <code>message = null</code> gets returned in the query. However it doesn't, the comparison looks at only non-null values. To get the objects that are also null for message use:
+        <p>You may expect that the object with <code>message = null</code> gets returned in the query. However it doesn't, the comparison looks at only non-null values. To get the objects that are also null for message use:
 <code>"message &lt;&gt; 'abcd' or message = null"</code> to include objects whose message property is set to null.</p>
-
-<h1><a name="indexing"></a>Indexing</h1>
-
-<p>It is highly recommended to use indexes on relevant properties to increase performance when using equality , bigger / less than , BETWEEN, IN , LIKE , NOT LIKE, IS NULL statements. For more information see <a href="indexing.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
-
-<h1><a name="blocking-operations"></a>Blocking Operations</h1>
-
-<p>Blocking operations (i.e. <code>Read</code> or <code>Take</code> with <code>timeout</code> greater than <code>0</code>) are supported with the following restrictions:</p>
-
-<ul>
-<li>Blocking operations on a partitioned space require a routing value (broadcast is not supported). For more information see <a href="#routing">Routing</a>.</li>
-<li>Blocking operations on complex queries are not supported. For more information see <a href="#SimpleQueries">Simple Queries</a> definition.</li>
-</ul>
-
-<pre><code class="language-csharp">long timeout = 100000;
+        <h1><a name="indexing"></a>Indexing</h1>
+        <p>It is highly recommended to use indexes on relevant properties to increase performance when using equality , bigger / less than , BETWEEN, IN , LIKE , NOT LIKE, IS NULL statements. For more information see <a href="indexing.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
+        <h1><a name="blocking-operations"></a>Blocking Operations</h1>
+        <p>Blocking operations (i.e. <code>Read</code> or <code>Take</code> with <code>timeout</code> greater than <code>0</code>) are supported with the following restrictions:</p>
+        <ul>
+            <li>Blocking operations on a partitioned space require a routing value (broadcast is not supported). For more information see <a href="#routing">Routing</a>.</li>
+            <li>Blocking operations on complex queries are not supported. For more information see <a href="#SimpleQueries">Simple Queries</a> definition.</li>
+        </ul><pre><code class="language-csharp">long timeout = 100000;
 MyClass result = space.Take&lt;MyClass&gt;(new SqlQuery&lt;MyClass&gt;("Num &gt; 500"), timeout);
 </code></pre>
-
-<h1><a name="routing"></a>Routing</h1>
-
-<p>When running on a partitioned space, it is important to understand how routing is determined for SQL queries. Routing is how the partitioned space determines on which partition a given data element is stored.</p>
-
-<p>If the routing property is part of the criteria expression with an equality operand and without ORs, its value is used for routing.</p>
-
-<p>For example, suppose the routing property of <code>MyClass</code> is <code>Num</code>:</p>
-
-<pre><code class="language-csharp">// Execute query on partition #1
+        <h1><a name="routing"></a>Routing</h1>
+        <p>When running on a partitioned space, it is important to understand how routing is determined for SQL queries. Routing is how the partitioned space determines on which partition a given data element is stored.</p>
+        <p>If the routing property is part of the criteria expression with an equality operand and without ORs, its value is used for routing.</p>
+        <p>For example, suppose the routing property of <code>MyClass</code> is <code>Num</code>:</p><pre><code class="language-csharp">// Execute query on partition #1
 SqlQuery&lt;MyClass&gt; query1 = new SqlQuery&lt;MyClass&gt;("Num = 1");
 
 // Execute query on all partitions -
@@ -98,50 +66,35 @@ SqlQuery&lt;MyClass&gt; query2 = new SqlQuery&lt;MyClass&gt;("Num &gt; 1");
 // no way to tell which partitions hold matching results:
 SqlQuery&lt;MyClass&gt; query3 = new SqlQuery&lt;MyClass&gt;("Num = 1 OR Name='smith'");
 </code></pre>
-
-<p>Note that in <code>query1</code> the <code>Num</code> property is used both for routing and matching.</p>
-
-<p>In some scenarios we may want to execute the query on a specific partition without matching the routing property (e.g. blocking operation). This can be done via the <code>Routing</code> property:</p>
-
-<pre><code class="language-csharp">SqlQuery&lt;MyClass&gt; query = new SqlQuery&lt;MyClass&gt;("Num &gt; 3");
+        <p>Note that in <code>query1</code> the <code>Num</code> property is used both for routing and matching.</p>
+        <p>In some scenarios we may want to execute the query on a specific partition without matching the routing property (e.g. blocking operation). This can be done via the <code>Routing</code> property:</p><pre><code class="language-csharp">SqlQuery&lt;MyClass&gt; query = new SqlQuery&lt;MyClass&gt;("Num &gt; 3");
 query.Routing = 1;
 MyClass[] result = space.ReadMultiple&lt;MyClass&gt;(query);
 </code></pre>
-
-<h1><a name="limitations"></a>Limitations</h1>
-
-<h3><a name="enums"></a>Enums</h3>
-
-<p>Since Enums are stored in the space as their underlying primitive type, they must be explicitly cast to that primitive type to be used with SqlQuery.</p>
-
- <a name="SimpleQueries"></a>
-
-<h3><a name="simple-vs-complex-queries"></a>Simple vs. Complex Queries</h3>
-
-<p>Most space operations and features support any SQL query, but some support only <span class="tc-bold">simple</span> queries and not <span class="tc-bold">complex</span> ones.</p>
-
-<p>A query is considered complex if it contains one or more of the following:</p>
-
-<ul>
-<li><code>NOT LIKE</code></li>
-<li><code>GROUP BY</code></li>
-<li><code>ORDER BY</code></li>
-<li>Subqueries</li>
-</ul>
-
-<p>The following features support only simple SQL queries</p>
-
-<ul>
-<li>Snapshot</li>
-<li>Blocking operations</li>
-<li>Notifications</li>
-<li>SpaceIterator</li>
-</ul>
-
-<h3><a name="unsupported-sql-features"></a>Unsupported SQL Features</h3>
-
-<p>SqlQuery does not support the following:<br/>
-- Multiple tables select.
+        <h1><a name="limitations"></a>Limitations</h1>
+        <h3><a name="enums"></a>Enums</h3>
+        <p>Since Enums are stored in the space as their underlying primitive type, they must be explicitly cast to that primitive type to be used with SqlQuery.</p><a name="SimpleQueries"></a>
+        <h3><a name="simple-vs-complex-queries"></a>Simple vs. Complex Queries</h3>
+        <p>Most space operations and features support any SQL query, but some support only <span class="tc-bold">simple</span> queries and not <span class="tc-bold">complex</span> ones.</p>
+        <p>A query is considered complex if it contains one or more of the following:</p>
+        <ul>
+            <li><code>NOT LIKE</code>
+            </li>
+            <li><code>GROUP BY</code>
+            </li>
+            <li><code>ORDER BY</code>
+            </li>
+            <li>Subqueries</li>
+        </ul>
+        <p>The following features support only simple SQL queries</p>
+        <ul>
+            <li>Snapshot</li>
+            <li>Blocking operations</li>
+            <li>Notifications</li>
+            <li>SpaceIterator</li>
+        </ul>
+        <h3><a name="unsupported-sql-features"></a>Unsupported SQL Features</h3>
+        <p>SqlQuery does not support the following:<br />- Multiple tables select.
 - <code>DISTINCT</code>
 - The SQL statements: VIEW, TRIGGERS, EXISTS, BETWEEN, NOT, CREATE USER, GRANT, REVOKE, SET PASSWORD, CONNECT USER, ON.
 - Constraints: NOT NULL, IDENTITY, UNIQUE, PRIMARY KEY, Foreign Key/REFERENCES, NO ACTION, CASCADE, SET NULL, SET DEFAULT, CHECK.
@@ -151,22 +104,16 @@ MyClass[] result = space.ReadMultiple&lt;MyClass&gt;(query);
 - <code>LEFT OUTER JOIN</code>
 - <code>RIGHT OUTER JOIN</code>
 - <code>INNER JOIN</code></p>
-
-<h3><a name="reserved-words"></a>Reserved Words</h3>
-
-<p>The following are reserved keywords in the GigaSpaces SQL syntax:<br/>
-alter add all and asc avg between by create call drop desc bit tinyint
+        <h3><a name="reserved-words"></a>Reserved Words</h3>
+        <p>The following are reserved keywords in the GigaSpaces SQL syntax:<br />alter add all and asc avg between by create call drop desc bit tinyint
      end from group in is like rlike max min not null or distinct
      order select substr sum sysdate upper where count delete varchar2 char
      exception rownum index insert into set table to_char to_number smallint
      update union values commit rollback uid using as date datetime time
      float real double number decimal numeric boolean integer
      varchar bigint long clob blob lob true false int timestamp longvarchar</p>
-
-<h3><a name="reserved-separators-and-operators"></a>Reserved Separators and Operators:</h3>
-
-<p><span class="tc-bold">Reserved syntax:</span><br/>
-:= || ; . ROWTYPE ~ &lt; &lt;= &gt;  &gt;= =&gt; != &lt;&gt; (+) ( ) * / + - ? { }</p>
-
-</body>
+        <h3><a name="reserved-separators-and-operators"></a>Reserved Separators and Operators:</h3>
+        <p><span class="tc-bold">Reserved syntax:</span>
+            <br />:= || ; . ROWTYPE ~ &lt; &lt;= &gt;  &gt;= =&gt; != &lt;&gt; (+) ( ) * / + - ? { }</p>
+    </body>
 </html>

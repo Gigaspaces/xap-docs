@@ -1,23 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Free Text Search</h1>
-  
-
-<p>Free text search is required almost with every application.
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Free Text Search</h1>
+        <p>Free text search is required almost with every application.
 Users placing some free text into a form and later the system allows users to search for records that includes one or more words within a free text field.
 A simple way to enable such a search without using a regular expression query that my have some overhead can be done by using an array or a collection of String.</p>
-
-<h1><a name="example"></a>Example</h1>
-
-<p>Our Space class includes the following - note the <span class="tc-bold">words</span> and the <span class="tc-bold">freeText</span> fields:</p>
-
-<pre><code class="language-csharp">public class MyData {
+        <h1><a name="example"></a>Example</h1>
+        <p>Our Space class includes the following - note the <span class="tc-bold">words</span> and the <span class="tc-bold">freeText</span> fields:</p><pre><code class="language-csharp">public class MyData {
 
 
     private String[] Words {set; get;}
@@ -42,36 +37,20 @@ A simple way to enable such a search without using a regular expression query th
     }
 }
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>Note how the <span class="tc-bold">freeText</span> field is broken into the <span class="tc-bold">words</span> array before placed into the indexed field.</p>
-</div>
-
-<p>You may write the data into the space using the following:</p>
-
-<pre><code class="language-csharp">MyData data = new MyData(...);
+        <div class="tc-admon-note">
+            <p>Note how the <span class="tc-bold">freeText</span> field is broken into the <span class="tc-bold">words</span> array before placed into the indexed field.</p>
+        </div>
+        <p>You may write the data into the space using the following:</p><pre><code class="language-csharp">MyData data = new MyData(...);
 data.FreeText(freetext);
 proxy.Write(data);
 </code></pre>
-
-<p>You can query for objects having the word <span class="tc-bold">hello</span> as part of the freeText field using the following:</p>
-
-<pre><code class="language-csharp">MyData results[] = proxy.ReadMultiple&lt;MyData&gt;(new SqlQuery&lt;MyData&gt;("Words[*]='hello'"));
+        <p>You can query for objects having the word <span class="tc-bold">hello</span> as part of the freeText field using the following:</p><pre><code class="language-csharp">MyData results[] = proxy.ReadMultiple&lt;MyData&gt;(new SqlQuery&lt;MyData&gt;("Words[*]='hello'"));
 </code></pre>
-
-<p>You can also execute the following to search for object having the within the freeText field the word <span class="tc-bold">hello</span> or <span class="tc-bold">everyone</span>:</p>
-
-<pre><code class="language-csharp">MyData results[] = proxy.ReadMultiple(new SqlQuery&lt;MyData&gt;("Words[*]='hello' OR Words[*]='everyone')");
+        <p>You can also execute the following to search for object having the within the freeText field the word <span class="tc-bold">hello</span> or <span class="tc-bold">everyone</span>:</p><pre><code class="language-csharp">MyData results[] = proxy.ReadMultiple(new SqlQuery&lt;MyData&gt;("Words[*]='hello' OR Words[*]='everyone')");
 </code></pre>
-
-<p>With the above approach you avoid the overhead with regular expression queries.</p>
-
-<h1><a name="indexing"></a>Indexing</h1>
-
-<p>To speed up the query you can create an <a href="indexing-collections.html">index</a> on the fields you want to search.</p>
-
-<pre><code class="language-csharp">public class MyData {
+        <p>With the above approach you avoid the overhead with regular expression queries.</p>
+        <h1><a name="indexing"></a>Indexing</h1>
+        <p>To speed up the query you can create an <a href="indexing-collections.html">index</a> on the fields you want to search.</p><pre><code class="language-csharp">public class MyData {
 
     [@SpaceIndex (path="[*]")]
     private String[] Words {set; get;}
@@ -96,39 +75,24 @@ proxy.Write(data);
     }
 }
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>The same approach can be implemented also with the <a href="document-overview.html">SpaceDocument</a>.</p>
-</div>
-
-<h1><a name="regular-expressions"></a>Regular Expressions</h1>
-
-<p>You can query the space using the SQL <code>like</code> operator or <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html" target="_blank" >Java Regular Expression</a> Query syntax.</p>
-
-<p>When using the SQL <code>like</code> operator you may use the following:
+        <div class="tc-admon-refer">
+            <p>The same approach can be implemented also with the <a href="document-overview.html">SpaceDocument</a>.</p>
+        </div>
+        <h1><a name="regular-expressions"></a>Regular Expressions</h1>
+        <p>You can query the space using the SQL <code>like</code> operator or <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html" target="_blank">Java Regular Expression</a> Query syntax.</p>
+        <p>When using the SQL <code>like</code> operator you may use the following:
 <code>%</code> - match any string of any length (including zero length)
-<code>_</code> - match on a single character</p>
-
-<pre><code class="language-csharp">SqlQuery&lt;MyClass&gt; query = new SqlQuery&lt;MyClass&gt;("Name like 'A%'")
+<code>_</code> - match on a single character</p><pre><code class="language-csharp">SqlQuery&lt;MyClass&gt; query = new SqlQuery&lt;MyClass&gt;("Name like 'A%'")
 </code></pre>
-
-<p>Querying the space using the Java Regular Expression provides more options than the SQL <code>like</code> operator. The Query syntax is done using the <code>rlike</code> operator:</p>
-
-<pre><code class="language-csharp">// Match all entries of type MyClass that have a name that starts with a or c:
+        <p>Querying the space using the Java Regular Expression provides more options than the SQL <code>like</code> operator. The Query syntax is done using the <code>rlike</code> operator:</p><pre><code class="language-csharp">// Match all entries of type MyClass that have a name that starts with a or c:
 SqlQuery&lt;MyClass&gt; query = new SqlQuery&lt;MyClass&gt;("Name rlike '(a|c).*'");
 </code></pre>
-
-<p>All the supported methods and options above are relevant also for using <code>rlike</code> with <code>SqlQuery</code>.</p>
-
-<h1><a name="case-insensitive-query"></a>Case Insensitive Query</h1>
-
-<p>Implementing case insensitive queries can be done via:</p>
-
-<ul>
-<li><code>like</code> operator or <code>rlike</code> operator. Relatively slow. Not recommended when having large amount of objects.</li>
-<li>Store the data in lower case and query on via lower case String value (or upper case)</li>
-</ul>
-
-</body>
+        <p>All the supported methods and options above are relevant also for using <code>rlike</code> with <code>SqlQuery</code>.</p>
+        <h1><a name="case-insensitive-query"></a>Case Insensitive Query</h1>
+        <p>Implementing case insensitive queries can be done via:</p>
+        <ul>
+            <li><code>like</code> operator or <code>rlike</code> operator. Relatively slow. Not recommended when having large amount of objects.</li>
+            <li>Store the data in lower case and query on via lower case String value (or upper case)</li>
+        </ul>
+    </body>
 </html>

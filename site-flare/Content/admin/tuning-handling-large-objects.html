@@ -1,33 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Handling Large Objects</h1>
-  
-
-<p>In order to store large files in memory, you should simply load the file into the relevant Data type (byte array , blob) and use the relevant API to write the data into the space. Large objects are treated like any other objects stored within the space.</p>
-
-<div class="tc-admon-note">
-  
-  <p>The <code>com.gs.transport_protocol.lrmi.maxBufferSize</code> system property controls the chunk size. See the <a href="tuning-communication-protocol.html#maxbuffersize">Communication Protocol</a> for details.</p>
-</div>
-
-<h2><a name="memory-allocation-behavior"></a>Memory Allocation Behavior</h2>
-
-<p>During the data transfer activity the space leverage non-heap buffers to transfer the data (NIO direct buffer) into the target process, but due-to the serialization behavior, the entire data object maintained for a short duration within the JVM heap. These in-transit buffers will be cleared once the JVM garbage collector will request these (weak reference). To allow this activity to have enough memory headroom, you should increase the Space and client heap size to accommodate these transit buffers. The heap size headroom required would be:</p>
-
-<pre><code class="language-bash">Maximum number of concurrent connections X Maximum Object size
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Handling Large Objects</h1>
+        <p>In order to store large files in memory, you should simply load the file into the relevant Data type (byte array , blob) and use the relevant API to write the data into the space. Large objects are treated like any other objects stored within the space.</p>
+        <div class="tc-admon-note">
+            <p>The <code>com.gs.transport_protocol.lrmi.maxBufferSize</code> system property controls the chunk size. See the <a href="tuning-communication-protocol.html#maxbuffersize">Communication Protocol</a> for details.</p>
+        </div>
+        <h2><a name="memory-allocation-behavior"></a>Memory Allocation Behavior</h2>
+        <p>During the data transfer activity the space leverage non-heap buffers to transfer the data (NIO direct buffer) into the target process, but due-to the serialization behavior, the entire data object maintained for a short duration within the JVM heap. These in-transit buffers will be cleared once the JVM garbage collector will request these (weak reference). To allow this activity to have enough memory headroom, you should increase the Space and client heap size to accommodate these transit buffers. The heap size headroom required would be:</p><pre><code class="language-bash">Maximum number of concurrent connections X Maximum Object size
 </code></pre>
-
-<h1><a name="large-objects-examples"></a>Large Objects Examples</h1>
-
-<h2><a name="using-gigaspace-api-to-store-large-files-within-the-space"></a>Using GigaSpace API to store large files within the space</h2>
-
-<pre><code class="language-java">public class SpaceFile {
+        <h1><a name="large-objects-examples"></a>Large Objects Examples</h1>
+        <h2><a name="using-gigaspace-api-to-store-large-files-within-the-space"></a>Using GigaSpace API to store large files within the space</h2><pre><code class="language-java">public class SpaceFile {
 
     SpaceFile (){}
     SpaceFile (String name , byte[] content)
@@ -53,9 +42,7 @@
         this.content = content;
     }
 }
-</code></pre>
-
-<pre><code class="language-java">public static void main(String[] args) {
+</code></pre><pre><code class="language-java">public static void main(String[] args) {
     GigaSpace gigaspace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).gigaSpace();
     String myfileName = "d:temp\test.pdf";
 
@@ -127,10 +114,7 @@ public static void bytesTofile(byte[] content, String fileName) {
     System.out.println("Copying Space file Data to destination file...Done!");
 }
 </code></pre>
-
-<h2><a name="using-jdbc-blob-to-store-large-files-within-the-space"></a>Using JDBC BLOB to Store Large Files within the Space</h2>
-
-<pre><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver").newInstance();
+        <h2><a name="using-jdbc-blob-to-store-large-files-within-the-space"></a>Using JDBC BLOB to Store Large Files within the Space</h2><pre><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver").newInstance();
 String url = "jdbc:gigaspaces:url:jini://*/*/mySpace";
 Connection conn = DriverManager.getConnection(url);
 
@@ -166,6 +150,5 @@ for (int i = 1; i &lt; 5; i++) {
     pre.close();
 }
 </code></pre>
-
-</body>
+    </body>
 </html>

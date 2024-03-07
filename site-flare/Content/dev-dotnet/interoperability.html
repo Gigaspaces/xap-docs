@@ -1,19 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Platform Interoperability</h1>
-  
-
-<p><MadCap:variable name="General.ProductNameXAP" /> supports easy and efficient communication and access across projects that include a combination of Java, .NET and C++ platforms, while also maintaining the benefits of the <MadCap:variable name="General.ProductNameXAP" /> scale-out application server.</p>
-
-<h1><a name="designing-interoperable-classes"></a>Designing Interoperable Classes</h1>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="C#" style="padding:10px"><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Platform Interoperability</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports easy and efficient communication and access across projects that include a combination of Java, .NET and C++ platforms, while also maintaining the benefits of the <MadCap:variable name="General.ProductNameXAP" /> scale-out application server.</p>
+        <h1><a name="designing-interoperable-classes"></a>Designing Interoperable Classes</h1>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="C#" style="padding:10px"><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
 
 namespace MyCompany.MyProject.Entities
 {
@@ -30,8 +28,8 @@ namespace MyCompany.MyProject.Entities
    }
 }
 </code></pre>
-</div>
-<div title="Java" style="padding:10px"><pre><code class="language-java">package com.mycompany.myproject.entities;
+            </div>
+            <div title="Java" style="padding:10px"><pre><code class="language-java">package com.mycompany.myproject.entities;
 
    public class Person
    {
@@ -49,290 +47,285 @@ namespace MyCompany.MyProject.Entities
    }
 }
 </code></pre>
-</div>
-</div>
-
-<h2><a name="guidelines-and-restrictions"></a>Guidelines and Restrictions</h2>
-
-<p>Follow these guidelines and restrictions in this section to enable platform interoperability.</p>
-
-<h3><a name="class-name"></a>Class Name</h3>
-
-<p>The full class name (including package\namespace) in all platforms should be identical.</p>
-
-<p>Java packages use a different naming convention than .NET namespaces, therefore it is recommended to use the <code>SpaceClass(AliasName="")</code> feature to map a .NET class to the respective Java class.</p>
-
-<h3><a name="properties-and-fields"></a>Properties and Fields</h3>
-
-<p>The properties/fields stored in the Space on all platforms should be identical.</p>
-
-<p>In Java, only properties are serialized into the Space. In .NET, both fields and properties are serialized, so you can mix and match them.</p>
-
-<p>Java properties start with a lowercase letter, whereas .NET properties usually start with an uppercase letter. It is therefore recommended to use the <code>SpaceProperty(AliasName="")</code> feature to map a property/field name from .NET to Java.</p>
-
-<h3><a name="types"></a>Types</h3>
-
-<p>Only the types listed in the table below are supported. If one of your fields uses a different type, you can use the class only in a homogeneous environment. Arrays of these types are also supported.</p>
-
-<p>You can also use .NET enumerations, which are treated as their underlying .NET type. Java enums are not supported.</p>
-
-<p>If your class contains a field whose type is not in the table, you can use <code>SpaceExclude</code> to exclude it from the Space.</p>
-
-<p>Some of the types have different characteristics in .NET and Java (signed\unsigned, nullable\not nullable, precision, etc.). This can lead to runtime exceptions (for example, trying to store <code>null</code> in a .NET structure) or unexpected results (for example, copying values between signed and unsigned fields).</p>
-
-<h1><a name="supported-types-for-matching-and-interoperability"></a>Supported Types for Matching and Interoperability</h1>
-
-<p>The following types are supported by the Space for matching and interoperability.</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">CLS</th>
-<th align="left">C#</th>
-<th align="left">VB.NET</th>
-<th align="left">Java</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.byte.aspx">System.Byte</a></td>
-<td align="left">byte</td>
-<td align="left">Byte</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">byte</a></td>
-<td align="left">8-bit integer.<span class="tc-bold"><sup>1</sup></span></td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Byte&gt;</a></td>
-<td align="left">byte?</td>
-<td align="left">Nullable(Of Byte)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Byte.html">java.lang.Byte</a></td>
-<td align="left">Nullable wrapper for byte.<span class="tc-bold"><sup>1</sup></span></td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.int16.aspx">System.Int16</a></td>
-<td align="left">short</td>
-<td align="left">Short</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">short</a></td>
-<td align="left">16-bit integer.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Int16&gt;</a></td>
-<td align="left">short?</td>
-<td align="left">Nullable(Of Short)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Short.html">java.lang.Short</a></td>
-<td align="left">Nullable wrapper for short.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.int32.aspx">System.Int32</a></td>
-<td align="left">int</td>
-<td align="left">Integer</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">int</a></td>
-<td align="left">32-bit integer.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Int32&gt;</a></td>
-<td align="left">int?</td>
-<td align="left">Nullable(Of Integer)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Integer.html">java.lang.Integer</a></td>
-<td align="left">Nullable wrapper for int.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.int64.aspx">System.Int64</a></td>
-<td align="left">long</td>
-<td align="left">Long</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">long</a></td>
-<td align="left">64-bit integer.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Int64&gt;</a></td>
-<td align="left">long?</td>
-<td align="left">Nullable(Of Long)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Long.html">java.lang.Long</a></td>
-<td align="left">Nullable wrapper for long.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.single.aspx">System.Single</a></td>
-<td align="left">float</td>
-<td align="left">Single</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">float</a></td>
-<td align="left">Single-precision floating-point number (32 bits).</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Single&gt;</a></td>
-<td align="left">float?</td>
-<td align="left">Nullable(Of Single)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Float.html">java.lang.Float</a></td>
-<td align="left">Nullable wrapper for float.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.double.aspx">System.Double</a></td>
-<td align="left">double</td>
-<td align="left">Double</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">double</a></td>
-<td align="left">Double-precision floating-point number (64 bits).</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Double&gt;</a></td>
-<td align="left">double?</td>
-<td align="left">Nullable(Of Double)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Double.html">java.lang.Double</a></td>
-<td align="left">Nullable wrapper for double.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.boolean.aspx">System.Boolean</a></td>
-<td align="left">bool</td>
-<td align="left">Boolean</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">boolean</a></td>
-<td align="left">Boolean value (true/false).</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Boolean&gt;</a></td>
-<td align="left">bool?</td>
-<td align="left">Nullable(Of Boolean)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Boolean.html">java.lang.Boolean</a></td>
-<td align="left">Nullable wrapper for boolean.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.char.aspx">System.Char</a></td>
-<td align="left">char</td>
-<td align="left">Char</td>
-<td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">char</a></td>
-<td align="left">A Unicode  character (16 bits).</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Char&gt;</a></td>
-<td align="left">char?</td>
-<td align="left">Nullable(Of Char)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Character.html">java.lang.Character</a></td>
-<td align="left">Nullable wrapper for char.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.string.aspx">System.String</a></td>
-<td align="left">string</td>
-<td align="left">String</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html">java.lang.String</a></td>
-<td align="left">An immutable, fixed-length string of Unicode characters.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.datetime.aspx">System.DateTime</a> <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;DateTime&gt;</a></td>
-<td align="left">DateTime   DateTime?</td>
-<td align="left">DateTime   Nullable(Of DateTime)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Date.html">java.util.Date</a></td>
-<td align="left">An instant in time, typically expressed as a date and time of day.<span class="tc-bold"><sup>2,3</sup></span></td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.decimal.aspx">System.Decimal</a> <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Decimal&gt;</a></td>
-<td align="left">decimal   decimal?</td>
-<td align="left">Decimal   Nullable(Of Decimal)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/math/BigDecimal.html">java.math.BigDecimal</a></td>
-<td align="left">A decimal number, used for high-precision calculations.<span class="tc-bold"><sup>2,4</sup></span></td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.guid.aspx">System.Guid</a> <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Guid&gt;</a></td>
-<td align="left">Guid   Guid?</td>
-<td align="left">Guid   Nullable(Of Guid)</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/UUID.html">java.util.UUID</a></td>
-<td align="left">A 128-bit integer representing a unique identifier.<span class="tc-bold"><sup>2</sup></span></td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">System.Object</a></td>
-<td align="left">object</td>
-<td align="left">Object</td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html">java.lang.Object</a></td>
-<td align="left">Any object</td>
-</tr>
-</tbody>
-</table>
-
-<ol>
-<li>In .NET a <code>byte</code> is unsigned, whereas in Java a <code>byte</code> is signed.</li>
-<li>These types can be either nullable or not nullable in .NET, whereas in Java they are always nullable.</li>
-<li>In .NET a <code>DateTime</code> is measured in ticks (=100 nanoseconds) since 1/1/0001, whereas in Java a <code>Date</code> is a measured in milliseconds since 1/1/1970.</li>
-<li>The types <code>Decimal</code> (.NET) and <code>BigDecimal</code> (Java) have different precision and range (see .NET and Java documentation for more details). In addition, be aware that serialization/deserialization of these types is relatively slow, compared to other numeric types. As a rule of thumb, these types should not be used, unless the precision/range of other numeric types is not satisfactory.</li>
-</ol>
-
-<div class="tc-admon-important">
-  
-  <p>Java 8's <code>LocalDate</code>, <code>LocalTime</code>, and <code>LocalDateTime</code> are currently not interoperable with the .NET DateTime class.</p>
-</div>
-
-<h1><a name="array-and-collection-support"></a>Array and Collection Support</h1>
-
-<p>The following collections are mapped for interoperability.</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">.NET</th>
-<th align="left">Java</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">T[]</td>
-<td align="left">E[]</td>
-<td align="left">Fixed-size arrays of elements.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/6sh2ey19.aspx">System.Collections.Generic.List&lt;T&gt;</a> <br/> <a href="http://msdn2.microsoft.com/en-us/library/system.collections.arraylist.aspx">System.Collections.ArrayList</a><br/>  <a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.stringcollection.aspx">System.Collections.Specialized.StringCollection</a></td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/ArrayList.html">java.util.ArrayList</a></td>
-<td align="left">Ordered list of elements.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/xfhwa508.aspx">System.Collections.Generic.Dictionary&lt;K,V&gt;</a><br/>  <a href="http://msdn2.microsoft.com/en-us/library/system.collections.hashtable.aspx">System.Collections.HashTable</a> <br/> <a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.hybriddictionary.aspx">System.Collections.Specialized.HybridDictionary</a>  <a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.listdictionary.aspx">System.Collections.Specialized.ListDictionary</a></td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/HashMap.html">java.util.HashMap</a></td>
-<td align="left">Collection of key-value pairs.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.ordereddictionary.aspx">System.Collections.Specialized.OrderedDictionary</a></td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/LinkedHashMap.html">java.util.LinkedHashMap</a></td>
-<td align="left">Ordered collection of key-value pairs.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn.microsoft.com/en-us/library/f7fta44c.aspx">System.Collections.Generic.SortedDictionary&lt;K,V&gt;</a></td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/TreeMap.html">java.util.TreeMap</a></td>
-<td align="left">Sorted collection of key-value pairs.</td>
-</tr>
-
-<tr>
-<td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.namevaluecollection.aspx">System.Collections.Specialized.NameValueCollection</a> <a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.stringdictionary.aspx">System.Collections.Specialized.StringDictionary</a></td>
-<td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html">java.util.Properties</a></td>
-<td align="left">Collection of key-value string pairs.<span class="tc-bold"><sup>1</sup></span></td>
-</tr>
-</tbody>
-</table>
-
-<ol>
-<li>In Java, the <code>Properties</code> type allows the user to store keys and values that are not strings.</li>
-</ol>
-
-</body>
+            </div>
+        </div>
+        <h2><a name="guidelines-and-restrictions"></a>Guidelines and Restrictions</h2>
+        <p>Follow these guidelines and restrictions in this section to enable platform interoperability.</p>
+        <h3><a name="class-name"></a>Class Name</h3>
+        <p>The full class name (including package\namespace) in all platforms should be identical.</p>
+        <p>Java packages use a different naming convention than .NET namespaces, therefore it is recommended to use the <code>SpaceClass(AliasName="")</code> feature to map a .NET class to the respective Java class.</p>
+        <h3><a name="properties-and-fields"></a>Properties and Fields</h3>
+        <p>The properties/fields stored in the Space on all platforms should be identical.</p>
+        <p>In Java, only properties are serialized into the Space. In .NET, both fields and properties are serialized, so you can mix and match them.</p>
+        <p>Java properties start with a lowercase letter, whereas .NET properties usually start with an uppercase letter. It is therefore recommended to use the <code>SpaceProperty(AliasName="")</code> feature to map a property/field name from .NET to Java.</p>
+        <h3><a name="types"></a>Types</h3>
+        <p>Only the types listed in the table below are supported. If one of your fields uses a different type, you can use the class only in a homogeneous environment. Arrays of these types are also supported.</p>
+        <p>You can also use .NET enumerations, which are treated as their underlying .NET type. Java enums are not supported.</p>
+        <p>If your class contains a field whose type is not in the table, you can use <code>SpaceExclude</code> to exclude it from the Space.</p>
+        <p>Some of the types have different characteristics in .NET and Java (signed\unsigned, nullable\not nullable, precision, etc.). This can lead to runtime exceptions (for example, trying to store <code>null</code> in a .NET structure) or unexpected results (for example, copying values between signed and unsigned fields).</p>
+        <h1><a name="supported-types-for-matching-and-interoperability"></a>Supported Types for Matching and Interoperability</h1>
+        <p>The following types are supported by the Space for matching and interoperability.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">CLS</th>
+                    <th align="left">C#</th>
+                    <th align="left">VB.NET</th>
+                    <th align="left">Java</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.byte.aspx">System.Byte</a>
+                    </td>
+                    <td align="left">byte</td>
+                    <td align="left">Byte</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">byte</a>
+                    </td>
+                    <td align="left">8-bit integer.<span class="tc-bold"><sup>1</sup></span></td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Byte&gt;</a>
+                    </td>
+                    <td align="left">byte?</td>
+                    <td align="left">Nullable(Of Byte)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Byte.html">java.lang.Byte</a>
+                    </td>
+                    <td align="left">Nullable wrapper for byte.<span class="tc-bold"><sup>1</sup></span></td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.int16.aspx">System.Int16</a>
+                    </td>
+                    <td align="left">short</td>
+                    <td align="left">Short</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">short</a>
+                    </td>
+                    <td align="left">16-bit integer.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Int16&gt;</a>
+                    </td>
+                    <td align="left">short?</td>
+                    <td align="left">Nullable(Of Short)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Short.html">java.lang.Short</a>
+                    </td>
+                    <td align="left">Nullable wrapper for short.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.int32.aspx">System.Int32</a>
+                    </td>
+                    <td align="left">int</td>
+                    <td align="left">Integer</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">int</a>
+                    </td>
+                    <td align="left">32-bit integer.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Int32&gt;</a>
+                    </td>
+                    <td align="left">int?</td>
+                    <td align="left">Nullable(Of Integer)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Integer.html">java.lang.Integer</a>
+                    </td>
+                    <td align="left">Nullable wrapper for int.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.int64.aspx">System.Int64</a>
+                    </td>
+                    <td align="left">long</td>
+                    <td align="left">Long</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">long</a>
+                    </td>
+                    <td align="left">64-bit integer.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Int64&gt;</a>
+                    </td>
+                    <td align="left">long?</td>
+                    <td align="left">Nullable(Of Long)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Long.html">java.lang.Long</a>
+                    </td>
+                    <td align="left">Nullable wrapper for long.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.single.aspx">System.Single</a>
+                    </td>
+                    <td align="left">float</td>
+                    <td align="left">Single</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">float</a>
+                    </td>
+                    <td align="left">Single-precision floating-point number (32 bits).</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Single&gt;</a>
+                    </td>
+                    <td align="left">float?</td>
+                    <td align="left">Nullable(Of Single)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Float.html">java.lang.Float</a>
+                    </td>
+                    <td align="left">Nullable wrapper for float.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.double.aspx">System.Double</a>
+                    </td>
+                    <td align="left">double</td>
+                    <td align="left">Double</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">double</a>
+                    </td>
+                    <td align="left">Double-precision floating-point number (64 bits).</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Double&gt;</a>
+                    </td>
+                    <td align="left">double?</td>
+                    <td align="left">Nullable(Of Double)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Double.html">java.lang.Double</a>
+                    </td>
+                    <td align="left">Nullable wrapper for double.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.boolean.aspx">System.Boolean</a>
+                    </td>
+                    <td align="left">bool</td>
+                    <td align="left">Boolean</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">boolean</a>
+                    </td>
+                    <td align="left">Boolean value (true/false).</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Boolean&gt;</a>
+                    </td>
+                    <td align="left">bool?</td>
+                    <td align="left">Nullable(Of Boolean)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Boolean.html">java.lang.Boolean</a>
+                    </td>
+                    <td align="left">Nullable wrapper for boolean.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.char.aspx">System.Char</a>
+                    </td>
+                    <td align="left">char</td>
+                    <td align="left">Char</td>
+                    <td align="left"><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">char</a>
+                    </td>
+                    <td align="left">A Unicode  character (16 bits).</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Char&gt;</a>
+                    </td>
+                    <td align="left">char?</td>
+                    <td align="left">Nullable(Of Char)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Character.html">java.lang.Character</a>
+                    </td>
+                    <td align="left">Nullable wrapper for char.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.string.aspx">System.String</a>
+                    </td>
+                    <td align="left">string</td>
+                    <td align="left">String</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html">java.lang.String</a>
+                    </td>
+                    <td align="left">An immutable, fixed-length string of Unicode characters.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.datetime.aspx">System.DateTime</a> <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;DateTime&gt;</a></td>
+                    <td align="left">DateTime   DateTime?</td>
+                    <td align="left">DateTime   Nullable(Of DateTime)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Date.html">java.util.Date</a>
+                    </td>
+                    <td align="left">An instant in time, typically expressed as a date and time of day.<span class="tc-bold"><sup>2,3</sup></span></td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.decimal.aspx">System.Decimal</a> <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Decimal&gt;</a></td>
+                    <td align="left">decimal   decimal?</td>
+                    <td align="left">Decimal   Nullable(Of Decimal)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/math/BigDecimal.html">java.math.BigDecimal</a>
+                    </td>
+                    <td align="left">A decimal number, used for high-precision calculations.<span class="tc-bold"><sup>2,4</sup></span></td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.guid.aspx">System.Guid</a> <a href="http://msdn.microsoft.com/en-us/library/b3h38hb0.aspx">Nullable&lt;Guid&gt;</a></td>
+                    <td align="left">Guid   Guid?</td>
+                    <td align="left">Guid   Nullable(Of Guid)</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/UUID.html">java.util.UUID</a>
+                    </td>
+                    <td align="left">A 128-bit integer representing a unique identifier.<span class="tc-bold"><sup>2</sup></span></td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.object.aspx">System.Object</a>
+                    </td>
+                    <td align="left">object</td>
+                    <td align="left">Object</td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html">java.lang.Object</a>
+                    </td>
+                    <td align="left">Any object</td>
+                </tr>
+            </tbody>
+        </table>
+        <ol>
+            <li>In .NET a <code>byte</code> is unsigned, whereas in Java a <code>byte</code> is signed.</li>
+            <li>These types can be either nullable or not nullable in .NET, whereas in Java they are always nullable.</li>
+            <li>In .NET a <code>DateTime</code> is measured in ticks (=100 nanoseconds) since 1/1/0001, whereas in Java a <code>Date</code> is a measured in milliseconds since 1/1/1970.</li>
+            <li>The types <code>Decimal</code> (.NET) and <code>BigDecimal</code> (Java) have different precision and range (see .NET and Java documentation for more details). In addition, be aware that serialization/deserialization of these types is relatively slow, compared to other numeric types. As a rule of thumb, these types should not be used, unless the precision/range of other numeric types is not satisfactory.</li>
+        </ol>
+        <div class="tc-admon-important">
+            <p>Java 8's <code>LocalDate</code>, <code>LocalTime</code>, and <code>LocalDateTime</code> are currently not interoperable with the .NET DateTime class.</p>
+        </div>
+        <h1><a name="array-and-collection-support"></a>Array and Collection Support</h1>
+        <p>The following collections are mapped for interoperability.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">.NET</th>
+                    <th align="left">Java</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">T[]</td>
+                    <td align="left">E[]</td>
+                    <td align="left">Fixed-size arrays of elements.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/6sh2ey19.aspx">System.Collections.Generic.List&lt;T&gt;</a> <br /> <a href="http://msdn2.microsoft.com/en-us/library/system.collections.arraylist.aspx">System.Collections.ArrayList</a><br /><a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.stringcollection.aspx">System.Collections.Specialized.StringCollection</a></td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/ArrayList.html">java.util.ArrayList</a>
+                    </td>
+                    <td align="left">Ordered list of elements.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/xfhwa508.aspx">System.Collections.Generic.Dictionary&lt;K,V&gt;</a>
+                        <br /><a href="http://msdn2.microsoft.com/en-us/library/system.collections.hashtable.aspx">System.Collections.HashTable</a> <br /> <a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.hybriddictionary.aspx">System.Collections.Specialized.HybridDictionary</a><a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.listdictionary.aspx">System.Collections.Specialized.ListDictionary</a></td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/HashMap.html">java.util.HashMap</a>
+                    </td>
+                    <td align="left">Collection of key-value pairs.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.ordereddictionary.aspx">System.Collections.Specialized.OrderedDictionary</a>
+                    </td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/LinkedHashMap.html">java.util.LinkedHashMap</a>
+                    </td>
+                    <td align="left">Ordered collection of key-value pairs.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn.microsoft.com/en-us/library/f7fta44c.aspx">System.Collections.Generic.SortedDictionary&lt;K,V&gt;</a>
+                    </td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/TreeMap.html">java.util.TreeMap</a>
+                    </td>
+                    <td align="left">Sorted collection of key-value pairs.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.namevaluecollection.aspx">System.Collections.Specialized.NameValueCollection</a> <a href="http://msdn2.microsoft.com/en-us/library/system.collections.specialized.stringdictionary.aspx">System.Collections.Specialized.StringDictionary</a></td>
+                    <td align="left"><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html">java.util.Properties</a>
+                    </td>
+                    <td align="left">Collection of key-value string pairs.<span class="tc-bold"><sup>1</sup></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <ol>
+            <li>In Java, the <code>Properties</code> type allows the user to store keys and values that are not strings.</li>
+        </ol>
+    </body>
 </html>

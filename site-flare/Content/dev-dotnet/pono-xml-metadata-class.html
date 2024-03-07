@@ -1,357 +1,299 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Class Metadata</h1>
-  
-
-<h1><a name="name"></a>Name</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>name</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Contains the full qualified name of the specified class. Because this attribute is of the XML type <code>ID</code>, there can only be one <code>class-descriptor</code> per class.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Class Metadata</h1>
+        <h1><a name="name"></a>Name</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>name</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Contains the full qualified name of the specified class. Because this attribute is of the XML type <code>ID</code>, there can only be one <code>class-descriptor</code> per class.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Model.Person"&gt;
     &lt;/class&gt;
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
-
-<h1><a name="alias-name"></a>Alias name</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>alias-name</td>
-</tr>
-
-<tr>
-<td>Argument</td>
-<td>boolean</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Gives the ability to map a C# class name (including namespace) to a space class name</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+        <h1><a name="alias-name"></a>Alias name</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>alias-name</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Gives the ability to map a C# class name (including namespace) to a space class name</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Model.Person" alias-name="CommonPerson"&gt;
     &lt;/class&gt;
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
-
-<h1><a name="persistence"></a>Persistence</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>persist</td>
-</tr>
-
-<tr>
-<td>Argument</td>
-<td>boolean</td>
-</tr>
-
-<tr>
-<td>Default</td>
-<td>false</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>This field indicates the persistency mode of the object. When a space is defined as persistent, a <code>true</code> value for this attribute will persist objects of this type.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+        <h1><a name="persistence"></a>Persistence</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>persist</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>This field indicates the persistency mode of the object. When a space is defined as persistent, a <code>true</code> value for this attribute will persist objects of this type.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Model.Person" persist="true"&gt;
     &lt;/class&gt;
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="space-persistency-overview.html">Space Persistence</a></p>
-</div>
-
-<h1><a name="replication"></a>Replication</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>replicate</td>
-</tr>
-
-<tr>
-<td>Argument</td>
-<td>boolean</td>
-</tr>
-
-<tr>
-<td>Default</td>
-<td>false</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>This field indicates the replication mode of the object. When a space is defined as replicated, a <code>true</code> value for this attribute will replicate objects of this type.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+        <div class="tc-admon-refer">
+            <p><a href="space-persistency-overview.html">Space Persistence</a>
+            </p>
+        </div>
+        <h1><a name="replication"></a>Replication</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>replicate</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>This field indicates the replication mode of the object. When a space is defined as replicated, a <code>true</code> value for this attribute will replicate objects of this type.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Model.Person" replicate="true"&gt;
     &lt;/class&gt;
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="../admin/replication.html">Replication</a></p>
-</div>
-
-<h1><a name="fifo-support"></a>FIFO Support</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>fifo</td>
-</tr>
-
-<tr>
-<td>Argument</td>
-<td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_FifoSupport.htm">FifoSupport</a></td>
-</tr>
-
-<tr>
-<td>Default</td>
-<td>off</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Enabling  FIFO operations.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+        <div class="tc-admon-refer">
+            <p><a href="../admin/replication.html">Replication</a>
+            </p>
+        </div>
+        <h1><a name="fifo-support"></a>FIFO Support</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>fifo</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_FifoSupport.htm">FifoSupport</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>off</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Enabling  FIFO operations.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Model.Person" fifo="operation"&gt;
     &lt;/class&gt;
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="fifo-support.html">Space Persistence</a></p>
-</div>
-
-<h1><a name="storage-type"></a>Storage Type</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>storage-type</td>
-</tr>
-
-<tr>
-<td>Argument</td>
-<td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_StorageType.htm">StorageType</a></td>
-</tr>
-
-<tr>
-<td>Default</td>
-<td>object</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+        <div class="tc-admon-refer">
+            <p><a href="fifo-support.html">Space Persistence</a>
+            </p>
+        </div>
+        <h1><a name="storage-type"></a>Storage Type</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>storage-type</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_StorageType.htm">StorageType</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>object</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Model.Person" storage-type="binary" /&gt;
 &lt;/gigaspaces-mapping&gt;
 
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="poco-storage-type.html">Space Object storage types</a></p>
-</div>
-
-<h1><a name="inherit-index"></a>Inherit Index</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>inherit-indexes</td>
-</tr>
-
-<tr>
-<td>Argument</td>
-<td>boolean</td>
-</tr>
-
-<tr>
-<td>Default</td>
-<td>true</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Whether to use the class indexes list only, or to also include the superclass' indexes. <br/>If the class does not define indexes, superclass indexes are used. <br/>Options:<br/>- <code>false</code> – class indexes only.<br/>- <code>true</code> – class indexes and superclass indexes.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+        <div class="tc-admon-refer">
+            <p><a href="poco-storage-type.html">Space Object storage types</a>
+            </p>
+        </div>
+        <h1><a name="inherit-index"></a>Inherit Index</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>inherit-indexes</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>true</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Whether to use the class indexes list only, or to also include the superclass' indexes. <br />If the class does not define indexes, superclass indexes are used. <br />Options:<br />- <code>false</code> – class indexes only.<br />- <code>true</code> – class indexes and superclass indexes.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Model.Person" inherit-indexes="false" /&gt;
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="indexing.html">Indexing Objects</a></p>
-</div>
-
-<h1><a name="compound-index"></a>Compound Index</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Syntax</td>
-<td>compound-index paths</td>
-</tr>
-
-<tr>
-<td>Argument(s)</td>
-<td>string</td>
-</tr>
-
-<tr>
-<td>Values</td>
-<td>attribute name(s)</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Indexes can be defined for multiple properties of a class</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+        <div class="tc-admon-refer">
+            <p><a href="indexing.html">Indexing Objects</a>
+            </p>
+        </div>
+        <h1><a name="compound-index"></a>Compound Index</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>compound-index paths</td>
+                </tr>
+                <tr>
+                    <td>Argument(s)</td>
+                    <td>string</td>
+                </tr>
+                <tr>
+                    <td>Values</td>
+                    <td>attribute name(s)</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Indexes can be defined for multiple properties of a class</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
     &lt;class name="Data" &gt;
         &lt;compound-index paths="Data1, Data2"/&gt;
         ...
     &lt;/class&gt;
 &lt;/gigaspaces-mapping&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="./indexing-compound.html">Compound Indexing</a></p>
-</div>
-
-</body>
+        <div class="tc-admon-refer">
+            <p><a href="./indexing-compound.html">Compound Indexing</a>
+            </p>
+        </div>
+    </body>
 </html>

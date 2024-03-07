@@ -1,53 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Document API</h1>
-  
-
-<p>The <MadCap:variable name="General.ProductNameXAP" /> document API exposes the space as <a href="http://en.wikipedia.org/wiki/Document-oriented_database" target="_blank" >Document Store</a>. A document, which is represented by the class <code>SpaceDocument</code>, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, <code>String</code>, <code>Date</code>, other documents, or collections thereof. Most importantly, the Space is aware of the internal structure of a document, and thus can index document properties at any nesting level and expose rich query semantics for retrieving documents.</p>
-
-<p>Unlike concrete objects, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic - users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the interface <code>ISpaceTypeDescriptor</code>.</p>
-
-<p>Before a certain Document instance is written to the space, its type should be introduced to the data grid. The type has a name and controls metadata such as an identifier property, a routing property and which properties are initially indexed (naturally, you can also index new properties at runtime after adding them to your documents).</p>
-
-<div class="tc-admon-tip">
-  
-  <p>The Type controls <span class="tc-bold">metadata</span> - so only the metadata is part of the type. A document can introduce new properties at will.</p>
-</div>
-
-<p>Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties (although in most cases Document instances of the same type are likely to have identical or similar set of properties).</p>
-
-<h1><a name="schema-evolution-with-space-documents"></a>Schema Evolution with Space Documents</h1>
-
-<p>Since a <code>SpaceDocument</code> is completely dynamic by nature, it is very easy to change or evolve your data model without ever taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist since the space does not enforce any restriction with regards to the property set of documents that belong to a certain type. This is a much more lightweight model in comparison to the classic concrete object model, where a recompilation and in many cases a full space restart is required to change the data schema.</p>
-
-<h1><a name="type-definition"></a>Type Definition</h1>
-
-<p>Before we start writing and reading <code>SpaceDocument</code> from the space, we need an <span class="tc-bold">initial</span> schema definition of the document type.</p>
-
-<p>For example, suppose we're implementing an electronic commerce system, and decided we need a type called <span class="tc-bold">Product</span> with the following properties:</p>
-
-<ul>
-<li>CatalogNumber : String</li>
-<li>Category : String</li>
-<li>Name : String</li>
-<li>Description : String</li>
-<li>Price : float</li>
-<li>Features : Nested document (for example: Manufacturer=Acme, RequiresAssembly=false, weight=7.5)</li>
-<li>Tags : Collection of Strings</li>
-<li>Reviews : Collection of nested documents</li>
-</ul>
-
-<p>We also decide that <span class="tc-bold">CatalogNumber</span> will be a primary key, partitioning will be done by the <span class="tc-bold">Category</span> property, and the properties <span class="tc-bold">Name</span>, <span class="tc-bold">Price</span> should be indexed since they participate in most of the queries executed. Remember, the type definition is for metadata only, so we're not concerned about <span class="tc-bold">Description</span> and other such fields in the type definition, because Description isn't used for indexing or any other metadata.</p>
-
-<p>The following is an example of how to introduce a new document type:</p>
-
-<pre><code class="language-csharp">ISpaceProxy spaceProxy = ... //Obtain a space proxy
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Document API</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> document API exposes the space as <a href="http://en.wikipedia.org/wiki/Document-oriented_database" target="_blank">Document Store</a>. A document, which is represented by the class <code>SpaceDocument</code>, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, <code>String</code>, <code>Date</code>, other documents, or collections thereof. Most importantly, the Space is aware of the internal structure of a document, and thus can index document properties at any nesting level and expose rich query semantics for retrieving documents.</p>
+        <p>Unlike concrete objects, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic - users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the interface <code>ISpaceTypeDescriptor</code>.</p>
+        <p>Before a certain Document instance is written to the space, its type should be introduced to the data grid. The type has a name and controls metadata such as an identifier property, a routing property and which properties are initially indexed (naturally, you can also index new properties at runtime after adding them to your documents).</p>
+        <div class="tc-admon-tip">
+            <p>The Type controls <span class="tc-bold">metadata</span> - so only the metadata is part of the type. A document can introduce new properties at will.</p>
+        </div>
+        <p>Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties (although in most cases Document instances of the same type are likely to have identical or similar set of properties).</p>
+        <h1><a name="schema-evolution-with-space-documents"></a>Schema Evolution with Space Documents</h1>
+        <p>Since a <code>SpaceDocument</code> is completely dynamic by nature, it is very easy to change or evolve your data model without ever taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist since the space does not enforce any restriction with regards to the property set of documents that belong to a certain type. This is a much more lightweight model in comparison to the classic concrete object model, where a recompilation and in many cases a full space restart is required to change the data schema.</p>
+        <h1><a name="type-definition"></a>Type Definition</h1>
+        <p>Before we start writing and reading <code>SpaceDocument</code> from the space, we need an <span class="tc-bold">initial</span> schema definition of the document type.</p>
+        <p>For example, suppose we're implementing an electronic commerce system, and decided we need a type called <span class="tc-bold">Product</span> with the following properties:</p>
+        <ul>
+            <li>CatalogNumber : String</li>
+            <li>Category : String</li>
+            <li>Name : String</li>
+            <li>Description : String</li>
+            <li>Price : float</li>
+            <li>Features : Nested document (for example: Manufacturer=Acme, RequiresAssembly=false, weight=7.5)</li>
+            <li>Tags : Collection of Strings</li>
+            <li>Reviews : Collection of nested documents</li>
+        </ul>
+        <p>We also decide that <span class="tc-bold">CatalogNumber</span> will be a primary key, partitioning will be done by the <span class="tc-bold">Category</span> property, and the properties <span class="tc-bold">Name</span>, <span class="tc-bold">Price</span> should be indexed since they participate in most of the queries executed. Remember, the type definition is for metadata only, so we're not concerned about <span class="tc-bold">Description</span> and other such fields in the type definition, because Description isn't used for indexing or any other metadata.</p>
+        <p>The following is an example of how to introduce a new document type:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = ... //Obtain a space proxy
 // Create type descriptor:
 SpaceTypeDescriptorBuilder typeBuilder = new SpaceTypeDescriptorBuilder("Product");
 typeBuilder.SetIdProperty("CatalogNumber");
@@ -58,14 +42,9 @@ ISpaceTypeDescriptor typeDescriptor = typeBuilder.Create();
 // Register type descriptor:
 spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
 </code></pre>
-
-<p>Note that this code does not reflect the complete model - most of the properties do not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model <span class="tc-bold">settings cannot be changed</span> without restarting the space or dropping the type, clearing all its instances and reintroducing it again.</p>
-
-<h1><a name="creating-and-writing-documents"></a>Creating and Writing Documents</h1>
-
-<p>To create a document in the space, create a <code>SpaceDocument</code> object using the type name, and set the desired properties. Then write it to the space using the regular <code>ISpaceProxy</code> write method:</p>
-
-<pre><code class="language-csharp">public void WriteProduct1(ISpaceProxy spaceProxy)
+        <p>Note that this code does not reflect the complete model - most of the properties do not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model <span class="tc-bold">settings cannot be changed</span> without restarting the space or dropping the type, clearing all its instances and reintroducing it again.</p>
+        <h1><a name="creating-and-writing-documents"></a>Creating and Writing Documents</h1>
+        <p>To create a document in the space, create a <code>SpaceDocument</code> object using the type name, and set the desired properties. Then write it to the space using the regular <code>ISpaceProxy</code> write method:</p><pre><code class="language-csharp">public void WriteProduct1(ISpaceProxy spaceProxy)
 {
     // 1. Create the document using the type name
     SpaceDocument document = new SpaceDocument("Product");
@@ -96,14 +75,9 @@ spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
     spaceProxy.Write(document);
 }
 </code></pre>
-
-<p>Using generic types as nested properties (i.e IDictionary&lt;String, Object&gt; features) will be read as IDictionary&lt;Object, Object&gt; when the above document is read from the space.</p>
-
-<p>There are two ways to receive back a dictionary of the same generic type. One is using the <code>DocumentProperties</code> class instead, and the other is to use a BinaryCustom storage type for the dynamic properties.</p>
-
-<p>The <code>DocumentProperties</code> class extends IDictionary&lt;String, Object&gt; and besides being strongly typed to String keys and Object values, it provides better performance when used.</p>
-
-<pre><code class="language-csharp">public void WriteProduct2(ISpaceProxy spaceProxy)
+        <p>Using generic types as nested properties (i.e IDictionary&lt;String, Object&gt; features) will be read as IDictionary&lt;Object, Object&gt; when the above document is read from the space.</p>
+        <p>There are two ways to receive back a dictionary of the same generic type. One is using the <code>DocumentProperties</code> class instead, and the other is to use a BinaryCustom storage type for the dynamic properties.</p>
+        <p>The <code>DocumentProperties</code> class extends IDictionary&lt;String, Object&gt; and besides being strongly typed to String keys and Object values, it provides better performance when used.</p><pre><code class="language-csharp">public void WriteProduct2(ISpaceProxy spaceProxy)
 {
     // 1. Create the document using the type name
     SpaceDocument document = new SpaceDocument("Product");
@@ -134,28 +108,18 @@ spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
     spaceProxy.Write(document);
 }
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>The <code>ISpaceProxy.WriteMultiple</code> method can be used to write a batch of documents.</p>
-</div>
-
-<div class="tc-admon-important">
-  
-  <p>Update semantics are the same as for concrete objects, except <span class="tc-bold">partial update</span>, which is not currently supported.
+        <div class="tc-admon-note">
+            <p>The <code>ISpaceProxy.WriteMultiple</code> method can be used to write a batch of documents.</p>
+        </div>
+        <div class="tc-admon-important">
+            <p>Update semantics are the same as for concrete objects, except <span class="tc-bold">partial update</span>, which is not currently supported.
 Use only alphanumeric characters (a-z, A-Z, 0-9) and the underscore ('_") to construct properties keys. Other characters might have special behaviors in GigaSpaces (for example: the dot (".') is used to distinguish nested paths).</p>
-</div>
-
-<h1><a name="reading-and-removing-documents"></a>Reading and Removing Documents</h1>
-
-<p>There are three types of document queries:</p>
-
-<h2><a name="template-query"></a>Template Query</h2>
-
-<p>This type of query uses a SpaceDocument with <span class="tc-italic">type</span> and any other set of properties values as a template for the query
-For example: Read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Name</span> is <span class="tc-bold">Anvil</span>:</p>
-
-<pre><code class="language-csharp">public SpaceDocument ReadProductByTemplate(ISpaceProxy spaceProxy)
+        </div>
+        <h1><a name="reading-and-removing-documents"></a>Reading and Removing Documents</h1>
+        <p>There are three types of document queries:</p>
+        <h2><a name="template-query"></a>Template Query</h2>
+        <p>This type of query uses a SpaceDocument with <span class="tc-italic">type</span> and any other set of properties values as a template for the query
+For example: Read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Name</span> is <span class="tc-bold">Anvil</span>:</p><pre><code class="language-csharp">public SpaceDocument ReadProductByTemplate(ISpaceProxy spaceProxy)
 {
     // Create template:
     SpaceDocument template = new SpaceDocument("Product");
@@ -165,14 +129,9 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
     return result;
 }
 </code></pre>
-
-<h2><a name="sql-query"></a>Sql Query</h2>
-
-<p>You can use the <a href="query-sql.html">SqlQuery</a> to search for matching <code>SpaceDocument</code> entries.</p>
-
-<p>For example: to read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Price</span> is greater than 15:</p>
-
-<pre><code class="language-csharp">public SpaceDocument ReadProductBySql(ISpaceProxy spaceProxy)
+        <h2><a name="sql-query"></a>Sql Query</h2>
+        <p>You can use the <a href="query-sql.html">SqlQuery</a> to search for matching <code>SpaceDocument</code> entries.</p>
+        <p>For example: to read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Price</span> is greater than 15:</p><pre><code class="language-csharp">public SpaceDocument ReadProductBySql(ISpaceProxy spaceProxy)
 {
     // Create query:
     SqlQuery&lt;SpaceDocument&gt; query = new SqlQuery&lt;SpaceDocument&gt;("Product", "Price &gt; ?");
@@ -182,15 +141,10 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
     return result;
 }
 </code></pre>
-
-<div class="tc-admon-tip">
-  
-  <p>Consider indexing properties used in queries to boost performance.</p>
-</div>
-
-<p>Queries on nested properties are supported. For example, to read products manufactured by <span class="tc-bold">Acme</span>:</p>
-
-<pre><code class="language-csharp">public SpaceDocument[] ReadProductBySqlNested(ISpaceProxy spaceProxy)
+        <div class="tc-admon-tip">
+            <p>Consider indexing properties used in queries to boost performance.</p>
+        </div>
+        <p>Queries on nested properties are supported. For example, to read products manufactured by <span class="tc-bold">Acme</span>:</p><pre><code class="language-csharp">public SpaceDocument[] ReadProductBySqlNested(ISpaceProxy spaceProxy)
 {
     // Create query:
     SqlQuery&lt;SpaceDocument&gt; query = new SqlQuery&lt;SpaceDocument&gt;(
@@ -201,20 +155,13 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
     return result;
 }
 </code></pre>
-
-<h2><a name="id-based-query"></a>ID Based Query</h2>
-
-<p>For example: Read a document of type <span class="tc-bold">Product</span> whose ID is <span class="tc-bold">hw-1234</span>:</p>
-
-<pre><code class="language-csharp">public SpaceDocument ReadProductById(ISpaceProxy spaceProxy)
+        <h2><a name="id-based-query"></a>ID Based Query</h2>
+        <p>For example: Read a document of type <span class="tc-bold">Product</span> whose ID is <span class="tc-bold">hw-1234</span>:</p><pre><code class="language-csharp">public SpaceDocument ReadProductById(ISpaceProxy spaceProxy)
 {
     return spaceProxy.ReadById(new IdQuery&lt;SpaceDocument&gt;("Product", "hw-1234"));
 }
 </code></pre>
-
-<p>Queries by multiple Ids are supported. For example:</p>
-
-<pre><code class="language-csharp">public SpaceDocument[] ReadProductByMultipleIds(ISpaceProxy spaceProxy)
+        <p>Queries by multiple Ids are supported. For example:</p><pre><code class="language-csharp">public SpaceDocument[] ReadProductByMultipleIds(ISpaceProxy spaceProxy)
 {
     Object[] ids = new Object[] {"hw-1234", "av-9876"};
     IReadByIdsResult&lt;SpaceDocument&gt; result =
@@ -222,39 +169,26 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
     return result.ResultsArray;
 }
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>All other <code>ISpaceProxy</code> query operations (ReadIfExists, ReadMultiple, Take, TakeIfExists, TakeMultiple, Count, Clear) are supported for documents entries as well.
+        <div class="tc-admon-note">
+            <p>All other <code>ISpaceProxy</code> query operations (ReadIfExists, ReadMultiple, Take, TakeIfExists, TakeMultiple, Count, Clear) are supported for documents entries as well.
 All other Id based operations (ReadIfExists, TakeById, TakeIfExistsById, TakeByIds) are supported for documents as well.
 All overloads of those operations with timeout, transactions, modifiers etc. are supported for documents. The semantics is similar to concrete objects.</p>
-</div>
-
-<h1><a name="nested-properties"></a>Nested Properties</h1>
-
-<p>The <code>Document</code> properties' values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (dictionary or an extension of dictionary, such as <code>DocumentProperties</code>). Values must adhere to the same restrictions as in the concrete object model (e.g. be serializable). Nested properties can be queried by using the dot (".') notation to describe paths, as shown above.</p>
-
-<div class="tc-admon-note">
-  
-  <p>It's highly recommended to use <code>DocumentProperties</code> for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.</p>
-</div>
-
-<div class="tc-admon-important">
-  
-  <p>While it's possible to use  <code>SpaceDocument</code> as a property, it is probably a mistake, since it contains extra information which is not relevant for nested properties (type name, version, etc.).</p>
-</div>
-
-<h1><a name="document-hierarchy"></a>Document Hierarchy</h1>
-
-<p>SpaceDocument query supports hierarchical relationships so that entries of a child are visible in the context of the parent document, but not the other way around. For example, a document with name Employee can register its parent document Person in the following way:</p>
-
-<pre><code class="language-csharp">SpaceTypeDescriptor employeeDescriptor = new SpaceTypeDescriptorBuilder(
+        </div>
+        <h1><a name="nested-properties"></a>Nested Properties</h1>
+        <p>The <code>Document</code> properties' values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (dictionary or an extension of dictionary, such as <code>DocumentProperties</code>). Values must adhere to the same restrictions as in the concrete object model (e.g. be serializable). Nested properties can be queried by using the dot (".') notation to describe paths, as shown above.</p>
+        <div class="tc-admon-note">
+            <p>It's highly recommended to use <code>DocumentProperties</code> for nested documents since it contains performance and memory footprint optimizations which are tailored for GigaSpaces usage.</p>
+        </div>
+        <div class="tc-admon-important">
+            <p>While it's possible to use  <code>SpaceDocument</code> as a property, it is probably a mistake, since it contains extra information which is not relevant for nested properties (type name, version, etc.).</p>
+        </div>
+        <h1><a name="document-hierarchy"></a>Document Hierarchy</h1>
+        <p>SpaceDocument query supports hierarchical relationships so that entries of a child are visible in the context of the parent document, but not the other way around. For example, a document with name Employee can register its parent document Person in the following way:</p><pre><code class="language-csharp">SpaceTypeDescriptor employeeDescriptor = new SpaceTypeDescriptorBuilder(
                 "Child Document Type Name", parentSpaceTypeDescriptor).Create();
 </code></pre>
-
-<p>Here is an example:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Program" style="padding:10px"><pre><code class="language-csharp">public SimpleDocumentQuery ()
+        <p>Here is an example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Program" style="padding:10px"><pre><code class="language-csharp">public SimpleDocumentQuery ()
 {
     // Create the Space
     ISpaceProxy spaceProxy = new EmbeddedSpaceFactory ("mySpace").Create ();
@@ -294,9 +228,8 @@ All overloads of those operations with timeout, transactions, modifiers etc. are
 }
 
 </code></pre>
-</div>
-
-<div title=" RegisterDocument" style="padding:10px"><pre><code class="language-csharp">public  void  registerDocument (ISpaceProxy spaceProxy)
+            </div>
+            <div title=" RegisterDocument" style="padding:10px"><pre><code class="language-csharp">public  void  registerDocument (ISpaceProxy spaceProxy)
 {
     // Create the Person descriptor
     SpaceTypeDescriptorBuilder personDescriptor = new SpaceTypeDescriptorBuilder ("Person");
@@ -315,27 +248,17 @@ All overloads of those operations with timeout, transactions, modifiers etc. are
     spaceProxy.TypeManager.RegisterTypeDescriptor (employeeTypeDescriptor);
 }
 </code></pre>
-</div>
-</div>
-
-<h1><a name="indexing"></a>Indexing</h1>
-
-<p>Properties and nested paths can be <a href="indexing.html">indexed</a> to boost queries performance. In the type registration sample above, the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties are indexed.</p>
-
-<p>Since the schema is flexible and new properties might be added after the type has been registered, it is possible to add indexes dynamically as well.</p>
-
-<div class="tc-admon-refer">
-  
-  <p>For more information about indexing, see the <a href="indexing.html">Indexing</a> page.</p>
-</div>
-
-<h1><a name="events"></a>Events</h1>
-
-<p>Event containers (both <a href="polling-container-overview.html">polling container</a> and <a href="notify-container-overview.html">notify container</a>) support <code>SpaceDocument</code> entries.</p>
-
-<p>Here is a simple example of a polling event container configuration using a <code>SpaceDocument</code>:</p>
-
-<pre><code class="language-csharp">[PollingEventDriven]
+            </div>
+        </div>
+        <h1><a name="indexing"></a>Indexing</h1>
+        <p>Properties and nested paths can be <a href="indexing.html">indexed</a> to boost queries performance. In the type registration sample above, the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties are indexed.</p>
+        <p>Since the schema is flexible and new properties might be added after the type has been registered, it is possible to add indexes dynamically as well.</p>
+        <div class="tc-admon-refer">
+            <p>For more information about indexing, see the <a href="indexing.html">Indexing</a> page.</p>
+        </div>
+        <h1><a name="events"></a>Events</h1>
+        <p>Event containers (both <a href="polling-container-overview.html">polling container</a> and <a href="notify-container-overview.html">notify container</a>) support <code>SpaceDocument</code> entries.</p>
+        <p>Here is a simple example of a polling event container configuration using a <code>SpaceDocument</code>:</p><pre><code class="language-csharp">[PollingEventDriven]
 public class SimpleListener
 {
     [EventTemplate]
@@ -356,12 +279,8 @@ public class SimpleListener
     }
 }
 </code></pre>
-
-<h1><a name="fifo"></a>FIFO</h1>
-
-<p>FIFO support is off by default with <code>SpaceDocument</code> entries (as with concrete object entries). To enable FIFO support, modify the type introduction code and set the desired FIFO support mode. For example:</p>
-
-<pre><code class="language-csharp">// Create type descriptor:
+        <h1><a name="fifo"></a>FIFO</h1>
+        <p>FIFO support is off by default with <code>SpaceDocument</code> entries (as with concrete object entries). To enable FIFO support, modify the type introduction code and set the desired FIFO support mode. For example:</p><pre><code class="language-csharp">// Create type descriptor:
 ISpaceProxy spaceProxy = ... //Obtain a space proxy
 // Create type descriptor:
 SpaceTypeDescriptorBuilder typeBuilder = new SpaceTypeDescriptorBuilder("Product");
@@ -371,19 +290,12 @@ ISpaceTypeDescriptor typeDescriptor = typeBuilder.Create();
 // Register type descriptor:
 spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>Changing FIFO support after a type has been registered is not supported.</p>
-</div>
-
-<h1><a name="transactions-and-optimistic-locking"></a>Transactions and Optimistic Locking</h1>
-
-<p>Transactions and isolation modifier semantics is identical to the concrete object semantics.</p>
-
-<p>Optimistic locking is disabled by default with <code>SpaceDocument</code> entries (same as with concrete object). To enable it, modify the type introduction code and set the optimistic locking support. For example:</p>
-
-<pre><code class="language-csharp">// Create type descriptor:
+        <div class="tc-admon-note">
+            <p>Changing FIFO support after a type has been registered is not supported.</p>
+        </div>
+        <h1><a name="transactions-and-optimistic-locking"></a>Transactions and Optimistic Locking</h1>
+        <p>Transactions and isolation modifier semantics is identical to the concrete object semantics.</p>
+        <p>Optimistic locking is disabled by default with <code>SpaceDocument</code> entries (same as with concrete object). To enable it, modify the type introduction code and set the optimistic locking support. For example:</p><pre><code class="language-csharp">// Create type descriptor:
 ISpaceProxy spaceProxy = ... //Obtain a space proxy
 // Create type descriptor:
 SpaceTypeDescriptorBuilder typeBuilder = new SpaceTypeDescriptorBuilder("Product");
@@ -393,19 +305,12 @@ ISpaceTypeDescriptor typeDescriptor = typeBuilder.Create();
 // Register type descriptor:
 spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
 </code></pre>
-
-<div class="tc-admon-important">
-  
-  <p>Changing optimistic locking after a type has been registered is not supported.</p>
-</div>
-
-<h1><a name="dynamic-properties-storage-type"></a>Dynamic Properties Storage Type</h1>
-
-<p>By default, the dynamic properties of the document will be deserialized fully and kept in space as an instance of their corresponding space type class. This allows indexing and nested matching against these properties. However, in some scenarios, the data kept inside the dynamic properties is not used for matching. In that case it is possible to keep these properties serialized in their binary format in the space, increasing performance and reducing memory consumption.</p>
-
-<p>However, the data stored in binary format will be not be visible via the management center or readable from an interoperable csharp/C++ client, it will appear as binary large object to these clients and will only deserialized when a .NET client reads it. The way to specify the storage type is when constructing the type using the <code>SpaceTypeDescriptorBuilder</code>:</p>
-
-<pre><code class="language-csharp">// Create type descriptor:
+        <div class="tc-admon-important">
+            <p>Changing optimistic locking after a type has been registered is not supported.</p>
+        </div>
+        <h1><a name="dynamic-properties-storage-type"></a>Dynamic Properties Storage Type</h1>
+        <p>By default, the dynamic properties of the document will be deserialized fully and kept in space as an instance of their corresponding space type class. This allows indexing and nested matching against these properties. However, in some scenarios, the data kept inside the dynamic properties is not used for matching. In that case it is possible to keep these properties serialized in their binary format in the space, increasing performance and reducing memory consumption.</p>
+        <p>However, the data stored in binary format will be not be visible via the management center or readable from an interoperable csharp/C++ client, it will appear as binary large object to these clients and will only deserialized when a .NET client reads it. The way to specify the storage type is when constructing the type using the <code>SpaceTypeDescriptorBuilder</code>:</p><pre><code class="language-csharp">// Create type descriptor:
 ISpaceProxy spaceProxy = ... //Obtain a space proxy
 // Create type descriptor:
 SpaceTypeDescriptorBuilder typeBuilder = new SpaceTypeDescriptorBuilder("Product");
@@ -415,19 +320,14 @@ ISpaceTypeDescriptor typeDescriptor = typeBuilder.Create();
 // Register type descriptor:
 spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>For more info on storage types, please refer to <a href="poco-storage-type.html">Property Storage Type</a></p>
-</div>
-
-<h1><a name="persistency"></a>Persistency</h1>
-
-<p>The External Data Source is supported for space documents, however, if the EDS is also used to initially load the space with data, the space needs to be aware of the type descriptors of the documents. Therefore, the space needs to be started with known type descriptors.</p>
-
-<p>Example on how to implement an EDS that persists SpaceDocuments of type "Trade" and start a space in a basic processing unit container with the EDS and known Trade type descriptors:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Starting the Space " style="padding:10px"><pre><code class="language-csharp">[ContainerInitializing]
+        <div class="tc-admon-refer">
+            <p>For more info on storage types, please refer to <a href="poco-storage-type.html">Property Storage Type</a></p>
+        </div>
+        <h1><a name="persistency"></a>Persistency</h1>
+        <p>The External Data Source is supported for space documents, however, if the EDS is also used to initially load the space with data, the space needs to be aware of the type descriptors of the documents. Therefore, the space needs to be started with known type descriptors.</p>
+        <p>Example on how to implement an EDS that persists SpaceDocuments of type "Trade" and start a space in a basic processing unit container with the EDS and known Trade type descriptors:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Starting the Space " style="padding:10px"><pre><code class="language-csharp">[ContainerInitializing]
 public void Initialize(BasicProcessingUnitContainer container)
 {
   //Create a new space configuration object that is used to start a space
@@ -451,9 +351,8 @@ public void Initialize(BasicProcessingUnitContainer container)
     "MySpace", "/./MySpace", spaceConfig);
 }
 </code></pre>
-</div>
-
-<div title="  The EDS Implementation " style="padding:10px"><pre><code class="language-csharp">public class DocumentEDS : ISqlDataSource
+            </div>
+            <div title="  The EDS Implementation " style="padding:10px"><pre><code class="language-csharp">public class DocumentEDS : ISqlDataSource
 {
     public void Init(Dictionary&lt;String, String&gt; properties)
     {
@@ -498,16 +397,12 @@ public void Initialize(BasicProcessingUnitContainer container)
     }
 }
 </code></pre>
-</div>
-</div>
-
-<p>Concrete objects can be persisted via document EDS as well, in the same way.</p>
-
-<div class="tc-admon-important">
-  
-  <p>In order to support InitialLoad of documents the relevant types must be declared in the space config, so that they are registered in the space before InitialLoad is invoked.
+            </div>
+        </div>
+        <p>Concrete objects can be persisted via document EDS as well, in the same way.</p>
+        <div class="tc-admon-important">
+            <p>In order to support InitialLoad of documents the relevant types must be declared in the space config, so that they are registered in the space before InitialLoad is invoked.
 Document persistence is currently not provided by default - If needed, the External Data Source should be implemented to fit the required solution.</p>
-</div>
-
-</body>
+        </div>
+    </body>
 </html>

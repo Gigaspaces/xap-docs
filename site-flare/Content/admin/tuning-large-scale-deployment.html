@@ -1,65 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Large Scale Deployment</h1>
-  
-
-<h1><a name="considerations"></a>Considerations</h1>
-
-<p>When designing a large cluster, there are several things that need to be taken into account to assure that the cluster will be able to handle heavy loads, and perform quickly and stably.</p>
-
-<p>When speaking of a larger cluster, we are referring to more than <span class="tc-bold">few hundreds</span>. If this is the size of cluster you intend to build, the following considerations are relevant for you.</p>
-
-<h2><a name="unregistering-spaces-disappear-from-lus"></a>Unregistering Spaces "Disappear" from LUS</h2>
-
-<p>This occurs when a large amount of memory is consumed in the process, causing extensive JVM GC spikes. This results in high CPU usage and distracts the <code>LeaseRenewManager</code> (a long GC/CPU clock causes the <code>LeaseRenewManager</code> to miss the default 4 seconds, or to attempt to renew the lease, firing a space service un-registering event). If the LUS fires an event to unregister a space, the UI spaces tree node represents it using a specific icon. Additionally, specific logging is printed out in the UI.</p>
-
-<p>To avoid the unregistering of spaces, add resources (memory, CPU) or spaces, or tune the <code>LeaseRenewal maxLeaseDuration</code> and <code>roundTripTime</code>. These two values can be configured using the system properties:</p>
-
-<pre><code class="language-bash">//Default value for roundTripTime 4 seconds
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Large Scale Deployment</h1>
+        <h1><a name="considerations"></a>Considerations</h1>
+        <p>When designing a large cluster, there are several things that need to be taken into account to assure that the cluster will be able to handle heavy loads, and perform quickly and stably.</p>
+        <p>When speaking of a larger cluster, we are referring to more than <span class="tc-bold">few hundreds</span>. If this is the size of cluster you intend to build, the following considerations are relevant for you.</p>
+        <h2><a name="unregistering-spaces-disappear-from-lus"></a>Unregistering Spaces "Disappear" from LUS</h2>
+        <p>This occurs when a large amount of memory is consumed in the process, causing extensive JVM GC spikes. This results in high CPU usage and distracts the <code>LeaseRenewManager</code> (a long GC/CPU clock causes the <code>LeaseRenewManager</code> to miss the default 4 seconds, or to attempt to renew the lease, firing a space service un-registering event). If the LUS fires an event to unregister a space, the UI spaces tree node represents it using a specific icon. Additionally, specific logging is printed out in the UI.</p>
+        <p>To avoid the unregistering of spaces, add resources (memory, CPU) or spaces, or tune the <code>LeaseRenewal maxLeaseDuration</code> and <code>roundTripTime</code>. These two values can be configured using the system properties:</p><pre><code class="language-bash">//Default value for roundTripTime 4 seconds
 -Dcom.gs.jini.config.roundTripTime=4000
 
 //Default value for maxLeaseDuration  8 seconds.
 -Dcom.gs.jini.config.maxLeaseDuration=8000
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>It is recommended to <span class="tc-bold">increase these values to <sup>40000</sup>&#8260;<sub>80000</sub> respectively</span> in case a large cluster is used.</p>
-
-<p>Increasing these values causes a delay when the space recognizes failover, since the active election infrastructure is based on space un-registration.</p>
-</div>
-
-<h2><a name="minimize-rmi-registry-overhead"></a>Minimize RMI Registry Overhead</h2>
-
-<p>Since every space container starts an embedded <code>RMIRegistry</code> service, it creates a set of threads which consume some resources.</p>
-
-<div class="tc-admon-note">
-  
-  <p>If the <code>RMIRegistry</code> service is not used, or if a full replication cluster or a large cluster is used; it is recommended to disable the <code>RMIRegistry</code> service in the space container and in the GSC/GSM.</p>
-</div>
-
-<h2><a name="lookup-service"></a>Lookup Service</h2>
-
-<p>Do not start more than 2 Lookup Services per cluster. Preferably start these on your strongest machines.</p>
-
-<h1><a name="many-clients-accessing-space"></a>Many Clients Accessing Space</h1>
-
-<p>When attempting to run hundreds of clients, which need to find a space and perform operations; a few considerations need to be taken.</p>
-
-<h2><a name="cluster-availability-monitoring"></a>Cluster Availability Monitoring</h2>
-
-<p>When there are many clients monitoring the availability of a cluster, it is recommended to increase the value of the <code>Monitor</code> thread to a maximum. Usually, when there is no failover or there are no backup-only spaces, the <code>Monitor</code> thread can be safely set to its maximum value; since clients directly interact with the space members. If either is detected as unavailable, the <code>Detector</code> thread is responsible for detecting their re-availability.</p>
-
-<div class="tc-admon-refer">
-  
-  <p>For more details, refer to <a href="cluster-view-gigaspaces-browser.html">Viewing Clustered Space Status</a>.</p>
-</div>
-
-</body>
+        <div class="tc-admon-note">
+            <p>It is recommended to <span class="tc-bold">increase these values to <sup>40000</sup>⁄<sub>80000</sub> respectively</span> in case a large cluster is used.</p>
+            <p>Increasing these values causes a delay when the space recognizes failover, since the active election infrastructure is based on space un-registration.</p>
+        </div>
+        <h2><a name="minimize-rmi-registry-overhead"></a>Minimize RMI Registry Overhead</h2>
+        <p>Since every space container starts an embedded <code>RMIRegistry</code> service, it creates a set of threads which consume some resources.</p>
+        <div class="tc-admon-note">
+            <p>If the <code>RMIRegistry</code> service is not used, or if a full replication cluster or a large cluster is used; it is recommended to disable the <code>RMIRegistry</code> service in the space container and in the GSC/GSM.</p>
+        </div>
+        <h2><a name="lookup-service"></a>Lookup Service</h2>
+        <p>Do not start more than 2 Lookup Services per cluster. Preferably start these on your strongest machines.</p>
+        <h1><a name="many-clients-accessing-space"></a>Many Clients Accessing Space</h1>
+        <p>When attempting to run hundreds of clients, which need to find a space and perform operations; a few considerations need to be taken.</p>
+        <h2><a name="cluster-availability-monitoring"></a>Cluster Availability Monitoring</h2>
+        <p>When there are many clients monitoring the availability of a cluster, it is recommended to increase the value of the <code>Monitor</code> thread to a maximum. Usually, when there is no failover or there are no backup-only spaces, the <code>Monitor</code> thread can be safely set to its maximum value; since clients directly interact with the space members. If either is detected as unavailable, the <code>Detector</code> thread is responsible for detecting their re-availability.</p>
+        <div class="tc-admon-refer">
+            <p>For more details, refer to <a href="cluster-view-gigaspaces-browser.html">Viewing Clustered Space Status</a>.</p>
+        </div>
+    </body>
 </html>

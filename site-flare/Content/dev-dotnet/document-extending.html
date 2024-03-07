@@ -1,33 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Extending</h1>
-  
-
-<p>While documents provide us with a dynamic schema, they force us to give up .NET type-safety for working with type less key-value pairs. GigaSpaces supports extending the SpaceDocument class to provide a type-safe wrapper for documents which is much easier to code with, while maintaining the dynamic schema.</p>
-
-<div class="tc-admon-note">
-  
-  <p>Do not confuse this with <a href="document-object-interoperability.html">Document-Object interoperability</a>, which is a different feature.</p>
-</div>
-
-<h1><a name="creating-the-extension-class"></a>Creating the Extension Class</h1>
-
-<p>Let's create a type-safe document wrapper for the <span class="tc-bold">Product</span> type described in the <a href="document-api.html">Document Support</a> page. The extensions are:</p>
-
-<ul>
-<li>Provide a parameter less constructor, since the type name is fixed.</li>
-<li>Provide type-safe properties, but instead of using private fields to store/retrieve the values, use the index operator of the SpaceDocument class.</li>
-</ul>
-
-<p>Here's an example (only parts of the properties have been implemented to keep the example short):</p>
-
-<pre><code class="language-csharp">public class ProductDocument : SpaceDocument
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Extending</h1>
+        <p>While documents provide us with a dynamic schema, they force us to give up .NET type-safety for working with type less key-value pairs. GigaSpaces supports extending the SpaceDocument class to provide a type-safe wrapper for documents which is much easier to code with, while maintaining the dynamic schema.</p>
+        <div class="tc-admon-note">
+            <p>Do not confuse this with <a href="document-object-interoperability.html">Document-Object interoperability</a>, which is a different feature.</p>
+        </div>
+        <h1><a name="creating-the-extension-class"></a>Creating the Extension Class</h1>
+        <p>Let's create a type-safe document wrapper for the <span class="tc-bold">Product</span> type described in the <a href="document-api.html">Document Support</a> page. The extensions are:</p>
+        <ul>
+            <li>Provide a parameter less constructor, since the type name is fixed.</li>
+            <li>Provide type-safe properties, but instead of using private fields to store/retrieve the values, use the index operator of the SpaceDocument class.</li>
+        </ul>
+        <p>Here's an example (only parts of the properties have been implemented to keep the example short):</p><pre><code class="language-csharp">public class ProductDocument : SpaceDocument
 {
     private const String TypeName = "Product";
     private const String PropertyCatalogNumber = "CatalogNumber";
@@ -57,13 +48,9 @@
     }
 }
 </code></pre>
-
-<h1><a name="registering-the-extension-class"></a>Registering the Extension Class</h1>
-
-<p>If your only intention is to write/update document entries, creating the extension class is sufficient - from the space's perspective it is equivalent to a <code>SpaceDocument</code> instance. However, if you attempt to read/take entries from the space, the results will be <code>SpaceDocument</code> instances, and the cast to <code>ProductDocument</code> will throw an exception.
-To overcome that, we need to include the document wrapper type in the type introduction:</p>
-
-<pre><code class="language-csharp">public void RegisterProductType(ISpaceProxy spaceProxy)
+        <h1><a name="registering-the-extension-class"></a>Registering the Extension Class</h1>
+        <p>If your only intention is to write/update document entries, creating the extension class is sufficient - from the space's perspective it is equivalent to a <code>SpaceDocument</code> instance. However, if you attempt to read/take entries from the space, the results will be <code>SpaceDocument</code> instances, and the cast to <code>ProductDocument</code> will throw an exception.
+To overcome that, we need to include the document wrapper type in the type introduction:</p><pre><code class="language-csharp">public void RegisterProductType(ISpaceProxy spaceProxy)
 {
     // Create type descriptor:
     SpaceTypeDescriptorBuilder typeDescriptorBuilder = new SpaceTypeDescriptorBuilder("Product");
@@ -73,14 +60,9 @@ To overcome that, we need to include the document wrapper type in the type intro
     spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptorBuilder.Create());
 }
 </code></pre>
-
-<p>This wrapper type-registration is kept in the proxy and not propagated to the server, so that from the server's perspective this is still a virtual document type with no affiliated Concrete object class.</p>
-
-<h1><a name="using-the-extension-class"></a>Using the Extension Class</h1>
-
-<p>The following code snippet demonstrate usage of the <code>ProductDocument</code> extensions we've created to write and read documents from the space.</p>
-
-<pre><code class="language-csharp">public void example(ISpaceProxy spaceProxy)
+        <p>This wrapper type-registration is kept in the proxy and not propagated to the server, so that from the server's perspective this is still a virtual document type with no affiliated Concrete object class.</p>
+        <h1><a name="using-the-extension-class"></a>Using the Extension Class</h1>
+        <p>The following code snippet demonstrate usage of the <code>ProductDocument</code> extensions we've created to write and read documents from the space.</p><pre><code class="language-csharp">public void example(ISpaceProxy spaceProxy)
 {
     // Create a product document:
     ProductDocument product = new ProductDocument({CatalogNumber = "hw-1234", Name = "Anvil", Price = 9.99F});
@@ -98,19 +80,14 @@ To overcome that, we need to include the document wrapper type in the type intro
     ProductDocument result3 = spaceProxy.ReadById(new IdQuery&lt;ProductDocument&gt;("Product", "hw-1234"));
 }
 </code></pre>
-
-<h1><a name="inheritance-support"></a>Inheritance  Support</h1>
-
-<p>SpaceDocument query supports inheritance relationships so that entries of a sub-class are visible in the context of the super class, but not the other way around. For example, suppose class EmployeeDoc extends class PersonDoc and PersonDoc extends from <code>SpaceDocument</code>, you can register
-the the sub classes in the following way:</p>
-
-<pre><code class="language-csharp">SpaceTypeDescriptorBuilder spaceTypeDescriptorBuilder = new SpaceTypeDescriptorBuilder(
+        <h1><a name="inheritance-support"></a>Inheritance  Support</h1>
+        <p>SpaceDocument query supports inheritance relationships so that entries of a sub-class are visible in the context of the super class, but not the other way around. For example, suppose class EmployeeDoc extends class PersonDoc and PersonDoc extends from <code>SpaceDocument</code>, you can register
+the the sub classes in the following way:</p><pre><code class="language-csharp">SpaceTypeDescriptorBuilder spaceTypeDescriptorBuilder = new SpaceTypeDescriptorBuilder(
                 "Subclass Document Type Name", parentSpaceTypeDescriptor);
 </code></pre>
-
-<p>Here is an example:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" PersonDoc" style="padding:10px"><pre><code class="language-csharp">namespace document
+        <p>Here is an example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" PersonDoc" style="padding:10px"><pre><code class="language-csharp">namespace document
 {
     public class PersonDoc:SpaceDocument
     {
@@ -145,9 +122,8 @@ the the sub classes in the following way:</p>
     }
 }
 </code></pre>
-</div>
-
-<div title=" EmployeeDoc" style="padding:10px"><pre><code class="language-csharp">namespace document
+            </div>
+            <div title=" EmployeeDoc" style="padding:10px"><pre><code class="language-csharp">namespace document
 {
     public class EmployeeDoc : PersonDoc
     {
@@ -165,9 +141,8 @@ the the sub classes in the following way:</p>
     }
 }
 </code></pre>
-</div>
-
-<div title=" RegisterDocument" style="padding:10px"><pre><code class="language-csharp">        public void  registerDocument (ISpaceProxy spaceProxy)
+            </div>
+            <div title=" RegisterDocument" style="padding:10px"><pre><code class="language-csharp">        public void  registerDocument (ISpaceProxy spaceProxy)
         {
             // Create the Person descriptor
             SpaceTypeDescriptorBuilder personDescriptor = new SpaceTypeDescriptorBuilder (PersonDoc.DocName);
@@ -189,9 +164,8 @@ the the sub classes in the following way:</p>
         }
     }
 </code></pre>
-</div>
-
-<div title=" Program" style="padding:10px"><pre><code class="language-java">namespace document
+            </div>
+            <div title=" Program" style="padding:10px"><pre><code class="language-java">namespace document
 {
     public class Program
     {
@@ -235,8 +209,7 @@ the the sub classes in the following way:</p>
         }
 }
 </code></pre>
-</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>

@@ -1,66 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Viewing Clustered Space Status</h1>
-  
-
-<p>The status of clustered spaces can be viewed using different logging levels. This status is managed by two threads - a <code>Monitor</code> and a <code>Detector</code>.</p>
-
-<p>The <code>Monitor</code> monitors the status of live spaces and reports disconnections, while the <code>Detector</code> detects the status of disconnected spaces and reports reconnection. The space status frequency can be configured using the <code>CONFIG</code> logging level.</p>
-
-<div class="tc-admon-note">
-  
-  <p>See the <a href="tuning-proxy-connectivity.html">Proxy Connectivity</a> for details how to tune the Monitor and Detector behavior.</p>
-</div>
-
-<p>The <code>com.gigaspaces.client.cluster.liveness</code> logger is set by default (in <code>xap_logging.properties</code>) to <code>INFO</code>:</p>
-
-<pre><code class="language-bash">com.gigaspaces.client.cluster.liveness.level = INFO
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Viewing Clustered Space Status</h1>
+        <p>The status of clustered spaces can be viewed using different logging levels. This status is managed by two threads - a <code>Monitor</code> and a <code>Detector</code>.</p>
+        <p>The <code>Monitor</code> monitors the status of live spaces and reports disconnections, while the <code>Detector</code> detects the status of disconnected spaces and reports reconnection. The space status frequency can be configured using the <code>CONFIG</code> logging level.</p>
+        <div class="tc-admon-note">
+            <p>See the <a href="tuning-proxy-connectivity.html">Proxy Connectivity</a> for details how to tune the Monitor and Detector behavior.</p>
+        </div>
+        <p>The <code>com.gigaspaces.client.cluster.liveness</code> logger is set by default (in <code>xap_logging.properties</code>) to <code>INFO</code>:</p><pre><code class="language-bash">com.gigaspaces.client.cluster.liveness.level = INFO
 </code></pre>
-
-<p>The different logging levels are detailed below:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Level</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">CONFIG</td>
-<td align="left">Displays default configurations and available configuration options for both <code>Monitor</code> and <code>Detector</code> threads.</td>
-</tr>
-
-<tr>
-<td align="left">FINE</td>
-<td align="left">In addition to the <code>CONFIG</code> level, displays disconnections logged by the <code>Monitor</code> and reconnections logged by the <code>Detector</code>.</td>
-</tr>
-
-<tr>
-<td align="left">FINER</td>
-<td align="left">In addition to the <code>FINE</code> level, displays disconnections logged by user operations and by the detector.</td>
-</tr>
-
-<tr>
-<td align="left">FINEST</td>
-<td align="left">In addition to the <code>FINEST</code>, displays reconnections logged by user operations and by the detector.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Logging granularity and information assists in tracing the availability of cluster members when using load-balancing or failover policies.</p>
-
-<h1><a name="examples"></a>Examples</h1>
-
-<pre><code class="language-bash">May 30, 2007 7:13:42 PM
+        <p>The different logging levels are detailed below:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Level</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">CONFIG</td>
+                    <td align="left">Displays default configurations and available configuration options for both <code>Monitor</code> and <code>Detector</code> threads.</td>
+                </tr>
+                <tr>
+                    <td align="left">FINE</td>
+                    <td align="left">In addition to the <code>CONFIG</code> level, displays disconnections logged by the <code>Monitor</code> and reconnections logged by the <code>Detector</code>.</td>
+                </tr>
+                <tr>
+                    <td align="left">FINER</td>
+                    <td align="left">In addition to the <code>FINE</code> level, displays disconnections logged by user operations and by the detector.</td>
+                </tr>
+                <tr>
+                    <td align="left">FINEST</td>
+                    <td align="left">In addition to the <code>FINEST</code>, displays reconnections logged by user operations and by the detector.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Logging granularity and information assists in tracing the availability of cluster members when using load-balancing or failover policies.</p>
+        <h1><a name="examples"></a>Examples</h1><pre><code class="language-bash">May 30, 2007 7:13:42 PM
 CONFIG [com.gigaspaces.client.cluster.liveness]: [fooSpace] Space status Monitor frequency is configured to 10000 ms.
 Use -Dcom.gs.cluster.livenessMonitorFrequency=&lt;value in milliseconds&gt; to configure differently.
 May 30, 2007 7:13:42 PM
@@ -75,43 +58,33 @@ May 30, 2007 7:15:27 PM
 FINE [com.gigaspaces.client.cluster.liveness]: [fooSpace] Liveness-detector reconnected with Member: [fooSpace_container1_1:foSpace]
 URL: [jini://*/fooSpace_container1_1/foSpace?groups=foo-group&amp;ignoreValidation=true]
 </code></pre>
-
-<h1><a name="configuration"></a>Configuration</h1>
-
-<table>
-<thead>
-<tr>
-<th align="left">System Property</th>
-<th align="left">Description</th>
-<th align="left">Default Value</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">-Dcom.gs.cluster.livenessMonitorFrequency</td>
-<td align="left">Defines the frequency in which liveness of "live' members in a cluster is monitored. (Checks if available members become unavailable).</td>
-<td align="left">10000 ms</td>
-</tr>
-
-<tr>
-<td align="left">-Dcom.gs.cluster.livenessDetectorFrequency</td>
-<td align="left">Defines the frequency in which liveness of members in a cluster is detected. (Detects if an unavailable member becomes available).</td>
-<td align="left">5000 ms</td>
-</tr>
-</tbody>
-</table>
-
-<p>In most cases, <code>livenessDetectorFrequency</code> is the property you need to alter, since it is responsible for detecting spaces that are unavailable.</p>
-
-<p>The unavailability of cluster members is noticed when a direct operation is performed on them. The <code>livenessMonitorFrequency</code> property timely monitors all live cluster members. Usually, when you have backup-only spaces, this is most important. The only time an operation is performed on a <span class="tc-italic">backup-only</span> space is when it becomes active (i.e., primary), and thus you want it's availability status to be noticed beforehand.</p>
-
-<div class="tc-admon-note">
-  
-  <p>It is recommended to <span class="tc-bold">increase the value of the <code>Monitor</code> thread to a maximum</span> if there are <span class="tc-bold">many clients</span> or if a large cluster is used.</p>
-</div>
-
-<p>Usually, when there is no <span class="tc-bold">failover</span> or when there are no <code>backup-only</code> spaces, the <code>Monitor</code> thread can be safely set to its maximum value, since clients directly interact with the space members. If either is detected as unavailable, the <code>Detector</code> thread is responsible for detecting whether they become available again.</p>
-
-</body>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">System Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">-Dcom.gs.cluster.livenessMonitorFrequency</td>
+                    <td align="left">Defines the frequency in which liveness of "live' members in a cluster is monitored. (Checks if available members become unavailable).</td>
+                    <td align="left">10000 ms</td>
+                </tr>
+                <tr>
+                    <td align="left">-Dcom.gs.cluster.livenessDetectorFrequency</td>
+                    <td align="left">Defines the frequency in which liveness of members in a cluster is detected. (Detects if an unavailable member becomes available).</td>
+                    <td align="left">5000 ms</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>In most cases, <code>livenessDetectorFrequency</code> is the property you need to alter, since it is responsible for detecting spaces that are unavailable.</p>
+        <p>The unavailability of cluster members is noticed when a direct operation is performed on them. The <code>livenessMonitorFrequency</code> property timely monitors all live cluster members. Usually, when you have backup-only spaces, this is most important. The only time an operation is performed on a <span class="tc-italic">backup-only</span> space is when it becomes active (i.e., primary), and thus you want it's availability status to be noticed beforehand.</p>
+        <div class="tc-admon-note">
+            <p>It is recommended to <span class="tc-bold">increase the value of the <code>Monitor</code> thread to a maximum</span> if there are <span class="tc-bold">many clients</span> or if a large cluster is used.</p>
+        </div>
+        <p>Usually, when there is no <span class="tc-bold">failover</span> or when there are no <code>backup-only</code> spaces, the <code>Monitor</code> thread can be safely set to its maximum value, since clients directly interact with the space members. If either is detected as unavailable, the <code>Detector</code> thread is responsible for detecting whether they become available again.</p>
+    </body>
 </html>
