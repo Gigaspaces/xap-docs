@@ -1,55 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Free Text Search</h1>
-  
-
-<h1><a name="regular-expressions"></a>Regular Expressions</h1>
-
-<p>You can query the space using the SQL <code>like</code> operator or <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/regex/Pattern.html">rlike - Java Regular Expression</a> Query syntax.</p>
-
-<p>When using the SQL <code>like</code> operator you may use the following:
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Free Text Search</h1>
+        <h1><a name="regular-expressions"></a>Regular Expressions</h1>
+        <p>You can query the space using the SQL <code>like</code> operator or <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/regex/Pattern.html">rlike - Java Regular Expression</a> Query syntax.</p>
+        <p>When using the SQL <code>like</code> operator you may use the following:
 <code>%</code> - match any string of any length (including zero length)
-<code>_</code> - match on a single character</p>
-
-<pre><code class="language-java">SQLQuery&lt;MyClass&gt; query = new SQLQuery&lt;MyClass&gt;(MyClass.class,"name like 'A%'")
+<code>_</code> - match on a single character</p><pre><code class="language-java">SQLQuery&lt;MyClass&gt; query = new SQLQuery&lt;MyClass&gt;(MyClass.class,"name like 'A%'")
 </code></pre>
-
-<p>Querying the space using the <span class="tc-bold">Java Regular Expression</span> provides more options than the SQL <code>like</code> operator. The Query syntax is done using the <code>rlike</code> operator:</p>
-
-<pre><code class="language-java">// Match all entries of type MyClass that have a name that starts with a or c:
+        <p>Querying the space using the <span class="tc-bold">Java Regular Expression</span> provides more options than the SQL <code>like</code> operator. The Query syntax is done using the <code>rlike</code> operator:</p><pre><code class="language-java">// Match all entries of type MyClass that have a name that starts with a or c:
 SQLQuery&lt;MyClass&gt; query = new SQLQuery&lt;MyClass&gt;(MyClass.class,"name rlike '(a|c).*'");
 </code></pre>
-
-<p>When you search for space objects with String fields that includes a <span class="tc-bold">single quote</span> your query should use Parameterized Query - with the following we are searching for all <code>Data</code> objects that include the value <code>today's</code> with their <code>myTextField</code>:</p>
-
-<pre><code class="language-java">String queryStr = "myTextField rlike ?";
+        <p>When you search for space objects with String fields that includes a <span class="tc-bold">single quote</span> your query should use Parameterized Query - with the following we are searching for all <code>Data</code> objects that include the value <code>today's</code> with their <code>myTextField</code>:</p><pre><code class="language-java">String queryStr = "myTextField rlike ?";
 SQLQuery&lt;Data&gt; query = new SQLQuery&lt;Data&gt;(Data.class, queryStr);
 query.setParameter(1, "(today\u0027s)");
 Data ret[] = space.readMultiple(query);
 </code></pre>
-
-<p>All the Query options are supported both with <code>rlike</code> and <code>like</code> queries.</p>
-
-<div class="tc-admon-note">
-  
-  <p>It is important you index <code>String</code> type fields used with regular expression queries. Not indexing such fields may result slow query execution and garbage creation.</p>
-</div>
-
-<h1><a name="free-text-search"></a>Free text search</h1>
-
-<p>Free text search is required almost with every application. Users placing some free text into a form and later the system allows users to search for records that includes one or more words within a free text field. A simple way to enable such a search can be done by using an array or a collection of String.</p>
-
-<h1><a name="example"></a>Example</h1>
-
-<p>Our Space class includes the following - note the <span class="tc-bold">words</span> and the <span class="tc-bold">freeText</span> fields:</p>
-
-<pre><code class="language-java">public class MyData {
+        <p>All the Query options are supported both with <code>rlike</code> and <code>like</code> queries.</p>
+        <div class="tc-admon-note">
+            <p>It is important you index <code>String</code> type fields used with regular expression queries. Not indexing such fields may result slow query execution and garbage creation.</p>
+        </div>
+        <h1><a name="free-text-search"></a>Free text search</h1>
+        <p>Free text search is required almost with every application. Users placing some free text into a form and later the system allows users to search for records that includes one or more words within a free text field. A simple way to enable such a search can be done by using an array or a collection of String.</p>
+        <h1><a name="example"></a>Example</h1>
+        <p>Our Space class includes the following - note the <span class="tc-bold">words</span> and the <span class="tc-bold">freeText</span> fields:</p><pre><code class="language-java">public class MyData {
     String[] words;
     String freeText;
 
@@ -71,38 +51,21 @@ Data ret[] = space.readMultiple(query);
 ....
 }
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>Note how the <span class="tc-bold">freeText</span> field is broken into the <span class="tc-bold">words</span> array before placed into the indexed field.</p>
-</div>
-
-<p>You may write the data into the space using the following:</p>
-
-<pre><code class="language-java">MyData data = new MyPOJO(...);
+        <div class="tc-admon-note">
+            <p>Note how the <span class="tc-bold">freeText</span> field is broken into the <span class="tc-bold">words</span> array before placed into the indexed field.</p>
+        </div>
+        <p>You may write the data into the space using the following:</p><pre><code class="language-java">MyData data = new MyPOJO(...);
 data.setFreeText(freetext);
 gigaspace.write(data);
 </code></pre>
-
-<p>You can query for objects having the word <span class="tc-bold">hello</span> as part of the freeText field using the following:</p>
-
-<pre><code class="language-java">MyData results[] = gigaspace.readMultiple(new SQLQuery&lt;MyData&gt;(MyData.class, words[*]='hello'));
+        <p>You can query for objects having the word <span class="tc-bold">hello</span> as part of the freeText field using the following:</p><pre><code class="language-java">MyData results[] = gigaspace.readMultiple(new SQLQuery&lt;MyData&gt;(MyData.class, words[*]='hello'));
 </code></pre>
-
-<p>You can also execute the following to search for object having the within the freeText field the word <span class="tc-bold">hello</span> or <span class="tc-bold">everyone</span>:</p>
-
-<pre><code class="language-java">MyData results[] = gigaspace.readMultiple(new SQLQuery&lt;MyData&gt;(MyData.class, words[*]='hello' OR words[*]='everyone'));
+        <p>You can also execute the following to search for object having the within the freeText field the word <span class="tc-bold">hello</span> or <span class="tc-bold">everyone</span>:</p><pre><code class="language-java">MyData results[] = gigaspace.readMultiple(new SQLQuery&lt;MyData&gt;(MyData.class, words[*]='hello' OR words[*]='everyone'));
 </code></pre>
-
-<p>With the above approach you avoid the overhead with regular expression queries.</p>
-
-<h1><a name="indexing"></a>Indexing</h1>
-
-<p>To speed up the query you can create an <a href="indexing-collections.html">index</a> on the fields you want to search.</p>
-
-<p>Example:</p>
-
-<pre><code class="language-java">public class MyData {
+        <p>With the above approach you avoid the overhead with regular expression queries.</p>
+        <h1><a name="indexing"></a>Indexing</h1>
+        <p>To speed up the query you can create an <a href="indexing-collections.html">index</a> on the fields you want to search.</p>
+        <p>Example:</p><pre><code class="language-java">public class MyData {
     String[] words;
     String freeText;
 
@@ -125,20 +88,14 @@ gigaspace.write(data);
 ....
 }
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>The same approach can be implemented also with the <a href="document-overview.html">SpaceDocument</a>.</p>
-</div>
-
-<h1><a name="case-insensitive-query"></a>Case Insensitive Query</h1>
-
-<p>Implementing case insensitive queries can be done via:</p>
-
-<ul>
-<li><code>like</code> operator or <code>rlike</code> operator.</li>
-<li>Store the data in lower case and query on via lower case String value (or upper case)</li>
-</ul>
-
-</body>
+        <div class="tc-admon-refer">
+            <p>The same approach can be implemented also with the <a href="document-overview.html">SpaceDocument</a>.</p>
+        </div>
+        <h1><a name="case-insensitive-query"></a>Case Insensitive Query</h1>
+        <p>Implementing case insensitive queries can be done via:</p>
+        <ul>
+            <li><code>like</code> operator or <code>rlike</code> operator.</li>
+            <li>Store the data in lower case and query on via lower case String value (or upper case)</li>
+        </ul>
+    </body>
 </html>

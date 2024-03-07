@@ -1,22 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Transaction Support</h1>
-  <p>The notify container can be configured with transaction support, so the event action can be performed under a transaction. Exceptions thrown by the event listener cause the operations performed within the listener to be rolled back automatically.</p>
-
-<div class="tc-admon-note">
-  
-  <p>When using transactions, only the event listener operations are rolled back. The notifications are not sent again in case of a transaction rollback. In case this behavior is required, please consider using the <a href="polling-container-overview.html">Polling Event Container</a>.</p>
-</div>
-
-<p>Transaction support can be configured as follows:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-xml">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Transaction Support</h1>
+        <p>The notify container can be configured with transaction support, so the event action can be performed under a transaction. Exceptions thrown by the event listener cause the operations performed within the listener to be rolled back automatically.</p>
+        <div class="tc-admon-note">
+            <p>When using transactions, only the event listener operations are rolled back. The notifications are not sent again in case of a transaction rollback. In case this behavior is required, please consider using the <a href="polling-container-overview.html">Polling Event Container</a>.</p>
+        </div>
+        <p>Transaction support can be configured as follows:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Annotation " style="padding:10px"><pre><code class="language-xml">
 &lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
 &lt;context:component-scan base-package="com.mycompany"/&gt;
 
@@ -28,9 +26,7 @@
 &lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
 
 &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
-</code></pre>
-
-<pre><code class="language-java">@EventDriven @Notify @TransactionalEvent
+</code></pre><pre><code class="language-java">@EventDriven @Notify @TransactionalEvent
 public class SimpleListener {
 
     @EventTemplate
@@ -46,8 +42,8 @@ public class SimpleListener {
     }
 }
 </code></pre>
-</div>
-<div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+            </div>
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
 &lt;os-core:embedded-space  id="space" space-name="mySpace"/&gt;
 
 &lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
@@ -73,8 +69,8 @@ public class SimpleListener {
     &lt;/os-events:listener&gt;
 &lt;/os-events:notify-container&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
 &lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
     &lt;property name="name" value="space" /&gt;
 &lt;/bean&gt;
@@ -108,8 +104,7 @@ public class SimpleListener {
     &lt;/property&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>

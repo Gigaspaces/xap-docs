@@ -1,21 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Space Mode Context Loader</h1>
-  <p>Most of the OpenSpaces built-in components take into account the state of the space (mainly applicable when starting an embedded space within the Processing Unit). This is important when working directly on a cluster member, since operations cannot be performed directly on a backup member.</p>
-
-<p>Many times, custom beans or POJOs would like to operate directly on the cluster member. To do this, they need to take the space mode into account – by not performing any actions against the cluster member when it is in backup mode, and by starting to perform all relevant actions when the space mode changes to primary.</p>
-
-<p>Using the custom space mode events described in the <a href="the-space-configuration.html">Space</a> section, the bean can register for such events (by implementing the Spring <code>ApplicationListener</code> interface), and perform relevant actions based on the space mode event.</p>
-
-<p>OpenSpaces provides a simpler solution, allowing you to load a Spring application context (based on a separate Spring XML configuration file) only when the Processing Unit or space is in primary mode, and unload it when the Processing Unit or space is in backup mode. If we take the following simple bean:</p>
-
-<pre><code class="language-java">public class SpaceModeContextBean implements InitializingBean, DisposableBean {
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Space Mode Context Loader</h1>
+        <p>Most of the OpenSpaces built-in components take into account the state of the space (mainly applicable when starting an embedded space within the Processing Unit). This is important when working directly on a cluster member, since operations cannot be performed directly on a backup member.</p>
+        <p>Many times, custom beans or POJOs would like to operate directly on the cluster member. To do this, they need to take the space mode into account – by not performing any actions against the cluster member when it is in backup mode, and by starting to perform all relevant actions when the space mode changes to primary.</p>
+        <p>Using the custom space mode events described in the <a href="the-space-configuration.html">Space</a> section, the bean can register for such events (by implementing the Spring <code>ApplicationListener</code> interface), and perform relevant actions based on the space mode event.</p>
+        <p>OpenSpaces provides a simpler solution, allowing you to load a Spring application context (based on a separate Spring XML configuration file) only when the Processing Unit or space is in primary mode, and unload it when the Processing Unit or space is in backup mode. If we take the following simple bean:</p><pre><code class="language-java">public class SpaceModeContextBean implements InitializingBean, DisposableBean {
 
     @GigaSpaceContext(name = "gigaSpace")
     private GigaSpace gigaSpace;
@@ -29,16 +25,15 @@
     }
 }
 </code></pre>
-
-<p>and the following Spring XML definition constructing this bean (stored in a separate XML file than the Processing Unit definition called <code>mode.xml</code>):</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+        <p>and the following Spring XML definition constructing this bean (stored in a separate XML file than the Processing Unit definition called <code>mode.xml</code>):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
 &lt;os-core:giga-space-context /&gt;
 
 &lt;bean id="spaceModeContextBean" class="org.openspaces.example.data.processor.SpaceModeContextBean"/&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
 &lt;!--
     Enables the usage of @GigaSpaceContext annotation based injection.
 --&gt;
@@ -46,12 +41,11 @@
 
 &lt;bean id="spaceModeContextBean" class="org.openspaces.example.data.processor.SpaceModeContextBean"/&gt;
 </code></pre>
-</div>
-</div>
-
-<p>with the following Processing Unit definition:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+            </div>
+        </div>
+        <p>with the following Processing Unit definition:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
 &lt;os-core:embedded-space id="space" space-name="space" /&gt;
 
 &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
@@ -63,8 +57,8 @@
 
 &lt;os-core:context-loader id="modeExample" location="classpath:/META-INF/spring/mode/mode.xml"/&gt;
 </code></pre>
-</div>
-<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
 &lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
     &lt;property name="name" value="space" /&gt;
 &lt;/bean&gt;
@@ -82,16 +76,12 @@
     &lt;property name="location" value="classpath:/META-INF/spring/mode/mode.xml" /&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-</div>
-
-<div class="tc-admon-tip">
-  
-  <p>If there is more then one gigaSpace proxy in the pu you should bind the context to the gigaSpace instance by setting the giga-space property e.g.:
+            </div>
+        </div>
+        <div class="tc-admon-tip">
+            <p>If there is more then one gigaSpace proxy in the pu you should bind the context to the gigaSpace instance by setting the giga-space property e.g.:
 &lt;os-core:context-loader id="modeExample" location="classpath:/META-INF/spring/mode/mode.xml" giga-space="gigaSpace"&gt;</p>
-</div>
-
-<p>we can see that the <code>SpaceModeContextBean</code> <code>afterPropertiesSet</code> callback is called when the Processing Unit instance is in primary mode. When it moves to backup mode, the Spring application context is unloaded, and the <code>destroy</code> callback is invoked. Note the usage of the <code>GigaSpace</code> instance, which is defined in the Processing Unit definition, as part of the bean defined in the <code>mode.xml</code> file. This is allowed because of the fact that the Processing Unit definition acts as a parent application context to the application context loaded with <code>mode.xml</code>.</p>
-
-</body>
+        </div>
+        <p>we can see that the <code>SpaceModeContextBean</code> <code>afterPropertiesSet</code> callback is called when the Processing Unit instance is in primary mode. When it moves to backup mode, the Spring application context is unloaded, and the <code>destroy</code> callback is invoked. Note the usage of the <code>GigaSpace</code> instance, which is defined in the Processing Unit definition, as part of the bean defined in the <code>mode.xml</code> file. This is allowed because of the fact that the Processing Unit definition acts as a parent application context to the application context loaded with <code>mode.xml</code>.</p>
+    </body>
 </html>

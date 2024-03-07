@@ -1,40 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Metadata</h1>
-  
-
-<h1><a name="task-execution"></a>Task Execution</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Attribute Annotation</td>
-<td>@TaskGigaSpace</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>This annotation injects a clustered proxy into the Task implementation. This is useful when the Task should access other partitions.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-java">public class MyTask implements Task&lt;Integer&gt;  {
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Metadata</h1>
+        <h1><a name="task-execution"></a>Task Execution</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Attribute Annotation</td>
+                    <td>@TaskGigaSpace</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>This annotation injects a clustered proxy into the Task implementation. This is useful when the Task should access other partitions.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">public class MyTask implements Task&lt;Integer&gt;  {
 
     @TaskGigaSpace
     private transient GigaSpace colocatedSpace;
@@ -45,38 +40,32 @@
 ....
 }
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="task-execution-overview.html">Task Execution over the Space</a></p>
-</div>
-
-<h1><a name="task-routing"></a>Task Routing</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Method Annotation</td>
-<td>@SpaceRouting</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>This annotation selects the routing value. In case it is a POJO defined with a @SpaceRouting on one of its properties, the value of that property will be used as the routing information when passed as a parameter.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-java">public class MyTask implements Task&lt;Integer&gt;  {
+        <div class="tc-admon-refer">
+            <p><a href="task-execution-overview.html">Task Execution over the Space</a>
+            </p>
+        </div>
+        <h1><a name="task-routing"></a>Task Routing</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Method Annotation</td>
+                    <td>@SpaceRouting</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>This annotation selects the routing value. In case it is a POJO defined with a @SpaceRouting on one of its properties, the value of that property will be used as the routing information when passed as a parameter.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">public class MyTask implements Task&lt;Integer&gt;  {
 
     @SpaceRouting
     public Integer routing() {
@@ -85,11 +74,9 @@
 ....
 }
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="task-execution-overview.html">Task Execution over the Space</a></p>
-</div>
-
-</body>
+        <div class="tc-admon-refer">
+            <p><a href="task-execution-overview.html">Task Execution over the Space</a>
+            </p>
+        </div>
+    </body>
 </html>

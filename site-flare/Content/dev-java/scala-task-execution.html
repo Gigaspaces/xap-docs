@@ -1,26 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Task Execution</h1>
-  
-
-<p>A wrapper around the <MadCap:variable name="General.ProductNameXAP" /> API provides some sugaring on top of the <code>GigaSpace#execute</code> methods.</p>
-
-<h1><a name="usage"></a>Usage</h1>
-
-<p>Import the following into scope to use the methods demonstrated below.</p>
-
-<p>import com.gigaspaces.async.AsyncResult
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Task Execution</h1>
+        <p>A wrapper around the <MadCap:variable name="General.ProductNameXAP" /> API provides some sugaring on top of the <code>GigaSpace#execute</code> methods.</p>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>Import the following into scope to use the methods demonstrated below.</p>
+        <p>import com.gigaspaces.async.AsyncResult
 import org.openspaces.scala.core.ScalaGigaSpacesImplicits.ScalaEnhancedGigaSpaceWrapper</p>
-
-<p>Some examples:</p>
-
-<pre><code class="language-scala">/** Import GigaSpace implicits into scope */
+        <p>Some examples:</p><pre><code class="language-scala">/** Import GigaSpace implicits into scope */
 import com.gigaspaces.async.AsyncResult
 import org.openspaces.scala.core.ScalaGigaSpacesImplicits._
 
@@ -47,6 +40,5 @@ val asyncFuture2 = gigaSpace.execute(
 
 println("Map reduce result: " + asyncFuture2.get())
 </code></pre>
-
-</body>
+    </body>
 </html>

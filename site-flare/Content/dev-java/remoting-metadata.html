@@ -1,48 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>Metadata Summary</h1>
-  
-
-<h1><a name="remotingservice"></a>RemotingService</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Class Annotation</td>
-<td>@RemotingService</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Spring provides support for various remoting technologies. GigaSpaces uses the same concepts to provide remoting, using the space as the underlying protocol</td>
-</tr>
-
-<tr>
-<td>Attribute Annotation</td>
-<td>@ExecutorProxy</td>
-</tr>
-
-<tr>
-<td>Method argument</td>
-<td>@Routing</td>
-</tr>
-</tbody>
-</table>
-
-<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Example" style="padding:10px;"><pre><code class="language-java">// Service Implementation
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Metadata Summary</h1>
+        <h1><a name="remotingservice"></a>RemotingService</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Class Annotation</td>
+                    <td>@RemotingService</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Spring provides support for various remoting technologies. GigaSpaces uses the same concepts to provide remoting, using the space as the underlying protocol</td>
+                </tr>
+                <tr>
+                    <td>Attribute Annotation</td>
+                    <td>@ExecutorProxy</td>
+                </tr>
+                <tr>
+                    <td>Method argument</td>
+                    <td>@Routing</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;"><pre><code class="language-java">// Service Implementation
 @RemotingService
 public class DataProcessor implements IDataProcessor {
 
@@ -67,38 +64,37 @@ public interface MyService {
     void doSomething(@Routing int param1, int param2);
 }
 </code></pre>
-</div>
-</div></div>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="space-based-remoting-overview.html">Space based remoting</a></p>
-</div>
-
-<h1><a name="executorproxy"></a>ExecutorProxy</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Attribute Annotation</td>
-<td>@ExecutorProxy</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Spring provides support for various remoting technologies. GigaSpaces uses the same concepts to provide remoting, using the space as the underlying protocol</td>
-</tr>
-</tbody>
-</table>
-
-<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Example" style="padding:10px;"><pre><code class="language-java">// Client remoting proxy
+                </div>
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p><a href="space-based-remoting-overview.html">Space based remoting</a>
+            </p>
+        </div>
+        <h1><a name="executorproxy"></a>ExecutorProxy</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Attribute Annotation</td>
+                    <td>@ExecutorProxy</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Spring provides support for various remoting technologies. GigaSpaces uses the same concepts to provide remoting, using the space as the underlying protocol</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;"><pre><code class="language-java">// Client remoting proxy
 public class DataRemoting {
 
     @ExecutorProxy
@@ -107,38 +103,37 @@ public class DataRemoting {
     // ...
 }
 </code></pre>
-</div>
-</div></div>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="space-based-remoting-overview.html">Space based remoting</a></p>
-</div>
-
-<h1><a name="routing"></a>Routing</h1>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Method argument</td>
-<td>@Routing</td>
-</tr>
-
-<tr>
-<td>Description</td>
-<td>Spring provides support for various remoting technologies. GigaSpaces uses the same concepts to provide remoting, using the space as the underlying protocol</td>
-</tr>
-</tbody>
-</table>
-
-<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Example" style="padding:10px;"><pre><code class="language-java">// Service Implementation
+                </div>
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p><a href="space-based-remoting-overview.html">Space based remoting</a>
+            </p>
+        </div>
+        <h1><a name="routing"></a>Routing</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Method argument</td>
+                    <td>@Routing</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Spring provides support for various remoting technologies. GigaSpaces uses the same concepts to provide remoting, using the space as the underlying protocol</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;"><pre><code class="language-java">// Service Implementation
 @RemotingService
 
    // remote method with routing parameter
@@ -147,13 +142,12 @@ public class DataRemoting {
     void doSomething(@Routing int param1, int param2);
 }
 </code></pre>
-</div>
-</div></div>
-
-<div class="tc-admon-refer">
-  
-  <p><a href="space-based-remoting-overview.html">Space based remoting</a></p>
-</div>
-
-</body>
+                </div>
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p><a href="space-based-remoting-overview.html">Space based remoting</a>
+            </p>
+        </div>
+    </body>
 </html>

@@ -1,37 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-		<div class="product-bar">
-			<p><a>Smart Cache</a>
-			</p>
-		</div>
-<h1>JPA Relationships</h1>
-  
-
-<p>The <MadCap:variable name="General.ProductNameXAP" /> JPA relationships model is different than Relational Databases model. In <MadCap:variable name="General.ProductNameXAP" /> relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside within a Collection in Author.</p>
-
-<p>When defining a One-to-one/One-to-many relationship the cascading type should be set to CascadeType.ALL using the relationship's annotation cascade attribute since no-cascading is unsupported.
-Setting cascading globally can also be done in orm.xml:</p>
-
-<pre><code class="language-xml">&lt;persistence-unit-metadata&gt;
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>JPA Relationships</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> JPA relationships model is different than Relational Databases model. In <MadCap:variable name="General.ProductNameXAP" /> relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside within a Collection in Author.</p>
+        <p>When defining a One-to-one/One-to-many relationship the cascading type should be set to CascadeType.ALL using the relationship's annotation cascade attribute since no-cascading is unsupported.
+Setting cascading globally can also be done in orm.xml:</p><pre><code class="language-xml">&lt;persistence-unit-metadata&gt;
   &lt;persistence-unit-defaults&gt;
     &lt;cascade-persist/&gt;
   &lt;/persistence-unit-defaults&gt;
 &lt;/persistence-unit-metadata&gt;
 </code></pre>
-
-<div class="tc-admon-refer">
-  
-  <p>Further information can be found on the <a href="/sbp/modeling-your-data.html">Modeling your data</a> page.</p>
-</div>
-
-<h1><a name="embedded"></a>Embedded</h1>
-
-<p>In the following example we have a Store entity which has an embedded Address property.
-In this case, the Address property is saved as is within Store.</p>
-
-<pre><code class="language-java">// An Embeddable Address object
+        <div class="tc-admon-refer">
+            <p>Further information can be found on the <a href="/sbp/modeling-your-data.html">Modeling your data</a> page.</p>
+        </div>
+        <h1><a name="embedded"></a>Embedded</h1>
+        <p>In the following example we have a Store entity which has an embedded Address property.
+In this case, the Address property is saved as is within Store.</p><pre><code class="language-java">// An Embeddable Address object
 @Embeddable
 public class Address implements Serializable {
   private String street;
@@ -82,31 +72,19 @@ public class Store {
 
 }
 </code></pre>
-
-<p>We created an Embeddable Address object and used it as a property in our Store object.</p>
-
-<div class="tc-admon-tip">
-  
-  <p>Embeddable classes must be Serializable because they are transferred over the network.</p>
-</div>
-
-<p>It is possible to query a Store entity by an Address property in the following way:</p>
-
-<pre><code class="language-java">EntityManager em = emf.createEntityManager();
+        <p>We created an Embeddable Address object and used it as a property in our Store object.</p>
+        <div class="tc-admon-tip">
+            <p>Embeddable classes must be Serializable because they are transferred over the network.</p>
+        </div>
+        <p>It is possible to query a Store entity by an Address property in the following way:</p><pre><code class="language-java">EntityManager em = emf.createEntityManager();
 Query query = em.createQuery("SELECT store FROM com.gigaspaces.objects.Store store WHERE s.address.city = 'London'");
 List&lt;Store&gt; result = (List&lt;Store&gt;) query.getResultList();
 </code></pre>
-
-<h1><a name="one-to-one"></a>One-to-One</h1>
-
-<p>The JPA One-to-one relationship is very similar to an embedded relationship except for the fact that when querying
+        <h1><a name="one-to-one"></a>One-to-One</h1>
+        <p>The JPA One-to-one relationship is very similar to an embedded relationship except for the fact that when querying
 the owner entity it is possible to use an Inner Join.</p>
-
-<p>As with Embeddable classes, owned entities in a relationship should always be Serializable since they are transferred over the network.</p>
-
-<p>In the following example we show a One-to-one relationship between two entities, Order &amp; Invoice:</p>
-
-<pre><code class="language-java">@Entity
+        <p>As with Embeddable classes, owned entities in a relationship should always be Serializable since they are transferred over the network.</p>
+        <p>In the following example we show a One-to-one relationship between two entities, Order &amp; Invoice:</p><pre><code class="language-java">@Entity
 public class Order {
   private Long id;
   private Date date;
@@ -159,28 +137,17 @@ public class Invoice implements Serializable {
 
 }
 </code></pre>
-
-<p>For one-to-one relationship we can use an Inner Join for querying:</p>
-
-<pre><code class="language-java">EntityManager em = emf.createEntityManager();
+        <p>For one-to-one relationship we can use an Inner Join for querying:</p><pre><code class="language-java">EntityManager em = emf.createEntityManager();
 Query query = em.createQuery("SELECT order FROM com.gigaspaces.objects.Order order JOIN o.invoice invoice WHERE invoice.sum &gt; 499.99");
 List&lt;Order&gt; orders = (List&lt;Order&gt;) query.getResultList();
 </code></pre>
-
-<div class="tc-admon-tip">
-  
-  <p>We defined an ordered index on Invoice.sum and therefore the above query takes advantage of the defined index.</p>
-</div>
-
-<h1><a name="one-to-many"></a>One-to-Many</h1>
-
-<p>The JPA one-to-many relationship means that the owner of the relationship stores the owned entities in a collection within itself.</p>
-
-<p>As with one-to-one, owned entities in a relationship should always be Serializable because they are transferred over the network.</p>
-
-<p>Lets examine the following example:</p>
-
-<pre><code class="language-java">// An Author entity which will be the owner of a relationship.
+        <div class="tc-admon-tip">
+            <p>We defined an ordered index on Invoice.sum and therefore the above query takes advantage of the defined index.</p>
+        </div>
+        <h1><a name="one-to-many"></a>One-to-Many</h1>
+        <p>The JPA one-to-many relationship means that the owner of the relationship stores the owned entities in a collection within itself.</p>
+        <p>As with one-to-one, owned entities in a relationship should always be Serializable because they are transferred over the network.</p>
+        <p>Lets examine the following example:</p><pre><code class="language-java">// An Author entity which will be the owner of a relationship.
 @Entity
 public class Author {
   private Integer id;
@@ -232,33 +199,20 @@ public class Book implements Serializable {
 
 }
 </code></pre>
-
-<p>We can use a JPQL Inner Join for querying an Author by a specific Book id:</p>
-
-<pre><code class="language-java">EntityManager em = emf.createEntityManager();
+        <p>We can use a JPQL Inner Join for querying an Author by a specific Book id:</p><pre><code class="language-java">EntityManager em = emf.createEntityManager();
 Query query = em.createQuery("SELECT author FROM com.gigaspaces.objects.Author author JOIN author.books book WHERE book.id = 100");
 Author result = (Author) query.getSingleResult();
 </code></pre>
-
-<div class="tc-admon-tip">
-  
-  <p>We defined an index on Book.id and therefore the above query takes advantage of the defined index.</p>
-</div>
-
-<h1><a name="limitations"></a>Limitations</h1>
-
-<h3><a name="working-with-embedded-entities"></a>Working with Embedded Entities</h3>
-
-<p>When working with embedded entities its not possible to call JPA methods on owned entities.</p>
-
-<h3><a name="owned-many-to-many-relationship"></a>Owned Many-to-Many Relationship</h3>
-
-<p>Owned many-to-many relationship is not supported because the <MadCap:variable name="General.ProductNameXAP" /> data model doesn't permit it.
+        <div class="tc-admon-tip">
+            <p>We defined an index on Book.id and therefore the above query takes advantage of the defined index.</p>
+        </div>
+        <h1><a name="limitations"></a>Limitations</h1>
+        <h3><a name="working-with-embedded-entities"></a>Working with Embedded Entities</h3>
+        <p>When working with embedded entities its not possible to call JPA methods on owned entities.</p>
+        <h3><a name="owned-many-to-many-relationship"></a>Owned Many-to-Many Relationship</h3>
+        <p>Owned many-to-many relationship is not supported because the <MadCap:variable name="General.ProductNameXAP" /> data model doesn't permit it.
 It is possible to implement such a relation by explicitly setting the IDs for each of the relationship participants.</p>
-
-<h3><a name="unowned-relationships"></a>Unowned Relationships</h3>
-
-<p>Unowned relationships where each part of the relation is represented as a Data Type in Space is not supported.</p>
-
-</body>
+        <h3><a name="unowned-relationships"></a>Unowned Relationships</h3>
+        <p>Unowned relationships where each part of the relation is represented as a Data Type in Space is not supported.</p>
+    </body>
 </html>
