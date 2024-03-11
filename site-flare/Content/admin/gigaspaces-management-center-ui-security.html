@@ -16,7 +16,7 @@
         <h1><a name="managing-users-and-roles"></a>Managing Users and Roles</h1>
         <p>Managing the directory can be done directly through the <code>DirectoryManager</code> API. GigaSpaces Management Center utilizes this API and exposes a convenient administration interface for managing the users and roles supported by the backed directory implementation.</p>
         <p>Our default file-based implementation allows the directory to be administered only if the user has <span class="tc-bold">Manage Users</span> or <span class="tc-bold">Manage Roles</span> privileges. When the directory is first created (i.e. directory file doesn't exist), only an <code>admin/admin</code> user may be allowed to access and administer the directory. By default, the <code>admin</code> holds both privileges which allows declaring of new roles, adding users and assigning of roles. The <code>admin</code> user can be deleted, as long as you provide another user with management capabilities.</p>
-        <h2><a name="security-management-dialog"></a>Security Management dialog</h2>
+        <h2><a name="security-management-dialog"></a>Security Management Dialog</h2>
         <p>There is no need for any service to be up and running. Just choose from the title menu bar
 <span class="tc-textblue"><code>Security -&gt; Manage Security</code></span>
  and the management dialog will open.</p>
@@ -45,15 +45,15 @@ Double-click on the user to <span class="tc-bold">Edit</span> it, or select a us
         <p>
             <img src="../Resources/Static/attachment_files/manage-user-tab.png" alt="manage-user-tab.png" class="tc-picture100" />
         </p>
-        <h2><a name="creating-a-new-user"></a>Creating a new user</h2>
+        <h2><a name="creating-a-new-user"></a>Creating a New User</h2>
         <p>A user can be associated with predefined roles and be granted with user-specific privileges.</p>
-        <h2><a name="associating-a-role"></a>Associating a role</h2>
+        <h2><a name="associating-a-role"></a>Associating a Role</h2>
         <p>To associate a user with roles, choose the roles from the list of roles. Each associated <span class="tc-bold">role</span> will appear in its own tab,
 and the <code>Aggregated</code> view will show the aggregation of all the privileges (user-specific and roles).</p>
         <p>
             <img src="../Resources/Static/attachment_files/create-new-user.png" alt="create-new-user.png" class="tc-picture100" />
         </p>
-        <h2><a name="user-specific-privileges"></a>User-specific privileges</h2>
+        <h2><a name="user-specific-privileges"></a>User Specific Privileges</h2>
         <p>To assign a <code>Monitor Privilege</code>, <code>System Privilege</code>, or <code>Grid Privilege</code> select the privilege check-box.</p>
         <p>To assign <code>Space Privilege</code> rules, use the <code>+</code> button to add a row to the <code>Space Operations</code> table. This grants the user the privilege to perform a space operation on the specified Class/Package name. The <code>Space Operation</code> can be one of <code>Write</code>, <code>Read</code>, <code>Take</code>, <code>Alter</code>, or <code>Execute</code> which can be chosen from the drop-down. To restrict the operation to a certain class, specify a <span class="tc-bold">Class/Package name</span> (wild-card) filter and choose <span class="tc-italic">Allow</span> or <span class="tc-bold">Deny</span>.</p>
         <p>The following snapshot shows that the user has:</p>
@@ -70,7 +70,7 @@ Double-click on the role to <span class="tc-bold">Edit</span> it, or select a ro
         <p>
             <img src="../Resources/Static/attachment_files/manage-roles-tab.png" alt="manage-roles-tab.png" class="tc-picture100" />
         </p>
-        <h2><a name="creating-a-new-role"></a>Creating a new role</h2>
+        <h2><a name="creating-a-new-role"></a>Creating a New Role</h2>
         <p>Creating a role is the same as creating a user with user-specific privileges. Except that these privileges can be associated by role-name to users.</p>
         <p>The following role is set to have <code>Monitor PU</code>, <code>Manage Grid</code>, <code>Provision PU</code>, <code>Manage PU</code>, and a <code>Space Operation</code> rule allowing a <code>Write</code> of any class matching <code>eg.Account</code>.</p>
         <p>
@@ -81,7 +81,7 @@ Double-click on the role to <span class="tc-bold">Edit</span> it, or select a ro
         <p>You may find the command line option convenient when using pre-defined scripts. Use the command line arguments <code>-user</code> and <code>-password</code> with the user credentials.
 Usage:</p><pre><code class="language-java">gs-ui(.sh/.bat) -user user -password password
 </code></pre>
-        <h2><a name="login-dialog"></a>Login dialog</h2>
+        <h2><a name="login-dialog"></a>Login Dialog</h2>
         <p>To login from within the UI, choose from the title menu bar
 <span class="tc-textblue"><code>Security -&gt; Login</code></span>
  and the login dialog  will open.</p>
@@ -102,7 +102,7 @@ The <code>Authentication Monitor</code>* dialog appears when you press the <span
         <h2><a name="logout"></a>Logout</h2>
         <p>To logout, choose from the title menu bar
 <span class="tc-textblue"><code>Security -&gt; Logout</code></span>, which will cause a refresh of all discovered services.</p>
-        <h1><a name="actions-and-privilege-restrictions"></a>Actions and Privilege restrictions</h1>
+        <h1><a name="actions-and-privilege-restrictions"></a>Actions and Privilege Restrictions</h1>
         <p>If the user lacks sufficient privileges, the UI displays a similar message to the following:</p>
         <p>
             <img src="../Resources/Static/attachment_files/actions-privileges.png" alt="actions-privileges.png" class="tc-picture80" />
@@ -158,12 +158,12 @@ The <code>Authentication Monitor</code>* dialog appears when you press the <span
         <div class="tc-admon-note">
             <p>It is important to understand the difference between the credentials supplied to the login dialog and the supplied credentials provided when deploying. The first, is used to authenticate the user against the services discovered by the UI, and allow actions to be performed. One of the actions is to deploy. When you are authorized to deploy, the credentials passed in the deployment dialog are propagated to the Processing Unit.</p>
         </div>
-        <h2><a name="deploying-a-secured-data-grid"></a>Deploying a Secured data-grid</h2>
+        <h2><a name="deploying-a-secured-data-grid"></a>Deploying a Secured Data-Grid</h2>
         <p>To deploy a secured data-grid, select the <code>Secured Space</code> checkbox. Supplying credentials is optional. If no credentials are supplied, a secured Space will be instantiated. If credentials are supplied, a secured Space will be instantiated, propagating the credentials to internal services (i.e. Space Filters).</p>
         <p>
             <img src="../Resources/Static/attachment_files/deployment-wizard.png" alt="deployment-wizard.png" class="tc-picture80" />
         </p>
-        <h3><a name="supplying-custom-properties"></a>Supplying custom properties</h3>
+        <h3><a name="supplying-custom-properties"></a>Supplying Custom Properties</h3>
         <p><a href="../security/security-configurations.html">Security configuration properties</a> can be supplied, during deployment of a Space, as custom properties; Either from a file or added through the dialog.
 The custom properties can hold both space configurations and security configurations.</p>
         <p>
@@ -175,7 +175,7 @@ The custom properties can hold both space configurations and security configurat
         <p>
             <img src="../Resources/Static/attachment_files/deployment-wizard-pu.png" alt="deployment-wizard-pu.png" class="tc-picture80" />
         </p>
-        <h3><a name="supplying-bean-level-properties"></a>Supplying bean level properties</h3>
+        <h3><a name="supplying-bean-level-properties"></a>Supplying Bean Level Properties</h3>
         <p><a href="../security/security-configurations.html">Security configuration</a> properties can be supplied, during deployment of a Processing Unit, as context bean level properties; Either from a file or added through the dialog.</p>
         <p>
             <img src="../Resources/Static/attachment_files/bean-level-properties.png" alt="bean-level-properties.png" class="tc-picture80" />

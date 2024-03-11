@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAP" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle">Order Management Tutorial</h1>
         <p>In this tutorial, you will see three core space-based concepts in action: architecture, application deployment, and scaling.</p>
         <p>Space-based architecture is an architecture that relies on co-location of business logic and data, and partitioning of work. Space-based architecture is also characterized by a reliance on asynchronous (yet typically low-latency) operations.</p>
@@ -422,7 +422,7 @@ public class ValidatorTest {
   }
 }
 </code></pre>
-        <p>So what is this test doing?</p>
+        <h3>What is this Test Doing?</h3>
         <p>First, it sets up a <span class="tc-bold">mock</span> <code>AccountDataService</code>, via <a href="http://code.google.com/p/mockito/">Mockito</a>. This creates a "fake implementation" of the interface, which we can use to configure specific responses, which we do in the next line.</p>
         <p>What the <code>when(service.accountExists("1234")).thenReturn(true);</code> line specifies is that when the service' <code>accountExists()</code> method is called with "1234", return a true result. We can add as many parameters (and method stubs) as we like.</p>
         <p>We then create a new <code>Validator</code> service, and use our mock service to set the <code>AccountDataService</code> reference the validator needs.</p>
@@ -432,7 +432,7 @@ public class ValidatorTest {
         <div class="tc-admon-tip">
             <p>Actually, it doesn't require a Spring configuration. But since our deployment environment <span class="tc-bold">will</span> be Spring, we should use Spring to set up our configuration for testing. This allows the test to serve as an example of the configuration requirements as well as serving as a test of the event handler itself.</p>
         </div>
-        <p>What's happening here?</p>
+        <h3>What's Happening Here?</h3>
         <p>The Spring configuration sets up an embedded datagrid, then does a context scan for the <code>com.gigaspaces.tutorials.validator</code> package (which is why the validator package is separated from the processor package, as it turns out; if they were in the same package, the context scan would have to be configured to <span class="tc-bold">not</span> set up the other event handler, because one of our states isn't terminal.)</p>
         <p>Our test then initializes an account (in the method annotated with <code>@BeforeMethod</code>). In the actual test method itself, we follow the same sequence as our non-grid-based test; we create an order event with a valid and an invalid account, and feed it into the system. The main difference is that the way that we access the data into the validator is grid-based rather than plain Java-based.</p>
         <p>If we've configured the event handler properly, then our test will result in a read of an order event with a status that matches our read event, and we pass the test; we know the event handler is working as specified. If nothing is returned, we know that something's wrong in how we're configuring the event handler; either it's not being instantiated, or our template isn't matching the event.</p>
@@ -668,7 +668,7 @@ public class OrderManagementServiceController {
 </code></pre>
         <p>This configuration is simple; it directs Spring to configure Spring MVC (which takes up most of the room in the configuration), and looks for any services in the <code>com.gigaspaces.tutorials.common</code> and <code>com.gigaspaces.rest.service</code> packages, and configures a connection to the data grid.</p>
         <p>What this creates is a very, very simple web application, one that allows us to see the orders and accounts as they exist at the time of request. A more functional application would provide a selection criteria, or perhaps paging to make the application more appealing, but the primary goal here is to expose data.</p>
-        <h1>So what have we done?</h1>
+        <h1>What Has Been&#160;Done?</h1>
         <p>We've done a lot, as it turns out. We've coded up a domain that incorporates our application entities and their state, and we've designed a set of services that modify our application state, along with tests that validate those services. We've created a web application that (presumably) displays our data.</p>
         <p>We haven't talked about our deployment organization.</p>
         <p>Our application so far has been designed along four modules: a "common" module, a "processor" module, a "feeder" module, and a "web" module. The common module consists of the basic services and entity model, things about which every aspect of our application should be aware. The processor module contains the order handling mechanism - the entire workflow of the application in one module. (This could be split out into multiple modules, which can yield some scalability benefits.)</p>
@@ -700,7 +700,7 @@ public class OrderManagementServiceController {
         <p>Deploying the processor module should have no real effect on the system; it creates a data grid, but does not populate a dataset. The web application is passive (read-only).</p>
         <p>It's when the feeder module is deployed that things start to happen. It creates the accounts and begins to feed trades into the system; the web module can then display the changes as they occur and the current status of the system.</p>
         <p>The GS-UI is able to display the logs of the containers, which can show you where each order is being processed as well as its result.</p>
-        <h3>So what do we have?</h3>
+        <h3>What Do We Have?</h3>
         <p>We've seen a number of things.</p>
         <ol>
             <li>Creation of a data model and common services project.</li>

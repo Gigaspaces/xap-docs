@@ -68,11 +68,11 @@
         <div class="tc-admon-note">
             <p>This is a suggested place to add any 3rd party dependencies that are used by your POJOs as this directory is added to the classpath of the UI&#160;tools.</p>
         </div>
-        <h2><a name="meta-inf-manifest-mf-descriptor"></a>META-INF/MANIFEST.MF descriptor</h2>
+        <h2><a name="meta-inf-manifest-mf-descriptor"></a>META-INF/MANIFEST.MF Descriptor</h2>
         <p>JAR files specified in the Processing Unit's <code>META-INF/MANIFEST.MF</code> descriptor file will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, see the <a href="#classloaders">Class Loaders</a> section below.</p>
         <p>This option achieves similar behavior to the <code>lib/optional/pu-common</code> option above, but allows a more fine-grained control by enabling to specify specific JAR files (each in its own location) rather than an entire folder (and only a single folder).</p>
         <p>For more information see <a href="#manifest-based-classpath">Manifest Based Classpath</a> section below.</p>
-        <h2><a name="lib-platform-ext-directory"></a>lib/platform/ext directory</h2>
+        <h2><a name="lib-platform-ext-directory"></a>lib/platform/ext Directory</h2>
         <p>JAR files placed in the <code><MadCap:variable name="General.HomePath" />/lib/platform/ext</code> directory will be loaded once by the GSC-wide classloader and not separately by each Processing Unit instance (this classloader is called the Common Classloader, see the <a href="#classloaders">Class Loaders</a> section below).</p>
         <p>This means they are shared between Processing Units on the same JVM and thereby offer no isolation. On the other hand this option consumes less PermGen memory (one instance per JVM).</p>
         <p>This method is recommended for 3rd party libraries that have no requirement for isolation or different versions for different Processing Units, and are upgraded rather infrequently, such as JDBC driver.</p>
@@ -163,7 +163,7 @@ Class-Path: /home/user1/java/libs/user-lib.jar
         </ol>
         <h2><a name="the-pu-common-directory"></a>The <code>pu-common</code> Directory</h2>
         <p>The <code>pu-common</code> directory may contain a JAR file with a manifest file as described above located at <code>META-INF/MANIFEST.MF</code>. The classpath defined in this manifest will be shared by all Processing Units as described in <a href="#sharing-libraries-between-multiple-processing-units">Sharing libraries</a>.</p>
-        <h2><a name="further-details"></a>Further details</h2>
+        <h2><a name="further-details"></a>Further Details</h2>
         <ol>
             <li>If an entry points to a non existing location, it will be ignored.</li>
             <li>If an entry included the <code>${SOME_ENV_VAL}</code> placeholder and there is no environment variable named <code>SOME_ENV_VAL</code>, it will be ignored.</li>

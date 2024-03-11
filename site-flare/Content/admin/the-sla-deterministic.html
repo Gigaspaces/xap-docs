@@ -3,6 +3,10 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a><MadCap:variable name="General.ProductXAP" /></a>
+			</p>
+		</div>
         <h1>Deterministic Deployment</h1>
         <p>When a deploying a data grid, primary and backup instances are provisioned arbitrarily across the available machines running GSA/GSCs. You can't control where the instances are physically located because the primary election mechanism determines the location of the primary and backup instances at deploy time (the first instance per partition is elected as the primary).</p>
         <p>In some cases, you may want to explicitly define the location of the primary and backup instances. A simple approach is using zones, setting one zone to host the primary instances and another zone to host the backup instances. These zones do not determine specific physical machines to host the primary/backup instances, but rather a logical group of GSCs associated with a specific zone, once started. Usually, the zone reflects machines located in specific different racks, or different data centers that are nearby and have very fast and reliable connectivity between them.</p>

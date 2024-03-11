@@ -87,7 +87,7 @@ dataContent: String = my data content
         <h1><a name="configuration"></a>Configuration</h1>
         <p>It is possible to customize the initialization code, the shutdown code and the initial imports.
 <MadCap:variable name="General.ProductNameXAP" /> 10.2 introduced alternative method to customize initialization code along with initial imports.</p>
-        <h2><a name="standard-method"></a>Standard method</h2>
+        <h2><a name="standard-method"></a>Standard Method</h2>
         <p><MadCap:variable name="General.ProductNameXAP" /> REPL during initialization phase will load imports from initial imports file and then execute init code. The end of shell session
 will be preceded by execution of shutdown code.</p>
         <h4><a name="initial-imports"></a>Initial imports</h4>
@@ -96,7 +96,7 @@ will be preceded by execution of shutdown code.</p>
         <p>By default the initialization code will be loaded from <code>$GS_HOME/tools/scala/conf/init-code.scala</code>. This location can be overridden by the system property: <code>org.os.scala.repl.initcode</code>.</p>
         <h4><a name="shutdown-code"></a>Shutdown code</h4>
         <p>By default the shutdown code will be loaded from <code>$GS_HOME/tools/scala/conf/shutdown-code.scala</code>. This location can be overridden by the system property: <code>org.os.scala.repl.shutdowncode</code>.</p>
-        <h2><a name="new-method"></a>New method</h2>
+        <h2><a name="new-method"></a>New Method</h2>
         <p>The difference between the two methods is that the new one does not use a file with initial imports. Those imports
 should be placed in initialization code script (with import prefix added). Alternative method is used if system property <code>org.os.scala.repl.newinitstyle</code> is set as "yes', "on' or "true'.</p>
         <h4><a name="init-code-1"></a>Init code</h4>

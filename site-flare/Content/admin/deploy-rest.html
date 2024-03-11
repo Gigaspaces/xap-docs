@@ -75,7 +75,7 @@ Before deploying the processing unit you will need to jar it and then specify th
    "contextProperties": {}  
  }' 'http://localhost:8090/v1/deployments'
 </code></pre>
-        <h1><a name="deploy-space"></a>deploy space</h1>
+        <h1><a name="deploy-space"></a>Deploy Space</h1>
         <h2><a name="syntax-1"></a>Syntax</h2><pre><code class="language-bash"> curl -X POST  [url/spaces] [space name] [options]
 </code></pre>
         <h2><a name="description-1"></a>Description</h2>
@@ -131,7 +131,7 @@ Before deploying the processing unit you will need to jar it and then specify th
 </code></pre>
         <p>The following deploys a space named <code>mySpace</code>, using 4 partions with each a backup and the isolation level set to true, requesting that the instances need to be deployed on different machines.</p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/spaces?name=mySpace&amp;partitions=4&amp;backups=true&amp;requiresIsolation=true'
 </code></pre>
-        <h1><a name="undeploy-resource"></a>undeploy resource</h1>
+        <h1><a name="undeploy-resource"></a>Undeploy Resource</h1>
         <h2><a name="syntax-2"></a>Syntax</h2><pre><code class="language-bash">curl -X DELETE [url]/deployments/resource_name
 </code></pre>
         <h2><a name="description-2"></a>Description</h2>
