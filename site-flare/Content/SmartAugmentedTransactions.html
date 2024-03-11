@@ -34,11 +34,11 @@
 (disk/external data store)					</p>
             <div>
                 <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm or cold storage. </p>
-                <p><MadCap:variable name="General.ProductNameIE"></MadCap:variable> manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">here</a> for more information about tiered storage.</p>
+                <p><MadCap:variable name="General.ProductNameIE" /> manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">here</a> for more information about tiered storage.</p>
                 <p style="text-align: center;">
-                    <img src="Resources/Static/images/smartcache-data-tiering-diagram-new.png" style="width: 726px;height: 361px;" class="tc-picture50">
-                    </img>
+                    <img src="Resources/Static/images/XAP XAP SKYLINE/xap-data-tiering-diagram-new.png" style="width: 672px;height: 326px;" />
                 </p>
+                <p style="text-align: center;">&#160;</p>
                 <div class="tc-admon-note">
                     <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
                 </div>
@@ -52,16 +52,16 @@
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-ods-tier-storage-and-persistency.png" style="width: 669px;height: 413px;" />
             </p>
-            <p>In addition, InsightEdge provides <a href="https://docs.gigaspaces.com/latest/dev-java/multi-site-replication-overview.html">efficient data replication between sites</a>  (Active-Passive/Active-Active) including hybrid environments.</p>
+            <p>In addition, XAP provides <a href="https://docs.gigaspaces.com/latest/dev-java/multi-site-replication-overview.html">efficient data replication between sites</a>  (Active-Passive/Active-Active) including hybrid environments.</p>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-ods-data-replication.png" style="width: 695px;height: 197px;" />
             </p>
             <p>&#160;</p>
-            <p>InsightEdge allows users to utilize rich support for declarative <a href="https://docs.gigaspaces.com/latest/dev-java/transaction-overview.html">transaction</a> management. The declarative transaction support can be easily utilized with the GigaSpace Interface.</p>
+            <p>XAP allows users to utilize rich support for declarative <a href="https://docs.gigaspaces.com/latest/dev-java/transaction-overview.html">transaction</a> management. The declarative transaction support can be easily utilized with the GigaSpace Interface.</p>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-ods-transaction-api.png" style="width: 404px;height: 286px;" />
             </p>
-            <h2>4. High Performance Microservices Framework </h2>
+            <h2>4. High Performance Micro-Services Framework </h2>
             <p>GigaSpaces supports Task execution in an asynchronous manner, co-located with the Space (Processing Unit that started an embedded Space). Tasks can be executed directly on a specific cluster member using routing declarations. Tasks can also be executed in “broadcast” mode on all the primary cluster members concurrently, and reduced to a single result on the client side.</p>
             <p>A Distributed Task a Tasks that is executed more than once (concurrently). It returns a result that is the reduced product of all operations. This reduction is calculated in the Task’s reduce method.</p>
             <p style="text-align: center;">Phase 1 - Sending the Tasks to be executed:</p>
@@ -75,19 +75,17 @@
             </p>
             <p>Co-locating data and code significantly improves application performance by reducing serialization and networking overhead. Data processing is performed locally by direct memory access to the data in the server memory space.</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smart-ods-high-performance-colocating.png" style="width: 735px;height: 378px;" />
+                <img src="Resources/Static/images/XAP XAP SKYLINE/ods-high-performance-colocating.png" style="width: 771px;height: 397px;" />
             </p>
-            <p>The InsightEdge platform provides a unified capability for distributed data and processing, which enables it to easily <a href="https://docs.gigaspaces.com/latest/production/production-Scale-Up-Down.html">scale up and out</a>, using a single API.</p>
+            <p>The XAP platform provides a unified capability for distributed data and processing, which enables it to easily <a href="https://docs.gigaspaces.com/latest/production/production-Scale-Up-Down.html">scale up and out</a>, using a single API.</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smart-ods-high-performance-elasticity.png" style="width: 791px;height: 402px;" />
+                <img src="Resources/Static/images/XAP XAP SKYLINE/ods-high-performance-elasticity.png" style="width: 816px;height: 413px;" />
             </p>
             <p>Having a unified processing and data storage platform encapsulates all of the required features for keeping the data and processing highly available under the same API framework. In addition, a fast <a href="https://docs.gigaspaces.com/latest/dev-java/multi-site-replication-overview.html?Highlight=wan%20gateway">remote replication facility</a> is provided out of the box, including encryption, compression, and filtering or other custom requirements.</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smart-ods-high-performance-high-availability-and-DR.png" style="width: 728px;height: 374px;" />
+                <img src="Resources/Static/images/XAP XAP SKYLINE/ods-high-availability-and-dr.png" style="width: 764px;height: 393px;" />
             </p>
-            <h2>5. Event Driven Architecture
-</h2>
-            <p>InsightEdge ODS provides the user with a rich API to capture of real-time events and data streams, to automatically trigger notifications, based on defined business logic. Digital apps and external business processes can easily subscribe to any event in pull or push mode without impact on performance.</p>
+            <p>XAP ODS provides the user with a rich API to capture of real-time events and data streams, to automatically trigger notifications, based on defined business logic. Digital apps and external business processes can easily subscribe to any event in pull or push mode without impact on performance.</p>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-ods-event-driven-architecture.png" style="width: 407px;height: 323px;" />
             </p>
@@ -105,26 +103,27 @@
             <p><a href="https://docs.gigaspaces.com/latest/admin/admin-rest-manager-api.html?Highlight=rest">REST-API</a> and <a href="https://docs.gigaspaces.com/latest/admin/tools-cli.html">command line</a> interfaces are also available.</p>
             <p>Smart Augmented Transactions can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
             <h1>6. Advanced Analytics</h1>
-            <p>InsightEdge Augmented Transactions natively integrate with open source analytics machine learning platforms, such as <a href="https://docs.gigaspaces.com/latest/analytics/insightedge-spark-overview.html">Apache Spark</a> and <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-mllib.html">SparkML</a>, <a href="https://www.gigaspaces.com/blog/what-is-natural-language-processing-and-how-it-can-work-for-your-business/">TensorFlow</a>, as well as J<a href="https://docs.gigaspaces.com/latest/started/insightedge-jupyter.html">upyter</a> and <a href="https://docs.gigaspaces.com/latest/started/insightedge-zeppelin.html">Zeppelin</a> notebooks. </p>
+            <p>XAP Augmented Transactions natively integrate with open source analytics machine learning platforms, such as <a href="https://docs.gigaspaces.com/latest/analytics/insightedge-spark-overview.html">Apache Spark</a> and <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-mllib.html">SparkML</a>, <a href="https://www.gigaspaces.com/blog/what-is-natural-language-processing-and-how-it-can-work-for-your-business/">TensorFlow</a>, as well as J<a href="https://docs.gigaspaces.com/latest/started/insightedge-jupyter.html">upyter</a> and <a href="https://docs.gigaspaces.com/latest/started/insightedge-zeppelin.html">Zeppelin</a> notebooks. </p>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-at-tensor-diagram.png" style="width: 734px;height: 448px;" />
             </p>
-            <p style="text-align: center;">InsightEdge Built-In Spark Distribution</p>
+            <p style="text-align: center;">XAP Built-In Spark Distribution</p>
             <p>Applications leverage faster and smarter insights from ML models running on any data source whether structured, unstructured or semi-structured.</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smart-at-after-tensor-diagram.png" style="width: 522px;height: 420px;" />
+                <img src="Resources/Static/images/XAP XAP SKYLINE/smart-after-tensor-updated.png" style="width: 582px;height: 468px;" />
             </p>
-            <p style="text-align: center;">InsightEdge Multi-Modal Data Store</p>
+            <p style="text-align: center;">XAP Multi-Modal Data Store</p>
             <p>Smart Augmented Transactions enhances the Agile Spark <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-pushdown-predicates.html?Highlight=pushdown%20predicate">predicate pushdown</a> capability by leveraging our native advanced indexing mechanism, to retrieve only relevant data entries when running a query (filter). This ability to filter directly on the source (instead of on the target as is done in the vanilla Apache Spark architecture) dramatically improves performance and reduces network overhead.</p>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/Smart-Spark-GS-diagram.png" style="width: 575px;height: 389px;" />
             </p>
             <h2>AnalyticsXtreme</h2>
-            <p>InsightEdge enables the combination of real-time and historical data by having a single framework that includes both cold and hot data for real-time analytics, which can run simultaneously on both real-time, mutable streaming data and on historical data that is stored on data lakes based on Hadoop, Amazon S3 or Azure Blob Storage, without exposing a separate data load procedure or data duplication. Moving from on-premise to the cloud, or changing technology stacks for example from Cloudera to Amazon S3, is seamless to machine learning applications; increasing flexibility while reducing development and maintenance.</p>
-            <p>With <a href="https://docs.gigaspaces.com/latest/dev-java/data-lake-acceleration.html">AnalyticsXtreme</a>, the data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on InsightEdge’s in-memory data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+            <p>XAP enables the combination of real-time and historical data by having a single framework that includes both cold and hot data for real-time analytics, which can run simultaneously on both real-time, mutable streaming data and on historical data that is stored on data lakes based on Hadoop, Amazon S3 or Azure Blob Storage, without exposing a separate data load procedure or data duplication. Moving from on-premise to the cloud, or changing technology stacks for example from Cloudera to Amazon S3, is seamless to machine learning applications; increasing flexibility while reducing development and maintenance.</p>
+            <p>With <a href="https://docs.gigaspaces.com/latest/dev-java/data-lake-acceleration.html">AnalyticsXtreme</a>, the data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on XAP’s in-memory data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
             <p>This approach enables smooth access to frequently used historical data, because applications can access any data - hot or cold - via a unified layer using Spark SQL or JDBC. You can easily integrate BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI. It also ensures that every entry is retrieved only once, from the correct layer. AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
+            <p>&#160;</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smart-at-Xtreme-diagram.png" style="width: 646px;height: 493px;" />
+                <img src="Resources/Static/images/XAP XAP SKYLINE/smart-at-Xtreme_updated.png" style="width: 605px;height: 462px;" />
             </p>
             <h1>Deploy Anywhere</h1>
             <div>
@@ -139,7 +138,7 @@
                     <li>
                         <p>Support of both Kubernetes, OpenShift, or built-in ElasticGrid orchestration systems</p>
                         <p style="text-align: center;">
-                            <img src="Resources/Static/images/smart-cache-deploy-anwhere.png" class="tc-picture100" style="width: 1083px;height: 497px;" />
+                            <img src="Resources/Static/images/XAP XAP SKYLINE/xap-deploy-anywhere.png" style="width: 991px;height: 456px;" />
                         </p>
                     </li>
                 </ul>

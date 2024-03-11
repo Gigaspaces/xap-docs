@@ -9,8 +9,9 @@
         <p style="text-align: left;"><MadCap:variable name="General.ProductXAP" /> provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
         <h1><MadCap:variable name="General.ProductXAP" /> Overview</h1>
         <p style="text-align: center;">
-            <img src="Resources/Static/images/smart-cache-diagram-with-numbers-2.png" class="tc-picture80" />
+            <img src="Resources/Static/images/XAP XAP SKYLINE/XAP_XAP_Skyline_Arch.png" style="width: 1028px;height: 643px;" />
         </p>
+        <p style="text-align: center;">&#160;</p>
         <div>
             <p style="text-align: center;">Architecture of <MadCap:variable name="General.ProductXAP" /></p>
             <h2>1. Connect to Data Source</h2>
@@ -21,8 +22,9 @@
         <div>
             <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm storage. </p>
             <p> GigaSpaces manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="admin/intelligent-tiering-details.html">here</a> for more information about tiered storage.</p>
+            <p>&#160;</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smartcache-data-tiering-diagram-new-3.png" style="width: 557px;height: 276px;" class="tc-picture50" />
+                <img src="Resources/Static/images/XAP XAP SKYLINE/xap-data-tiering-diagram.png" style="width: 589px;height: 212px;" />
             </p>
             <div class="tc-admon-note">
                 <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
@@ -33,7 +35,7 @@
         <p><MadCap:variable name="General.ProductXAP" /> provides unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
         <p>Unlike key-value stores that need to duplicate the entire data store for each defined index,  GigaSpaces  only creates additional indexing data structures on one instance of data. </p>
         <p style="text-align: center;">
-            <img src="Resources/Static/images/smart-index-vs-key-value.png" class="tc-picture40" />
+            <img src="Resources/Static/images/XAP XAP SKYLINE/smart-index-vs-key-value_updated.png" style="width: 485px;height: 354px;" />
         </p>
         <p style="text-align: center;"><MadCap:variable name="General.ProductXAP" /> advanced indexing</p>
         <h3>Server-Side Aggregations</h3>
@@ -99,9 +101,11 @@ Fast scan - No materialization of the original user data grid object when perfor
                     <p>Support of Kubernetes and OpenShift orchestration systems</p>
                 </li>
             </ul>
+            <p>&#160;</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smart-cache-deploy-anwhere.png" class="tc-picture100" style="width: 786px;height: 360px;" />
+                <img src="Resources/Static/images/XAP XAP SKYLINE/xap-deploy-anywhere.png" style="width: 800px;height: 367px;" />
             </p>
+            <p style="text-align: center;">&#160;</p>
             <p style="text-align: center;">Multiple deployment options of <MadCap:variable name="General.ProductXAP" /></p>
             <h2><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with <MadCap:variable name="General.ProductXAP" />.</h2>
         </div>
@@ -141,7 +145,7 @@ Fast scan - No materialization of the original user data grid object when perfor
         </table>
         <div MadCap:conditions="Default.DoNotShow">
             <h3>Hybrid Mix of On-Prem and Cloud Storage</h3>
-            <p>Using <MadCap:variable name="General.ProductNameXAP" />'s built-in ElasticGrid, or using Kubernetes, SmartCaching allows a configurable, dynamically changeable combination of on-prem and cloud storage. Data can be stored locally and replicated globally, allowing wide-area access with excellent concurrency and data integrity.</p>
+            <p>Using <MadCap:variable name="General.ProductNameXAP" />'s built-in ElasticGrid, or using Kubernetes, Smart Caching allows a configurable, dynamically changeable combination of on-prem and cloud storage. Data can be stored locally and replicated globally, allowing wide-area access with excellent concurrency and data integrity.</p>
             <h3><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with <MadCap:variable name="General.ProductXAP" />.</h3>
         </div>
         <h3 MadCap:conditions="Default.DoNotShow">Connect and Trigger SQL and Custom SDK queries</h3>
