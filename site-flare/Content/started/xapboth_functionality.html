@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1><MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /> Functionality</h1>
+        <p><MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /> are both a highly customizable developer platform that allows building scalable H/A with high throughput and ultra-low latency Java applications running on Service Grid architecture (<MadCap:variable name="General.ProductXAP" />) and Kubernetes clusters (<MadCap:variable name="General.ProductXAPSkyline" />). It includes an in-memory data grid and framework that allow fast and flexible development of event-driven workflows, transactional data processing, and micro-services.</p>
+        <p>The table below contains the main functionality of <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" />.</p>
+        <div title="XAP" style="padding:10px">
+            <table>
+                <col style="width: 358px;" />
+                <col style="width: 486px;" />
+                <col style="width: 399px;" />
+                <thead>
+                    <tr>
+                        <th align="left">Functionality</th>
+                        <th align="left">Description</th>
+                        <th align="left">Reference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr MadCap:conditions="">
+                        <td align="left">High TP / Low Latency Throughput </td>
+                        <td align="left">
+                            <p> There are a variety of options which are offered to make sure code is sent to the data process instead of paying communication overheads for bringing the data to the client. Micro-services send code to the JVM which holds the data and processing is then performed there returning only the required results to the client micro-service. A predefined code can be triggered from a client that either runs with the data or dynamically creates new code and sends it to the data process. </p>
+                        </td>
+                        <td align="left"><a href="../new-content/XAP-Colocated-code.html">Colocated Code</a>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Event Driven / Workflows</td>
+                        <td align="left">
+                            <p>There are various options to build applications workflows using polling or notification strategies. Collocated with data or remote, support for FIFO &amp; FIFO grouping includes transactional support and guaranteed and only once options.</p>
+                        </td>
+                        <td align="left">
+                            <p><a href="../dev-java/event-processing.html">Event Processing</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Transactional Support</td>
+                        <td align="left">
+                            <p>Transaction support and isolation levels are available for all APIs. Transactions can propagate from micro-service to data node and can rollback in the case of a problem.</p>
+                        </td>
+                        <td align="left">
+                            <p><a href="../dev-java/transaction-overview.html">Transaction Overview</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Rich Data Access API</td>
+                        <td align="left">
+                            <p>In order to allow efficient queries of the data,  we have support for defining various kinds of indexes and multiple numbers of indexes per type.</p>
+                            <p>There are also various ways to query data as template matching query API and JDBC and ODBC  drivers.</p>
+                        </td>
+                        <td align="left">
+                            <p><a href="../dev-java/indexing-overview.html">Indexing Overview</a>
+                            </p>
+                            <p><a href="../dev-java/querying-the-space.html">Querying the Space</a>
+                            </p>
+                            <p><a href="../dev-java/querying-space-using-jdbc-odbc.html">Querying the Space using JDBC and ODBC</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Business Driven Tiering</td>
+                        <td align="left">
+                            <p>For optimizing cost and performance according to the use case requirements, a tiered storage solution is included that allows developers to define business rules that ensure predictable latency meeting business requirements.</p>
+                        </td>
+                        <td align="left"><a href="../admin/intelligent-tiering-details.html">Intelligent Tiering</a>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Scalability</td>
+                        <td align="left">
+                            <p><MadCap:variable name="General.ProductXAP" /> - Support for horizontal scaling.</p>
+                            <p><MadCap:variable name="General.ProductXAPSkyline" /> - Support for vertical and horizontal scaling.</p>
+                        </td>
+                        <td align="left"><a href="../production/production-Rescaling-your-application-in-GigaSpaces.html">Rescaling your Application</a>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Persistency</td>
+                        <td align="left">
+                            <p>Support for loading data from a persistence layer and also replicating the in-memory data into a persistence layer.</p>
+                        </td>
+                        <td align="left">
+                            <p><a href="../dev-java/space-data-source-api.html">Space Data Source API</a>
+                            </p>
+                            <p><a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency With Mirror</a>
+                            </p>
+                            <p><a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Persistency for a Database</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">High Availability (H/A)</td>
+                        <td align="left">High availability is achieved with synchronized replication between a primary partition and its backup that runs in another availability zone and with the entire cluster replication for geo-redundancy and disaster recovery.
+</td>
+                        <td align="left">
+                            <p><a href="../admin/synchronous-replication.html">Synchronous Replication</a>
+                            </p>
+                            <p><a href="../dev-java/multi-space-replication-overview.html">Multi-Site Replication Overview</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Security and Compliance</td>
+                        <td align="left">
+                            <p align="left"><MadCap:variable name="General.ProductXAP" /> - Full RBAC support, with Spring security, LDAP integration and custom security. </p>
+                            <p align="left"><MadCap:variable name="General.ProductXAPSkyline" /> - Full RBAC support, integration  with OpenID.</p>
+                            <p align="left">&#160;</p>
+                            <p align="left">In addition, both have an option to encrypt sensitive data at rest and data in transit.</p>
+                        </td>
+                        <td align="left">
+                            <p><MadCap:variable name="General.ProductXAP" />:</p>
+                            <p><a href="../security/index.html">Security</a>
+                            </p>
+                            <p><MadCap:variable name="General.ProductXAPSkyline" />:</p>
+                            <p><a href="../spacedeck/spacedeck-idp-details.html">SpaceDeck IDP</a>
+                            </p>
+                            <p>Both:</p>
+                            <p><a href="../security/securing-the-transport-layer-using-ssl.html">Securing the Transport Layer Using SSL</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">Monitoring and Alerts</td>
+                        <td align="left">Predefined and custom metrics that allow full control to monitor and be alerted when defined thresholds are met.</td>
+                        <td align="left"><a href="../admin/metrics-overview.html">Metrics Overview</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>&#160;</p>
+    </body>
+</html>

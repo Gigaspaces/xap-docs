@@ -7,13 +7,17 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-        <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductXAP" /> - Data Access &amp; Management </h1>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle" style="text-align: left;">Data Access &amp; Management </h1>
         <div>
             <h2>Data Processing</h2>
-            <p><MadCap:variable name="General.ProductXAP" /> provides a powerful solution for data processing, launching, and running digital services. Its APIs support ultra-fast <a href="../dev-dotnet/xapnet-tutorial-part6.html">transaction</a> processing, data filters, task execution, remote services, aggregations, change API, and <a href="../started/xap-tutorial-part4.html">event-driven</a> business rules. It also supports both polling and pushing notifications, including <a href="../dev-java/fifo-overview.html">FIFO</a> and <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> ordering. Business rules can be applied locally on each <a href="../admin/data-partitioning.html">partition</a> or remotely on the client side.</p>
+            <p><MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /> provide a powerful solution for data processing, launching, and running digital services. Its APIs support ultra-fast <a href="../dev-dotnet/xapnet-tutorial-part6.html">transaction</a> processing, data filters, task execution, remote services, aggregations, change API, and <a href="../started/xap-tutorial-part4.html">event-driven</a> business rules. It also supports both polling and pushing notifications, including <a href="../dev-java/fifo-overview.html">FIFO</a> and <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> ordering. Business rules can be applied locally on each <a href="../admin/data-partitioning.html">partition</a> or remotely on the client side.</p>
             <p>Distributed server-side processing accelerates performance and reduces networking and serialization overhead, even during peaks with high numbers of concurrent users</p>
             <h2>High Availability</h2>
-            <p><MadCap:variable name="General.ProductXAP" /> is an always-on, ACID-compliant and secured system, with disaster recovery ensured  through efficient data replication (Active-Passive) between sites, including hybrid environments.</p>
+            <p>The system is an always-on, ACID-compliant and secured system, with disaster recovery ensured  through efficient data replication (Active-Passive) between sites, including hybrid environments.</p>
             <p>&#160;</p>
             <p style="text-align: center;">
                 <img src="../Resources/Images/SmartCacheHA.png" />
@@ -46,7 +50,7 @@
                 </div>
             </div>
             <h2>Persistence</h2>
-            <p><MadCap:variable name="General.ProductXAP" /> <a href="../started/xap-tutorial-part7.html">data persistence</a> consists of two components:</p>
+            <p><a href="../started/xap-tutorial-part7.html">Data persistence</a> consists of two components:</p>
             <ul>
                 <li>
                     <p><b>Space Data Source</b>: Handles the pre-loading of data and the lazy load of data from from the persistence layer</p>
@@ -69,7 +73,10 @@
             </p>
             <p style="text-align: center;font-style: italic;">Mirror Service (Write Behind)</p>
             <h2>Scaling</h2>
-            <p><MadCap:variable name="General.ProductXAP" /> delivers a <a href="../production/production-Rescaling-your-application-in-GigaSpaces.html">scaling process</a> that offers almost no downtime while the system scales. This scaling can be performed both horizontally and vertically.</p>
+            <p> A <a href="../production/production-Rescaling-your-application-in-GigaSpaces.html">scaling process</a> is delivered that offers almost no downtime while the system scales. This scaling can be performed both horizontally and vertically.</p>
+            <div class="tc-admon-note">
+                <p>Vertical scaling is only used in <MadCap:variable name="General.ProductXAPSkyline" /> </p>
+            </div>
             <p><b>Vertical scaling</b> - allows the increase or decrease of the amount of RAM and CPU for an active GigaSpaces cluster – such as the addition of memory or CPUs to an existing physical node - without downtime. Vertical scaling offers many advantages:</p>
             <p>Resources are located in close physical proximity, enabling faster access to related data such as credit/debit tables that are updated in a closed (atomic) unit of work</p>
             <p>A performance gain, because more RAM and CPUs are available for each update</p>
@@ -82,13 +89,16 @@
                 <p style="text-align: center;"><MadCap:variable name="General.ProductXAP" /> APIs</p>
                 <p style="text-align: center;">&#160;</p>
             </div>
-            <p><MadCap:variable name="General.ProductXAP" /> supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
+            <p>The full SQL-99 standard is supported, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
             <p>Using Java and .NET APIs, advanced capabilities are available — such as object store, and <a href="https://docs.gigaspaces.com/solution-hub/modeling-your-data.html">various data modeling options</a>.
 </p>
+            <div class="tc-admon-note">
+                <p>.NET is only used in <MadCap:variable name="General.ProductXAP" /></p>
+            </div>
             <p><a href="https://docs.gigaspaces.com/latest/admin/admin-rest-manager-api.html?Highlight=rest">REST-API</a> and <a href="https://docs.gigaspaces.com/latest/admin/tools-cli.html">command line</a> interfaces are also available.</p>
-            <p><MadCap:variable name="General.ProductXAP" /> can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
+            <p>There is simple ingratiation capability with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
             <h2>Advanced Indexing</h2>
-            <p><MadCap:variable name="General.ProductXAP" /> provides unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
+            <p>An unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> are provided for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
             <p>Unlike key-value stores that need to duplicate the entire data store for each defined index,  GigaSpaces  only creates additional indexing data structures on one instance of data. </p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/XAP XAP SKYLINE/smart-index-vs-key-value_updated.png" style="width: 530px;height: 387px;" />
