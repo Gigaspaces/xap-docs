@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Concurrent Consumers</h1>
         <p>By default, the polling event container starts a single thread that performs the receive operations and invokes the event listener. It can be configured to start several concurrent consumer threads and have an upper limit to the concurrent consumer threads. This provides faster processing of events, however, any FIFO behavior that might be configured in the space and/or template is lost.</p>
         <p>In order to receive events using multiple consumer threads, in the same order they are written to the Space:</p>

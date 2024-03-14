@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>JPA Relationships</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> JPA relationships model is different than Relational Databases model. In <MadCap:variable name="General.ProductNameXAP" /> relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside within a Collection in Author.</p>
         <p>When defining a One-to-one/One-to-many relationship the cascading type should be set to CascadeType.ALL using the relationship's annotation cascade attribute since no-cascading is unsupported.

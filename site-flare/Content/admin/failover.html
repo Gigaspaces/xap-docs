@@ -8,6 +8,10 @@
             </p>
         </div>
         <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
             <p><a>Smart DIH</a>
             </p>
         </div>
@@ -15,7 +19,7 @@
         <p>Failover is the mechanism used to route user operations to alternate spaces in case the target space (of the original operation) fails.</p>
         <p>The component responsible for failover in GigaSpaces is the clustered proxy. When an operation on a space fails, the clustered proxy tries to locate an available and active space member. If it finds such a space, it re-invokes the operation on that space member, otherwise it throws the original exception.</p>
         <h1><a name="failover-and-recovery-process"></a>Failover and Recovery Process</h1>
-        <p>Failover and Recovery process includes the following steps (we assume spaces deployed using the SLA driven container (GSC and GSM):</p>
+        <p>Failover and Recovery process includes the following steps: <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">(we assume spaces deployed using the SLA driven container (GSC and GSM):</MadCap:conditionalText></p>
         <ol>
             <li>Backup identifies that the primary space is not available and moving itself to a primary mode. For information on speeding up this step refer to <a href="troubleshooting-failure-detection.html">Failure Detection</a>.</li>
             <li>Space proxy router discovers the new primary space and routs the request to it. For information on speeding up this step refer to <a href="tuning-proxy-connectivity.html">Proxy Connectivity</a>.</li>

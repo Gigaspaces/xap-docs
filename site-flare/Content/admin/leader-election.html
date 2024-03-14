@@ -8,6 +8,10 @@
             </p>
         </div>
         <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
             <p><a>Smart DIH</a>
             </p>
         </div>
@@ -18,7 +22,7 @@
         <p>The CAP theorem, also known as Brewer's theorem, states that it is impossible for a distributed computer system to simultaneously provide all three of the following guarantees:</p>
         <ul>
             <li>
-                <p>Consistency (all nodes see the same data at the same time)</p>
+                <p>Consistency (all nodes see the same data at the same time), &#160;This is the default path.</p>
             </li>
             <li>
                 <p>Availability (node failures do not prevent survivors from continuing to operate). This is only applicable for <MadCap:variable name="General.ProductXAP" />.</p>
@@ -33,7 +37,10 @@
             </p>
         </div>
         <p>As a result, you can have partition tolerance plus consistency, or partition tolerance plus availability. Gigaspaces provides two available implementations to support the approach that is best suited to your environment and business needs. </p>
-        <p MadCap:conditions="Version.16-3-born">Consistency based implementation is based on Apache Zookeeper, whereas availability based is based on the native Lookup Service:</p>
+        <p MadCap:conditions="Version.16-3-born">Consistency based implementation is based on Apache Zookeeper, whereas availability based is based on the native Lookup Service.</p>
+        <div class="tc-admon-note">
+            <p>The default is using consistency based implementation for both <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" />. However with <MadCap:variable name="General.ProductXAP" /> there is also a limited availability option as there is no REST&#160;API&#160;in the new CLI.</p>
+        </div>
         <MadCap:miniTocProxy style="mc-toc-depth: 1;" class="topic-content" MadCap:conditions="Version.16-3-born" />
         <ul MadCap:conditions="Version.16-3-died">
             <li>

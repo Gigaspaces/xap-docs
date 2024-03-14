@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+		<div class="product-bar">
+			<p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+			</p>
+		</div>
         <div class="product-bar">
             <p><a>Smart DIH</a>
             </p>
@@ -26,10 +30,12 @@ The replication group consists of the elected primary instance, its backup insta
         <div class="tc-admon-refer">
             <p>For more details about this topology refer to <a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency with the Mirror</a></p>
         </div>
-        <h1><a name="active-active-topology"></a>Active-Active Topology</h1>
-        <p>This topology consists of a group of space instances that are part of the same replication group. Unlike primary backup, all of the space instances are active and the application interacts with all of them. The common use case for this topology is to share reference data across instances. Each space instance replicates its data to all the other members, thus making sure that all the space instances will contain the same data set. This topology is more commonly used with <a href="asynchronous-replication.html">Asynchronous Replication</a>. Since each space instance is active, it is up to the application to make sure that there is no <a href="replication-operations.html#conflict-resolution">conflicting operations</a>, by not updating/changing the same object in two different space instances at the same time. With this topology, each new space instance that is started, first tries to find an already existing active member in the replication group, and if such a member is found it will first perform recovery from that member before becoming active and available.</p>
-        <div class="tc-admon-refer">
-            <p>For more details about the recovery process refer to <a href="space-instance-recovery.html">Space Instance Recovery</a></p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1><a name="active-active-topology"></a>Active-Active Topology</h1>
+            <p>This topology consists of a group of space instances that are part of the same replication group. Unlike primary backup, all of the space instances are active and the application interacts with all of them. The common use case for this topology is to share reference data across instances. Each space instance replicates its data to all the other members, thus making sure that all the space instances will contain the same data set. This topology is more commonly used with <a href="asynchronous-replication.html">Asynchronous Replication</a>. Since each space instance is active, it is up to the application to make sure that there is no <a href="replication-operations.html#conflict-resolution">conflicting operations</a>, by not updating/changing the same object in two different space instances at the same time. With this topology, each new space instance that is started, first tries to find an already existing active member in the replication group, and if such a member is found it will first perform recovery from that member before becoming active and available.</p>
+            <div class="tc-admon-refer">
+                <p>For more details about the recovery process refer to <a href="space-instance-recovery.html">Space Instance Recovery</a></p>
+            </div>
         </div>
         <h2><a name="load-balancing"></a>Load Balancing</h2>
         <p>Since all the space instances hold the same data, there are multiple load balancing strategies the space proxy can choose from. By default a <span class="tc-bold">sticky</span> strategy is used, i.e. all operations are performed on the same space instance. For more information on load balance strategy selection and configuration, see <a href="tuning-proxy-connectivity.html#load-balancing">Proxy Connectivity</a>.</p>

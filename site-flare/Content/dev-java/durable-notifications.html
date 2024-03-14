@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Durable Notifications</h1>
         <p>Due to the asynchronous nature of notification delivery, when a primary space fails right after replicating an operation to the backup space and before sending the notification to the registered client, the backup space might not be able to send the missing notifications, since it is in the process of moving to active mode.
 This means that during this very short period of time, the registered client might not receive events that occurred in the primary space and were replicated to the backup space.

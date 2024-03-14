@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Space Mode Context Loader</h1>
         <p>Most of the OpenSpaces built-in components take into account the state of the space (mainly applicable when starting an embedded space within the Processing Unit). This is important when working directly on a cluster member, since operations cannot be performed directly on a backup member.</p>
         <p>Many times, custom beans or POJOs would like to operate directly on the cluster member. To do this, they need to take the space mode into account – by not performing any actions against the cluster member when it is in backup mode, and by starting to perform all relevant actions when the space mode changes to primary.</p>

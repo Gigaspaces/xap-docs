@@ -8,6 +8,10 @@
             </p>
         </div>
         <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
             <p><a>Smart DIH</a>
             </p>
         </div>
@@ -71,7 +75,7 @@ An empty value means no operations to be replicated.</p>
         <h2><a name="transactions"></a>Transactions</h2>
         <p>Space transaction is replicated as part of the commit process. This means that uncommitted transactions are saved only on the active space instance and in case of a space instance failure must be restarted by the application.
 Once transaction is committed on the active space instance, it is replicated to all the target space instances as one atomic operation.</p>
-        <h2><a name="notification-registration"></a>Notification registration</h2>
+        <h2><a name="notification-registration"></a>Notification Registration</h2>
         <p>By default notify registrations are replicated to the target space instance but only the source notifies the listener registered to those events.
 The replication in this case is done to ensure that if the source space fails the target will continue to send the events to the registered listeners.
 This behavior can be controlled with the following configuration:</p>

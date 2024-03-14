@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Template Matching</h1>
         <p>Template matching (a.k.a. Match by example) is a simple way to query the space - The template is a POJO of the desired entry type, and the properties which are set on the template (i.e. not null) are matched against the respective properties of entries of the same type in the space. Properties with null values are ignored (not matched).</p>
         <p>Since by convention the default constructor usually initializes all the properties to <code>null</code> either implicitly or explicitly, in most cases it's enough to simply set the properties which should be matched, without bothering with explicitly setting null to the other properties. Note that setting two or more properties with non-null values provides an <span class="tc-bold">AND</span> behavior.</p>

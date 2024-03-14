@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Gateway Bootstrapping</h1>
         <p>Bootstrapping a space from another space is a process in which one space is starting fresh and it is being populated with the data of another space. This can be useful after a very long disconnection where the replication redo-log in the source spaces that replicates to this space was dropped due to breaching capacity limitations, and the disconnected space should start fresh. Or some initiated downtime due to some maintenance of one space which should bootstrap once it is restarted. Another scenario would be an application upgrade where a newer version of the application is started in a new space and it needs to bootstrap its initial state from the existing application space.</p>
         <h1><a name="how-it-works"></a>How It Works</h1>
