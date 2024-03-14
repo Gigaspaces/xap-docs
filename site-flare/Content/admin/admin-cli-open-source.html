@@ -9,18 +9,20 @@
         </div>
         <h1 class="tc-pagetitle">Standalone Mode</h1>
         <p>For initial evaluation purposes, you can run <MadCap:variable name="General.CompanyName" /> products in standalone mode using the open source <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> editions. This mode provides limited functionality and administration capabilities. As standalone mode is essentially a simple cluster manager, you can also use it to set up a local cluster for development and testing purposes.</p>
-        <p>For a full list of the features and functionality available in standalone mode, see the <MadCap:xref href="../overview/feature-matrix.html">What Edition Do I Need?</MadCap:xref> topic in the Overview section, and the <MadCap:xref href="../started/XAP-functionality.html">XAP Open-Source Functionality</MadCap:xref> in the Getting Started section.</p>
-        <p>You can download the open source editions from Github as follows:</p>
-        <ul>
-            <li><a href="https://github.com/xap/xap" target="_blank" title="XAP open source project in Github" alt="XAP open source project in Github">XAP Open Source</a>
-            </li>
-            <li><a href="https://github.com/InsightEdge/insightedge" target="_blank" title="InsightEdge open source project in Github" alt="InsightEdge open source project in Github"><MadCap:variable name="General.ProductNameIE" /> Open Source</a>
-            </li>
-        </ul>
+        <p>For a full list of the features and functionality available in standalone mode, see the <MadCap:xref href="../overview/feature-matrix.html">What Edition Do I Need?</MadCap:xref> topic in the Overview section.<MadCap:conditionalText MadCap:conditions="Default.DoNotShow">, and the <MadCap:xref href="../started/XAP-functionality.html">XAP Open-Source Functionality</MadCap:xref> in the Getting Started section.</MadCap:conditionalText></p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <p>You can download the open source editions from Github as follows:</p>
+            <ul>
+                <li><a href="https://github.com/xap/xap" target="_blank" title="XAP open source project in Github" alt="XAP open source project in Github">XAP Open Source</a>
+                </li>
+                <li><a href="https://github.com/InsightEdge/insightedge" target="_blank" title="InsightEdge open source project in Github" alt="InsightEdge open source project in Github"><MadCap:variable name="General.ProductNameIE" /> Open Source</a>
+                </li>
+            </ul>
+        </div>
         <h1>Running <MadCap:variable name="General.CompanyName" /> Products in Standalone Mode</h1>
         <p>You can start a data grid, run a Space or a Processing Unit service, or start <MadCap:variable name="General.ProductNameIE" /> in standalone mode.</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="XAP Open Source" style="padding:10px">
+            <div title="XAP" style="padding:10px">
                 <h2><a name="run-xap-in-demo-mode"></a>Starting a Data Grid in Demo Mode</h2>
                 <p>To run  a Space in demo mode, type the following command:</p>
                 <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
@@ -195,32 +197,6 @@
                     <div title="Linux/Mac" style="padding:10px"><pre><code><MadCap:variable name="General.CLI-script-Linux" /> pu run --lus --ha --partitions=2 myPu.jar</code></pre>
                     </div>
                     <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu run --lus --ha --partitions=2 myPu.jar</code></pre>
-                    </div>
-                </div>
-            </div>
-            <div title="InsightEdge Open Source" style="padding:10px">
-                <h2><a name="run-insightedge-in-demo-mode"></a>Running <MadCap:variable name="General.ProductNameIE" /> in Demo Mode</h2>
-                <p>To run <MadCap:variable name="General.ProductNameIE" /> in demo mode, type the following command:</p>
-                <p><span class="tc-italic">Command:</span>
-                </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLI-script-Linux" /> demo</code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> demo</code></pre>
-                    </div>
-                </div>
-                <p><span class="tc-italic">Description:</span>
-                </p>
-                <p>Run Spark in standalone mode (master, worker and Apache Zeppelin), and run a Space in high availability mode (2 primaries with 1 backup each).</p>
-                <p><span class="tc-italic">Parameters and Options:</span>
-                </p>
-                <p>None.</p>
-                <p><span class="tc-italic">Input Example:</span>
-                </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> demo</code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> demo</code></pre>
                     </div>
                 </div>
             </div>

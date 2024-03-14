@@ -7,11 +7,15 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle">License Setup</h1>
         <p> This section explains how to set up the initial 30-day evaluation license, and also provides additional related information.</p>
         <h1><a name="applying-the-license"></a>Applying the License</h1>
         <p>After you download a commercial edition from the <a href="http://www.gigaspaces.com/download-center" target="_blank">Download Center</a>, you will receive an email with a license key for the evaluation period. To start the evaluation period, open the license file located in <MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code><MadCap:variable name="General.HomePath" />/gs-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code><MadCap:variable name="General.HomePath" />/xap-license.txt</code></MadCap:conditionalText> with any text editor, and copy the license key from the email to a blank line in the file. For example:</p><pre><code class="language-bash"># License can also be set via the <MadCap:variable name="General.EnvVariablePrefix" />_LICENSE environment variable or com.gs.licensekey system property
-Product=InsightEdge;Version=[%=Versions.xap-version%];Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2022-Dec-31;Hash=PNXrPIPANOOddPNQFdQQ
+Product=XAP;Version=[%=Versions.xap-version%];Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2022-Dec-31;Hash=PNXrPIPANOOddPNQFdQQ
 </code></pre>
         <p>If you're using <a href="https://hub.docker.com/u/gigaspaces/">Docker images</a> for evaluation, add the <code>-e <MadCap:variable name="General.EnvVariablePrefix" />_LICENSE=...</code> option to the Docker run command, using the license key in the email.</p>
         <p>The same evaluation license is used for all downloaders, enabling you to evaluate the full <MadCap:variable name="General.ProductNameIE" /> Enterprise edition, which contains all of the available features for all commercial editions.</p>
