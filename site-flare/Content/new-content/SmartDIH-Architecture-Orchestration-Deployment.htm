@@ -8,7 +8,7 @@
             </p>
         </div>
         <h1 class="tc-pagetitle" style="text-align: left;">Smart DIH - Orchestration &amp;&#160;Network Details (AWS)</h1>
-        <h2>Orchestration</h2>
+        <h2><a name="Orchestration"></a>Orchestration</h2>
         <p>Orchestration of the Smart DIH platform is performed using Kubernetes. Using a Kubernetes orchestration has the following advantages:</p>
         <ul>
             <li>
@@ -27,11 +27,11 @@
         <div class="tc-admon-note">
             <p>For installation instructions refer to our <a href="../admin/DIH-installation-kubernetes.html">Smart DIH&#160;Kubernetes Installation</a> guide </p>
         </div>
-        <h2>DNS &amp;&#160;TLS</h2>
+        <h2><a name="DNS"></a>DNS &amp;&#160;TLS</h2>
         <p>When deploying the Smart DIH platform. the cloud services for DNS and TLS termination can be used. Customer certificates can be used as well. Endpoints of ingestion, servicing and control should have DNS allocation and apply TLS termination. The details depend on the cloud or on-premise facilities.</p>
-        <h2>Deployment Procedure</h2>
+        <h2><a name="Deployment"></a>Deployment Procedure</h2>
         <p>Smart DIH is deployed using IAC (Infra As Code) tools (e.g. Terraform). The IAC code is parameterized and customized for each of the main clouds: AWS, AZure and GCP. Using this approach, upgrades can also be performed only on the infrastructure, separate from the Kubernetes and application upgrades.</p>
-        <h2>Installation&#160;Methods</h2>
+        <h2><a name="Installation"></a>Installation&#160;Methods</h2>
         <p>There are several installation methods for Smart DIH:</p>
         <ol>
             <li>

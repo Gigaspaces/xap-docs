@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1>Smart DIH Product Functionality</h1>
+        <p>The table below describes the main functionality of Smart DIH.</p>
+        <table style="width: 897px;" class="tc-standard">
+            <col style="width: 430px;" />
+            <col style="width: 465px;" />
+            <col style="width: 465px;" />
+            <thead>
+                <tr>
+                    <th>Functionality </th>
+                    <th style="text-align: left;">Details</th>
+                    <th style="text-align: left;">Reference</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Initial Setup</td>
+                    <td>Steps required to install the Smart DIH system</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Lifecycle-Perf.htm#Initial_Setup">Initial Setup</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Control, Logging &amp;&#160;Monitoring</td>
+                    <td>Control of Smart DIH is managed through SpaceDeck. Monitoring can be performed by both utilizing the tools that integrated within SpaceDeck and using dashboards in Grafana</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Lifecycle-Perf.htm#ControlLoggingMonitoring">Control, Logging &amp;&#160;Monitoring</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Updates &amp;&#160;Upgrades</td>
+                    <td>The user can update the Smart DIH platform using several methods</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Lifecycle-Perf.htm#Updates">Updates &amp;&#160;Upgrades</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Reliability</td>
+                    <td>Many of the Smart DIH components contain the appropriate redundancy and are spread across multiple availability zones</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Lifecycle-Perf.htm#Reliability">Reliability</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Performance</td>
+                    <td>GigaSpaces IMDG (in-memory data grid) is a technology that manages data queries from the data-grid</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Lifecycle-Perf.htm#Performance">Performance</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Data Integration: Data Capture and Transformation</p>
+                    </td>
+                    <td>DI is responsible for a wide range of data integration tasks such as ingesting data in batches or streaming data changes</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-PlatComp.htm#Data_Integration">Data Integration</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Caching and Backup</td>
+                    <td>An in-memory data grid (IMDG) for high-performance caching. Through Intelligent Data Tiering, data can extend beyond the data-grid</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-PlatComp.htm#Caching_and_Backup">Caching and Backup</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Services</td>
+                    <td>Using Smart DIH, micro-services or server-less functions can be created be consuming data from data grid</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-PlatComp.htm#Data_Services">Data Services</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Environment Flexibility</td>
+                    <td>GigaSpaces Smart DIH solution can be deployed on several environments with different network isolation models, ranging from air-gapped to a cloud zero-trust model.</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Network-SystemInt.htm#Environment_Flexibility">Environment Flexibility</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Sources</td>
+                    <td>There are several out-of-the-box supported data sources</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Network-SystemInt.htm#Data_Sources">Data Sources</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Network Connectivity and Isolation</td>
+                    <td>GigaSpaces Smart DIH provides access to its internal network for both data and control purposes</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Network-SystemInt.htm#Network_Connectivity">Network Connectivity and&#160;Isolation</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SQL Queries</td>
+                    <td>The SQL query class is used to query the Space using SQL-like syntax</td>
+                    <td><a href="../dev-java/query-sql.html">SQL queries</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>JDBC V1</td>
+                    <td>Used for simple queries</td>
+                    <td><a href="../dev-java/jdbc-driver.html">JDBC V1</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>JDBC/ODBC V3</td>
+                    <td>An updated and improved set of rules </td>
+                    <td><a href="../dev-java/sql-queries.html">JDBC/ODBC V3</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Orchestration using Kubernetes</td>
+                    <td>Orchestration of the Smart DIH platform is performed using Kubernetes</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Orchestration-Deployment.htm#Orchestration">Orchestration using Kubernetes</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DNS &amp;&#160;TLS</td>
+                    <td>When deploying the Smart DIH platform. the cloud services for DNS and TLS termination can be used</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Orchestration-Deployment.htm#DNS">DNS &amp;&#160;TLS</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Deployment Procedure</td>
+                    <td>Smart DIH is deployed using IAC (Infra As Code) tools (e.g. Terraform)</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Orchestration-Deployment.htm#Deployment">Deployment Procedure</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Installation Methods</td>
+                    <td>There are several installation methods for Smart DIH</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Orchestration-Deployment.htm#Installation">Installation Methods</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Security Controls</td>
+                    <td>The Smart DIH security controls for application and data are illustrated here</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Security.htm#security_controls_">Security</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Security: IDP&#160;Integration</td>
+                    <td>GigaSpaces supports integration with identity providers (IDP) </td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Security.htm#IDP_Integration">IDP&#160;Integration</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Security: Service Accounts</td>
+                    <td>Service accounts represent components which integrate with the data-grid. </td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Security.htm#Service_Accounts">Service Accounts</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Security: Roles &amp;&#160;Privileges</td>
+                    <td>User and service accounts can be assigned to roles which limit their access to the data-grid and platform control.</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Security.htm#RolesPrivileges">Roles &amp;&#160;Privileges</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Security: Auditing</td>
+                    <td>Each operation performed by SpaceDeck (pipelines, services, data-grid/Spaces) is audited and can be found in a log containing both the user ID and the operation performed.</td>
+                    <td><a href="../new-content/SmartDIH-Architecture-Security.htm#Auditing">Auditing</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+    </body>
+</html>
