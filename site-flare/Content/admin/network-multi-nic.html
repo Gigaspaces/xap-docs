@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Multiple Network Cards</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> can be configured for a multiple network card environment. For security reasons, network administrators may choose to configure their network with limited access of one card open to outside connections, and another card for internal connections. The default network card configuration is not always set to the network card used for internal connection, and thus needs to be configured.</p>
         <p>The <code>java.rmi.server.hostname</code> system property is used to resolve the NIC address for all services, which bind to a specific network interface, e.g. Jini unicast discovery lookup host, Webster, etc. More specifically, multicast and unicast discovery both use this property to limit and set the desired network interface card.</p>

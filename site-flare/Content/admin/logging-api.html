@@ -7,6 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Logging API</h1>
         <p>Part of the Administration API is an extensive logging extraction and filtering from different runtime components of <MadCap:variable name="General.ProductNameXAP" />. Here is a very simple example:</p><pre><code class="language-java">import static com.gigaspaces.log.LogEntryMatchers.*;
 
@@ -64,7 +68,7 @@ while (true) {
         <p>Logging are extracted by running the provided matchers on the server side on the machine where the process is running. This can, potentially, be a heavy operation. For that reason, when using the Admin API, logging for runtime components will be automatically extracted by the Grid Service Agent if there is a Grid Service Agent that started the runtime component. If there isn't a Grid Service Agent that started the runtime component, then the logging extraction will be executed on the actual runtime component.</p>
         <p>All logging extraction enabled runtime components implement the <code>LogProviderGridComponent</code> interface. The default <code>logEntries</code> method automatically uses the above mentioned logic. The <code>logEntriesDirect</code> method will always execute on the runtime component, without trying to go to the agent if the runtime component was started by one.</p>
         <h1><a name="grid-service-agent"></a>Grid Service Agent</h1>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>The Grid Service Agent (GSA) is a <MadCap:variable name="General.ProductNameXAPPrem" /> feature, and is not available in the open source edition.</p>
         </div>
         <p>The Agent is just another component that its log files can be extracted by the above mentioned ways. It also provide additional ways to extract logs for runtime components it is managing. For example, extracting all the log information of all the different runtime components that are currently executed by the agent. Here is an example:</p><pre><code class="language-java">new Thread(new Runnable() {
