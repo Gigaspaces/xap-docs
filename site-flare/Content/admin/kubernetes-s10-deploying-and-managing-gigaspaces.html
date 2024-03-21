@@ -47,14 +47,15 @@
         </ul>
         <h1><a name="InstructionsK8s"></a>Instructions</h1>
         <ol>
-            <li> Get the Smart&#160;Cache Helm repo and update:</li><pre xml:space="preserve">helm repo add cache <a href="https://resources.gigaspaces.com/helm-charts-dih">https://resources.gigaspaces.com/helm-charts-dih</a> 
-
-helm repo update cache
-</pre>
+            <li> Get the <MadCap:variable name="General.ProductXAPSkyline" /> Helm repo and update:
+	
+			<pre><code class="language-bash">helm repo add xap <a href="https://resources.gigaspaces.com/helm-charts-dih" style="font-weight: normal;">https://resources.gigaspaces.com/helm-charts-dih</a> 
+helm repo update xap
+		</code></pre></li>
             <li>
-                <p>Fully install <MadCap:variable name="General.ProductXAPSkyline" /> (including Ingress and H/A for SpaceDeck):</p>
-            </li><pre xml:space="preserve">helm install cache cache/smart-cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, 
-global.password=rootpassword</pre>
+                <p>Fully install <MadCap:variable name="General.ProductXAPSkyline" /> (including Ingress and H/A for SpaceDeck):
+				</p><pre MadCap:conditions="Version.16-5-died"><code class="language-bash">helm install cache cache/smart-cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,global.password=rootpassword</code></pre><pre MadCap:conditions="Version.16-5-born"><code class="language-bash">helm install xap xap/xap-skyline --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,global.password=rootpassword</code></pre>
+            </li>
             <li>
                 <p><MadCap:variable name="General.ProductXAPSkyline" /> is now installed in H/A mode. Wait for all pods to be ready.</p>
             </li>
