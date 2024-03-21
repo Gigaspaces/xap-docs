@@ -6,17 +6,217 @@
 -->
     </head>
     <body>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAP" /></a>
-			</p>
-		</div>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle">Getting Started </h1>
-        <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <p>This section contains guidance for getting started with <MadCap:variable name="General.ProductNameIE" /> Service Grid and Kubernetes environments.</p>
+        <div>
+            <p>This section contains guidance for getting started with <MadCap:variable name="General.ProductNameIE" /> Service Grid (for <MadCap:variable name="General.ProductXAP" />) and Kubernetes (<MadCap:variable name="General.ProductXAPSkyline" />) environments.</p>
+            <div class="tc-admon-tip">
+                <p>Some useful terms: Stateful PU, Stateless PU, Client Services</p>
+            </div>
+            <p>&#160;</p>
+            <table style="width: 897px;" class="tc-standard">
+                <col style="width: 96px;" />
+                <col style="width: 451px;" />
+                <col style="width: 754px;" />
+                <col style="width: 749px;" />
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Order</th>
+                        <th style="text-align: left;">Action</th>
+                        <th style="text-align: left;">Code Example</th>
+                        <th style="text-align: left;">Reference/Explanation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">1</td>
+                        <td>Create and connect to a Space</td>
+                        <td>// an example of instantiating a remote proxy
+SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("demo");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();</td>
+                        <td><a href="../dev-java/the-space-bean.html">The&#160;Space Bean</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">2</td>
+                        <td><MadCap:variable name="General.CompanyName" /> Basic API - Write &amp;&#160;Read</td>
+                        <td><a href="first-data-grid.html">Client Blueprint</a>
+                        </td>
+                        <td><a href="../dev-java/the-space-operations.html">The Space Operations</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">3</td>
+                        <td>Build your Data Model</td>
+                        <td>@SpaceClass
+public class Person {
+    private Integer id;
+    private String name;
+    private String lastName;
+    private int age;
+
+    ...
+    public Person() {}
+
+    @SpaceId(autoGenerate=false)
+    @SpaceRouting
+    public Integer getId() { return id;}
+
+    public void setId(Integer id) {  this.id = id; }
+
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    @SpaceProperty(nullValue="-1")
+    public int getAge(){ return age; }
+
+    .......
+}</td>
+                        <td><a href="../dev-java/modeling-your-data.html">Modeling Your Data</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">4</td>
+                        <td>Understanding Routing</td>
+                        <td><a href="../dev-java/broadcast-objects.html">Broadcast Objects</a>
+                        </td>
+                        <td>
+                            <p>Routing is the property inside a space class that says how objects will be distributed across partitions, there is also a strategy that instead of distributing you can replicate the table data across all partitions for small tables  </p>
+                            <p><a href="../admin/data-partitioning-practical.html">Data Partitioning Practical</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">5</td>
+                        <td>Add Colocated Logic to your Space</td>
+                        <td>
+                            <p>&#160;</p>
+                            <p>In your installation folder you will find examples of event processing: &lt;GS_HOME&gt;\examples\data-app\event-processing</p>
+                            <p>&#160;</p>
+                            <p><a href="../dev-java/polling-container-overview.html">Polling Container Overview</a>
+                            </p>
+                        </td>
+                        <td>Colocated logic can contain event processing, code for  services, and any application bean that should run together within the Space partition, in the example provided, you can see colocated event containers and remote service exposure<br /></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">6</td>
+                        <td>Query your data</td>
+                        <td><a href="../dev-java/query-language.html">Query Language</a>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">7</td>
+                        <td>Change your Data Efficiently</td>
+                        <td>
+                            <p>example: // change api gigaSpace.change(sqlQuery, new ChangeSet().increment("price", new BigDecimal(5)));</p>
+                            <p><a href="../dev-java/change-api-overview.html">Change API&#160;Overview</a>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">8</td>
+                        <td>Send Code to be Executed on Data JVMs</td>
+                        <td><a href="../dev-java/task-execution-overview.html">Task Execution Overview</a>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">9</td>
+                        <td>Build Workflows</td>
+                        <td>With event processing you can build workflows, moving related object from one state to the other and defining listeners per  state</td>
+                        <td><a href="../dev-java/event-processing.html">Event Processing</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">10</td>
+                        <td>Interact with the Database</td>
+                        <td>
+                            <p><a href="../dev-java/persistency-for-a-database.html">Persistency for a Database</a>
+                            </p>
+                            <p>stateful-with-db BluePrint</p>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">11</td>
+                        <td>Creating a PU (Service)</td>
+                        <td>
+                            <p><a href="xap-tutorial-part5.html">Creating a PU</a>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">12</td>
+                        <td>
+                            <p>Deploy your Services in&#160;Service&#160;Grid</p>
+                            <p><MadCap:variable name="General.ProductXAP" style="color: #008000;" /><span style="color: #ff0000;"> only</span>
+                            </p>
+                        </td>
+                        <td><a href="../dev-java/deploying-onto-the-service-grid.html#processing-unit-deployment-using-various-deployment-tools">Deploying onto the Service Grid</a>
+                        </td>
+                        <td>
+                            <p>Deploy with REST, CLI, OPS-UI, Admin code</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">12</td>
+                        <td>
+                            <p>Deploy your Services in Kubernetes</p>
+                            <p><MadCap:variable name="General.ProductXAPSkyline" style="color: #008000;" /><span style="color: #008000;"> only</span>
+                            </p>
+                        </td>
+                        <td>
+                            <p><a href="../admin/kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Customer Processing Unit</a>
+                            </p>
+                            <p>helm install custom-pu gigaspaces/xap-pu --version 16.5.0 --set instances=0,partitions=1,resourceUrl=pu.jar,image.repository=my-space,image.tag=latest</p>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <p style="font-size: 12pt;"><a href="https://docs.google.com/presentation/d/1bude3rRSi0MENkNaoY-umYhqz-GcuyE9o3_ufQ4m_PY/edit#slide=id.g1ce16c224a6_3_0">Explanation of Stateless and Stateful</a>. Out of the box <MadCap:variable name="General.ProductXAPSkyline" /> is stateless so there is no need to create new stateless custom PUs as they have no added value. &#160;However, when migrating from <MadCap:variable name="General.ProductXAP" /> to <MadCap:variable name="General.ProductXAPSkyline" /> there will already be stateless PUs defined and theses can be deployed and do not need to be recreated.</p>
+                                </li>
+                                <li>
+                                    <p style="font-size: 12pt;"><a href="https://github.com/GigaSpaces-ProfessionalServices/dih-k8s-training-labs/tree/main/lab-service-dev-solution">Creating Client Services in Kubernetes</a> (see the README)
+                            </p>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Training&#160;Materials</h2>
+            <p>The following training materials can be accessed in order to assist in getting started:</p>
+            <ul>
+                <li>
+                    <p><a href="https://github.com/GigaSpaces-ProfessionalServices/gs-dev-training">Dev Training</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://github.com/GigaSpaces-ProfessionalServices/xap-admin-training">Admin Training</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training">Persist Training</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://github.com/GigaSpaces-ProfessionalServices/dih-k8s-training-labs"><MadCap:variable name="General.CompanyName" /> Kubernetes</a> - <MadCap:variable name="General.ProductXAPSkyline" /> and Smart DIH only.</p>
+                </li>
+            </ul>
+            <h2>Examples</h2>
+            <p>Integration examples such as Spring data, how to use Grafana, monitoring with Kubernetes, installing on OpenShift, deep learning, and more can be found on our<a href="https://github.com/Gigaspaces/solution-hub">Git Solution Hub</a>. You can also find a best practice section with examples for WAN gateway replication, Data modeling patterns, Custom aggregation examples, and much more.</p>
             <p>&#160;</p>
         </div>
         <div class="tc-admon-note">

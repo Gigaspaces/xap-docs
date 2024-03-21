@@ -7,12 +7,11 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-        <div class="product-bar">
-            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
-            </p>
-        </div>
         <h1 class="tc-pagetitle">Your First Data Grid</h1>
         <p>This topic helps you get started with the GigaSpaces data grid. You will learn how to create a project that includes a client and a Space. The client connects to the Space, or data grid, with the ability to write and read data. You will also learn how to connect your client to a different Space in order to write and read data.</p>
+        <div class="tc-admon-note">
+            <p>For Kubernetes, Docker images first need to be created. For more information see <a href="../admin/kubernetes-s20-deploying-a-custom-processing-unit.html#Create_a_Docker">Creating a Docker image.</a></p>
+        </div>
         <h1>Installing the <MadCap:variable name="General.CompanyName" /> Product</h1>
         <p>If you haven’t done so yet, download and unzip the software package in your preferred location, and apply the license key.</p>
         <div class="tc-admon-note">
@@ -44,17 +43,17 @@
             <p class="tc-todo">To create a project:</p>
             <ol>
                 <li>
-                    <p>Type <code>blueprint generate</code>. This begins the configuration work flow.</p>
+                    <p>Type <code>blueprint generate</code>. This begins the configuration work flow. This lets you choose a blueprint and will create a project for you that you can continue to develop, build, and deploy.</p>
                 </li>
-                <li>A list of available blueprints is displayed. Press <span class="tc-bold">Enter</span> to select the default value (<span class="tc-bold">1</span>=client).</li>
+                <li>A list of available blueprints is displayed. Press <span class="tc-bold">Enter</span> to select the default value (<span class="tc-bold">1</span>=client). You can start a demo space with 2 primaries and backup per each, using the demo cmd /gs.sh demo, then you can interact with the space in the java main client as the example in the client blueprint test.</li>
                 <li>The next step is configuring the target path (folder name and location) for the client application files. Press <span class="tc-bold">Enter</span> to select the default value (<span class="tc-bold">my-client</span> in the product package bin folder).</li>
                 <li>The client blueprint supports customizing several additional properties, but for now you should use the default values. Press <span class="tc-bold">Enter</span> to skip the additional configuration.</li>
                 <li>
-                    <p>The project is created, and the target path is displayed. You are prompted to open the project in your default file explorer. </p><pre><code class="language-bash">Generated project from client at D:\InsightEdge\gigaspaces-insightedge-enterprise-<MadCap:variable name="Versions.product-version-long" />\bin\my-client1
+                    <p>The project is created, and the target path is displayed. You are prompted to open the project in your default file explorer. </p><pre><code class="language-bash">Generated project from client at <MadCap:variable name="General.Home-directory" />\bin\my-client1
 Would you like to open it in file explorer? [y]:</code></pre>
                     <p>Press <span class="tc-bold">Enter</span> to view the project files.</p>
                     <p>
-                        <img src="client-blueprint-project-files.png" class="tc-picture80" />
+                        <img src="client_blueprint_project_files_1.png" style="width: 1119px;height: 327px;" />
                     </p>
                 </li>
             </ol>

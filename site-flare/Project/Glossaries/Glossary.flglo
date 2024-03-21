@@ -485,7 +485,7 @@ This architecture implementation is a set of Processing Units, with the followin
       <Term>Service Grid</Term>
     </Terms>
     <Definition
-      Link="">A built-in orchestration tool which contains a set of Grid Service Containers (GSCs) managed by a Grid Service Manager. The containers host various deployments of Processing Units and data grids. Each container can be run on a separate physical machine.  This orchestration is available for Smart Cache only. For Smart DIH, we recommend using our Kubernetes orchestration.</Definition>
+      Link="">A built-in orchestration tool which contains a set of Grid Service Containers (GSCs) managed by a Grid Service Manager. The containers host various deployments of Processing Units and data grids. Each container can be run on a separate physical machine.  This orchestration is available for XAP only.</Definition>
   </GlossaryEntry>
   <GlossaryEntry
     glossTerm="Glossary.Term44"
@@ -757,5 +757,40 @@ Provides a powerful solution for data processing, launching, and running digital
     </Terms>
     <Definition
       Link="">In Kubernetes, A helm umbrella chart is when a chart is created for the purpose of grouping together related subcharts/services, such as to compose a whole application or deployment.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term67"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>Stateful PU</Term>
+      <Term>Stateful Service</Term>
+    </Terms>
+    <Definition
+      Link="">This is a Space containing data and might also include code and services. They are displayed in all UI tools and the metrics for them are managed.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term68"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>Stateless PU</Term>
+      <Term>Stateless Service</Term>
+    </Terms>
+    <Definition
+      Link="">Built-in services such as mirror WAN-GW, data GW and custom services. They are displayed in some UI tools (Ops-UI/Web-UI) but NOT in SpaceDeck. Metrics are managed.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term69"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>Client services</Term>
+    </Terms>
+    <Definition
+      Link="">Client services interact with Spaces via proxies, but are not deployed. They can use Spring Boot and have Kubernetes direct management and manage their metrics. There i no need in Kuberenets for stateless services, but customers migrating from XAP to XAP Skyline will use them.</Definition>
   </GlossaryEntry>
 </CatapultGlossary>

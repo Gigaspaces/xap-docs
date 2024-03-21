@@ -43,7 +43,12 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
     new ProcessingUnitDeployment(puArchive));
 </code></pre>
             </div>
-            <div title="  Ant " style="padding:10px">
+            <div title="  REST API " style="padding:10px">
+                <p>Example:</p><pre><code> echo "Deploying onprem-space ..."
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{"resource": "https://wan-gateway.s3.us-east-2.amazonaws.com/gcp/onprem-space-1.0-SNAPSHOT.jar","name": "onprem-space"}' 'http://34.172.74.128:8090/v2/spaces?name=onprem-space' 
+</code></pre>
+            </div>
+            <div title="  Ant " style="padding:10px" MadCap:conditions="Default.DoNotShow">
                 <p>Deploying with Ant is based on the <code>org.openspaces.pu.container.servicegrid.deploy.Deploy</code> class (in fact, all of the deployment tools use this class although it is not exposed directly to the end user).</p>
                 <p>In the below example we create an Ant macro using this class and use it to deploy our processing unit. The deploy class is executable via its <code>main()</code> method, and can accept various parameters to control the deployment process. These parameters are identical to these of the <code>deploy</code> CLI command, for a complete list of the available parameters please consult the <a href="../admin/deploy-command-line-interface.html">deploy CLI reference documentation.</a>.</p><pre><code class="language-xml">&lt;deploy file="/opt/gigaspaces/myPU.jar" /&gt;
 
@@ -69,14 +74,14 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
             <div title="  GigaSpaces UI " style="padding:10px">
                 <ul>
                     <li>
-                        <p>Open the GigaSpaces UI by launching `<MadCap:variable name="General.HomePath" />/bin/gs-ui.sh(bat)</p>
-                        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+                        <p>Open the GigaSpaces Ops Manager </p>
+                        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born,Default.DoNotShow" />
                     </li>
                     <li>
-                        <p>Click the "Deploy Application" button <img src="../Resources/Static/attachment_files/deploy_processing_unit_button.jpg" alt="deploy_processing_unit_button.jpg" /> at the top left of the window</p>
-                    </li>
-                    <li>
-                        <p>In the deployment wizard, click <span class="tc-bold">...</span> to select your processing unit archive, and then click <span class="tc-bold">Deploy</span></p>
+                        <p>Click + to display the Deploy menu </p>
+                        <p>
+                            <img src="../Resources/Images/Skyline/OpsUIDeployDGW.png" />
+                        </p>
                     </li>
                 </ul>
             </div>

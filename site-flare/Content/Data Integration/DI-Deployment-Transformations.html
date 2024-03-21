@@ -11,11 +11,11 @@
         <h1>Introduction</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> Data Integration feature will now include transformations and complex event processing (CEP).</p>
         <p>A data pipeline is a method of transporting data from one place to another. Acting as a conduit for data, these pipelines should enable efficient processing, transformation, and delivery of data to the desired location.</p>
-        <p>Through data cleansing and transformation processes, data pipelines enhance data quality and ensure accuracy for analysis and decision-making. By maintaining high data quality standards, organizations can rely on trustworthy insights to drive their business activities.</p>
+        <p>Through data cleansing and transformation processes, data pipelines enhance data quality and ensure accuracy for analysis and decision-making. By maintaining high data quality standards, organizations can rely on trustworthy insights to drive our customer's business activities.</p>
         <h1>Implementation</h1>
-        <p>Low-code transformation will be defined through SpaceDeck. &#160;Visit our SpaceDeck Pipeline page for more details.</p>
+        <p>Low-code transformation will be created and updated through our SpaceDeck UI. &#160;Refer to the <span style="background-color: #ffff00;">SpaceDeck Pipeline </span>page for more details.</p>
         <h1>Phase 1 Transformations</h1>
-        <p>Initially, <MadCap:variable name="General.CompanyName" /> will be offering the transformations listed below. The scope will be increased in later versions.</p>
+        <p>Initially, <MadCap:variable name="General.CompanyName" /> will be offering the transformations listed below. The scope will be increased in future versions.</p>
         <ul>
             <li>
                 <p>FILTER (aka WHERE) clause</p>
@@ -27,11 +27,37 @@
                 <p>Calling external REST&#160;API function - Calculation of insurance risk based on captured transaction record</p>
             </li>
         </ul>
+        <h2>Apache Flink SQL Function Support</h2>
+        <p><MadCap:variable name="General.CompanyName" /> supports the following Flink SQL built-in functions for data transformations:</p>
+        <ul>
+            <li>
+                <p><a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/functions/systemfunctions/#comparison-functions">Comparison</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/functions/systemfunctions/#logical-functions">Logical</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/functions/systemfunctions/#arithmetic-functions">Arithmetic</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/functions/systemfunctions/#string-functions">String</a>, <a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/functions/systemfunctions/#temporal-functions">Temporal</a></p>
+            </li>
+            <li>
+                <p><a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/functions/systemfunctions/#temporal-functions">Conditional</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/functions/systemfunctions/#type-conversion-functions">Type Conversion</a>
+                </p>
+            </li>
+        </ul>
         <h1>User Flow</h1>
         <p>
             <img src="../Resources/Images/DI/DI_Transformations_16_5.drawio.png" style="width: 853px;height: 512px;" />
         </p>
-        <h1>Can Transformation be <span style="background-color: #ffff00;">disabled</span>?</h1>
         <p style="text-align: left;">&#160;</p>
     </body>
 </html>
