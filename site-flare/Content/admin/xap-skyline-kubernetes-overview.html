@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:searchable="False" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle"><a name="overview"></a><MadCap:variable name="General.ProductXAPSkyline" /> Orchestration: Kubernetes </h1>
+        <h1>Overview</h1>
+        <p><MadCap:variable name="General.ProductXAPSkyline" /> brings a flexible memory grid solution to enterprise applications. In the case of a micro-service architecture, the memory grid blends easily with the rest of the micro-services running on the Kubernetes cluster. <MadCap:variable name="General.ProductXAPSkyline" /> can be deployed on an on-premise or cloud infrastructure using simple and universal components inside or outside of the cluster. Code that uses the data can be run colocated with the memory grid to achieve maximum performance. </p>
+        <p>&#160;</p>
+        <p>Depending on the requirements and architecture there are many different layouts possible in which to leverage this in-memory fast processing in combination with Kubernetes features. Some of the traits are:</p>
+        <ol>
+            <li>
+                <p>High Availability - using backups and redundancy</p>
+            </li>
+            <li>
+                <p>Security - zero trust capabilities to protect data in transit and at rest</p>
+            </li>
+            <li>
+                <p>Maintainability - using monitoring and Kubernetes tools</p>
+            </li>
+        </ol>
+        <p>&#160;</p>
+        <p>Follow this <a href="kubernetes-s10-deploying-and-managing-gigaspaces.html">guide</a> for installing <MadCap:variable name="General.ProductXAPSkyline" /> using Kubernetes</p>
+        <!--
+ Automatic scaling is supported, using predefined metrics along with CPU and memory monitoring to signal to Kubernetes when to scale up or down. Customized scaling rules according to personalized SLA, based on production needs, optimize the resources required to support the application requirements.
+
+Through the persistent volume driver, <MadCap:variable name="General.ProductNameIE" />’s intelligent MemoryXtend multi-tier storage offering lets customers configure data prioritization according to the application’s business logic. This ensures that the most relevant data resides in the fastest data storage tier for optimized TCO.
+-->
+        <h1>Network and Compute</h1>
+        <h2>Kubernetes and Micro-Services</h2>
+        <p><MadCap:variable name="General.ProductXAPSkyline" /> can be added to an existing micro-services setup or can be installed in a dedicated Kubernetes cluster.  It is installed using a helm command.  The illustration below shows deployments and statefulsets of a typical system. In the <MadCap:variable name="General.ProductXAPSkyline" /> namespace  the control/monitor components can be found along with Spaces that hold the data (memory grid).</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/Skyline/XAPSkylineNetworkCompute1.png" />
+        </p>
+        <h2>Network Connectivity</h2>
+        <p>In order to access the <MadCap:variable name="General.ProductXAPSkyline" /> services from outside the network, you can set up standard components to bridge between the backend components (<MadCap:variable name="General.ProductXAPSkyline" /> and micro-services) and the external components. There are two types of connections:</p>
+        <ol>
+            <li>
+                <p>Control and Monitor - access given to the Spacedeck (<MadCap:variable name="General.ProductXAPSkyline" /> UI)</p>
+            </li>
+            <li>
+                <p>Application - using data gateway components</p>
+            </li>
+        </ol>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/Skyline/XAPSkylineNetword.png" />
+        </p>
+        <h1>High Availability (H/A) and Self-Healing</h1>
+        <h2>Space High&#160;Availability</h2>
+        <p>The In-Memory Data Grid (IMDG) is at the main part of <MadCap:variable name="General.ProductXAPSkyline" />. The data grid (also called a Space) is maintained by an automation component (Kubernetes operator) that guarantees that the data will not be lost in the case of a pod going down.</p>
+        <p>Pods that serve the data grid, hold the data in-memory and on disk (see Tiered Storage capabilities). The data grid is divided into partitions and each pod is assigned to hold a partition of the data as well as an availability mode - a “primary” or a “backup”. The Primary pods are online, however, if a primary pod goes down, the backup pod then becomes the primary and a new backup is quickly reassembled. This flow avoids downtime as data is seamlessly served from the pods memory by switching between a primary pod and its backup.</p>
+        <p>Partitions of the data grid are also backed up by the disk. This is a secondary measure to guarantee high availability. Availability for the data on disk (which can be larger than memory) is maintained by the storage facility and it is kept intact if the pod goes down.</p>
+        <p>&#160;</p>
+        <p>In the diagram below, if POD-0 goes down POD-1 becomes the primary and Kubernetes will create a new POD-0 which will then be tagged as the backup. In the case where a backup is recreated, the memory entries will be copied from the primary.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/Skyline/XAPSkylineHA.png" />
+        </p>
+        <h2>Services High Availability</h2>
+        <p>Low-code services are created by the user in order to open a channel for applications to interact with the data grid using a REST API. Due to this, it is important to maintain their high availability. These services are stateless and <MadCap:variable name="General.ProductXAPSkyline" /> leverages the replication attribute of Kubernetes to maintain high availability.</p>
+        <p>In the diagram below, service “ABC” is replicated and serviced using a load balancer. In the case of one of the services going down the other continues to serve its client.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/Skyline/XAPSkylineServiceHA.png" />
+        </p>
+        <h1>Security</h1>
+        <h2>Responsibilities </h2>
+        <p><MadCap:variable name="General.ProductXAPSkyline" /> has been designed with strong security defaults in mind. These defaults include always-on authentication, authorization, encryption in transit and encryption at rest and no access from the Internet by default. <MadCap:variable name="General.ProductXAPSkyline" /> includes the notion of roles that can be attached to users to preserve a minimal access policy.</p>
+        <h2>Access</h2>
+        <p>Authentication and authorization are at the core of the system. Access to every asset of the system is protected by these fundamentals. <MadCap:variable name="General.ProductXAPSkyline" /> supports a rich set of authentication and authorization capabilities and can seamlessly connected with SSO (single sign on)  and various IDPs (IDentity Providers),</p>
+        <h2>At Transit</h2>
+        <p>Data is encrypted in transit. It is up to the user to open a public access and Gigaspaces will provide means to secure data at transit using protocols such as TLS. The typical connection is within the private network, This  can be constructed using networking techniques such as VPN, Private link, VPC peering or other related protocols.</p>
+        <h2>At Rest</h2>
+        <p>Encryption can be set up by <MadCap:variable name="General.ProductXAPSkyline" /> or by the customer to ensure that the data is secured at rest.</p>
+        <h1>TCO&#160;Reduction and Maintainability</h1>
+        <h2>Installation</h2>
+        <p><MadCap:variable name="General.ProductXAPSkyline" /> is installed with standard Kubernetes tools using common practices and flows. Helm is the go-to application used for installing <MadCap:variable name="General.ProductXAPSkyline" /> and enables installation in single command using a <MadCap:variable name="General.ProductXAPSkyline" /> Helm umbrella chart installation. A rich set of values can be applied upon installation, creating a customized deployment. Upgrades can leverage these tools so that future enhancements of <MadCap:variable name="General.ProductXAPSkyline" /> can also occur with minimal effort. </p>
+        <h2>Elasticity</h2>
+        <p>Kubernetes has built-in mechanisms that expand and contract resources depending on load (given cloud support). This means that during run-time the system deployment is optimized for the current workload.</p>
+        <h2>Control</h2>
+        <p>Kubernetes tools support various operations for managing the system. This includes control resources count, security, metrics and logging parameters. <MadCap:variable name="General.ProductXAPSkyline" /> in this sense provides additional controls at the <MadCap:variable name="General.ProductXAPSkyline" /> level (<a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a>) which may also affect the underlying deployment by leveraging Kubernetes operators.</p>
+        <!--
+## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
+
+Apache Zeppelin is a multi-purpose web notebook that supports data ingestion and discovery, as well as data analytics, visualization, and collaboration.
+
+Apache Zeppelin contains a built-in Apache Spark integration. This provides the following:
+
+- Automatic SparkContext and SQLContext injection
+- Runtime JAR dependency loading from the local file system or Maven repository
+- Ability to view job progress and cancel jobs 
+
+The Zeppelin notebook packaged with <MadCap:variable name="General.ProductNameIE" /> includes several <MadCap:variable name="General.ProductNameIE" /> demo applications, along with <MadCap:variable name="General.ProductNameIE" />-specific settings that can be configured in the Spark interpreter in order to establish the connection between Spark and the data grid. 
+
+KubeGrid runs Apache Zeppelin in a dedicated Pod, to enable ???
+-->
+    </body>
+</html>
