@@ -40,8 +40,8 @@
                         <td>Create and connect to a Space</td>
                         <td>
                             <p>// an example of instantiating a remote proxy
-</p><code class="language-java">SpaceProxyConfigurer configurer = new </code><code class="language-java">SpaceProxyConfigurer("demo");
-</code><code class="language-java">GigaSpace gigaSpace = new </code><code class="language-java">GigaSpaceConfigurer(configurer).gigaSpace();</code>
+</p><code class="language-java"><code>SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("demo");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();</code></code>
                         </td>
                         <td><a href="../dev-java/the-space-bean.html">The&#160;Space Bean</a>
                         </td>
@@ -57,7 +57,7 @@
                     <tr>
                         <td style="text-align: center;">3</td>
                         <td>Build your Data Model</td>
-                        <td><code class="language-java">@SpaceClass
+                        <td><code>@SpaceClass
 public class Person {
     private Integer id;
     private String name;
@@ -90,9 +90,29 @@ public class Person {
                     <tr>
                         <td style="text-align: center;">4</td>
                         <td>Understanding Routing</td>
-                        <td>&#160;</td>
                         <td>
-                            <p>Routing is the property inside a space class that says how objects will be distributed across partitions, there is also a strategy that instead of distributing you can replicate the table data across all partitions for small tables  </p>
+                            <p>Routing is the property inside a space class that says how objects will be distributed across partitions, there is also a strategy that instead of distributing you can replicate the table data across all partitions for small tables.</p>
+                            <p><code>@SpaceClass
+public class Account
+{
+    Integer accountID;
+    String accountName;
+    @SpaceRouting
+    public Integer getAccountID()
+    {
+    return accountID;
+    }
+    public String getAccountName()
+    {
+        return accountName;
+    }
+    // setter methods
+    ...
+}</code>
+                            </p>
+                        </td>
+                        <td>
+                            <p>&#160;</p>
                             <p><a href="../admin/data-partitioning-practical.html">Data Partitioning Practical</a>
                             </p>
                             <p><a href="../admin/data-partitioning-practical.html">Broadcast Objects<br /></a>
@@ -103,48 +123,69 @@ public class Person {
                         <td style="text-align: center;">5</td>
                         <td>Add Colocated Logic to your Space</td>
                         <td>
+                            <p>Colocated logic can contain event processing, code for  services, and any application bean that should run together within the Space partition, in the example provided, you can see colocated event containers and remote service exposure</p>
                             <p>&#160;</p>
                             <p>In your installation folder you will find examples of event processing: </p>
-                            <p><code class="language-bash">&lt;GS_HOME&gt;\examples\data-app\event-processing</code>
+                            <p><code>&lt;GS_HOME&gt;\examples\data-app\event-processing</code>
                             </p>
-                            <p>&#160;</p>
+                        </td>
+                        <td>
                             <p><a href="../dev-java/polling-container-overview.html">Polling Container Overview</a>
                             </p>
                         </td>
-                        <td>Colocated logic can contain event processing, code for  services, and any application bean that should run together within the Space partition, in the example provided, you can see colocated event containers and remote service exposure<br /></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">6</td>
                         <td>Query your data</td>
+                        <td><code>results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num &gt; 1 ORDER BY name"));</code>
+                        </td>
                         <td><a href="../dev-java/query-language.html">Query Language</a>
                         </td>
-                        <td>&#160;</td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">7</td>
                         <td>Change your Data Efficiently</td>
                         <td>
-                            <p>example: </p>
-                            <p><code class="language-java">// change api gigaSpace.change(sqlQuery, new ChangeSet().increment("price", new BigDecimal(5)));</code>
-                            </p>
-                            <p><a href="../dev-java/change-api-overview.html">Change API&#160;Overview</a>
+                            <p><code>// change api gigaSpace.change(sqlQuery, new ChangeSet().increment("price", new BigDecimal(5)));</code>
                             </p>
                         </td>
-                        <td>&#160;</td>
+                        <td><a href="../dev-java/change-api-overview.html">Change API&#160;Overview</a>
+                        </td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">8</td>
                         <td>Send Code to be Executed on Data JVMs</td>
+                        <td>
+                            <p><code>public class MyDistTask implements DistributedTask&lt;Integer, Long&gt; {
+  public Integer execute() throws Exception {
+    return 1;
+  }
+  public Long reduce(List&lt;AsyncResult&lt;Integer&gt;&gt; results) throws Exception {
+    long sum = 0;
+    for (AsyncResult&lt;Integer&gt; result : results) {
+      if (result.getException() != null) {
+        throw result.getException();
+      }
+      sum += result.getResult();
+    }
+    return sum;
+  }
+}</code>
+                            </p>
+                            <p>&#160;</p><code class="language-java">AsyncFuture&lt;Long&gt; future = gigaSpace.execute(new MyDistTask());</code><code class="language-java">long result = future.get(); // result will be number of partitions</code>
+                            <p>&#160;</p>
+                        </td>
                         <td><a href="../dev-java/task-execution-overview.html">Task Execution Overview</a>
                         </td>
-                        <td>&#160;</td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">9</td>
                         <td>Build Workflows</td>
-                        <td>&#160;</td>
                         <td>
-                            <p>With event processing you can build workflows, moving related object from one state to the other and defining listeners per  state</p>
+                            <p>With event processing you can build workflows, moving related object from one state to the other and define listeners per  state</p>
+                            <p>&#160;</p><code class="language-java"><code>SimplePollingEventListenerContainer pollingEventListenerContainer = new SimplePollingContainerConfigurer(gigaSpace).template(new Data(false)).eventListenerAnnotation(new Object() {@SpaceDataEventpublic void eventHappened() {eventCalled.set(true);}}).pollingContainer();// start the notificationpollingEventListenerContainer.start()</code></code>
+                        </td>
+                        <td>
                             <p><a href="../dev-java/event-processing.html">Event Processing</a>
                             </p>
                         </td>
@@ -153,12 +194,13 @@ public class Person {
                         <td style="text-align: center;">10</td>
                         <td>Interact with the Database</td>
                         <td>
-                            <p><a href="../dev-java/persistency-for-a-database.html">Persistency for a Database</a>
-                            </p>
+                            <p>You can perform an initial load into the Space from a data source and can replicate changes in memory to a target (database, Kafka). Refer to the blueprint example (see #2 above) of how to load data from a relational database using hibernate integration and how to replicate data to that database, similar can be done with other kinds of sources such as MongoDB, Cassandara and Kafka.</p>
+                            <p>&#160;</p>
                             <p><code class="language-java">stateful-with-db BluePrint</code>
                             </p>
                         </td>
-                        <td>&#160;</td>
+                        <td><a href="../dev-java/persistency-for-a-database.html">Persistency for a Database</a>
+                        </td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">11</td>
@@ -170,7 +212,7 @@ public class Person {
                         <td>&#160;</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">12</td>
+                        <td style="text-align: center;">12a</td>
                         <td>
                             <p>Deploy your Services in&#160;Service&#160;Grid</p>
                             <p><MadCap:variable name="General.ProductXAP" style="color: #8a2be2;" /><span style="color: #008000;"> <span style="color: #8a2be2;">only</span></span>
@@ -183,7 +225,7 @@ public class Person {
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">12</td>
+                        <td style="text-align: center;">12b</td>
                         <td>
                             <p>Deploy your Services in Kubernetes</p>
                             <p><MadCap:variable name="General.ProductXAPSkyline" style="color: #008000;" /><span style="color: #008000;"> only</span>
@@ -196,7 +238,7 @@ public class Person {
                         <td>
                             <ul>
                                 <li>
-                                    <p style="font-size: 12pt;"><a href="https://docs.google.com/presentation/d/1bude3rRSi0MENkNaoY-umYhqz-GcuyE9o3_ufQ4m_PY/edit#slide=id.g1ce16c224a6_3_0">Explanation of Stateless and Stateful</a>. Out of the box <MadCap:variable name="General.ProductXAPSkyline" /> is stateless so there is no need to create new stateless custom PUs as they have no added value. &#160;However, when migrating from <MadCap:variable name="General.ProductXAP" /> to <MadCap:variable name="General.ProductXAPSkyline" /> there will already be stateless PUs defined and theses can be deployed and do not need to be recreated.</p>
+                                    <p style="font-size: 12pt;">Out of the box <MadCap:variable name="General.ProductXAPSkyline" /> is stateless so there is no need to create new stateless custom PUs as they have no added value. &#160;However, when migrating from <MadCap:variable name="General.ProductXAP" /> to <MadCap:variable name="General.ProductXAPSkyline" /> there will already be stateless PUs defined and theses can be deployed and do not need to be recreated.</p>
                                 </li>
                                 <li>
                                     <p style="font-size: 12pt;"><a href="https://github.com/GigaSpaces-ProfessionalServices/dih-k8s-training-labs/tree/main/lab-service-dev-solution">Creating Client Services in Kubernetes</a> (refer to the README)
