@@ -38,9 +38,11 @@
                     <tr>
                         <td style="text-align: center;">1</td>
                         <td>Create and connect to a Space</td>
-                        <td>// an example of instantiating a remote proxy
-SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("demo");
-GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();</td>
+                        <td>
+                            <p>// an example of instantiating a remote proxy
+</p><code class="language-java">SpaceProxyConfigurer configurer = new </code><code class="language-java">SpaceProxyConfigurer("demo");
+</code><code class="language-java">GigaSpace gigaSpace = new </code><code class="language-java">GigaSpaceConfigurer(configurer).gigaSpace();</code>
+                        </td>
                         <td><a href="../dev-java/the-space-bean.html">The&#160;Space Bean</a>
                         </td>
                     </tr>
@@ -55,7 +57,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();</td>
                     <tr>
                         <td style="text-align: center;">3</td>
                         <td>Build your Data Model</td>
-                        <td>@SpaceClass
+                        <td><code class="language-java">@SpaceClass
 public class Person {
     private Integer id;
     private String name;
@@ -80,7 +82,8 @@ public class Person {
     public int getAge(){ return age; }
 
     .......
-}</td>
+}</code>
+                        </td>
                         <td><a href="../dev-java/modeling-your-data.html">Modeling Your Data</a>
                         </td>
                     </tr>
@@ -100,7 +103,9 @@ public class Person {
                         <td>Add Colocated Logic to your Space</td>
                         <td>
                             <p>&#160;</p>
-                            <p>In your installation folder you will find examples of event processing: &lt;GS_HOME&gt;\examples\data-app\event-processing</p>
+                            <p>In your installation folder you will find examples of event processing: </p>
+                            <p><code class="language-bash">&lt;GS_HOME&gt;\examples\data-app\event-processing</code>
+                            </p>
                             <p>&#160;</p>
                             <p><a href="../dev-java/polling-container-overview.html">Polling Container Overview</a>
                             </p>
@@ -118,7 +123,9 @@ public class Person {
                         <td style="text-align: center;">7</td>
                         <td>Change your Data Efficiently</td>
                         <td>
-                            <p>example: // change api gigaSpace.change(sqlQuery, new ChangeSet().increment("price", new BigDecimal(5)));</p>
+                            <p>example: </p>
+                            <p><code class="language-java">// change api gigaSpace.change(sqlQuery, new ChangeSet().increment("price", new BigDecimal(5)));</code>
+                            </p>
                             <p><a href="../dev-java/change-api-overview.html">Change API&#160;Overview</a>
                             </p>
                         </td>
@@ -144,7 +151,8 @@ public class Person {
                         <td>
                             <p><a href="../dev-java/persistency-for-a-database.html">Persistency for a Database</a>
                             </p>
-                            <p>stateful-with-db BluePrint</p>
+                            <p><code class="language-java">stateful-with-db BluePrint</code>
+                            </p>
                         </td>
                         <td>&#160;</td>
                     </tr>
@@ -161,7 +169,7 @@ public class Person {
                         <td style="text-align: center;">12</td>
                         <td>
                             <p>Deploy your Services in&#160;Service&#160;Grid</p>
-                            <p><MadCap:variable name="General.ProductXAP" style="color: #008000;" /><span style="color: #ff0000;"> only</span>
+                            <p><MadCap:variable name="General.ProductXAP" style="color: #8a2be2;" /><span style="color: #008000;"> <span style="color: #8a2be2;">only</span></span>
                             </p>
                         </td>
                         <td><a href="../dev-java/deploying-onto-the-service-grid.html#processing-unit-deployment-using-various-deployment-tools">Deploying onto the Service Grid</a>
@@ -179,8 +187,7 @@ public class Person {
                         </td>
                         <td>
                             <p><a href="../admin/kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Customer Processing Unit</a>
-                            </p>
-                            <p>helm install custom-pu gigaspaces/xap-pu --version 16.5.0 --set instances=0,partitions=1,resourceUrl=pu.jar,image.repository=my-space,image.tag=latest</p>
+                            </p><code class="language-java">helm install custom-pu gigaspaces/xap-pu --version 16.5.0 --set instances=0,partitions=1,resourceUrl=pu.jar,image.repository=my-space,image.tag=latest</code>
                         </td>
                         <td>
                             <ul>
@@ -188,7 +195,7 @@ public class Person {
                                     <p style="font-size: 12pt;"><a href="https://docs.google.com/presentation/d/1bude3rRSi0MENkNaoY-umYhqz-GcuyE9o3_ufQ4m_PY/edit#slide=id.g1ce16c224a6_3_0">Explanation of Stateless and Stateful</a>. Out of the box <MadCap:variable name="General.ProductXAPSkyline" /> is stateless so there is no need to create new stateless custom PUs as they have no added value. &#160;However, when migrating from <MadCap:variable name="General.ProductXAP" /> to <MadCap:variable name="General.ProductXAPSkyline" /> there will already be stateless PUs defined and theses can be deployed and do not need to be recreated.</p>
                                 </li>
                                 <li>
-                                    <p style="font-size: 12pt;"><a href="https://github.com/GigaSpaces-ProfessionalServices/dih-k8s-training-labs/tree/main/lab-service-dev-solution">Creating Client Services in Kubernetes</a> (see the README)
+                                    <p style="font-size: 12pt;"><a href="https://github.com/GigaSpaces-ProfessionalServices/dih-k8s-training-labs/tree/main/lab-service-dev-solution">Creating Client Services in Kubernetes</a> (refer to the README)
                             </p>
                                 </li>
                             </ul>
@@ -216,7 +223,7 @@ public class Person {
                 </li>
             </ul>
             <h2>Examples</h2>
-            <p>Integration examples such as Spring data, how to use Grafana, monitoring with Kubernetes, installing on OpenShift, deep learning, and more can be found on our<a href="https://github.com/Gigaspaces/solution-hub">Git Solution Hub</a>. You can also find a best practice section with examples for WAN gateway replication, Data modeling patterns, Custom aggregation examples, and much more.</p>
+            <p>Integration examples such as Spring data, how to use Grafana, monitoring with Kubernetes, installing on OpenShift, deep learning, and more can be found in our <a href="https://github.com/Gigaspaces/solution-hub">Git Solution Hub</a>. You can also find a best practice section with examples for WAN gateway replication, Data modeling patterns, Custom aggregation examples, and much more.</p>
             <p>&#160;</p>
         </div>
         <div class="tc-admon-note">
