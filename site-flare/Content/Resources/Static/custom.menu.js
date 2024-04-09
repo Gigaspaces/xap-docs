@@ -2,8 +2,8 @@
 	
 
 
-  '16.5': { 'url': '/16.5/landing.html', 'label': '16.5', 'hide': true }, // current
-  'latest': { 'url': '/latest/landing.html', 'label': '16.5' },	// also current
+  '17.0': { 'url': '/17.0/landing.html', 'label': '17.0', 'hide': true }, // current
+  'latest': { 'url': '/latest/landing.html', 'label': '17.0' },	// also current
 
   '16.4': { 'url': '/16.4/landing.html', 'label': '16.4', 'topicBanner': 'old' }, 	
   '16.3': { 'url': '/16.3/landing.html', 'label': '16.3',  'topicBanner': 'old' },

@@ -18,56 +18,97 @@
             <table>
                 <col style="width: 238px;" />
                 <col style="width: 737px;" />
+                <col style="width: 737px;" />
                 <col style="width: 329px;" />
                 <thead>
                     <tr>
                         <th align="left">API</th>
                         <th align="left">Description</th>
+                        <th style="text-align: left;">Best Practice</th>
                         <th align="left">Reference</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr MadCap:conditions="">
                         <td align="left">Change API</td>
-                        <td align="left">When client applications want to change the Space data, there is no need to bring the data into the client and trigger an update. Instead, the client application describes what it wants to change for which objects (supplying SQLQuery), and the operation is performed in the JVM which holds that data. There are default change possibilities such as ‘increment’ or ‘set value’ of a property. There is also customized change code that describes how the change should be done. Custom code supports versioning so the code itself can be changed in runtime.
-
-</td>
+                        <td align="left">
+                            <p align="left">When client applications want to change the Space data, there is no need to bring the data into the client and trigger an update. Instead, the client application describes what it wants to change for which objects (supplying SQLQuery), and the operation is performed in the JVM which holds that data. There are default change possibilities such as ‘increment’ or ‘set value’ of a property. There is also customized change code that describes how the change should be done. Custom code supports versioning so the code itself can be changed in runtime.
+</p>
+                            <p align="left">&#160;</p>
+                            <p align="left"><span style="background-color: #b0e0e6;">When client apps need to update Space data, they don't have to fetch the data and then update it. Instead, they specify what changes they want to make and for which objects using SQLQuery. These changes are then carried out within the JVM that stores the data. There are standard ways to make changes, like increasing a value 'increment' or setting a new one 'set value' or a property. You can also write custom code to define specific changes. This custom code can be updated while the program is running as it supports versioning.
+</span>
+                            </p>
+                        </td>
+                        <td><span style="background-color: #ffff00;">Eti: It is not always clear which method should be used for which use cases. I would recommend adding a "consider using when" columns. This is what I call "practices"</span>
+                        </td>
                         <td align="left"><a href="../dev-java/change-api-overview.html">Change API&#160;Overview</a>
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
                         <td align="left">Remote Services</td>
-                        <td align="left">Trigger from the client a predefined service that runs embedded within the data.</td>
+                        <td align="left">
+                            <p align="left">Trigger from the client a predefined service that runs embedded within the data.</p>
+                            <p align="left"><span style="background-color: #b0e0e6;">Initiate a predefined service from the client side that operates within the stored data.</span>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
                         <td align="left"><a href="../dev-java/space-based-remoting-overview.html">Space Based Remoting Overview</a>
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
                         <td align="left">Task / Distributed Task</td>
-                        <td align="left">Send dynamic code from the client to be performed embedded within the data, support reduce in client side. This means that information is gathered from all partitions and some action is performed on it from the client side. For example, if you have a sum to perform, you perform it in each partition and then return the results to the client.  The client retrieves the sum from each place and concatenates all the sums to return the final sum result. Parallel different versions of the code are supported.
-
-</td>
+                        <td align="left">
+                            <p align="left">Send dynamic code from the client to be performed embedded within the data, support reduce in client side. This means that information is gathered from all partitions and some action is performed on it from the client side. For example, if you have a sum to perform, you perform it in each partition and then return the results to the client.  The client retrieves the sum from each place and concatenates all the sums to return the final sum result. Parallel different versions of the code are supported.
+</p>
+                            <p align="left">&#160;</p>
+                            <p align="left"><span style="background-color: #b0e0e6;">Allow the client to send dynamic code on-the-fly to run within the stored data. MapReduce is supported on the client side. Essentially, it means gathering information from all sections of the data and performing an action on it from the client's side. For instance, if there's a sum to be calculated, the sum is calculated in each section and then the results are sent back to the client. The client then collects these sums and combines them to get the final result. Different versions of the code can run in parallel.
+</span>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
                         <td align="left"><a href="../dev-java/task-execution-overview.html">Task Execution Overview</a>
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
-                        <td align="left">Aggregations</td>
-                        <td align="left">An API that allows the client to ask for data aggregation where the request is automatically sent to each data node that performs the aggregation and the results are sent to the client. At the client, the results from all nodes are reduced to the required answer. Includes support for default common aggregations as sum, average, min, max etc, and in addition allow custom aggregation to be written. Support for parallel code version and changing code with no downtime.
-
-</td>
+                        <td align="left">
+                            <p align="left">Aggregations</p>
+                            <p align="left" style="background-color: #ffff00;">Eti:&#160;What is the difference between this and Task/Distributed Tasks?</p>
+                        </td>
+                        <td align="left">
+                            <p align="left">An API that allows the client to ask for data aggregation where the request is automatically sent to each data node that performs the aggregation and the results are sent to the client. At the client, the results from all nodes are reduced to the required answer. Includes support for default common aggregations as sum, average, min, max etc, and in addition allow custom aggregation to be written. Support for parallel code version and changing code with no downtime.
+</p>
+                            <p align="left">&#160;</p>
+                            <p align="left"><span style="background-color: #b0e0e6;">An API which allows the client to ask for data aggregation. The request is automatically sent to each data node that performs the aggregation and the results are sent to the client. The client then retrieves the results from all nodes and reduces them to provide the required answer. This API can handle common types of combining data, like sum, average, min and max.  Plus, you can even write your own way of combining data if you want. It's flexible too, supporting different versions of code running at the same time and letting you change the code without causing any downtime.
+</span>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
                         <td align="left"><a href="../dev-java/aggregators.html">Aggregators</a>
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
                         <td align="left">Event Driven</td>
-                        <td align="left">Colocate event-driven API that supports running logic embedded with the data whenever there is a change in particular data.</td>
+                        <td align="left">
+                            <p align="left">Colocate event-driven API that supports running logic embedded with the data whenever there is a change in particular data.</p>
+                            <p align="left">&#160;</p>
+                            <p><span style="background-color: #b0e0e6;">This API lets you run logic embedded with your data whenever that data changes.</span>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
                         <td align="left"><a href="../dev-java/event-processing.html">Event Processing</a>
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
                         <td align="left">Business Logic Beans</td>
-                        <td align="left">Allows definition of custom beans that will run together with the data and allow triggering activity on data according to the instance's status as a primary or backup.
-
-</td>
+                        <td align="left">
+                            <p align="left">Allows definition of custom beans that will run together with the data and allow triggering activity on data according to the instance's status as a primary or backup.
+</p>
+                            <p align="left">&#160;</p>
+                            <p align="left"><span style="background-color: #b0e0e6;">Allows definition of custom Java beans that will run together with the data. These beans can then trigger actions on the data based on whether they're the main source (primary) or a backup.
+</span>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
                         <td align="left">
                             <p align="left"><a href="../dev-java/space-mode-context-loader.html">Space Mode Context Loader</a>
                             </p>
@@ -76,16 +117,28 @@
                     </tr>
                     <tr MadCap:conditions="">
                         <td align="left">JDBC&#160;V3 API</td>
-                        <td align="left">Supports ANSI SQL which is implemented in a way that filters required data in each partition and supplies to the client only the required data to be reduced on the client side.
-</td>
+                        <td align="left">
+                            <p align="left">Supports ANSI SQL which is implemented in a way that filters required data in each partition and supplies to the client only the required data to be reduced on the client side.
+</p>
+                            <p align="left">&#160;</p>
+                            <p><span style="background-color: #b0e0e6;">Supports ANSI SQL which is implemented in a way that filters required data in each partition. Then, only the required data is supplied to the client for further reducing on the client side.</span>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
                         <td align="left"><a href="../dev-java/sql-supported-syntax.html">SQL&#160;Supported Syntax</a>
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
                         <td align="left">Local View / Local Cache</td>
-                        <td align="left">When a client requires some data near to it, it can define a local view that will replicate data to it according to defined filters so client code will run with local data. Local cache will cache data according to usage.
-
-</td>
+                        <td align="left">
+                            <p align="left">When a client requires some data near to it, it can define a local view that will replicate data to it according to defined filters so client code will run with local data. Local cache will cache data according to usage.
+</p>
+                            <p align="left">&#160;</p>
+                            <p align="left"><span style="background-color: #b0e0e6;">When a client needs nearby data, it can define a local view that replicates data based on specifically <span style="background-color: #ffff00;">pre</span>defined filters. This allows the client's code to run using local data. Additionally, a local cache will store data based on how often it is used.
+</span>
+                            </p>
+                        </td>
+                        <td>&#160;</td>
                         <td align="left">
                             <p align="left"><a href="../dev-java/local-view.html">Local View</a>
                             </p>
