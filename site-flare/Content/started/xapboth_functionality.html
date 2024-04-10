@@ -15,7 +15,7 @@
         <p><MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /> are both a highly customizable developer platforms. Both support the building of scalable H/A with high throughput and ultra-low latency Java applications. Also included is an in-memory data grid framework that allow fast and flexible development of event-driven workflows, transactional data processing, and micro-services. </p>
         <p> For <MadCap:variable name="General.ProductXAP" /> these run on Service Grid architecture. </p>
         <p>For <MadCap:variable name="General.ProductXAPSkyline" /> these run on Kubernetes clusters. </p>
-        <p>The table below explains the main functionality of <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" />.</p>
+        <p>The table below explains the main functionality of <MadCap:variable name="General.ProductXAP" style="color: #8a2be2;" /> and <MadCap:variable name="General.ProductXAPSkyline" style="color: #006400;" />.</p>
         <div title="XAP" style="padding:10px">
             <table>
                 <col style="width: 358px;" />
@@ -23,7 +23,7 @@
                 <col style="width: 399px;" />
                 <thead>
                     <tr>
-                        <th align="left">Functionality or Value</th>
+                        <th align="left">Functionality </th>
                         <th align="left">Description</th>
                         <th align="left">Reference</th>
                     </tr>
@@ -31,11 +31,10 @@
                 <tbody>
                     <tr MadCap:conditions="">
                         <td align="left">
-                            <p align="left">High Throughput / Low Latency </p>
-                            <p align="left" style="background-color: #ffff00;">Eti: This is not a functionality but a value that is derived from a functionality. Either this column becomes a "value" column or it stays "functionality", but it needs to be consistent throughout</p>
+                            <p align="left">Colocated Code</p>
                         </td>
                         <td align="left">
-                            <p> There are a variety of options which are offered to make sure code is sent to the data process instead of paying communication overheads for bringing the data to the client. Micro-services send code to the JVM which holds the data. After the data is processed the required results are returned to the client micro-service. A predefined code can be triggered from a client that either runs with the data or dynamically creates new code and sends it to the data process. </p>
+                            <p> This will help in achieving low latency and high throughput. There are a variety of options which are offered to make sure code is sent to the data process instead of paying communication overheads for bringing the data to the client. Micro-services send code to the JVM which holds the data. After the data is processed the required results are returned to the client micro-service. A predefined code can be triggered from a client that either runs with the data or dynamically creates new code and sends it to the data process. </p>
                         </td>
                         <td align="left"><a href="../new-content/XAP-Colocated-code.html">Colocated Code</a>
                         </td>
@@ -43,7 +42,7 @@
                     <tr MadCap:conditions="">
                         <td align="left">Event Driven / Workflows</td>
                         <td align="left">
-                            <p>There are various options to build applications workflows using either polling or notification strategies. Collocated with data or remote, support for FIFO &amp; FIFO grouping<span style="background-color: #ffff00;"> includes transactional support and guaranteed and only once options.</span></p>
+                            <p>There are various options to build applications workflows using either polling or notification strategies. Colocated with data or remote, support for FIFO &amp; FIFO grouping includes transactional support and guaranteed and once only options</p>
                         </td>
                         <td align="left">
                             <p><a href="../dev-java/event-processing.html">Event Processing</a>
@@ -86,8 +85,8 @@
                     <tr MadCap:conditions="">
                         <td align="left">Scalability</td>
                         <td align="left">
-                            <p><MadCap:variable name="General.ProductXAP" /> - Support for horizontal scaling.</p>
-                            <p><MadCap:variable name="General.ProductXAPSkyline" /> - Support for vertical and horizontal scaling.</p>
+                            <p><MadCap:variable name="General.ProductXAP" style="color: #8a2be2;" /> - Support for horizontal scaling.</p>
+                            <p><MadCap:variable name="General.ProductXAPSkyline" style="color: #228b22;" /> - Support for vertical and horizontal scaling.</p>
                         </td>
                         <td align="left"><a href="../production/production-Rescaling-your-application-in-GigaSpaces.html">Rescaling your Application</a>
                         </td>
@@ -96,7 +95,8 @@
                         <td align="left">Persistency</td>
                         <td align="left">
                             <p>Support for loading data from a persistence layer and also replicating the in-memory data into a persistence layer.</p>
-                            <p style="background-color: #ffff00;">Eti: Should be other way around. You persist the data from the IMDG and then you can upload from the persistent replica.</p>
+                            <p>&#160;</p>
+                            <p>Everything that is written into the Space can be persisted to a target. There is also the possibility to load everything from the beginning from a source (this can be a database but not necessarily).</p>
                         </td>
                         <td align="left">
                             <p><a href="../dev-java/space-data-source-api.html">Space Data Source API</a>
@@ -108,18 +108,22 @@
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
-                        <td align="left">High Availability (H/A)</td>
+                        <td align="left">High Availability (H/A) Inside the Cluster (Primary Backup)</td>
                         <td align="left">
-                            <p align="left">High availability is achieved with synchronized replication between a primary partition and its backup that runs in another availability zone and with the entire cluster replication for geo-redundancy and disaster recovery.
-</p>
-                            <p align="left"><span style="background-color: #ffff00;">Eti:&#160;This is not always the case. It actually should not be the case when low latency is required, as it would slow things down. We should also not confuse HA (primary / backup of partitions), redundancy / disaster recovery (the latter being about replication of entire clusters). These should be two separate rows.</span>
-                            </p>
+                            <p align="left">High availability is achieved with synchronized replication between a primary partition and its backup that runs in another availability zone.</p>
                         </td>
                         <td align="left">
                             <p><a href="../admin/synchronous-replication.html">Synchronous Replication</a>
                             </p>
-                            <p><a href="../dev-java/multi-space-replication-overview.html">Multi-Site Replication Overview</a>
-                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">High Availability (H/A) Disaster Recover (DR)</td>
+                        <td align="left">
+                            <p align="left">High availability is achieved with asynchronous replication between entire cluster  for geo-redundancy and disaster recovery.
+</p>
+                        </td>
+                        <td align="left"><a href="../dev-java/multi-space-replication-overview.html">Multi-Site Replication Overview</a>
                         </td>
                     </tr>
                     <tr MadCap:conditions="">
