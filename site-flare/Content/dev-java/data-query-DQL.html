@@ -22,7 +22,7 @@
                 <p>Have an understanding of the service will be asking the query against and determine if more conditions should be added per table.</p>
             </li>
             <li>
-                <p>Use a prepared statement instead of hard-coded parameters in order to cache analyze plan</p>
+                <p>Preparing an execution plan takes time. By using a prepared statement instead of hard-coded parameters we can resuse the same plan as it is kept in the cache.</p>
             </li>
             <li>
                 <p>Use Explain Analyze for debugging/troubleshooting  to understand the execution flow and expected time-line. This will also help to improve your query.</p>
@@ -31,13 +31,13 @@
                 <p>Make sure each table's conditions are included in the select query that goes with it. This way, each table will have its conditions stated clearly, helping to get only the necessary records.</p>
             </li>
             <li>
-                <p>Choose indexes per each table according to condition</p>
+                <p>Avoid a full scan of tables by adding indexes which allow faster access. Choose indexes per each table according to condition.</p>
             </li>
             <li>
                 <p>When conditions are related to 2 tables as t1.f1 &gt; t2.f3 add the condition to the join: ON ti.f1=t2.f2 and t1.f1 &gt; t2.f3</p>
             </li>
             <li>
-                <p>Consider using broadcast tables for small tables. Also, use colocated filters and collocated joins where suitable. A colocated join will copy the smaller table in join to all partitions - consider if the small table of the join is indeed small. In the future, routing properties will also be used to optimize joins.</p>
+                <p>Consider using broadcast tables for small tables. Also, use colocated filters and collocated joins where suitable. To allow colocated joins with small tables, link to the broadcast table subject. A colocated join will copy the smaller table in join to all partitions - consider if the small table of the join is indeed small. In the future, routing properties will also be used to optimize joins.</p>
             </li>
             <li>
                 <p>When joining two large table using a condition that will reduce a lot of rows from one of the tables, perform  the filtering first, and add an in query as a condition to the second table. </p>
