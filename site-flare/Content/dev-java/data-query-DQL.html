@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Data Query (DQL) </h1>
+        <h2>Tips for Writing a Data Query using <MadCap:variable name="General.CompanyName" /> API</h2>
+        <ul>
+            <li>
+                <p>Have an understanding of the service will be asking the query against and determine if more conditions should be added per table.</p>
+            </li>
+            <li>
+                <p>Use a prepared statement instead of hard-coded parameters in order to cache analyze plan</p>
+            </li>
+            <li>
+                <p>Use Explain Analyze for debugging/troubleshooting  to understand the execution flow and expected time-line. This will also help to improve your query.</p>
+            </li>
+            <li>
+                <p>Make sure each table's conditions are included in the select query that goes with it. This way, each table will have its conditions stated clearly, helping to get only the necessary records.</p>
+            </li>
+            <li>
+                <p>Choose indexes per each table according to condition</p>
+            </li>
+            <li>
+                <p>When conditions are related to 2 tables as t1.f1 &gt; t2.f3 add the condition to the join: ON ti.f1=t2.f2 and t1.f1 &gt; t2.f3</p>
+            </li>
+            <li>
+                <p>Consider using broadcast tables for small tables. Also, use colocated filters and collocated joins where suitable. A colocated join will copy the smaller table in join to all partitions - consider if the small table of the join is indeed small. In the future, routing properties will also be used to optimize joins.</p>
+            </li>
+            <li>
+                <p>When joining two large table using a condition that will reduce a lot of rows from one of the tables, perform  the filtering first, and add an in query as a condition to the second table. </p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p>The following table shows how to enhance basic database queries using a <MadCap:variable name="General.CompanyName" /> query:</p>
+        <table style="width: 1446px;" class="tc-standard">
+            <col style="width: 520px;" />
+            <col style="width: 924px;" />
+            <thead>
+                <tr>
+                    <th>Database Query</th>
+                    <th style="text-align: left;"><MadCap:variable name="General.CompanyName" /> Query</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><code class="language-sql">Select t1.f1, t1,f2, t2.f3,t2.f4,t2.f5
+
+</code>
+                        </p>
+                        <p><code class="language-sql">from table1 t1
+
+</code>
+                        </p>
+                        <p><code class="language-sql">Join table2 t2
+
+</code>
+                        </p>
+                        <p><code class="language-sql">On t1.f1=t2.f1 
+
+</code>
+                        </p>
+                        <p><code class="language-sql">Where t1.f2=X and t2.f3&lt;Y</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p><code class="language-sql">Select t1.f1, t1,f2, t2.f3,t2.f4 ,t2.f5
+
+</code><code class="language-sql">From (Select f1, f2  from table1 where f2=?) AS  t1
+</code>
+                        </p>
+                        <p><code class="language-sql">Join (Select f1,f2,f3  from table2 where f3&lt;?) t2
+</code>
+                        </p>
+                        <p><code class="language-sql">On t1.f1=t2.f1</code>
+                        </p>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>In the case where the tables are large and condition placed upon table 1 cut out most of the rows</p>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                    </td>
+                    <td>
+                        <ol>
+                            <li>
+                                <p style="font-size: 12pt;"><code class="language-sql">Select f1 from t1 where f2=? -&gt; list of f1
+
+</code>
+                                </p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;"><code class="language-sql">Select t1.f1, t1,f2, t2.f3,t2.f4 ,t2.f5
+</code>
+                                </p>
+                            </li>
+                        </ol>
+                        <p><code class="language-sql">
+From (Select f1, f2  from table1 where f2=?) AS  t1
+
+</code>
+                        </p>
+                        <p><code class="language-sql">Join (Select f1,f2,f3  from table2 where f1 in (list of f1) and f3&lt;?) t2
+
+</code>
+                        </p>
+                        <p><code class="language-sql">On t1.f1=t2.f1</code>
+                        </p>
+                        <div class="tc-admon-note">
+                            <p>The 'in' query should be replaced with a constant number of ? which is the max number expected. It should also be set with values from query 1 and a placeholder such as (1,2,3,0,0,0)</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
