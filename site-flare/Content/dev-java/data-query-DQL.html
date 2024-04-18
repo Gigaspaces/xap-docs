@@ -39,7 +39,7 @@
                 <p>When conditions are related to 2 tables as t1.f1 &gt; t2.f3 add the condition to the join: ON ti.f1=t2.f2 and t1.f1 &gt; t2.f3</p>
             </li>
             <li>
-                <p>Consider using broadcast tables for small tables. Also, use colocated filters and collocated joins where suitable. To allow colocated joins with small tables, link to the broadcast table subject. A colocated join will copy the smaller table in join to all partitions - consider if the small table of the join is indeed small. In the future, routing properties will also be used to optimize joins.</p>
+                <p>Consider using broadcast tables for small tables. Also, use colocated filters and colocated joins where suitable. To allow colocated joins with <a href="broadcast-objects.html">small tables</a>. A colocated join will copy the smaller table in join to all partitions - consider if the small table of the join is indeed small. In the future, routing properties will also be used to optimize joins.</p>
             </li>
             <li>
                 <p>Imagine you have large amount of data that is split into several smaller amounts, called partitions. Now, let's say you want to combine information from two different tables, but both of these tables are also big and split into partitions.</p>
