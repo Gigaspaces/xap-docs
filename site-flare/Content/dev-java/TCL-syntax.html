@@ -16,22 +16,27 @@
             </p>
         </div>
         <div>
-            <h1 class="tc-pagetitle">Transactions Control (TCL) Syntax</h1>
+            <h1 class="tc-pagetitle">Transactions Control Language (TCL) Syntax</h1>
+            <p>Transactions group a set of tasks into a single execution unit. Each transaction begins with a specific task and ends when all the tasks in the group are successfully completed. If any of the tasks fail, the transaction fails. Therefore, a transaction has only two results: success or failure. You can explore more about transactions</p>
             <div class="tc-admon-attention">
                 <p>This is supported by JDBC&#160;V3</p>
             </div>
             <div MadCap:conditions="Version.16-2-born">
-                <h2><a name="Transact"></a>Transaction Control (TCL&#160;Syntax)</h2>
+                <h2><a name="Transact"></a>Transaction Control Language (TCL&#160;Syntax)</h2>
                 <p>BEGIN/START and END/COMMIT are available to define the beginning and end of a Logical Unit of Work as a transaction. ROLLBACK can also be used to undo a transaction.</p>
                 <p>Example 1:</p>
                 <table>
                     <tbody>
                         <tr>
+                            <td style="background-color: #dcdcdc;">Syntax</td>
+                            <td style="background-color: #dcdcdc;">Explanation</td>
+                        </tr>
+                        <tr>
                             <td>
                                 <p>BEGIN (or START); </p>
                             </td>
                             <td>
-                                <p>Begin transaction</p>
+                                <p>Opens a  Transaction</p>
                             </td>
                         </tr>
                         <tr>
@@ -84,6 +89,10 @@
                 <table>
                     <tbody>
                         <tr>
+                            <td style="background-color: #dcdcdc;">Syntax</td>
+                            <td style="background-color: #dcdcdc;">Explanation</td>
+                        </tr>
+                        <tr>
                             <td>
                                 <p>BEGIN (or START); </p>
                             </td>
@@ -114,7 +123,7 @@
                                 <p>  ROLLBACK;   </p>
                             </td>
                             <td>
-                                <p>End transaction with rollback </p>
+                                <p>Rollbacks a transaction in case of any error occurs.</p>
                             </td>
                         </tr>
                         <tr>

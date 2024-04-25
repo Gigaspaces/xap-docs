@@ -15,8 +15,8 @@
             <p><a>Smart DIH</a>
             </p>
         </div>
-        <h1 class="tc-pagetitle">Data Query (DQL) </h1>
-        <h2>Tips for Writing a Data Query using <MadCap:variable name="General.CompanyName" /> API</h2>
+        <h1 class="tc-pagetitle">Data Query Language (DQL) -&#160;Guidelines</h1>
+        <h2>Guidelines for Structuring a Data Query using the <MadCap:variable name="General.CompanyName" /> SQL&#160;Engine</h2>
         <p>The purpose of these tips is to enable fetching from each partition a minimal number of objects and filtering out what we can at the partition level.</p>
         <p>If one of two table being joined is very small, instead of distributing it between partitions, we can have a copy of it in each partition enabling us to cut the data that is brought in from the larger table.</p>
         <ul>
@@ -24,7 +24,7 @@
                 <p>Have an understanding of the service will be asking the query against and determine if more conditions should be added per table.</p>
             </li>
             <li>
-                <p>Preparing an execution plan takes time. By using a prepared statement instead of hard-coded parameters we can resuse the same plan as it is kept in the cache.</p>
+                <p>Preparing an execution plan takes time. By using a prepared statement instead of hard-coded parameters we can reuse the same plan as it is kept in the cache.</p>
             </li>
             <li>
                 <p>Use Explain Analyze for debugging/troubleshooting  to understand the execution flow and expected time-line. This will also help to improve your query.</p>

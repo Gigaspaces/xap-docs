@@ -16,24 +16,24 @@
             </p>
         </div>
         <div>
-            <h1 class="tc-pagetitle">Data Manipulation (DML) Syntax</h1>
+            <h1 class="tc-pagetitle">Data Manipulation Language (DML) Syntax</h1>
+            <p>The SQL commands that deal with the manipulation of data present in the database belong to DML or Data Manipulation Language and this includes most of the SQL statements. It is the component of the SQL statement that controls access to data and to the database. Basically, Data Control&#160;Language (DCL) statements are grouped with DML statements</p>
             <div class="tc-admon-attention">
                 <p>This is supported by JDBC&#160;V3</p>
             </div>
             <h2><a name="Data"></a>Data Manipulation Syntax</h2>
             <p><b>Insert:</b>
-            </p><pre>{ INSERT } INTO tablePrimary
+            </p>
+            <p>This is used to insert data into a table.</p><pre>{ INSERT } INTO tablePrimary
 [ '(' column [, column ]* ')' ]
 [ VALUES '(' column [, column ]* ')' ]           </pre>
             <p>&#160;</p>
             <p><b>Update:</b>
-            </p>&gt;
-            <pre>UPDATE tablePrimary
+            </p>
+            <p>This is used to update existing data within a table.</p>            <pre>UPDATE tablePrimary
 SET assign [, assign ]*
-[ WHERE booleanExpression ]			</pre><p>&#160;</p><p><b>Delete:</b></p>&gt;
-            <pre>DELETE FROM tablePrimary [ [ AS ] alias ]
-[ WHERE booleanExpression ]</pre><p>&#160;</p><p><b>Explain:</b></p>&gt;
-            <pre>EXPLAIN PLAN
+[ WHERE booleanExpression ]			</pre><p>&#160;</p><p><b>Delete:</b></p><p>This is used to delete records from a database table.</p>            <pre>DELETE FROM tablePrimary [ [ AS ] alias ]
+[ WHERE booleanExpression ]</pre><p>&#160;</p><p><b>Explain:</b></p><p>Explain plan describes the access path to the data.</p>            <pre>EXPLAIN PLAN
    FOR { query }
 EXPLAIN ANALYZE
    FOR { query }</pre><p>&#160;</p></div>

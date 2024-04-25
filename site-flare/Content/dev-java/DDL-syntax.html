@@ -15,10 +15,13 @@
             <p><a>Smart DIH</a>
             </p>
         </div>
-        <h1 class="tc-pagetitle">Data Definition (DDL) Syntax</h1>
+        <h1 class="tc-pagetitle">Data Definition Language (DDL) Syntax</h1>
+        <p>DDL is a subset of SQL and a part of the Database Management System (DBMS). These commands are used to create of modify the tables in SQL. </p>
+        <p><MadCap:variable name="General.CompanyName" /> supports the commands of Create and Drop.</p>
         <h2><a name="Data2"></a>Data Definition Operations</h2>
         <p><b>Create Table:</b>
-        </p><pre class="p_1" xml:space="preserve">CREATE TABLE table_name {( [
+        </p>
+        <p>This command is used to create a new table in SQL. The user has to give information like table name, column names, and their datatypes.</p><pre class="p_1" xml:space="preserve">CREATE TABLE table_name {( [
         { column_name data_type [ column_constraint [ ... ] ]
         | table_constraint }
         [PRIMARY KEY (column)]
@@ -34,7 +37,8 @@
         <p>
         </p>
         <p><b>DropTable:</b>
-        </p><pre>DROP TABLE [ IF EXISTS ] name</pre>
+        </p>
+        <p>This command is used to remove an existing table along with its structure from the Database.</p><pre>DROP TABLE [ IF EXISTS ] name</pre>
         <p>&#160;</p>
         <p><b> Describe:</b>
         </p><pre>DESCRIBE DATABASE databaseName
