@@ -155,7 +155,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
         <p>For example, if you have an object with a property named message of type <code>String</code> that is set to <code>null</code> and you write it to the Space, then write a <code>SQLQuery</code> with the where clause is:
 <code>"message &lt;&gt; 'abcd'"</code>.</p>
         <p>You might expect that the object with <code>message = null</code> will be returned in the query. However it doesn't, as the comparison looks at only non-null values. To get the objects that are also null for message, use the following:
-<code>"message &lt;&gt; 'abcd' or message = null"</code> to include objects whose message property is set to null.</p>
+<code>"message &lt;&gt; 'abcd' or message is null"</code> to include objects whose message property is set to null.</p>
         <h1><a name="indexing"></a>Indexing</h1>
         <p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE, or IS NULL statements. For more information, see <a href="indexing-overview.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
         <h1><a name="parameterized-queries"></a>Parameterized Queries</h1>
