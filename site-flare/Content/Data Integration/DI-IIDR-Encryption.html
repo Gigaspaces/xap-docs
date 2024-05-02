@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">Data Integration (DI) IIDR&#160;Encryption</h1>
+            <h1>Overview</h1>
+            <p>This page describes how to configure IIDR components (Access Server and Agents) for TCP/IP encryption.</p>
+            <p>This can be enabled between:</p>
+            <ul>
+                <li>
+                    <p> Access Server and Agents</p>
+                </li>
+                <li>
+                    <p>Agents and Data Stores</p>
+                </li>
+            </ul>
+            <h1>Certificates</h1>
+            <p>To enable TLS both Server and Client certificates need to be obtained.</p>
+            <p>Alternatively, you can create your own self-signed certificate (<a href="#SelfSigned">see below</a>)</p>
+            <p>IIDR uses Java KeyStore format. Any certificate format can be converted to Jave KeyStore by using the keytool that is provided with the JDK.</p>
+            <p>Example:</p>
+            <p>PFX to JKS:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR1.png" />
+            </p>
+            <p>CER to JKS:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR2.png" />
+            </p>
+            <p>Ultimately, you should have 2 Java KeyStores:</p>
+            <ol>
+                <li>
+                    <p>A server certificate, for example: privatekey.jks</p>
+                </li>
+                <li>
+                    <p>A client certificate, for example: trust.jks</p>
+                </li>
+            </ol>
+            <h1>Configuring TLS for Access Server and CHCCLP (CLI&#160;Client)</h1>
+            <p>The Access Server uses the same port for both encrypted and unencrypted communication. The clients use STARTTLS  over an unencrypted connection to beging using TLS encryption. The first few bytes that are sent in each direction are not encrypted. These bytes do not include any customer data.</p>
+            <p>Older clients do not send STARTTLS and the connection is not encrypted. Newer clients cannot disable encryption and always send STARTTLS when encryption is enabled in the Access Server.</p>
+            <p>When the Access Server has TLS encryption enabled, the client must trust the Access Server's certificate. </p>
+            <p>If the client cannot validate Access Server's certificate, the connection will fail. To avoid downtime, it is best practice to keep a record of the expiration date of all certificates used so they can be replaced before they expire.</p>
+            <p>Edit the <code>tls.properties</code></p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR3.png" />
+            </p>
+            <p>It is recommended to limit access to <code>tls.properties</code> for admin user only:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR4.png" />
+            </p>
+            <p><code>tls.properties</code>:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR5.png" />
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>
+                    <p><b>trustStorePath</b> - The path to the trust store that contains trusted root certificates. Backslashes must be escaped with an extra backslash.</p>
+                </li>
+                <li>
+                    <p><b>trustStorePassword</b> - The password that is required to unlock the trust store</p>
+                </li>
+                <li>
+                    <p><b>trustStoreType</b> - The type of trust store: JKS or PKCS12</p>
+                </li>
+                <li>
+                    <p><b>privateKeyStorePath</b> - The path to the private key store that contains the private key and public certificate chain. Backslashes must be escaped with an extra backslash.</p>
+                </li>
+                <li>
+                    <p><b>privateKeyStorePassword</b> - The password that is required to unlock the private key store</p>
+                </li>
+                <li>
+                    <p><b>privateKeyStoreType</b> - The type of trust store: JKS or PKCS12</p>
+                </li>
+                <li>
+                    <p><b>enableTLS</b> - Whether to enable TLS (true or false)</p>
+                </li>
+                <li>
+                    <p><b>datastoresAlwaysTLS</b> - Specify false to support datastores that negotiate encryption with STARTTLS. Specify true to support datastores that always use TLS.</p>
+                </li>
+                <li>
+                    <p><b>encodedStorePassword</b> (optional) - Whether the password is in base 64 encoded format (true or false).</p>
+                </li>
+            </ul>
+            <p>From version 11.4.0.4-11107 passwords can be stored  in base64.</p>
+            <p>To use base64 password, add the following:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR6.png" />
+            </p>
+            <p>To get base64 format you can perform:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR7.png" />
+            </p>
+            <h1>Configure TLS for Agents</h1>
+            <p>To enable TLS for agents, a new profile should be created which contains the appropriate configuration for your environment.</p>
+            <h2>Kafka agent example: </h2>
+            <div class="tc-admon-note">
+                <p>For DB Agent it’s a similar process, however, once you save the changes,  you will have to provide the password of DB user (cdc-user)</p>
+            </div>
+            <p>Launch the configuration tool:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR8.png" />
+            </p>
+            <p>MAIN MENU</p>
+            <p>---------</p>
+            <p>1. List Current Instances</p>
+            <p>2. Add an Instance</p>
+            <p>3. Edit an Instance</p>
+            <p>4. Delete an Instance</p>
+            <p><b>5. Manage encryption profiles</b>
+            </p>
+            <p>6. Exit</p>
+            <p>Enter your selection: 5</p>
+            <p>MANAGE ENCRYPTION PROFILES</p>
+            <p>--------------------------</p>
+            <p><b>1.</b> <b>Add encryption profile</b></p>
+            <p>2. Edit encryption profile</p>
+            <p>3. Delete encryption profile</p>
+            <p>4. Completed management of encryption profiles</p>
+            <p>Enter your selection:<b>1</b></p>
+            <p>Enter an encryption profile name: <b>TLS1.2</b></p>
+            <p>Engine-to-engine encryption enablement:</p>
+            <p><b>1.</b> <b>Enabled</b></p>
+            <p>2. Disabled</p>
+            <p>3. Required</p>
+            <p>4. Always</p>
+            <p>Select the engine-to-engine encryption enablement [Enabled]: <b>1</b></p>
+            <p>Enter the path to the private key store: <b>/data/gs_software/iidr/tls/privatekey.jks</b></p>
+            <p>Enter the password that was used to encrypt the private key store:</p>
+            <p>Private key store type:</p>
+            <p><b>1. JKS (Java)</b>
+            </p>
+            <p>2. JCEKS (Java Cryptography Extension)</p>
+            <p>3. PKCS12 (Public-Key Cryptography Standards)</p>
+            <p>Select the private key store type [JKS (Java)]: <b>1</b></p>
+            <p>Enter the path to the trust store [/data/gs_software/iidr/kafka/jre64/jre/lib/security/cacerts]: <b>/data/gs_software/iidr/tls/trust.jks</b></p>
+            <p>Enter the password that was used to encrypt the trust store:</p>
+            <p>Trust store type:</p>
+            <p><b>1</b>. <b>JKS (Java)</b></p>
+            <p>2. JCEKS (Java Cryptography Extension)</p>
+            <p>3. PKCS12 (Public-Key Cryptography Standards)</p>
+            <p>Select the trust store type [JKS (Java)]: <b>1</b></p>
+            <p>MANAGE ENCRYPTION PROFILES</p>
+            <p>--------------------------</p>
+            <p>1. Add encryption profile</p>
+            <p>2. Edit encryption profile</p>
+            <p>3. Delete encryption profile</p>
+            <p><b>4</b>. <b>Completed management of encryption profiles</b></p>
+            <p>Enter your selection:<b>4</b></p>
+            <p>&#160;</p>
+            <p>If not already done, create a new instance and select the encryption profile you generated during the previous steps.</p>
+            <p>If you already have an instance, then:</p>
+            <ol>
+                <li>
+                    <p>Stop the instance</p>
+                </li>
+                <li>
+                    <p>Run dmconfigurets tool, choose Edit an Instance</p>
+                </li>
+                <li>
+                    <p>Select the particular instance (i.e: KAFKA)</p>
+                </li>
+                <li>
+                    <p>Select [5] - Manage Encryption Profiles</p>
+                </li>
+                <li>
+                    <p>Select the encryption profile created in the previous step</p>
+                </li>
+                <li>
+                    <p>Select [7] - Save Changes and Return to the Main Menu</p>
+                </li>
+                <li>
+                    <p>For the case of a DB Agent you will be prompted for the DB password</p>
+                    <p style="font-size: 10pt;">Saving changes. Please wait...</p>
+                    <p style="font-size: 10pt;">Re-type database password:</p>
+                </li>
+                <li>
+                    <p>Return to the main menu and select Exit</p>
+                </li>
+            </ol>
+            <h2><a name="SelfSigned"></a>Creating a Private Keystore and a Trust Store with Self-Signed Certificates</h2>
+            <p>TLS encryption for the communication between a source and target can be enabled by using self-signed certificates.</p>
+            <p>In this case, there is no central certificate authority so each server must trust the other server's certificates. This procedure uses commands that ship with CDC Replication. You can also use third-party tools such as openssl. This procedure uses keytool, which is located under <code>installation_directory/jre32/jre/bin</code>.</p>
+            <p>Each server needs a private key and a self-signed certificate which can generated using the <code>keytool -genkeypair</code> command.</p>
+            <div class="tc-admon-note">
+                <p>The openssl command-line utility cannot create a PKCS12 trust store that is compatible with CDC Replication. Use keytool instead of openssl. Change the -storetype parameter to PKCS12 to create a PKCS12 trust store.</p>
+            </div>
+            <p>Example:</p>
+            <p>Hostname (CN) = ip-10-0-1-137.eu-west-1.compute.internal</p>
+            <p>IP: 10.0.1.137</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR9.png" />
+            </p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR10.png" />
+            </p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR11.png" />
+            </p>
+            <p>If you are using a combination of both self-signed certificates and certificates that are signed by a public certificate authority, then you need to trust the normal public certificate authorities in addition to the self-signed certificates. You can import the normal public certificate authorities into a new Truststore by using the <code>keytool -importkeystore</code> command. </p>
+            <p>For example:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR12.png" />
+            </p>
+            <h1>Configuring the TLS&#160;DI Subscription Manager</h1>
+            <p>Create a <code>tls.properties</code> file at <code>…/di-subscription-manager/latest-di-subscription-manager</code></p>
+            <p>Comment out the private key lines and use only the truststore lines:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR13.png" />
+            </p>
+            <p>Restart the di-subscription-manager and test it using Swagger.</p>
+            <h1>Testing the TLS&#160;Configuration</h1>
+            <p>You can test your tls configuration by running the Access Server and CHCCLP client.</p>
+            <p>Both the Access Server and CHCCLP  use the same <code>tls.properties</code> configuration file.</p>
+            <p>Run the Access Server:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR14.png" />
+            </p>
+            <p>Run the cli client:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR15.png" />
+            </p>
+            <p>Connect to the Access Server:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR16.png" />
+            </p>
+            <p>To confirm that the Access Server is running in TLS mode through the UI console, look for the yellow lock icon located at the bottom of the window:</p>
+            <p>.<img src="../Resources/Images/DI/DI_IIDR17.png" /></p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR18.png" />
+            </p>
+            <p>To verify that the Access Server is running in TLS mode through the UI console, look for the yellow lock icon located beside the Datastores on the left side.</p>
+            <h1>SSL Debugging and Troubleshooting</h1>
+            <p>To debug and troubleshoot SSL, add this java property for each Java process:</p>
+            <p>
+                <img src="../Resources/Images/DI/DI_IIDR19.png" />
+            </p>
+            <h1>References</h1>
+            <p><a href="https://www.ibm.com/docs/en/idr/11.4.0?topic=console-configuring-tls-encryption">https://www.ibm.com/docs/en/idr/11.4.0?topic=console-configuring-tls-encryption</a>
+            </p>
+            <p><a href="https://www.ibm.com/support/pages/use-obfuscated-tls-passwords-tlsproperties-file-management-console-access-server-and-chcclp">https://www.ibm.com/support/pages/use-obfuscated-tls-passwords-tlsproperties-file-management-console-access-server-and-chcclp</a>
+            </p>
+            <p><a href="https://www.ibm.com/support/pages/node/876488">https://www.ibm.com/support/pages/node/876488</a>
+            </p>
+            <p><a href="https://www.ibm.com/support/pages/node/792347?mhsrc=ibmsearch_a&amp;mhq=private%20key%20keystore">https://www.ibm.com/support/pages/node/792347?mhsrc=ibmsearch_a&amp;mhq=private%20key%20keystore</a>
+            </p>
+            <h1>&#160;</h1>
+            <p style="text-align: left;">Data Integration (DI) is the gateway for incoming data into the Data Integration Hub (DIH) system. The DI components are delivered as part of the <MadCap:variable name="General.CompanyName" /> DIH&#160;Package.</p>
+            <p style="text-align: left;">DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space.</p>
+            <h2 style="text-align: left;">DI&#160;Layer Overview</h2>
+            <p style="text-align: left;">The DI&#160;Module is illustrated as follows:</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/DILayer.png" style="width: 668px;height: 285px;" />
+            </p>
+            <h1>1. Apache Flink
+</h1>
+            <p><MadCap:variable name="General.CompanyName" /> uses Apache Flink as it is an open source framework and distributed processing engine for stateful computations over unbounded and bounded data streams. &#160;Flink is designed to run in all common cluster environments, performing computations at in-memory speed and at any scale. It is also a powerful and fast framework for stream processing. It also allows deployment of different types of applications at run-time. In addition, Flink supports streaming and batch mode, which is useful for periodic batch updates. One of the most common types of applications that are powered by Flink are Data Pipeline Applications, which is why we chose to use it in our Smart DIH solution.</p>
+            <p>Extract transform load (ETL) is a common approach used to convert and move data between storage systems. &#160;Often, ETL&#160;jobs are periodically triggered to copy data from transactional database systems to an analytical database or data warehouse. Data pipelines serve a similar purpose as ETL jobs in that they transform and enrich data and can move it from one storage system to another, However, they operate in a continuous streaming mode instead of being periodically triggered.</p>
+            <p>Additional Information: <a href="https://flink.apache.org/">Apache Flink.</a></p>
+            <p>&#160;</p>
+            <MadCap:snippetBlock src="../Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01]" />
+            <h1>2. Metadata Manager (MDM)</h1>
+            <p>The Metadata Manager (MDM) is a stateful data service which communicates with external components via REST&#160;APIs. It can be deployed as a standalone application. It uses Zookeeper (ZK) as a persistent data store.</p>
+            <p>&#160;</p>
+            <p><b>Functionality </b>
+            </p>
+            <p>The MDM stores, edits and retrieves information for the following:</p>
+            <ul>
+                <li>
+                    <p>The source table structure</p>
+                </li>
+                <li>
+                    <p>The structure mapping to the space type</p>
+                </li>
+                <li>
+                    <p>The data types conversion maps</p>
+                </li>
+                <li>
+                    <p>The configurations of the DI&#160;Manager and Pipeline, which are DI&#160;layer components</p>
+                </li>
+                <li>
+                    <p>The pluggable CDC templates</p>
+                </li>
+                <li>
+                    <p>The created and dropped types in the Space</p>
+                </li>
+            </ul>
+            <p>The MDM refreshes its metadata on-demand from sources into the MDM data store (ZK). The MDM compares and repairs stored metadata against created objects and in Space. The MDM also provides information about stored metadata over REST to the UI and DI&#160;Manager.</p>
+            <p>&#160;</p>
+            <h1>3. DI Processor</h1>
+            <p>The DI&#160;Processor is a Java library deployed to the Flink cluster. It is operated by the Flink Task Manager and is part of the Flink job. &#160;It is used to process Kafka messages and automatically identifies the consumed message format based on a pluggable CDC template. &#160;It converts messages into a Space document and writes the Space document to the Space.</p>
+            <p>&#160;</p>
+            <p><b>Flow</b>
+            </p>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/DIProcessorFlow1.png" style="width: 691px;height: 354px;" />
+            </p>
+        </div>
+        <ul>
+            <li>
+                <p>Parsing Kafka messages</p>
+            </li>
+            <li>
+                <p>Determining source table information</p>
+            </li>
+            <li>
+                <p>Determining CDC operation type (INSERT, UPDATE or DELETE)</p>
+            </li>
+            <li>
+                <p>Extracting all column data from the parsed message.</p>
+            </li>
+        </ul>
+        <p style="text-indent: 0.5in;">Extraction information is provided by MDM&#160;service</p>
+        <p style="text-indent: 0.5in;">Extraction information includes names of attributes, their types and json path used to extract the values</p>
+        <ul>
+            <li>
+                <p>Storing extracted data as table row (e,g, Flink Row for interoperability) </p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/DIProcessorFlow2.png" style="width: 676px;height: 316px;" />
+        </p>
+        <p>The <b>SpaceDocumentMapper</b> is responsible for converting the table row into corresponding SpaceDocuments which is stored in the <b>OpDoc</b> entity together with the operation type.</p>
+        <p>The conversion is performed according to the source table name. Multiple types of SpaceDocuments can be generated from a single table row. &#160;</p>
+        <p>Conversion may include:</p>
+        <ul>
+            <li>
+                <p>Mapping of row column name to the space document attribute name</p>
+            </li>
+            <li>
+                <p>Conversion of types</p>
+            </li>
+            <li>
+                <p>Non-trivial transformations</p>
+            </li>
+            <li>
+                <p>Calculated expressions</p>
+            </li>
+        </ul>
+        <p><b>OpDoc</b>
+        </p>
+        <p>The OpDoc entity contains the following information:</p>
+        <ul>
+            <li>
+                <p>Operation (insert, delete or update)</p>
+            </li>
+            <li>
+                <p>Space Document</p>
+            </li>
+            <li>
+                <p>Partition ID</p>
+            </li>
+            <li>
+                <p>Routing property name</p>
+            </li>
+            <li>
+                <p>Transaction ID</p>
+            </li>
+        </ul>
+        <p>Example:</p>
+        <p>
+            <img src="../Resources/Images/DI_OpDoc.png" />
+        </p>
+        <p><b>Keyed by partition id</b>
+        </p>
+        <p>This is the process that attached a space partition ID to each OpDoc according to the SpaceType routing definition.</p>
+        <p>&#160;</p>
+        <p><b>Time window aggregation</b>
+        </p>
+        <p>The process aggregates all OpDocs received during a certain time period for efficient space write operation.</p>
+        <p>&#160;</p>
+        <p><b>Write to Space</b>
+        </p>
+        <p>At this phase, all aggregated OpDocs are written to the appropriate partition in space asynchronously using the space task execute mechanism. </p>
+        <p>&#160;</p>
+        <div>
+            <h1>4. DI Manager</h1>
+            <p>The DI&#160;manager is an interface for communicating with Flink. It also communicates with external components such as UI&#160;and MDM via REST&#160;API. In addition, the DI&#160;Manager retrieves a correct schema and tables structure from a Source of Record (SOR) and stores it in the MDM.</p>
+            <p>The DI&#160;Manager-Flink operations are:</p>
+            <ul>
+                <li>
+                    <p>Creating, editing and dropping Flink jobs</p>
+                </li>
+                <li>
+                    <p>Starting and stopping Flink jobs</p>
+                </li>
+                <li>
+                    <p>Getting Flink's job status</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
