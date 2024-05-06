@@ -10,39 +10,25 @@
         <div>
             <h1 class="tc-pagetitle" style="text-align: left;">Data Integration (DI) IIDR&#160;Encryption</h1>
             <h1>&#160;</h1>
-            <p>DI works with IIDR with the help of a Subscription Manager</p>
             <p>&#160;</p>
-            <p>Access Server</p>
-            <p>Destination: Kafka Agent</p>
-            <p>Source: DB&#160;Agent</p>
-            <p>&#160;</p>
-            <p>Connection between them. They all teach to each other.</p>
-            <p>Traffic is between the kafka agent and the DB agent</p>
-            <p>Example. If there is an Oracle agent there is a DB&#160;Agent. Goes from DB to Agent and then goes to Kafka.</p>
-            <p>Kafka is a queue. Gets the messages sends - Traffic -to DI which sends them - Traffic -to the Space</p>
-            <p>Every change from the DB uses the CDC standard - using IBM IIDR. Job is to take the changes from the source and write them to Kafka.</p>
-            <p>&#160;</p>
-            <p>TAU:</p>
-            <p>Two segments. On one sits the DB (DB&#160;Segment), on the other DIH/Space (APP&#160;Segment) - less secure - resides.</p>
-            <p>Data goes from DB -&gt;&#160;DIH</p>
-            <p>On the side of DIH we have an Access Server and Kafka Agent (IIDR)</p>
-            <p>On the sides of the DB resides the Oracle Agent (IIDR)</p>
-            <p>Data that goes from segement to segment is encrypted</p>
-            <p>Data goes from Oracle Agent to Kafa Agent (via TLS 1.3)</p>
-            <p>Have to encrypt it all.</p>
-            <p>So Oracle Agent to Access Server is also encrypted and between Kafka Agent and Access Server.</p>
-            <p>Access Server contains the configuration (Kafka and DB and which tables to bring via APIs)</p>
-            <p>IIDR: Access Server +&#160;Kafka Agent + DB&#160;Agent</p>
-            <p>Data doesn't go to the Access Server, it goes via an agent. e.g. from DB&#160;to Kafka Agent</p>
-            <p>Have to have encryption to Access Server - cannot just have it between the agents.</p>
-            <p>&#160;</p>
-            <p>DB -&gt;&#160;DB&#160;Agent (DB&#160;Segment) -&gt; Kafka Agent -&gt; DI -&gt;&#160;Space (APP&#160;Segment)</p>
-            <p>Object to bring data from the DB&#160;to the Space</p>
-            <p>Encrypted from DB&#160;Agent to Kafka Agent, via TLS 1.3</p>
-            <p>&#160;</p>
-            <p>The channel is encrypted, the actual data from the DB is not encrypted</p>
-            <p>&#160;</p>
-            <p>In the DI&#160;resides a Kafka Server so data goes from the DB - DB&#160;Agent - Kafka Agent - Kafka Server - Space</p>
+            <p>Data Flow&#160;Example:</p>
+            <ul>
+                <li>
+                    <p>The object here is to bring data from the DB&#160;to the Space securely,</p>
+                </li>
+                <li>
+                    <p>The channel is encrypted, but the actual data from the Database is not encrypted</p>
+                </li>
+                <li>
+                    <p>In our example, there are two segments. On one resides the DB (DB&#160;Segment), on the other DIH/Space (APP&#160;Segment)  resides.</p>
+                </li>
+                <li>
+                    <p>Data that goes from the DB segment's Oracle Agent to APP segment's Kafka Agent and Access Server is encrypted in a channel via TLS 1.3.</p>
+                </li>
+                <li>
+                    <p>Data is also encrypted via TLS 1.3 between the Kafka Agent and Access Server. The Access Server contains the configuration (Kafka and DB and which tables to bring via APIs).</p>
+                </li>
+            </ul>
             <h1>Overview</h1>
             <p>This page describes how to configure IIDR components (Access Server and Agents) for TCP/IP encryption.</p>
             <p>This can be enabled between:</p>
