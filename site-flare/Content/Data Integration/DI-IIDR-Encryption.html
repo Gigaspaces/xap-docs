@@ -9,26 +9,8 @@
         </div>
         <div>
             <h1 class="tc-pagetitle" style="text-align: left;">Data Integration (DI) IIDR&#160;Encryption</h1>
-            <h1>&#160;</h1>
-            <p>&#160;</p>
-            <p>Data Flow&#160;Example:</p>
-            <ul>
-                <li>
-                    <p>The object here is to bring data from the DB&#160;to the Space securely,</p>
-                </li>
-                <li>
-                    <p>The channel is encrypted, but the actual data from the Database is not encrypted</p>
-                </li>
-                <li>
-                    <p>In our example, there are two segments. On one resides the DB (DB&#160;Segment), on the other DIH/Space (APP&#160;Segment)  resides.</p>
-                </li>
-                <li>
-                    <p>Data that goes from the DB segment's Oracle Agent to APP segment's Kafka Agent and Access Server is encrypted in a channel via TLS 1.3.</p>
-                </li>
-                <li>
-                    <p>Data is also encrypted via TLS 1.3 between the Kafka Agent and Access Server. The Access Server contains the configuration (Kafka and DB and which tables to bring via APIs).</p>
-                </li>
-            </ul>
+            <h1>Objective&#160;</h1>
+            <p style="text-align: left;">To create a secure method of transferring data across two separate segments: In this case, from the customer database to the Smart DIH Space </p>
             <h1>Overview</h1>
             <p>This page describes how to configure IIDR components (Access Server and Agents) for TCP/IP encryption.</p>
             <p>This can be enabled between:</p>
@@ -40,7 +22,27 @@
                     <p>Agents and Data Stores</p>
                 </li>
             </ul>
-            <h1>Certificates</h1>
+            <h1>Data Flow</h1>
+            <h1>
+                <img src="../Resources/Images/DI/TAU_IIDR_Encryption_Flow.drawio.png" />
+            </h1>
+            <p>Data Flow&#160;Example:</p>
+            <div class="tc-admon-note">
+                <p>The TLS&#160;1.3 channel is encrypted, but the actual data from the Database is not encrypted. </p>
+            </div>
+            <ul>
+                <li>
+                    <p>In the diagram above, there are two segments. On one resides the DB (DB&#160;Segment), on the other DIH/Space (APP&#160;Segment)  resides.</p>
+                </li>
+                <li>
+                    <p>Data that goes from the DB segment's Oracle Agent to APP segment's Kafka Agent and Access Server is encrypted in a channel via TLS 1.3.</p>
+                </li>
+                <li>
+                    <p>Data is also encrypted via TLS 1.3 between the Kafka Agent and Access Server. The Access Server contains the configuration (Kafka and DB and which tables to bring via APIs).</p>
+                </li>
+            </ul>
+            <h1>Setup</h1>
+            <h2>Certificates</h2>
             <p>To enable TLS both Server and Client certificates need to be obtained.</p>
             <p>Alternatively, you can create your own self-signed certificate (<a href="#SelfSigned">see below</a>)</p>
             <p>IIDR uses Java KeyStore format. Any certificate format can be converted to Jave KeyStore by using the keytool that is provided with the JDK.</p>
@@ -62,7 +64,7 @@
                     <p>A client certificate, for example: trust.jks</p>
                 </li>
             </ol>
-            <h1>Configuring TLS for Access Server and CHCCLP (CLI&#160;Client)</h1>
+            <h2>Configuring TLS for Access Server and CHCCLP (CLI&#160;Client)</h2>
             <p>The Access Server uses the same port for both encrypted and unencrypted communication. The clients use STARTTLS  over an unencrypted connection to beging using TLS encryption. The first few bytes that are sent in each direction are not encrypted. These bytes do not include any customer data.</p>
             <p>Older clients do not send STARTTLS and the connection is not encrypted. Newer clients cannot disable encryption and always send STARTTLS when encryption is enabled in the Access Server.</p>
             <p>When the Access Server has TLS encryption enabled, the client must trust the Access Server's certificate. </p>
@@ -118,9 +120,9 @@
             <p>
                 <img src="../Resources/Images/DI/DI_IIDR7.png" />
             </p>
-            <h1>Configure TLS for Agents</h1>
+            <h2>Configure TLS for Agents</h2>
             <p>To enable TLS for agents, a new profile should be created which contains the appropriate configuration for your environment.</p>
-            <h2>Kafka agent example: </h2>
+            <h3>Kafka agent example: </h3>
             <div class="tc-admon-note">
                 <p>For DB Agent it’s a similar process, however, once you save the changes,  you will have to provide the password of DB user (cdc-user)</p>
             </div>
@@ -205,7 +207,7 @@
                     <p>Return to the main menu and select Exit</p>
                 </li>
             </ol>
-            <h2><a name="SelfSigned"></a>Creating a Private Keystore and a Trust Store with Self-Signed Certificates</h2>
+            <h3><a name="SelfSigned"></a>Creating a Private Keystore and a Trust Store with Self-Signed Certificates</h3>
             <p>TLS encryption for the communication between a source and target can be enabled by using self-signed certificates.</p>
             <p>In this case, there is no central certificate authority so each server must trust the other server's certificates. This procedure uses commands that ship with CDC Replication. You can also use third-party tools such as openssl. This procedure uses keytool, which is located under <code>installation_directory/jre32/jre/bin</code>.</p>
             <p>Each server needs a private key and a self-signed certificate which can generated using the <code>keytool -genkeypair</code> command.</p>
@@ -229,14 +231,14 @@
             <p>
                 <img src="../Resources/Images/DI/DI_IIDR12.png" />
             </p>
-            <h1>Configuring the TLS&#160;DI Subscription Manager</h1>
+            <h2>Configuring the TLS&#160;DI Subscription Manager</h2>
             <p>Create a <code>tls.properties</code> file at <code>…/di-subscription-manager/latest-di-subscription-manager</code></p>
             <p>Comment out the private key lines and use only the truststore lines:</p>
             <p>
                 <img src="../Resources/Images/DI/DI_IIDR13.png" />
             </p>
             <p>Restart the di-subscription-manager and test it using Swagger.</p>
-            <h1>Testing the TLS&#160;Configuration</h1>
+            <h2>Testing the TLS&#160;Configuration</h2>
             <p>You can test your tls configuration by running the Access Server and CHCCLP client.</p>
             <p>Both the Access Server and CHCCLP  use the same <code>tls.properties</code> configuration file.</p>
             <p>Run the Access Server:</p>
@@ -263,159 +265,29 @@
                 <img src="../Resources/Images/DI/DI_IIDR19.png" />
             </p>
             <h1>References</h1>
-            <p><a href="https://www.ibm.com/docs/en/idr/11.4.0?topic=console-configuring-tls-encryption">https://www.ibm.com/docs/en/idr/11.4.0?topic=console-configuring-tls-encryption</a>
-            </p>
-            <p><a href="https://www.ibm.com/support/pages/use-obfuscated-tls-passwords-tlsproperties-file-management-console-access-server-and-chcclp">https://www.ibm.com/support/pages/use-obfuscated-tls-passwords-tlsproperties-file-management-console-access-server-and-chcclp</a>
-            </p>
-            <p><a href="https://www.ibm.com/support/pages/node/876488">https://www.ibm.com/support/pages/node/876488</a>
-            </p>
-            <p><a href="https://www.ibm.com/support/pages/node/792347?mhsrc=ibmsearch_a&amp;mhq=private%20key%20keystore">https://www.ibm.com/support/pages/node/792347?mhsrc=ibmsearch_a&amp;mhq=private%20key%20keystore</a>
-            </p>
+            <ul>
+                <li>
+                    <p><a href="../landing-pages/AO-DataIntegration.htm">Data Integration</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://www.ibm.com/docs/en/idr/11.4.0?topic=console-configuring-tls-encryption">https://www.ibm.com/docs/en/idr/11.4.0?topic=console-configuring-tls-encryption</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://www.ibm.com/support/pages/use-obfuscated-tls-passwords-tlsproperties-file-management-console-access-server-and-chcclp">https://www.ibm.com/support/pages/use-obfuscated-tls-passwords-tlsproperties-file-management-console-access-server-and-chcclp</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://www.ibm.com/support/pages/node/876488">https://www.ibm.com/support/pages/node/876488</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://www.ibm.com/support/pages/node/792347?mhsrc=ibmsearch_a&amp;mhq=private%20key%20keystore">https://www.ibm.com/support/pages/node/792347?mhsrc=ibmsearch_a&amp;mhq=private%20key%20keystore</a>
+                    </p>
+                </li>
+            </ul>
             <h1>&#160;</h1>
-            <p style="text-align: left;">Data Integration (DI) is the gateway for incoming data into the Data Integration Hub (DIH) system. The DI components are delivered as part of the <MadCap:variable name="General.CompanyName" /> DIH&#160;Package.</p>
-            <p style="text-align: left;">DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space.</p>
-            <h2 style="text-align: left;">DI&#160;Layer Overview</h2>
-            <p style="text-align: left;">The DI&#160;Module is illustrated as follows:</p>
-            <p style="text-align: center;">
-                <img src="../Resources/Images/DILayer.png" style="width: 668px;height: 285px;" />
-            </p>
-            <h1>1. Apache Flink
-</h1>
-            <p><MadCap:variable name="General.CompanyName" /> uses Apache Flink as it is an open source framework and distributed processing engine for stateful computations over unbounded and bounded data streams. &#160;Flink is designed to run in all common cluster environments, performing computations at in-memory speed and at any scale. It is also a powerful and fast framework for stream processing. It also allows deployment of different types of applications at run-time. In addition, Flink supports streaming and batch mode, which is useful for periodic batch updates. One of the most common types of applications that are powered by Flink are Data Pipeline Applications, which is why we chose to use it in our Smart DIH solution.</p>
-            <p>Extract transform load (ETL) is a common approach used to convert and move data between storage systems. &#160;Often, ETL&#160;jobs are periodically triggered to copy data from transactional database systems to an analytical database or data warehouse. Data pipelines serve a similar purpose as ETL jobs in that they transform and enrich data and can move it from one storage system to another, However, they operate in a continuous streaming mode instead of being periodically triggered.</p>
-            <p>Additional Information: <a href="https://flink.apache.org/">Apache Flink.</a></p>
-            <p>&#160;</p>
-            <MadCap:snippetBlock src="../Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01]" />
-            <h1>2. Metadata Manager (MDM)</h1>
-            <p>The Metadata Manager (MDM) is a stateful data service which communicates with external components via REST&#160;APIs. It can be deployed as a standalone application. It uses Zookeeper (ZK) as a persistent data store.</p>
-            <p>&#160;</p>
-            <p><b>Functionality </b>
-            </p>
-            <p>The MDM stores, edits and retrieves information for the following:</p>
-            <ul>
-                <li>
-                    <p>The source table structure</p>
-                </li>
-                <li>
-                    <p>The structure mapping to the space type</p>
-                </li>
-                <li>
-                    <p>The data types conversion maps</p>
-                </li>
-                <li>
-                    <p>The configurations of the DI&#160;Manager and Pipeline, which are DI&#160;layer components</p>
-                </li>
-                <li>
-                    <p>The pluggable CDC templates</p>
-                </li>
-                <li>
-                    <p>The created and dropped types in the Space</p>
-                </li>
-            </ul>
-            <p>The MDM refreshes its metadata on-demand from sources into the MDM data store (ZK). The MDM compares and repairs stored metadata against created objects and in Space. The MDM also provides information about stored metadata over REST to the UI and DI&#160;Manager.</p>
-            <p>&#160;</p>
-            <h1>3. DI Processor</h1>
-            <p>The DI&#160;Processor is a Java library deployed to the Flink cluster. It is operated by the Flink Task Manager and is part of the Flink job. &#160;It is used to process Kafka messages and automatically identifies the consumed message format based on a pluggable CDC template. &#160;It converts messages into a Space document and writes the Space document to the Space.</p>
-            <p>&#160;</p>
-            <p><b>Flow</b>
-            </p>
-            <p style="text-align: center;">
-                <img src="../Resources/Images/DIProcessorFlow1.png" style="width: 691px;height: 354px;" />
-            </p>
-        </div>
-        <ul>
-            <li>
-                <p>Parsing Kafka messages</p>
-            </li>
-            <li>
-                <p>Determining source table information</p>
-            </li>
-            <li>
-                <p>Determining CDC operation type (INSERT, UPDATE or DELETE)</p>
-            </li>
-            <li>
-                <p>Extracting all column data from the parsed message.</p>
-            </li>
-        </ul>
-        <p style="text-indent: 0.5in;">Extraction information is provided by MDM&#160;service</p>
-        <p style="text-indent: 0.5in;">Extraction information includes names of attributes, their types and json path used to extract the values</p>
-        <ul>
-            <li>
-                <p>Storing extracted data as table row (e,g, Flink Row for interoperability) </p>
-            </li>
-        </ul>
-        <p>&#160;</p>
-        <p style="text-align: center;">
-            <img src="../Resources/Images/DIProcessorFlow2.png" style="width: 676px;height: 316px;" />
-        </p>
-        <p>The <b>SpaceDocumentMapper</b> is responsible for converting the table row into corresponding SpaceDocuments which is stored in the <b>OpDoc</b> entity together with the operation type.</p>
-        <p>The conversion is performed according to the source table name. Multiple types of SpaceDocuments can be generated from a single table row. &#160;</p>
-        <p>Conversion may include:</p>
-        <ul>
-            <li>
-                <p>Mapping of row column name to the space document attribute name</p>
-            </li>
-            <li>
-                <p>Conversion of types</p>
-            </li>
-            <li>
-                <p>Non-trivial transformations</p>
-            </li>
-            <li>
-                <p>Calculated expressions</p>
-            </li>
-        </ul>
-        <p><b>OpDoc</b>
-        </p>
-        <p>The OpDoc entity contains the following information:</p>
-        <ul>
-            <li>
-                <p>Operation (insert, delete or update)</p>
-            </li>
-            <li>
-                <p>Space Document</p>
-            </li>
-            <li>
-                <p>Partition ID</p>
-            </li>
-            <li>
-                <p>Routing property name</p>
-            </li>
-            <li>
-                <p>Transaction ID</p>
-            </li>
-        </ul>
-        <p>Example:</p>
-        <p>
-            <img src="../Resources/Images/DI_OpDoc.png" />
-        </p>
-        <p><b>Keyed by partition id</b>
-        </p>
-        <p>This is the process that attached a space partition ID to each OpDoc according to the SpaceType routing definition.</p>
-        <p>&#160;</p>
-        <p><b>Time window aggregation</b>
-        </p>
-        <p>The process aggregates all OpDocs received during a certain time period for efficient space write operation.</p>
-        <p>&#160;</p>
-        <p><b>Write to Space</b>
-        </p>
-        <p>At this phase, all aggregated OpDocs are written to the appropriate partition in space asynchronously using the space task execute mechanism. </p>
-        <p>&#160;</p>
-        <div>
-            <h1>4. DI Manager</h1>
-            <p>The DI&#160;manager is an interface for communicating with Flink. It also communicates with external components such as UI&#160;and MDM via REST&#160;API. In addition, the DI&#160;Manager retrieves a correct schema and tables structure from a Source of Record (SOR) and stores it in the MDM.</p>
-            <p>The DI&#160;Manager-Flink operations are:</p>
-            <ul>
-                <li>
-                    <p>Creating, editing and dropping Flink jobs</p>
-                </li>
-                <li>
-                    <p>Starting and stopping Flink jobs</p>
-                </li>
-                <li>
-                    <p>Getting Flink's job status</p>
-                </li>
-            </ul>
         </div>
     </body>
 </html>
