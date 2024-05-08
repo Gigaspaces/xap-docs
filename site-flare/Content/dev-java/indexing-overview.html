@@ -24,8 +24,17 @@
             <li>An indexed property consumes more resources, specifically memory footprint per entry.</li>
         </ul>
         <h1><a name="Optimizing"></a>Optimizing Index Selection for Multiple Condition Queries</h1>
-        <p>In-memory query execution will use one index to go over the data and will filter all the other conditions. The index that will be chosen will be the one with minimal size between all equal indexes in the conditions. Only then the ordered index will be used.</p>
-        <p>It is best practice to choose an Index with less objects, then filter out other ones that do not satisfy the other conditions.</p>
+        <p>In-memory query execution will use one index to go over the data and will filter all the other conditions. </p>
+        <ul>
+            <li>
+                <p>If there are several <b>equal</b> indexes available, the one with the smallest size will be used. </p>
+            </li>
+            <li>
+                <p>In the absence an <b>equal</b> index indexes, the <b>ordered</b> index will be used.</p>
+            </li>
+        </ul>
+        <p>Since the size of an <b>ordered</b> index cannot be determined beforehand, its size will appear as unknown in the Explain Plan</p>
+        <p>A <b>compound</b> index is counted as one index and will be used when all its components appear in the condition.</p>
         <h1><a name="when-to-use-indexing"></a>When to Use Indexing</h1>
         <p>Naturally the question arises of when to use indexing. Usually it is recommended to index properties that are used in common queries. However, in some scenarios one might favor less footprint, or faster performance for a specific query, and adding/removing an index should be considered.</p>
         <div class="tc-admon-important">
