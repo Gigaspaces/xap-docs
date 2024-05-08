@@ -35,7 +35,43 @@
             </li>
         </ul>
         <p><MadCap:variable name="General.ProductXAPSkyline" /> ensures data consistency and reliability across distributed environments by employing ACID-compliant transactions to maintain data integrity. It uses sophisticated replication and partitioning mechanisms to ensure high availability and fault tolerance, even in the event of node failures. These features, combined with its support for SQL-99 standards, ensures that <MadCap:variable name="General.ProductXAPSkyline" /> will provide consistent, reliable data access and processing capabilities at scale.</p>
-        <h2>Reducing Latency</h2>
+        <h1>Architecture</h1>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/Skyline/XAPSkyline_Updated.png" />
+        </p>
+        <p style="text-align: center;"><i>Architecture of <MadCap:variable name="General.ProductXAPSkyline" /></i>
+        </p>
+        <p>&#160;</p>
+        <div class="tc-admon-refer">
+            <p>Refer to our <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /><a href="../started/xapboth_functionality.html"> functionality page</a> for more details.</p>
+        </div>
+        <p><MadCap:variable name="General.ProductXAPSkyline" /> offers:</p>
+        <ul>
+            <li>
+                <p>High availability, replication and persistence with optional data persistence and multi-datacenter replication</p>
+            </li>
+            <li>
+                <p>Full data life-cycle management on RAM,  SSD/Flash, disk and external data stores, also supporting multiple <a href="../dev-java/intelligent-tiering-intro.html">data tiers</a></p>
+            </li>
+            <li>
+                <p>Support for an unlimited number of advanced indexes such as Exact, Range, Collections, Compound, Text, and Geo-spatial for optimal performance, with SQL-99 coverage. Unlike key-value stores that may need to duplicate the entire data store for each defined index, <MadCap:variable name="General.ProductXAP" /> only creates additional indexing data structures on one instance of data.</p>
+            </li>
+            <li>
+                <p><MadCap:variable name="General.CompanyName" /><a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a> user interface for user management and control.</p>
+            </li>
+            <li>
+                <p>Support for a variety of <a href="../dev-dotnet/modeling-your-data.html">data models</a>, including <a href="../dev-java/pojo-overview.html">POJO</a>, <a href="../dev-dotnet/document-overview.html">Documents</a>,  and Key/Value</p>
+            </li>
+            <li>
+                <p>Seamless scaling up and out with no downtime</p>
+            </li>
+            <li>
+                <p>Easy integration with <a href="../dev-java/gigaspaces-apis.html">BI tools</a></p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p><MadCap:variable name="General.ProductXAPSkyline" /> runs server side processing, providing the high performance of advanced operations and avoiding data retrieval back to the client side. Aggregation is performed in-memory, on relevant data only, regardless of total data size. It uses <a href="../overview/space-based-architecture.html">Space-Based Architecture</a> (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as <a href="../dev-java/the-processing-unit-overview.html">Processing Units</a> (PU). These units are completely independent of each other, so that an application can scale without increasing complexity, just by adding more units. SBA is based on the Tuple Space paradigm. SBA follows many of the principles of Service-Oriented Architecture and Event-Driven Architecture, as well as elements of grid computing.</p>
+        <h1>Reducing Latency&#160;</h1>
         <p>Typically cloud native offerings add a lot of flexibility, scalability and availability. &#160;However, this comes at a cost of latency which has a direct impact on the bottom line in terms of conversion and downtime cost. &#160;<MadCap:variable name="General.ProductXAPSkyline" /> improves database latency by bringing the critical data closer to the application into the Kubernetes cluster which improves latency by up to 90% which in turn enhances reliability and reduces costs. <MadCap:variable name="General.ProductXAPSkyline" />;s architecture is specifically optimized for minimizing latency and maximizing throughput within Kubernetes environments. Its data management strategies are tailored for cloud-native applications, providing faster access to data and improving overall application responsiveness.</p>
         <p> <MadCap:variable name="General.ProductXAPSkyline" /> reduces latency by:</p>
         <ul>
@@ -61,22 +97,22 @@
             </li>
         </ul>
         <p><MadCap:variable name="General.ProductXAPSkyline" /> provides a highly-reliable, distributed, in-memory storage and processing engine. Essentially, it is an <a href="../overview/the-in-memory-data-grid.html">in-memory data grid (IMDG)</a> designed to support  millisecond-level latency and millions of operations per second, providing for thousands of  services, and hundreds to thousands of concurrent users. This solution makes the implementation of distributed applications above the <a href="../dev-java/the-gigaspace-interface-overview.html">Space</a> simpler and less intrusive, enabling efficient building of highly scalable and highly performing applications.</p>
-        <h2>Kubernetes Orchestration</h2>
+        <h1>Kubernetes Orchestration</h1>
         <p>This <MadCap:variable name="General.CompanyName"></MadCap:variable> <MadCap:variable name="General.ProductXAPSkyline"></MadCap:variable> solution is designed from the ground up to be fully Kubernetes-native, addressing the specific challenges of deployment, scalability, performance, latency, and resource utilization in Kubernetes environments. In addition, ensuring low latency and high performance across a distributed environment. <MadCap:variable name="General.ProductXAPSkyline"></MadCap:variable> is designed to ensure seamless integration and optimization within Kubernetes environments. This results in simplified deployments and management, leveraging Kubernetes' capabilities for handling stateful sets and persistent volumes efficiently.</p>
         <p>For stateful applications, <MadCap:variable name="General.ProductXAPSkyline" /> provides a distributed data store that runs within the same Kubernetes cluster as your application, ensuring data locality and reducing the latency typically associated with external database calls. This proximity significantly improves read/write speeds, directly translating to faster, more responsive applications.</p>
         <div class="tc-admon-note">
             <p>For Kubernetes orchestration instructions refer to our <a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html"><MadCap:variable name="General.ProductXAPSkyline" />&#160;Kubernetes Installation</a> guide </p>
         </div>
-        <h2>Deployment Models</h2>
-        <h3>Cloud </h3>
+        <h1>Deployment Models</h1>
+        <h2>Cloud </h2>
         <p><MadCap:variable name="General.ProductXAPSkyline" /> is designed for cloud-native deployment, making it well-suited for public cloud environments. It leverages Kubernetes for orchestration, which allows for dynamic scaling, self-healing, and efficient management of containerized applications. For cloud deployments, <MadCap:variable name="General.ProductXAPSkyline" /> can be integrated with cloud providers' Kubernetes services (e.g., Amazon EKS, Google GKE, Azure AKS) or managed Kubernetes services such as ARO, to leverage the cloud's full scalability and resilience features.</p>
-        <h3>On-Premise </h3>
+        <h2>On-Premise </h2>
         <p>For organizations with requirements for on-premises deployments, <MadCap:variable name="General.ProductXAPSkyline" /> can be deployed in local data centers using Kubernetes. This approach offers control over the infrastructure and data, meeting compliance and regulatory requirements. <MadCap:variable name="General.ProductXAPSkyline" /> integrates with existing on-premises Kubernetes setups, ensuring that businesses can maintain their data sovereignty while benefiting from cloud-native features.</p>
-        <h3>Hybrid</h3>
+        <h2>Hybrid</h2>
         <p><MadCap:variable name="General.ProductXAPSkyline" /> supports hybrid deployment models, allowing businesses to leverage both on-premises and cloud environments. This is particularly useful for scenarios where sensitive data must remain on-premises while other parts of the application can benefit from the cloud's elasticity. <MadCap:variable name="General.ProductXAPSkyline" />'s architecture enables seamless data synchronization and application interaction across these environments, providing flexibility and ensuring data integrity.</p>
-        <h2>Scalability &amp;&#160;Operational Efficiency</h2>
+        <h1>Scalability &amp;&#160;Operational Efficiency</h1>
         <p>With its Kubernetes-native design, <MadCap:variable name="General.ProductXAPSkyline" /> excels in dynamic scalability, allowing resources to be efficiently scaled up or down based on demand, directly within Kubernetes’ orchestration. <MadCap:variable name="General.ProductXAPSkyline" />'s integration with Kubernetes simplifies operational tasks, such as upgrades, scaling, and recovery, making it easier to manage stateful applications at scale.</p>
-        <h2>Multi-Cluster Replication</h2>
+        <h1>Multi-Cluster Replication</h1>
         <p><MadCap:variable name="General.ProductXAPSkyline" />'s hub-spoke model for multi-cluster replication within Kubernetes environments ensures unparalleled data consistency and availability. This architectural design allows for a centralized hub cluster that communicates and synchronizes data across multiple spoke clusters. Each spoke cluster hosts a localized version of <MadCap:variable name="General.ProductXAPSkyline" /> along with its own application, enabling both proximity-based data access to minimize latency and centralized data management for consistency and resilience.</p>
         <p style="text-align: left;" MadCap:conditions="Version.16-0-died">&#160;</p>
         <p><MadCap:variable name="General.ProductXAPSkyline" /> offers:</p>
@@ -107,13 +143,6 @@
             <p>Refer to our <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /><a href="../started/xapboth_functionality.html"> functionality page</a> for more details.</p>
         </div>
         <div>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/XAP XAP SKYLINE/XAP_XAP_Skyline_Arch.png" style="width: 1035px;height: 647px;" />
-            </p>
-            <p style="text-align: center;"><i>Architecture of <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /></i>
-            </p>
-            <p>&#160;</p>
-            <p><MadCap:variable name="General.ProductXAPSkyline" /> runs server side processing, providing the high performance of advanced operations and avoiding data retrieval back to the client side. Aggregation is performed in-memory, on relevant data only, regardless of total data size. It uses <a href="../overview/space-based-architecture.html">Space-Based Architecture</a> (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as <a href="../dev-java/the-processing-unit-overview.html">Processing Units</a> (PU). These units are completely independent of each other, so that an application can scale without increasing complexity, just by adding more units. SBA is based on the Tuple Space paradigm. SBA follows many of the principles of Service-Oriented Architecture and Event-Driven Architecture, as well as elements of grid computing.</p>
             <p>&#160;</p>
         </div>
     </body>

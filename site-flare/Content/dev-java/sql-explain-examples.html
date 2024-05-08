@@ -16,34 +16,72 @@
             </p>
         </div>
         <h1 class="tc-pagetitle">Sample Queries using Explain Analyze and Explain&#160;Plan</h1>
-        <p>Below are several examples of queries and results using PostgreSQL Explain Analyze and Explain Plan.</p>
+        <h1>Overview</h1>
+        <p>In the PostgreSQL Explain Analyze and Explain Plan examples provided on this page, the following terminology is utilized:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col style="width: 353px;" />
+            <col style="width: 1433px;" />
+            <thead>
+                <tr>
+                    <th>Terminology</th>
+                    <th style="text-align: left;">Usage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>INDEX&#160;Scan</td>
+                    <td>This technique involves scanning data based on a particular index. If a condition is present and the corresponding property is indexed, this scanning method should be employed.</td>
+                </tr>
+                <tr>
+                    <td>FULL&#160;Scan</td>
+                    <td>
+                        <p style="font-size: 12pt;">This approach entails a comprehensive scan of the entire related table, If there is a filter fetching only some of the table data, considers adding a related index to improve performance. </p>
+                        <ul>
+                            <li>
+                                <p style="font-size: 12pt;">Executing Explain Analyze provides details of the time it takes to retrieve records from the table and how many records are fetched in that time. For example: (time=6ms rows=514). </p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">Efforts should be made to reduce query execution time by leveraging indexes. Additionally, optimize the query's table definition to minimize the number of rows returned, ensuring all filtering conditions are properly applied. Refer to <a href="data-query-DQL.html">Data Query Guidelines</a> for additional tips.</p>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Broadcast Table (colocated joins)</td>
+                    <td>When dealing with a small table intended for joining with others, it is advisable to define it as a broadcast table. In this scenario, rather than transferring all the data to the client and executing the join there, the join operation occurs within each partition, minimizing unnecessary data movement. Refer to <a href="broadcast-objects.html">Broadcast Objects</a> for additional information.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-tip">
+            <p>To streamline data processing and boost query performance, adhere to these principles: maintain a lean row count in your tables and leverage indexes effectively for filtering data</p>
+        </div>
+        <div class="tc-admon-tip">
+            <p>If you have multiple conditions on a table, the index chosen will be the one with the minimal size between basic indexes. Refer to <a href="indexing-overview.html">Indexing Overview</a> for additional information.</p>
+        </div>
+        <h1>Sample Queries</h1>
+        <p>Below are several examples of queries  using PostgreSQL Explain Analyze and Explain Plan. Each query is followed by its analysis.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Explain Analyze" style="padding:10px">
                 <p><b>Query 1:</b>
-                </p><pre><code class="language-sql">select * from  "com.gs.Customer" where lastName = ? order by firsName DESC NULLS 
-LAST
-PLAN
-order by [firsName DESC-nulls-last]    (time=1ms rows=2) 
+                </p><pre><code class="language-sql"><b>explain analyze for</b> select * from  "com.gs.Customer" where lastName = ? order by firsName DESC NULLS LAST
+
+<b>PLAN (Explain&#160;Analyze) Analysis:</b>
+order by [firsName DESC-nulls-last]    <b>(time=1ms rows=2)</b> 
 	table= com.gs.Customer    (time=1ms rows=2)
 		Server-Side Execution:
 			projections= [birthday, firsName, id, lastName]
 			filter= (lastName = Levi)
-			access= INDEX SCAN
+			access= <b>INDEX SCAN</b>
 				partitions: [1, 2]
 					selected index:
-						- (lastName = Levi), size=1
-</code></pre>
-                <p><b>Result 1:</b>
-                </p><pre><code class="language-sql">birthday,  firsName,  id,  lastName
-1989-11-11,  Sara,  3,  Levi
-2000-02-03,  Moshe,  4,  Levi
-</code></pre>
+						- (lastName = Levi), size=1</code></pre>
                 <p><b>Query 2:</b>
-                </p><pre><code class="language-sql">Select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" 
+                </p><pre><code class="language-sql"><b>explain analyze for</b> select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" 
 as PU LEFT JOIN "com.gs.Product" as P ON PU.productId=P.id group by P.id,P.name,P.price
-PLAN
+
+<b>PLAN (Explain&#160;Analyze) Analysis:</b>
 projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]    (time=8ms rows=10)
-	aggregate by [SUM(amount) AS purchase_amount]    (time=8ms rows=10)
+	aggregate by [SUM(amount) AS purchase_amount]    <b>(time=8ms rows=10)</b>
 	group by [id, name, price]
 	join (type= LEFT, algorithm= Hash join, Equi Join)    (time=7ms rows=514)
 	  │ conditions= EQUALS(productId, id)
@@ -52,307 +90,74 @@ projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]  
 	      │  table= com.gs.Purchase
 	      │    Server-Side Execution:
 	      │      projections= [amount, productId]
-	      │      access= FULL SCAN
+	      │      access= <b>FULL SCAN</b>
 	      └projections= [id, name, price]    (time=1ms rows=10)
 	      table= com.gs.Product
 		  Server-Side Execution:
 		  projections= [id, name, price]
-		  access= FULL SCAN
-</code></pre>
-                <p><b>Result 2:</b>
-                </p><pre><code class="language-sql">product_id,  name,  price,  purchase_amount,  total
-6,  Football,  180.0,  300,  54000.0
-7,  coffee-machine,  999.0,  350,  349650.0
-8,  Ice-maker,  555.0,  400,  222000.0
-10,  Sport-Watch,  1000.0,  640,  640000.0
-1,  Train,  11.1,  50,  555.0
-2,  Doll,  17.8,  100,  1780.0
-3,  Chocolate,  10.0,  150,  1500.0
-4,  Kandy,  5.0,  200,  1000.0
-5,  Basketball,  150.0,  250,  37500.0
-9,  Toaster,  320.0,  450,  144000.0
-		</code></pre>
+		  access= <b>FULL SCAN</b></code></pre>
                 <p><b>Query 3:</b>
-                </p><pre><code class="language-sql">Select PU.customerId as customer_id, P.name, sum(PU.amount) as total_amount from  (select customerId, productId, amount from "com.gs.Purchase" where customerId=? ) as PU  LEFT JOIN "com.gs.Product" as P ON P.id=PU.productId group by PU.customerId,P.name
-				PLAN
-				aggregate by [SUM(amount) AS total_amount]    (time=4ms rows=10)
-				group by [customerId, name]
-				join (type= LEFT, algorithm= Hash join, Equi Join)    (time=4ms rows=51)
-				│ conditions= EQUALS(productId, id)
-				│ dynamic collocated join disabled (candidate=com.gs.Product)
-				└─┌projections= [customerId, productId, amount]    (time=1ms rows=51)
-				  │  table= com.gs.Purchase
-				  │    Server-Side Execution:
-				  │      projections= [customerId, productId, amount]
-				  │      filter= (customerId = 5)
-				  │      access= INDEX SCAN
-				  │        partitions: [1, 2]
-				  │          selected index:
-				  │            - (customerId = 5), size=[min=25, max=26]
-				  └projections= [id, name]    (time=3ms rows=10)
-				   table= com.gs.Product
-				   Server-Side Execution:
-				   projections= [id, name]
-				   access= FULL SCAN
-		</code></pre>
-                <p><b>Result 3:</b>
-                </p><pre><code class="language-sql">customer_id,  name,  total_amount
-5,  Train,  5
-5,  Toaster,  45
-5,  Doll,  10
-5,  Kandy,  20
-5,  Basketball,  25
-5,  coffee-machine,  35
-5,  Football,  30
-5,  Ice-maker,  40
-5,  Sport-Watch,  60
-5,  Chocolate,  15
-		</code></pre>
+                </p><pre><code class="language-sql"><b>explain analyze for</b> select  D.name as Department, P.name,  P.price from (Select name,price,depId  from "com.gs.Product"  where price &gt; ? ) 
+AS P  Join "com.gs.Department" D  ON P.depId=D.id
+				
+<b>PLAN (Explain&#160;Analyze) Analysis:</b>
+join (type= INNER, algorithm= Hash join, Equi Join)    (time=11ms rows=6)
+ │ projections= [name0, name, price]
+ │ conditions= EQUALS(depId, id)
+ │ static collocated join (broadcast={com.gs.Department})
+ │ dynamic collocated join disabled (candidate=com.gs.Product)
+ └─┌projections= [name, price, depId]    (time=9ms rows=6)
+   │  table= com.gs.Product
+   │    Server-Side Execution:
+   │      projections= [name, price, depId]
+   │      filter= (price &gt; 100.0)
+   │      access= <b>INDEX SCAN</b>
+   │        partitions: [1, 2]
+   │          selected index:
+   │            - (price &gt; 100.0), size=unknown
+   └table= com.gs.Department    (time=0ms rows=4)
+		Server-Side Execution:
+		projections= [id, name]
+		access= <b>FULL SCAN</b></code></pre>
                 <p><b>Query 4:</b>
-                </p><pre><code class="language-sql">Select PU.customerId as customer_id, C.firsName, C.lastName, sum(PU.amount) as amount from "com.gs.Purchase" as PU  LEFT JOIN "com.gs.Customer" as C ON C.id=PU.customerId group by PU.customerId, C.firsName, C.lastName order by PU.customerId
-				PLAN
-				order by [customerId ASC-nulls-first]    (time=8ms rows=10)
-				aggregate by [SUM(amount) AS amount]    (time=8ms rows=10)
-				group by [customerId, firsName, lastName]
-				join (type= LEFT, algorithm= Hash join, Equi Join)    (time=7ms rows=514)
-				│ conditions= EQUALS(customerId, id)
-				│ dynamic collocated join disabled (candidate=com.gs.Customer)
-				└─┌projections= [amount, customerId]    (time=3ms rows=514)
-				  │  table= com.gs.Purchase
-				  │    Server-Side Execution:
-				  │      projections= [amount, customerId]
-				  │      access= FULL SCAN
-				  └projections= [firsName, id, lastName]    (time=3ms rows=11)
-				   table= com.gs.Customer
-				   Server-Side Execution:
-				   projections= [firsName, id, lastName]
-				   access= FULL SCAN
-		</code></pre>
-                <p><b>Result 4:</b>
-                </p><pre><code class="language-sql">customer_id,  firsName,  lastName,  amount
-1,  Avi,  Cohen,  325
-2,  Sara,  Cohen,  285
-3,  Sara,  Levi,  285
-4,  Moshe,  Levi,  285
-5,  Rachel,  Lavit,  285
-6,  Dan,  Yadid,  285
-7,  Ayelt,  Ron,  285
-8,  Roni,  Din,  285
-9,  Gil,  David,  285
-10,  Shir,  Sade,  285
-		</code></pre>
-                <p><b>Query 5:</b>
-                </p><pre><code class="language-sql">Select PU.productId, P.name,  max(PU.amount) as max_amount from "com.gs.Purchase" as PU  INNER JOIN "com.gs.Product" as P ON P.id=PU.productId group by PU.productId,P.name
-				PLAN
-				aggregate by [MAX(amount) AS max_amount]    (time=29ms rows=10)
-				group by [productId, name]
-				join (type= INNER, algorithm= Hash join, Equi Join)    (time=25ms rows=514)
-				│ conditions= EQUALS(productId, id)
-				│ dynamic collocated join disabled (candidate=com.gs.Purchase)
-				└─┌projections= [amount, productId]    (time=23ms rows=514)
-				  │  table= com.gs.Purchase
-				  │    Server-Side Execution:
-				  │      projections= [amount, productId]
-				  │      access= FULL SCAN
-				  └projections= [id, name]    (time=1ms rows=10)
-				    table= com.gs.Product
-				    Server-Side Execution:
-				    projections= [id, name]
-				    access= FULL SCAN
-		</code></pre>
-                <p><b>Result 5:</b>
-                </p><pre><code class="language-sql">productId,  name,  max_amount
-10,  Sport-Watch,  10
-4,  Kandy,  4
-6,  Football,  6
-5,  Basketball,  5
-2,  Doll,  2
-7,  coffee-machine,  7
-1,  Train,  1
-8,  Ice-maker,  8
-9,  Toaster,  9
-3,  Chocolate,  3
-		</code></pre>
-                <p><b>Query 6:</b>
-                </p><pre><code class="language-sql">Select  D.name as Department, P.name,  P.price from (Select name,price,depId  from "com.gs.Product"  where price &gt; ? ) AS P  Join "com.gs.Department" D  ON P.depId=D.id
-				PLAN
-				join (type= INNER, algorithm= Hash join, Equi Join)    (time=11ms rows=6)
-				│ projections= [name0, name, price]
-				│ conditions= EQUALS(depId, id)
-				│ static collocated join (broadcast={com.gs.Department})
-				│ dynamic collocated join disabled (candidate=com.gs.Product)
-				└─┌projections= [name, price, depId]    (time=9ms rows=6)
-				  │  table= com.gs.Product
-				  │    Server-Side Execution:
-				  │      projections= [name, price, depId]
-				  │      filter= (price &gt; 100.0)
-				  │      access= INDEX SCAN
-				  │        partitions: [1, 2]
-				  │          selected index:
-				  │            - (price &gt; 100.0), size=unknown
-				  └table= com.gs.Department    (time=0ms rows=4)
-					Server-Side Execution:
-					projections= [id, name]
-					access= FULL SCAN
-		</code></pre>
-                <p><b>Result 6:</b>
-                </p><pre><code class="language-sql">Department,  name,  price
-sport,  Football,  180.0
-kitchen-aid,  Ice-maker,  555.0
-sport,  Sport-Watch,  1000.0
-sport,  Basketball,  150.0
-kitchen-aid,  Toaster,  320.0
-kitchen-aid,  coffee-machine,  999.0
-		</code></pre>
-                <p><b>Query 7:</b>
-                </p><pre><code class="language-sql">Select  P.name, sum(PU.amount) as total from "com.gs.Purchase" as PU  LEFT JOIN "com.gs.Product" as P ON P.id=PU.productId group by P.name having total &gt; ? 
-				PLAN
-				filter= GREATER_THAN(total, DYNAMIC_PARAM(index=0))    (time=4ms rows=10)
-				aggregate by [SUM(amount) AS total]    (time=4ms rows=10)
-				group by [name]
-				join (type= LEFT, algorithm= Hash join, Equi Join)    (time=3ms rows=514)
-				│ conditions= EQUALS(productId, id)
-				│ dynamic collocated join disabled (candidate=com.gs.Product)
-				└─┌projections= [amount, productId]    (time=2ms rows=514)
-				  │  table= com.gs.Purchase
-				  │    Server-Side Execution:
-				  │      projections= [amount, productId]
-				  │      access= FULL SCAN
-				  └projections= [id, name]    (time=1ms rows=10)
-						table= com.gs.Product
-						Server-Side Execution:
-						projections= [id, name]
-						access= FULL SCAN
-		</code></pre>
-                <p><b>Result 7:</b>
-                </p><pre><code class="language-sql">name,  total
-Toaster,  450
-Train,  50
-Kandy,  200
-Ice-maker,  400
-Doll,  100
-Sport-Watch,  640
-Football,  300
-Basketball,  250
-Chocolate,  150
-coffee-machine,  350
-		</code></pre>
-                <p><b>Query 8:</b>
-                </p><pre><code class="language-sql">Select D.id, D.name  from "com.gs.Department" as D  WHERE EXISTS (select P.name  from "com.gs.Product" as P where  P.depId=D.id and P.price &gt; ?)
-					PLAN
-					join (type= SEMI, algorithm= Hash join, Equi Join)    (time=1ms rows=2)
-					│ conditions= EQUALS(id, depId)
-					└─┌table= com.gs.Department    (time=0ms rows=4)
-					  │  Server-Side Execution:
-					  │    projections= [id, name]
-					  │    access= FULL SCAN
-					  └table= com.gs.Product    (time=1ms rows=6)
-						Server-Side Execution:
-						projections= [depId, id, name, price]
-						filter= (price &gt; 100.0)
-						access= INDEX SCAN
-						partitions: [1, 2]
-						selected index:
-						- (price &gt; 100.0), size=unknown
-		</code></pre>
-                <p><b>Result 8:</b>
-                </p><pre><code class="language-sql">id,  name
-3,  sport
-4,  kitchen-aid
-		</code></pre>
-                <p><b>Query 9:</b>
-                </p><pre><code class="language-sql">Select D.id,D.name  from "com.gs.Department" as D  WHERE EXISTS (select P.name from "com.gs.Product" as P where P.depId=D.id and P.price&gt;?)
-						PLAN
-						join (type= SEMI, algorithm= Hash join, Equi Join)    (time=1ms rows=2)
-						│ conditions= EQUALS(id, depId)
-						└─┌table= com.gs.Department    (time=0ms rows=4)
-						  │  Server-Side Execution:
-						  │    projections= [id, name]
-						  │    access= FULL SCAN
-						  └table= com.gs.Product    (time=1ms rows=3)
-							Server-Side Execution:
-							projections= [depId, id, name, price]
-							filter= (price &gt; 500.0)
-							access= INDEX SCAN
-							partitions: [1, 2]
-							selected index:
-							- (price &gt; 500.0), size=unknown
-		</code></pre>
-                <p><b>Result 9:</b>
-                </p><pre><code class="language-sql">id,  name
-4,  kitchen-aid
-3,  sport
-		</code></pre>
-                <p><b>Query 10:</b>
-                </p><pre><code class="language-sql">Select P.Id, P.name, P.price  from "com.gs.Product" as P 
-						PLAN
-						projections= [id, name, price]    (time=0ms rows=10)
-						table= com.gs.Product
-						Server-Side Execution:
-						projections= [id, name, price]
-						access= FULL SCAN
-		</code></pre>
-                <p><b>Result 10:</b>
-                </p><pre><code class="language-sql">Id,  name,  price
-10,  Sport-Watch,  1000.0
-8,  Ice-maker,  555.0
-2,  Doll,  17.8
-6,  Football,  180.0
-9,  Toaster,  320.0
-3,  Chocolate,  10.0
-7,  coffee-machine,  999.0
-1,  Train,  11.1
-5,  Basketball,  150.0
-		</code></pre>
-                <p><b>Query 11:</b>
-                </p><pre xml:space="preserve"><code class="language-sql">SELECT D.name, P.depId, Max(P.price) as max_price  from "com.gs.Product" as P join  "com.gs.Department" D on P.depId=D.id group By D.name, P.depId
-						PLAN
-						aggregate by [MAX(price) AS max_price]    (time=1ms rows=4)
-						group by [name, depId]
-						join (type= INNER, algorithm= Hash join, Equi Join)    (time=1ms rows=10)
-						│ conditions= EQUALS(id, depId)
-						│ static collocated join (broadcast={com.gs.Department})
-						│ dynamic collocated join disabled (candidate=com.gs.Department)
-						└─┌table= com.gs.Department    (time=1ms rows=4)
-			    		  │  Server-Side Execution:
-					      │    projections= [id, name]
-						  │    access= FULL SCAN
-						  └projections= [depId, price]    (time=0ms rows=10)
-							table= com.gs.Product
-							Server-Side Execution:
-							projections= [depId, price]
-							access= FULL SCAN
-		</code></pre>
-                <p><b>Result 11:</b>
-                </p><pre><code class="language-sql">name,  depId,  max_price
-food,  2,  10.0
-kitchen-aid,  4,  999.0
-toys,  1,  17.8
-sport,  3,  1000.0
-		</code></pre>
+                </p><pre><code class="language-sql"><b>explain analyze for</b> select D.id, D.name  from "com.gs.Department" as D  WHERE EXISTS (select P.name  from "com.gs.Product" as 
+P where  P.depId=D.id and P.price &gt; ?)
+					
+<b>PLAN (Explain&#160;Analyze) Analysis:</b>
+join (type= SEMI, algorithm= Hash join, Equi Join)    (time=1ms rows=2)
+ │ conditions= EQUALS(id, depId)
+ └─┌table= com.gs.Department    (time=0ms rows=4)
+   │  Server-Side Execution:
+   │    projections= [id, name]
+   │    access= <b>FULL SCAN</b>
+   └table= com.gs.Product    (time=1ms rows=6)
+		Server-Side Execution:
+		projections= [depId, id, name, price]
+		filter= (price &gt; 100.0)
+		access= <b>INDEX SCAN</b>
+		partitions: [1, 2]
+		selected index:
+		- (price &gt; 100.0), size=unknown</code></pre>
             </div>
             <div title="Explain Plan" style="padding:10px">
                 <p><b>Query 1:</b>
-                </p><pre><code class="language-sql">select * from  "com.gs.Customer" where lastName = ? order by firsName DESC NULLS LAST
-PLAN
+                </p><pre><code class="language-sql"><b>explain plan for</b> select * from  "com.gs.Customer" where lastName = ? order by firsName DESC NULLS LAST
+
+<b>PLAN (Explain&#160;Plan) Analysis:</b>
 order by [firsName DESC-nulls-last]
 	table= com.gs.Customer
 		Server-Side Execution:
 			projections= [birthday, firsName, id, lastName]
 			filter= (lastName = Levi)
-			access= INDEX SCAN
+			access= <b>INDEX SCAN</b>
 				partitions: [1, 2]
 					selected index:
-					- (lastName = Levi), size=1
-				</code></pre>
-                <p><b>Result 1:</b>
-                </p><pre><code class="language-sql">birthday,  firsName,  id,  lastName
-1989-11-11,  Sara,  3,  Levi
-2000-02-03,  Moshe,  4,  Levi
-				</code></pre>
+					- (lastName = Levi), size=1</code></pre>
                 <p><b>Query 2:</b>
-                </p><pre><code class="language-sql">Select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" as PU  LEFT JOIN "com.gs.Product" as P ON PU.productId=P.id group by P.id,P.name,P.price
-PLAN
+                </p><pre><code class="language-sql"><b>explain plan for</b> select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" as 
+PU  LEFT JOIN "com.gs.Product" as P ON PU.productId=P.id group by P.id,P.name,P.price
+
+<b>PLAN (Explain&#160;Plan) Analysis:</b>
 projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]
 	aggregate by [SUM(amount) AS purchase_amount]
 	group by [id, name, price]
@@ -363,285 +168,52 @@ projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]
 			│  table= com.gs.Purchase
 			│    Server-Side Execution:
 			│      projections= [amount, productId]
-			│      access= FULL SCAN
+			│      access= <b>FULL SCAN</b>
 			└projections= [id, name, price]
 			  table= com.gs.Product
 			  Server-Side Execution:
 			  projections= [id, name, price]
-		  	  access= FULL SCAN
-				</code></pre>
-                <p><b>Result 2:</b>
-                </p><pre><code class="language-sql">product_id,  name,  price,  purchase_amount,  total
-6,  Football,  180.0,  300,  54000.0
-7,  coffee-machine,  999.0,  350,  349650.0
-8,  Ice-maker,  555.0,  400,  222000.0
-2,  Doll,  17.8,  100,  1780.0
-10,  Sport-Watch,  1000.0,  640,  640000.0
-1,  Train,  11.1,  50,  555.0
-3,  Chocolate,  10.0,  150,  1500.0
-4,  Kandy,  5.0,  200,  1000.0
-5,  Basketball,  150.0,  250,  37500.0
-9,  Toaster,  320.0,  450,  144000.0
-				</code></pre>
+		  	  access= <b>FULL SCAN</b></code></pre>
                 <p><b>Query 3:</b>
-                </p><pre><code class="language-sql">Select PU.customerId as customer_id, P.name, sum(PU.amount) as total_amount from  (select customerId, productId, amount from "com.gs.Purchase" where customerId=? ) as PU  LEFT JOIN "com.gs.Product" as P ON P.id=PU.productId group by PU.customerId,P.name
-			PLAN
-			aggregate by [SUM(amount) AS total_amount]
-			group by [customerId, name]
-			join (type= LEFT, algorithm= Hash join, Equi Join)
-			│ conditions= EQUALS(productId, id)
-			│ dynamic collocated join disabled (candidate=com.gs.Product)
-			└─┌projections= [customerId, productId, amount]
-			  │  table= com.gs.Purchase
-			  │    Server-Side Execution:
-			  │      projections= [customerId, productId, amount]
-			  │      filter= (customerId = 5)
-			  │      access= INDEX SCAN
-			  │        partitions: [1, 2]
-			  │          selected index:
-			  │            - (customerId = 5), size=[min=25, max=26]
-			  └projections= [id, name]
-				table= com.gs.Product
-				Server-Side Execution:
-				projections= [id, name]
-				access= FULL SCAN
-				</code></pre>
-                <p><b>Result 3:</b>
-                </p><pre><code class="language-sql">customer_id,  name,  total_amount
-5,  Train,  5
-5,  Toaster,  45
-5,  Doll,  10
-5,  Kandy,  20
-5,  Basketball,  25
-5,  coffee-machine,  35
-5,  Football,  30
-5,  Ice-maker,  40
-5,  Sport-Watch,  60
-5,  Chocolate,  15
-</code></pre>
-                <p><b>Query 4:</b>
-                </p><pre><code class="language-sql">Select PU.customerId as customer_id, C.firsName, C.lastName, sum(PU.amount) as amount from "com.gs.Purchase" as PU  LEFT JOIN "com.gs.Customer" as C ON C.id=PU.customerId group by PU.customerId, C.firsName, C.lastName order by PU.customerId
-PLAN
-order by [customerId ASC-nulls-first]
-aggregate by [SUM(amount) AS amount]
-group by [customerId, firsName, lastName]
-join (type= LEFT, algorithm= Hash join, Equi Join)
- │ conditions= EQUALS(customerId, id)
- │ dynamic collocated join disabled (candidate=com.gs.Customer)
- └─┌projections= [amount, customerId]
-   │  table= com.gs.Purchase
-   │    Server-Side Execution:
-   │      projections= [amount, customerId]
-   │      access= FULL SCAN
-   └projections= [firsName, id, lastName]
-	table= com.gs.Customer
-    	Server-Side Execution:
-		projections= [firsName, id, lastName]
-	    access= FULL SCAN
-</code></pre>
-                <p><b>Result 4:</b>
-                </p><pre><code class="language-sql">customer_id,  firsName,  lastName,  amount
-1,  Avi,  Cohen,  325
-2,  Sara,  Cohen,  285
-3,  Sara,  Levi,  285
-4,  Moshe,  Levi,  285
-5,  Rachel,  Lavit,  285
-6,  Dan,  Yadid,  285
-7,  Ayelt,  Ron,  285
-8,  Roni,  Din,  285
-9,  Gil,  David,  285
-10,  Shir,  Sade,  285
-</code></pre>
-                <p><b>Query 5:</b>
-                </p><pre><code class="language-sql">Select PU.productId, P.name,  max(PU.amount) as max_amount from "com.gs.Purchase" as PU  INNER JOIN "com.gs.Product" as P ON P.id=PU.productId group by PU.productId,P.name
-PLAN
-aggregate by [MAX(amount) AS max_amount]
-group by [productId, name]
+                </p><pre><code class="language-sql"><b>explain plan for</b> select  D.name as Department, P.name,  P.price from (Select name,price,depId  from "com.gs.Product"  where price &gt; ? ) AS P  Join "com.gs.Department" D  ON P.depId=D.id
+						
+<b>PLAN (Explain&#160;Plan) Analysis:</b>
 join (type= INNER, algorithm= Hash join, Equi Join)
- │ conditions= EQUALS(productId, id)
- │ dynamic collocated join disabled (candidate=com.gs.Purchase)
- └─┌projections= [amount, productId]
-   │  table= com.gs.Purchase
-   │    Server-Side Execution:
-   │      projections= [amount, productId]
-   │      access= FULL SCAN
-   └projections= [id, name]
-  	table= com.gs.Product
+  │ projections= [name0, name, price]
+  │ conditions= EQUALS(depId, id)
+  │ static collocated join (broadcast={com.gs.Department})
+  │ dynamic collocated join disabled (candidate=com.gs.Product)
+  └─┌projections= [name, price, depId]
+    │  table= com.gs.Product
+	│    Server-Side Execution:
+	│      projections= [name, price, depId]
+	│      filter= (price &gt; 100.0)
+	│      access= <b>INDEX SCAN</b>
+	│        partitions: [1, 2]
+	│          selected index:
+	│            - (price &gt; 100.0), size=unknown
+	└table= com.gs.Department
 		Server-Side Execution:
 		projections= [id, name]
-		access= FULL SCAN
-</code></pre>
-                <p><b>Result 5:</b>
-                </p><pre><code class="language-sql">productId,  name,  max_amount
-10,  Sport-Watch,  10
-4,  Kandy,  4
-6,  Football,  6
-5,  Basketball,  5
-2,  Doll,  2
-7,  coffee-machine,  7
-1,  Train,  1
-8,  Ice-maker,  8
-9,  Toaster,  9
-3,  Chocolate,  3
-</code></pre>
-                <p><b>Query 6:</b>
-                </p><pre><code class="language-sql">Select  D.name as Department, P.name,  P.price from (Select name,price,depId  from "com.gs.Product"  where price &gt; ? ) AS P  Join "com.gs.Department" D  ON P.depId=D.id
-						PLAN
-						join (type= INNER, algorithm= Hash join, Equi Join)
-						│ projections= [name0, name, price]
-						│ conditions= EQUALS(depId, id)
-						│ static collocated join (broadcast={com.gs.Department})
-						│ dynamic collocated join disabled (candidate=com.gs.Product)
-						└─┌projections= [name, price, depId]
-						│  table= com.gs.Product
-						│    Server-Side Execution:
-						│      projections= [name, price, depId]
-						│      filter= (price &gt; 100.0)
-						│      access= INDEX SCAN
-						│        partitions: [1, 2]
-						│          selected index:
-						│            - (price &gt; 100.0), size=unknown
-						└table= com.gs.Department
-						Server-Side Execution:
-						projections= [id, name]
-						access= FULL SCAN
-				</code></pre>
-                <p><b>Result 6:</b>
-                </p><pre><code class="language-sql">Department,  name,  price
-						sport,  Football,  180.0
-						kitchen-aid,  Ice-maker,  555.0
-						sport,  Sport-Watch,  1000.0
-						sport,  Basketball,  150.0
-						kitchen-aid,  Toaster,  320.0
-						kitchen-aid,  coffee-machine,  999.0
-				</code></pre>
-                <p><b>Query 7:</b>
-                </p><pre><code class="language-sql">Select  P.name, sum(PU.amount) as total from "com.gs.Purchase" as PU  LEFT JOIN "com.gs.Product" as P ON P.id=PU.productId group by P.name having total &gt; ? 
-						PLAN
-						filter= GREATER_THAN(total, DYNAMIC_PARAM(index=0))
-						aggregate by [SUM(amount) AS total]
-						group by [name]
-						join (type= LEFT, algorithm= Hash join, Equi Join)
-						│ conditions= EQUALS(productId, id)
-						│ dynamic collocated join disabled (candidate=com.gs.Product)
-						└─┌projections= [amount, productId]
-						│  table= com.gs.Purchase
-						│    Server-Side Execution:
-						│      projections= [amount, productId]
-						│      access= FULL SCAN
-						└projections= [id, name]
-						table= com.gs.Product
-						Server-Side Execution:
-						projections= [id, name]
-						access= FULL SCAN
-				</code></pre>
-                <p><b>Result 7:</b>
-                </p><pre><code class="language-sql">name,  total
-						Toaster,  450
-						Kandy,  200
-						Train,  50
-						Ice-maker,  400
-						Doll,  100
-						Sport-Watch,  640
-						Football,  300
-						Basketball,  250
-						Chocolate,  150
-						coffee-machine,  350
-				</code></pre>
-                <p><b>Query 8:</b>
+		access= <b>FULL SCAN</b></code></pre>
+                <p><b>Query 4:</b>
                 </p><pre><code class="language-sql">Select D.id, D.name  from "com.gs.Department" as D  WHERE EXISTS (select P.name  from "com.gs.Product" as P where  P.depId=D.id and P.price &gt; ?)
-						PLAN
-						join (type= SEMI, algorithm= Hash join, Equi Join)
-						│ conditions= EQUALS(id, depId)
-						└─┌table= com.gs.Department
-						│  Server-Side Execution:
-						│    projections= [id, name]
-						│    access= FULL SCAN
-						└table= com.gs.Product
-						Server-Side Execution:
-						projections= [depId, id, name, price]
-						filter= (price &gt; 100.0)
-						access= INDEX SCAN
-						partitions: [1, 2]
-						selected index:
-						- (price &gt; 100.0), size=unknown
-				</code></pre>
-                <p><b>Result 8:</b>
-                </p><pre><code class="language-sql">id,  name
-						4,  kitchen-aid
-						3,  sport
-				</code></pre>
-                <p><b>Query 9:</b>
-                </p><pre><code class="language-sql">Select D.id,D.name  from "com.gs.Department" as D  WHERE EXISTS (select P.name from "com.gs.Product" as P where P.depId=D.id and P.price&gt;?)
-						PLAN
-						join (type= SEMI, algorithm= Hash join, Equi Join)
-						│ conditions= EQUALS(id, depId)
-						└─┌table= com.gs.Department
-						│  Server-Side Execution:
-						│    projections= [id, name]
-						│    access= FULL SCAN
-						└table= com.gs.Product
-						Server-Side Execution:
-						projections= [depId, id, name, price]
-						filter= (price &gt; 500.0)
-						access= INDEX SCAN
-						partitions: [1, 2]
-						selected index:
-						- (price &gt; 500.0), size=unknown
-				</code></pre>
-                <p><b>Result 9:</b>
-                </p><pre><code class="language-sql">id,  name
-						4,  kitchen-aid
-						3,  sport
-				</code></pre>
-                <p><b>Query 10:</b>
-                </p><pre><code class="language-sql">Select P.Id, P.name, P.price  from "com.gs.Product" as P 
-						PLAN
-						projections= [id, name, price]
-						table= com.gs.Product
-						Server-Side Execution:
-						projections= [id, name, price]
-						access= FULL SCAN
-				</code></pre>
-                <p><b>Result 10:</b>
-                </p><pre><code class="language-sql">Id,  name,  price
-						8,  Ice-maker,  555.0
-						2,  Doll,  17.8
-						6,  Football,  180.0
-						4,  Kandy,  5.0
-						10,  Sport-Watch,  1000.0
-						1,  Train,  11.1
-						5,  Basketball,  150.0
-						9,  Toaster,  320.0
-						3,  Chocolate,  10.0
-						7,  coffee-machine,  999.0
-				</code></pre>
-                <p><b>Query 11:</b>
-                </p><pre><code class="language-sql">SELECT D.name, P.depId, Max(P.price) as max_price  from "com.gs.Product" as P join  "com.gs.Department" D on P.depId=D.id group By D.name, P.depId
-						PLAN
-						aggregate by [MAX(price) AS max_price]
-						group by [name, depId]
-						join (type= INNER, algorithm= Hash join, Equi Join)
-						│ conditions= EQUALS(id, depId)
-						│ static collocated join (broadcast={com.gs.Department})
-						│ dynamic collocated join disabled (candidate=com.gs.Department)
-						└─┌table= com.gs.Department
-						│  Server-Side Execution:
-						│    projections= [id, name]
-						│    access= FULL SCAN
-						└projections= [depId, price]
-						table= com.gs.Product
-						Server-Side Execution:
-						projections= [depId, price]
-						access= FULL SCAN
-				</code></pre>
-                <p><b>Result 11:</b>
-                </p><pre><code class="language-sql">name,  depId,  max_price
-						food,  2,  10.0
-						kitchen-aid,  4,  999.0
-						sport,  3,  1000.0
-						toys,  1,  17.8
-				</code></pre>
+
+<b>PLAN (Explain&#160;Plan) Analysis:</b>
+join (type= SEMI, algorithm= Hash join, Equi Join)
+  │ conditions= EQUALS(id, depId)
+  └─┌table= com.gs.Department
+	│  Server-Side Execution:
+	│    projections= [id, name]
+	│    access= <b>FULL SCAN</b>
+	└table= com.gs.Product
+		Server-Side Execution:
+		projections= [depId, id, name, price]
+		filter= (price &gt; 100.0)
+		access= <b>INDEX SCAN</b>
+		partitions: [1, 2]
+		selected index:
+		- (price &gt; 100.0), size=unknown</code></pre>
             </div>
         </div>
     </body>
