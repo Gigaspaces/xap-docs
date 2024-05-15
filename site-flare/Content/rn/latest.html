@@ -264,13 +264,23 @@
             </div>
         </div>
         <div MadCap:conditions="Version.17-0-only">
-            <h3> Release Date: March-2024</h3>
+            <h3> Release Date: May-2024</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
             <p>&#160;</p>
+            <h1>Upgrade to Java 17 and Spring 6</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" />, <MadCap:variable name="General.ProductXAPSkyline" /> and Smart DIH</p>
+            </div>
+            <p><MadCap:variable name="General.CompanyName" />, pre version 17.0 use Spring 5.3. This Spring version will be end of support from August 2024. &#160;The impact of this is that security updates will not longer be available for this version. As security is a critical part of our system, we will be upgrading to Spring 6.</p>
+            <p>One of the prerequisites of upgrading to Spring 6 is using Java 17. &#160;Therefore <MadCap:variable name="General.CompanyName" /> will also be moving to Java 17 from version 17.0. Java 17 includes more advanced garbage collection (GC) mechanisms. Advanced garbage collectors open more possibilities for managing our memory footprint.</p>
+            <p>For additional details, including upgrading from previous version, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
             <h1>Security </h1>
             <div class="tc-admon-feature">
                 <p>Service Account Privilege Management</p>
             </div>
+            <p>
+                <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
+            </p>
             <p><MadCap:variable name="General.CompanyName" /> already secures <b>user accounts</b> by, for example, <a href="../spacedeck/spacedeck-admin.html">using IDP</a>. This is now being expanded to include the securing of <b>service accounts</b>. </p>
             <ul>
                 <li>
@@ -292,22 +302,22 @@
                         <p>Multiversion Concurrency Control (MVCC)</p>
                     </div>
                     <p>Multiversion concurrency control (MVCC) is method that allows a user to have a concurrent and persistent view of distributed transactions across partitions.  keep multiple versions of modified entries to ensure that a user has a persistent view of the data that is consistent with the SoR.</p>
-                    <p>For additional information refer to this <a href="../Data Integration/DI-Deployment-MVCC.html">MVCC</a> page.</p>
+                    <p>For additional information refer to our <a href="../Data Integration/DI-Deployment-MVCC.html">MVCC</a> page.</p>
                     <div class="tc-admon-feature">
                         <p>Transformations</p>
                     </div>
                 </div>
             </div>
-            <p><MadCap:variable name="General.ProductNameXAP" /> Data Integration feature will now include transformations.</p>
+            <p><MadCap:variable name="General.ProductNameXAP" /> Data Integration feature will now include transformations. Configuring transformations enables data to be converted into a simple format that can then be used for the easy creation of services.</p>
             <ul>
                 <li>
                     <p>A data pipeline is a method of transporting data from one place to another. Acting as a conduit for data, these pipelines should enable efficient processing, transformation, and delivery of data to the desired location.</p>
                 </li>
                 <li>
-                    <p>Through data cleansing and transformation processes, data pipelines enhance data quality and ensure accuracy for analysis and decision-making. By maintaining high data quality standards, organizations can rely on trustworthy insights to drive their business activities.</p>
+                    <p>Through data cleansing and transformation processes, data pipelines enhance data quality and ensure accuracy for analysis and decision-making. </p>
                 </li>
             </ul>
-            <p>For additional information, refer to this <a href="../Data Integration/DI-Deployment-Transformations.html">Transformations </a>page.</p>
+            <p>For additional information, refer to our <a href="../Data Integration/DI-Deployment-Transformations.html">Transformations </a>page.</p>
             <div class="tc-admon-feature">
                 <p>Batch Load (Feeders)</p>
             </div>
@@ -323,7 +333,7 @@
                     <p>Can be managed by SpaceDeck or via REST&#160;API</p>
                 </li>
             </ul>
-            <p>For additional information, refer to this <a href="../Data Integration/DI-Deployment-Batch-Load.html">Batch Load </a>page.</p>
+            <p>For additional information, refer to our <a href="../Data Integration/DI-Deployment-Batch-Load.html">Batch Load </a>page.</p>
         </div>
     </body>
 </html>
