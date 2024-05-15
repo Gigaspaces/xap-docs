@@ -274,6 +274,21 @@
             <p><MadCap:variable name="General.CompanyName" />, pre version 17.0 use Spring 5.3. This Spring version will be end of support from August 2024. &#160;The impact of this is that security updates will not longer be available for this version. As security is a critical part of our system, we will be upgrading to Spring 6.</p>
             <p>One of the prerequisites of upgrading to Spring 6 is using Java 17. &#160;Therefore <MadCap:variable name="General.CompanyName" /> will also be moving to Java 17 from version 17.0. Java 17 includes more advanced garbage collection (GC) mechanisms. Advanced garbage collectors open more possibilities for managing our memory footprint.</p>
             <p>For additional details, including upgrading from previous version, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
+            <h3>FAQ</h3>
+            <div class="easyui-accordion">
+                <div title="FAQ 1">
+                    <p>Q: Will backward compatibility be broken when moving to <MadCap:variable name="General.CompanyName" /> version 17.0?</p>
+                    <p>A: Existing <MadCap:variable name="General.ProductXAP" /> customers who upgrade to <MadCap:variable name="General.CompanyName" /> version 17.0 will also need to upgrade their client applications to be compiled with Java 17 or higher</p>
+                </div>
+                <div title="FAQ 2">
+                    <p>Q: If you are using an older <MadCap:variable name="General.CompanyName" /> version, will <MadCap:variable name="General.CompanyName" /> still support you?</p>
+                    <p>A: Older versions will be supported as always, within policy or per an extended support contract. That said, any vulnerabilities resulting from 3rd party versions that are end-of-support (for example, Spring 5.3) will only be addressed by an upgrade to a supported version of the 3rd party. As result, this might force an upgrade to <MadCap:variable name="General.CompanyName" /> version 17.0 unless the customer accepts the risks that will exist due to those vulnerabilities.</p>
+                </div>
+                <div title="FAQ 3">
+                    <p>Q: The latest long-term support (LTS) version of Java is Java 21. Why are <MadCap:variable name="General.CompanyName" /> not upgrading directly to this version?</p>
+                    <p>A: Java 21 was released in September 2023 and has not yet been widely adopted in the community. If <MadCap:variable name="General.CompanyName" /> enforce Java 21 on the server side (XAP), there might be a bigger impact on our install base that we can anticipate. Our recommendation to existing customers would be to consider upgrading their client applications  directly to Java 21 to support forward compatibility.</p>
+                </div>
+            </div>
             <h1>Security </h1>
             <div class="tc-admon-feature">
                 <p>Service Account Privilege Management</p>
