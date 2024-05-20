@@ -16,6 +16,8 @@
             </p>
         </div>
         <h1 class="tc-pagetitle">Sample Queries using Explain Analyze and Explain&#160;Plan</h1>
+        <h1>Reference</h1>
+        <p>Before reading this page, please familiarize yourself with the <a href="data-query-DQL.html">Guidelines for Structuring a Data Query using the JDBC&#160;V3</a>.</p>
         <h1>Overview</h1>
         <p>In the PostgreSQL Explain Analyze and Explain Plan examples provided on this page, the following terminology is utilized:</p>
         <table style="width: 100%;" class="tc-standard">
@@ -47,7 +49,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Broadcast Table (colocated joins)</td>
+                    <td>Broadcast Table (collocated joins)</td>
                     <td>When dealing with a small table intended for joining with others, it is advisable to define it as a broadcast table. In this scenario, rather than transferring all the data to the client and executing the join there, the join operation occurs within each partition, minimizing unnecessary data movement. Refer to <a href="broadcast-objects.html">Broadcast Objects</a> for additional information.</td>
                 </tr>
             </tbody>
@@ -63,7 +65,8 @@
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Explain Analyze" style="padding:10px">
                 <p><b>Query 1:</b>
-                </p><pre><code class="language-sql"><b>explain analyze for</b> select * from  "com.gs.Customer" where lastName = ? order by firsName DESC NULLS LAST
+                </p>
+                <p>This query retrieves all Customers who have the lastName = 'Levi' and displays the result in descending order by firstName field, NULLS&#160;LAST for order tells us that if firstName will be null, such values will be shown last in response. As far as there is EQUALS index on lastName field, index is used for getting data.</p><pre><code class="language-sql"><b>explain analyze for</b> select * from  "com.gs.Customer" where lastName = Levi order by firsName DESC NULLS LAST
 
 <b>PLAN (Explain&#160;Analyze) Analysis:</b>
 order by [firsName DESC-nulls-last]    <b>(time=1ms rows=2)</b> 
@@ -75,8 +78,10 @@ order by [firsName DESC-nulls-last]    <b>(time=1ms rows=2)</b>
 				partitions: [1, 2]
 					selected index:
 						- (lastName = Levi), size=1</code></pre>
+                <p>&#160;</p>
                 <p><b>Query 2:</b>
-                </p><pre><code class="language-sql"><b>explain analyze for</b> select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" 
+                </p>
+                <p>This Explain Analyze shows that there will be two FULL SCANS on tables Product and Purchase and all result sets from both will be taken to the client side and <b>Equi JOIN</b> (hash join algorithm will be used for match comparison) will be performed on the client side. </p><pre><code class="language-sql"><b>explain analyze for</b> select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" 
 as PU LEFT JOIN "com.gs.Product" as P ON PU.productId=P.id group by P.id,P.name,P.price
 
 <b>PLAN (Explain&#160;Analyze) Analysis:</b>
@@ -97,7 +102,8 @@ projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]  
 		  projections= [id, name, price]
 		  access= <b>FULL SCAN</b></code></pre>
                 <p><b>Query 3:</b>
-                </p><pre><code class="language-sql"><b>explain analyze for</b> select  D.name as Department, P.name,  P.price from (Select name,price,depId  from "com.gs.Product"  where price &gt; ? ) 
+                </p>
+                <p>In this Explain Analyze, the Department table is a broadcast table. This means that every partition in our distributed system has a full copy of the Department table. The query fetches products whose prices are above a certain threshold and retrieves the related department details.  If the expensive products were only in a few departments, we could fetch only the relevant department details. Additionally, if we add a condition on the department, the server can filter the products, reducing the amount of data sent to the client.  If the Department table was not broadcast, we couldn't do this server-side filtering and would have to send all the data to the client and filter it there.</p><pre><code class="language-sql"><b>explain analyze for</b> select  D.name as Department, P.name,  P.price from (Select name,price,depId  from "com.gs.Product"  where price &gt; 100 ) 
 AS P  Join "com.gs.Department" D  ON P.depId=D.id
 				
 <b>PLAN (Explain&#160;Analyze) Analysis:</b>
@@ -120,8 +126,9 @@ join (type= INNER, algorithm= Hash join, Equi Join)    (time=11ms rows=6)
 		projections= [id, name]
 		access= <b>FULL SCAN</b></code></pre>
                 <p><b>Query 4:</b>
-                </p><pre><code class="language-sql"><b>explain analyze for</b> select D.id, D.name  from "com.gs.Department" as D  WHERE EXISTS (select P.name  from "com.gs.Product" as 
-P where  P.depId=D.id and P.price &gt; ?)
+                </p>
+                <p>This plan shows us, that there is INDEX scan for the Product table by using the price field, that should have ORDERED index (otherwise index would not be used). This INDEX scan was executed for 1 ms and respond with 6 rows to the client side. There was FULL SCAN for table Department, it was executed for 1 ms and respond with 4 rows to the client side. And then JOIN operation was performed using hash join algorithm for comparing the id field from Department with depId field from Product. This operation took 1 ms and in response  2 rows were retrieved.</p><pre><code class="language-sql"><b>explain analyze for</b> select D.id, D.name  from "com.gs.Department" as D  WHERE EXISTS (select P.name  from "com.gs.Product" as 
+P where  P.depId=D.id and P.price &gt; 100?)
 					
 <b>PLAN (Explain&#160;Analyze) Analysis:</b>
 join (type= SEMI, algorithm= Hash join, Equi Join)    (time=1ms rows=2)
@@ -154,8 +161,8 @@ order by [firsName DESC-nulls-last]
 					selected index:
 					- (lastName = Levi), size=1</code></pre>
                 <p><b>Query 2:</b>
-                </p><pre><code class="language-sql"><b>explain plan for</b> select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" as 
-PU  LEFT JOIN "com.gs.Product" as P ON PU.productId=P.id group by P.id,P.name,P.price
+                </p><pre><code class="language-sql"><b>explain plan for</b> select P.id as product_id, P.name, P.price, sum(P.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" as 
+PU  LEFT JOIN "com.gs.Product" as P ON P.productId=P.id group by P.id,P.name,P.price
 
 <b>PLAN (Explain&#160;Plan) Analysis:</b>
 projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]

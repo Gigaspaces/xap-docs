@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-		<div class="product-bar">
-			<p><a>Smart DIH</a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
         <map id="map1">
             <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
             <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
@@ -16,61 +16,157 @@
         <p>Data Sources define the origin of data in the System of Record. A data source is a reference to a particular database or data store. </p>
         <p>It is a logical representation of the connection to the actual source.</p>
         <p id="YES-TOC">When we define a <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html" class="data-pipeline-definition">data pipeline definition</MadCap:xref>, we will include a reference to a particular data source, and to a particular set of tables and fields in that data source.</p>
-        <h2>View List of Data Sources</h2>
-        <p>The initial Data Sources screen displays a list of available data sources. </p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS1d.png" style="width: 1015px;height: 185px;" />
-        </p>
-        <h2>Data Sources Fields</h2>
-        <ul>
-            <li>
-                <p><b>NAME</b> – The name you define for the data source</p>
-                <div class="tc-admon-note">
-                    <p>The data source name is not case sensitive and has no limits for naming</p>
-                </div>
-            </li>
-            <li>
-                <p><b>DB&#160;TYPE</b> – The database type for the data source, as defined in the System of Record</p>
-            </li>
-            <li>
-                <p><b>URL</b> – The URL for the data source</p>
-            </li>
-            <li>
-                <p><b>DESCRIPTION</b> – A free-format description of the data source</p>
-            </li>
-        </ul>
-        <h2>Setting Up a New Data Source</h2>
-        <p>To setup a new Data Source click <b>New +</b>:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS5a.png" style="width: 1018px;height: 182px;" />
-        </p>
-        <p>The Configuration screen will then be displayed:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS4.png" style="width: 1027px;height: 449px;" />
-        </p>
-        <h2>Data Sources -&#160;New Source Setup Fields</h2>
-        <ul>
-            <li>
-                <p><b>Date Source Name</b> – The name you define for the data source.</p>
-            </li>
-            <li>
-                <p><b>Data Source Type</b> – The database type for the data source, as defined in the System of Record. Example, ORACLE, MSSQL.</p>
-            </li>
-            <li>
-                <p><b>URL</b> – The URL for the data source.</p>
-            </li>
-            <li>
-                <p><b>Username </b>and<b> Password</b> – The credentials for accessing the data source.</p>
-            </li>
-            <li>
-                <p><b>Description</b> – Afree-format description of the data source.</p>
-            </li>
-        </ul>
-        <p>Enter the configuration details and click <b>Save Connection</b>, The new data source will now be listed on the main Data Sources screen.</p>
+        <div MadCap:conditions="Version.17-0-died">
+            <h2>View List of Data Sources</h2>
+            <p>The initial Data Sources screen displays a list of available data sources. </p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS1d.png" style="width: 1015px;height: 185px;" />
+            </p>
+            <h2>Data Sources Fields</h2>
+            <ul>
+                <li>
+                    <p><b>NAME</b> – The name you define for the data source</p>
+                    <div class="tc-admon-note">
+                        <p>The data source name is not case sensitive and has no limits for naming</p>
+                    </div>
+                </li>
+                <li>
+                    <p><b>DB&#160;TYPE</b> – The database type for the data source, as defined in the System of Record</p>
+                </li>
+                <li>
+                    <p><b>URL</b> – The URL for the data source</p>
+                </li>
+                <li>
+                    <p><b>DESCRIPTION</b> – A free-format description of the data source</p>
+                </li>
+            </ul>
+            <h2>Setting Up a New Data Source</h2>
+            <p>To setup a new Data Source click <b>New +</b>:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS5a.png" style="width: 1018px;height: 182px;" />
+            </p>
+            <p>The Configuration screen will then be displayed:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS4.png" style="width: 1027px;height: 449px;" />
+            </p>
+            <h2>Data Sources -&#160;New Source Setup Fields</h2>
+            <ul>
+                <li>
+                    <p><b>Date Source Name</b> – The name you define for the data source.</p>
+                </li>
+                <li>
+                    <p><b>Data Source Type</b> – The database type for the data source, as defined in the System of Record. Example, ORACLE, MSSQL.</p>
+                </li>
+                <li>
+                    <p><b>URL</b> – The URL for the data source.</p>
+                </li>
+                <li>
+                    <p><b>Username </b>and<b> Password</b> – The credentials for accessing the data source.</p>
+                </li>
+                <li>
+                    <p><b>Description</b> – A free-format description of the data source.</p>
+                </li>
+            </ul>
+            <p>Enter the configuration details and click <b>Save Connection</b>, The new data source will now be listed on the main Data Sources screen.</p>
+        </div>
+        <div MadCap:conditions="Version.17-0-born">
+            <h2>Data Source&#160;Main Screen</h2>
+            <p>The initial Data Sources screen. </p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_DataSource1.png" style="width: 829px;height: 319px;" />
+            </p>
+            <h2>Setting Up a New Data Source</h2>
+            <p>To setup a new Data Source click <b>Create New +</b>: or <b>New +</b>&#160;if a data source already exists.</p>
+            <p>The initial Configuration screen will then be displayed.</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_DataSource2.png" style="width: 908px;height: 373px;" />
+            </p>
+            <h2>Data Sources Fields</h2>
+            <ul>
+                <li>
+                    <p><b>NAME</b> – The name you define for the data source</p>
+                    <div class="tc-admon-note">
+                        <p>The data source name is not case sensitive and has no limits for naming</p>
+                    </div>
+                </li>
+                <li>
+                    <p MadCap:conditions="Version.17-0-died"><b>CONNECTOR&#160;TYPE</b> – The connector type - select either IIDR or None.</p>
+                </li>
+                <li>
+                    <p MadCap:conditions="Version.17-0-born"><b>CONNECTOR&#160;TYPE</b> – The connector type - select either IIDR, BATCHLOD or None.</p>
+                </li>
+            </ul>
+            <h2>Data Source - IIDR</h2>
+            <p>If you select Connector Type IIDR the following setup screen is displayed:</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_DataSource3a.png" style="width: 1026px;height: 529px;" />
+            </p>
+            <h2>Data Sources -&#160;IIDR Setup Fields</h2>
+            <ul>
+                <li>
+                    <p><b>Date Source Name</b> – The name you define for the data source.</p>
+                </li>
+                <li>
+                    <p><b>Description</b> – A free-format description of the data source.</p>
+                </li>
+                <li>
+                    <p><b>Connector Type</b> – In our example, for an Oracle database, IIDR has been selected.</p>
+                </li>
+                <li>
+                    <p><b>Host</b> – The Host for the data source.</p>
+                </li>
+                <li>
+                    <p><b>Port</b> – The Port assigned for the data source.</p>
+                </li>
+                <li>
+                    <p><b>Data Source Type</b> - Options are ORACLE, MSSQL, DB2ZOS, DB2I</p>
+                </li>
+                <li>
+                    <p><b>Username </b>and<b> Password</b> – The credentials for accessing the data source.</p>
+                </li>
+            </ul>
+            <p>Enter the configuration details and click <b>Save Connection</b>, The new data source will now be listed on the main Data Sources screen.</p>
+            <h2>Data Source - Batch Load</h2>
+            <div class="tc-admon-refer">
+                <p>Refer to our <a href="../Data Integration/DI-Deployment-Batch-Load.html">batch load</a> page for more details.</p>
+            </div>
+            <p>If you select Connector Type Batch Load the following setup screen is displayed:</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_DataSource5.png" style="width: 1209px;height: 626px;" />
+            </p>
+            <h2>Data Sources -&#160;Batch Load Setup Fields</h2>
+            <ul>
+                <li>
+                    <p><b>Date Source Name</b> – The name you define for the data source.</p>
+                </li>
+                <li>
+                    <p><b>Description</b> – A free-format description of the data source.</p>
+                </li>
+                <li>
+                    <p><b>Connector Type</b> – In our example, for an Oracle database, BATCHLOAD has been selected.</p>
+                </li>
+                <li>
+                    <p><b>Agent</b> - Select the batch load agent being used (use a different agent for each pipeline).</p>
+                </li>
+                <li>
+                    <p><b>Data Source Type</b> - Currently only ORACLE&#160;is available.</p>
+                </li>
+                <li>
+                    <p><b>URL</b> - URL of the Data Source.</p>
+                </li>
+                <li>
+                    <p><b>Username </b>and<b> Password</b> – The credentials for accessing the data source.</p>
+                </li>
+            </ul>
+            <p>Enter the configuration details and click <b>Save Connection</b>, The new data source will now be listed on the main Data Sources screen.</p>
+        </div>
         <h2>Deleting a Data Source</h2>
         <p>There is an option to delete a data source by clicking the kebab menu (vertical three-dot menu) on the far right of the main Data Sources menu and clicking <b>Delete Data Source</b>:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS6.png" style="width: 1034px;height: 181px;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS6.png" style="width: 1034px;height: 181px;" MadCap:conditions="Version.17-0-died" />
+        </p>
+        <p>
+            <img src="../Resources/Images/17.0/SD_DataSource6.png" style="width: 1185px;height: 218px;" MadCap:conditions="Version.17-0-born" />
         </p>
         <p>&#160;</p>
         <h1>Next Step – Using the Data Source in a Data Pipeline</h1>

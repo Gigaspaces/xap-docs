@@ -271,8 +271,33 @@
             <div class="tc-admon-note">
                 <p>This applies for <MadCap:variable name="General.ProductXAP" />, <MadCap:variable name="General.ProductXAPSkyline" /> and Smart DIH</p>
             </div>
-            <p><MadCap:variable name="General.CompanyName" />, pre version 17.0 use Spring 5.3. This Spring version will be end of support from August 2024. &#160;The impact of this is that security updates will not longer be available for this version. As security is a critical part of our system, we will be upgrading to Spring 6.</p>
-            <p>One of the prerequisites of upgrading to Spring 6 is using Java 17. &#160;Therefore <MadCap:variable name="General.CompanyName" /> will also be moving to Java 17 from version 17.0. Java 17 includes more advanced garbage collection (GC) mechanisms. Advanced garbage collectors open more possibilities for managing our memory footprint.</p>
+            <h3>Java Upgrade</h3>
+            <p>GigaSpaces has been upgraded to Java 17. This upgrade leverages the latest features and improvements in Java, providing enhanced performance, security, and functionality. Java 17 includes more advanced garbage collection (GC) mechanisms. Advanced garbage collectors open more possibilities for managing our memory footprint.</p>
+            <h3>Spring Framework Upgrade</h3>
+            <p>We have transitioned from Spring 5.3 to Spring 6. This move is driven by the upcoming end-of-support for Spring 5.3 in August 2024, ensuring we continue to receive necessary security updates and benefit from the latest features in the Spring ecosystem.</p>
+            <h3>Rationale: </h3>
+            <p><b>Security Enhancements</b>: The shift to Spring 6 addresses known security issues inherent in previous versions, aligning with our commitment to maintaining a secure and robust system.</p>
+            <p><b>End-of-Support Considerations</b>: Spring 5.3 will no longer receive security updates post-August 2024. Upgrading to Spring 6 ensures continued compliance with security best practices and access to the latest patches and fixes.</p>
+            <h3>Impact:</h3>
+            <p><b>Developers</b>:</p>
+            <ul>
+                <li>
+                    <p>Codebase and dependencies need to be updated to ensure compatibility with Java 17 and Spring 6.</p>
+                </li>
+                <li>
+                    <p>Review and adjust custom implementations and third-party integrations to align with the updated frameworks.</p>
+                </li>
+            </ul>
+            <p><b>Operations</b>:</p>
+            <ul>
+                <li>
+                    <p>Enhanced security and performance metrics due to the new Java and Spring versions.</p>
+                </li>
+                <li>
+                    <p>Monitoring and adjustments may be required during the transition period to ensure system stability.</p>
+                </li>
+            </ul>
+            <p>We encourage all users to thoroughly test their applications in the updated environment to identify and resolve any issues prior to deploying the changes in production.</p>
             <p>For additional details, including upgrading from previous version, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
             <h3>FAQ</h3>
             <div class="easyui-accordion">

@@ -44,7 +44,7 @@
                 <p><b>%RAM </b> – Refers to the percentage of a machine's RAM (Random Access Memory) that is being used at a given time.</p>
             </li>
             <li>
-                <p><b>DAILY&#160;AVERAGE&#160;%&#160;CPU </b> – Refers to the average percentage of a machine's RAM over a 24 hour period. Used to understand how much RAM is typical for a system over time.</p>
+                <p><b>DAILY&#160;AVERAGE&#160;%&#160;RAM </b> – Refers to the average percentage of a machine's RAM over a 24 hour period. Used to understand how much RAM is typical for a system over time.</p>
             </li>
         </ul>
         <h2>Generate Dumps</h2>
@@ -86,16 +86,16 @@
                 <p><b>IP&#160;address</b> - IP&#160;address of the cluster.</p>
             </li>
             <li>
-                <p><b>Processor architecture</b> - Processor of the machine being used.</p>
+                <p><b>Processor Architecture</b> - Processor of the machine being used.</p>
             </li>
             <li>
-                <p><b>Number of processors</b> - Number of processors in the machine.</p>
+                <p><b>Number of Processors</b> - Number of processors in the machine.</p>
             </li>
             <li>
-                <p><b>Operating system</b> - Operating system of the K8s cluster.</p>
+                <p><b>Operating System</b> - Operating system of the K8s cluster.</p>
             </li>
             <li>
-                <p><b>Physical memory</b> - Physical memory of the cluster.</p>
+                <p><b>Physical Memory</b> - Physical memory of the cluster.</p>
             </li>
         </ul>
         <p>&#160;</p>
@@ -106,7 +106,10 @@
         <h2>View Hosts Details - Pods Tab</h2>
         <p>The Pods tab displays the Pods of the host.</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu7.png" style="width: 1062px;height: 442px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu7.png" style="width: 1062px;height: 442px;" MadCap:conditions="Version.16-4-only" />
+        </p>
+        <p>
+            <img src="../Resources/Images/17.0/SD_Hosts1.png" style="width: 1176px;height: 418px;" MadCap:conditions="Version.17-0-born" />
         </p>
         <h3>Pods Fields</h3>
         <ul>
@@ -120,7 +123,10 @@
                 <p MadCap:conditions="Default.DoNotShow"><b>TYPE</b> – Primary or Backup.</p>
             </li>
             <li>
-                <p><b>STATUS </b> – This will display Active or Error.</p>
+                <p MadCap:conditions="Version.16-4-only"><b>STATUS </b> – This will display Running, Active or Error.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.17-0-born"><b>CONTAINERS.GRID-HEADERS.STATUS</b> - This will display statuses of <span style="background-color: #ffff00;">TBD</span></p>
             </li>
             <li>
                 <p MadCap:conditions="Default.DoNotShow"><b>ZONES</b> - This is displayed if the user defines a zone name of this container.</p>
