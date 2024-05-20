@@ -48,7 +48,7 @@
                         <p>The Service name must be in lower case and can contain numbers and one hyphen (-).</p>
                     </div>
                 </li>
-                <li>
+                <li MadCap:conditions="Version.16-4-only">
                     <p><b>STATUS</b> – The status of the service:</p>
                     <ul style="list-style-type: circle;">
                         <li>
@@ -62,6 +62,7 @@
                         </li>
                     </ul>
                 </li>
+                <li MadCap:conditions="Version.17-0-born"><b>STATUS</b> – The status of the service:<ul style="list-style-type: circle;"><li><p><b>Undeployed</b> - A service that has been created, deployed and is now undeployed. It can also be edited in this state.</p></li><li><p><b>Deployed</b> - Ready for external execution.</p></li><li><p><b>Created</b> - A service that has  been created but not yet deployed and can still be edited.</p></li><li><p><b>Deploying</b> - The service is deploying.</p></li><li><p><b>Error</b> - There is an error whilst attempting to deploy this service.</p></li></ul></li>
                 <li>
                     <p MadCap:conditions="Version.17-0-died"><b>SPACE&#160;NAME</b> – The name of the space to which the service is associated.</p>
                 </li>

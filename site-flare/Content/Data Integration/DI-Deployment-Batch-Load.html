@@ -8,8 +8,6 @@
             </p>
         </div>
         <h1 class="tc-pagetitle" style="text-align: left;">Batch Load Without IIDR</h1>
-        <p style="text-align: left;"><span style="background-color: #ffff00;">or without CDC?</span>
-        </p>
         <h1>Introduction</h1>
         <p><MadCap:variable name="General.CompanyName" /> now has the ability for Smart DIH to define batch loads via a standard pipeline interface. Batch load can now be performed without the use of IIDR.</p>
         <ul>
@@ -26,10 +24,12 @@
                 <p>Support for tables with materialized views (executed query and results saved in a table) and views (saving the actual query – as SQL).  As there is no primary key for those table types, a Space ID must be defined.</p>
             </li>
         </ul>
-        <h2>Enabling Batch Load</h2>
+        <h2>Enabling Batch Load:&#160;Helm</h2>
         <p>Batch load is enabled through Kubernetes orchestration, Batch Load is not enabled by default.</p>
-        <p>The <b>global.batchload.enabled=true flag</b> has to be added to the helm command.</p>
+        <p>The <code>global.batchload.enabled=true flag</code> has to be added to the helm command.</p>
         <p>There is support for direct JDBC connect to  a data source</p>
+        <p>For each Pipeline, a separate Batch Load agent must be used. &#160;The helm command for enabling the agent is: <code>batchload-agent.enabled=true</code></p>
+        <p>and for adding an additional agent: <code>batchload-agent.agent.name=[name of agent]</code>.</p>
         <h1>Supported Data Source and Loading Types. </h1>
         <p>Currently, <MadCap:variable name="General.CompanyName" /> supports the ability to perform full batch load from an Oracle DB. &#160;More data sources and loading types will be added in future releases.</p>
         <div MadCap:conditions="Default.DoNotShow">

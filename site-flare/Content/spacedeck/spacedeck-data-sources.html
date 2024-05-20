@@ -93,7 +93,10 @@
                     <p MadCap:conditions="Version.17-0-died"><b>CONNECTOR&#160;TYPE</b> – The connector type - select either IIDR or None.</p>
                 </li>
                 <li>
-                    <p MadCap:conditions="Version.17-0-born"><b>CONNECTOR&#160;TYPE</b> – The connector type - select either IIDR, BATCHLOD or None.</p>
+                    <p MadCap:conditions="Version.17-0-born"><b>CONNECTOR&#160;TYPE</b> – The connector type - select either IIDR, BATCHLOAD or None.</p>
+                    <div class="tc-admon-note">
+                        <p>For using&#160;Batch Load, the following configuration parameters need to be used the helm command during Kubernetes installation. <code>global.batchload.enabled=true</code>, <code>batchload-agent.enabled=true</code></p>
+                    </div>
                 </li>
             </ul>
             <h2>Data Source - IIDR</h2>
@@ -146,7 +149,10 @@
                     <p><b>Connector Type</b> – In our example, for an Oracle database, BATCHLOAD has been selected.</p>
                 </li>
                 <li>
-                    <p><b>Agent</b> - Select the batch load agent being used (use a different agent for each pipeline).</p>
+                    <p><b>Agent</b> - Select the batch load agent being used (use a different agent for each pipeline). </p>
+                    <div class="tc-admon-note">
+                        <p>For using&#160;Batch Load, the following configuration parameters need to be used the helm command during Kubernetes installation. <code>global.batchload.enabled=true</code>, <code>batchload-agent.enabled=true</code>. If an additional agent is required, the this helm command needs to be used: <code>batchload-agent.agent.name=[name of agent]</code></p>
+                    </div>
                 </li>
                 <li>
                     <p><b>Data Source Type</b> - Currently only ORACLE&#160;is available.</p>
