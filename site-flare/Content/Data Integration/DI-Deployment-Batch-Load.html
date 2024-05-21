@@ -77,25 +77,12 @@
                 <p>Define <b>Oracle</b> as the <a href="../spacedeck/spacedeck-data-sources.html">Data Source</a> with the connector type = BATCHLOAD</p>
             </li>
             <li>
-                <p><a href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">Create new pipeline</a> and choose pipeline <b>type full batch load </b></p>
-                <ol>
-                    <li>
-                        <p>Choose table from available list (TABLE1 for example)</p>
-                    </li>
-                    <li>
-                        <p>Add table to the pipeline</p>
-                    </li>
-                    <li>
-                        <p>Save the pipeline</p>
-                    </li>
-                    <li>
-                        <p>Start the pipeline</p>
-                    </li>
-                </ol>
+                <p><a href="../spacedeck/spacedeck-data-pipeline-new-pipeline-batchload.html">Create new pipeline.</a>
+                </p>
             </li>
         </ol>
         <div class="tc-admon-note">
-            <p>Full batch load ends after the full load is completed. The status should be <b>Finished Successfully</b>. This differs from a CDC pipeline.</p>
+            <p>Full batch load ends after the full load is completed. The status should be <b>Completed</b>. This differs from a CDC pipeline.</p>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h2>MSSQL&#160;Database: Define Incremental Batch Load Pipeline</h2>
@@ -170,23 +157,9 @@
         </div>
         <h1>Creating a Pipeline using&#160;Batch Load</h1>
         <div class="tc-admon-important">
-            <p>Batch Load cannot be configured for a pipeline that is configured and running with CDC (IIDR). &#160;To enable Batch Load a new pipeline has to be created.</p>
+            <p>Batch Load cannot be configured for a pipeline that is configured and running with CDC (IIDR). &#160;To enable Batch Load a new pipeline must be created.</p>
         </div>
-        <p>To use Batch load when creating a Pipeline, perform the following steps:</p>
-        <ol>
-            <li>
-                <p>Add a new Pipeline by following steps as outlined in the <a href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">User Guide:&#160;SpaceDeck -&#160;Spaces -&#160;Adding a Pipeline</a></p>
-            </li>
-            <li>
-                <p>In the Adding a New Space Parameters section, to select full or partial batch load, select......</p>
-            </li>
-            <p>
-                <img src="../Resources/Images/DI/MVCC.png" style="width: 619px;height: 708px;" />
-            </p>
-        </ol>
-        <h1>Batch Load Statistics&#160;</h1>
-        <p><span style="background-color: #ffff00;">SpaceDeck?</span>
-        </p>
+        <p>To use Batch load when creating a Pipeline, add a new Pipeline by following steps as outlined in the <a href="../spacedeck/spacedeck-data-pipeline-new-pipeline-batchload.html">User Guide:&#160;SpaceDeck -&#160;Spaces -&#160;Adding a Pipeline for Batch Load</a></p>
         <p>&#160;</p>
         <p style="text-align: left;">&#160;</p>
     </body>
