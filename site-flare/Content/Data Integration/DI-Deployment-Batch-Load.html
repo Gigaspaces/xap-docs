@@ -33,8 +33,8 @@
         <p>The following flag has to be added to the helm command: <code>global.batchload.enabled=true</code>.</p>
         <h3>Adding the Agent</h3>
         <p>For each data source created, a separate Batch Load agent must be installed. &#160;<MadCap:variable name="General.CompanyName" /> also have a separate helm chart in order to install a batch load agent outside of the umbrella. &#160;This would be used for the case where a client requires more than one agent. &#160;For example, if there are multiple Oracle databases.</p>
-        <p>The helm command for enabling the agent is: <code>batchload-agent.enabled=true</code></p>
-        <p>For adding an additional agent: <code>batchload-agent.agent.name=[name of agent]</code>.</p>
+        <p>To install an agent under the DIH umbrella: <code>global.batchload-agent.enabled=true</code></p>
+        <p>For installing an agent and controlling its name: <code>global.batchload-agent.agent.name=[name of agent]</code>.<br />It is also possible to install the batch load agent outside of the helm umbrella. This would be used in the case of a client needing more than one agent (for example, for multiple Oracle databases): <code>helm install di-agent [dih repo name]/di-agents --version 2.0.0 --set agent.name=[name of agent]</code></p>
         <h1>Supported Data Source and Loading Types. </h1>
         <p>Currently, <MadCap:variable name="General.CompanyName" /> supports the ability to perform full batch load from an Oracle DB. &#160;More data sources and loading types will be added in future releases.</p>
         <div MadCap:conditions="Default.DoNotShow">
@@ -69,9 +69,9 @@
                 </li>
             </ul>
         </div>
-        <h1>Creating a Pipeline using&#160;Batch Load</h1>
+        <h1>Creating a Data Source for&#160;Batch Load</h1>
         <div class="tc-admon-important">
-            <p>Batch Load cannot be configured for a pipeline that is configured and running with CDC (IIDR). &#160;To enable Batch Load a new pipeline must be created.</p>
+            <p>Batch Load cannot be configured for a pipeline that is configured and running with CDC (IIDR). &#160;To enable Batch Load the appropriate configuration must be used when creating the <a href="../spacedeck/spacedeck-data-sources.html#Data_Source_-_Batch_Load">Data Source</a>.</p>
         </div>
         <p>To use Batch load when creating a Pipeline, add a new Pipeline by following steps as outlined in the <a href="../spacedeck/spacedeck-data-pipeline-new-pipeline-batchload.html">User Guide:&#160;SpaceDeck -&#160;Spaces -&#160;Adding a Pipeline for Batch Load</a></p>
         <h1>User&#160;Flows: Creating a Pipeline using&#160;Batch Load</h1>
