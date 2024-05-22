@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-		<div class="product-bar">
-			<p><a>Smart DIH</a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
         <map id="map1">
             <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
             <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
@@ -48,7 +48,10 @@
         <h2>View Pipeline Details – Tables Tab</h2>
         <p>The <b>Tables pipeline</b> tab shows details of the object types in the pipeline.<br /></p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/PipelineTables.png" style="width: 1023px;height: 228px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/PipelineTables.png" style="width: 1023px;height: 228px;" MadCap:conditions="Version.17-0-died" />
+        </p>
+        <p>
+            <img src="../Resources/Images/17.0/SD_DP_Details1.png" style="width: 1347px;height: 269px;" MadCap:conditions="Version.17-0-born" />
         </p>
         <h3>Fields in the Tables Tab</h3>
         <ul>
@@ -59,6 +62,9 @@
         <ul>
             <li>
                 <p><b>SOURCE_TABLE</b> –  The name of the source table in the System of Record. This will be the same as the Object Type field, unless you changed the Object Type name when you defined the pipeline.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.17-0-born"><b>APPLIED&#160;TRANSFORMATIONS</b> - Lists any <a href="spacedeck-pipeline-tables-transformations.html">Transformations</a> that have been applied to the table</p>
             </li>
         </ul>
         <ul>
@@ -81,7 +87,10 @@
         <h4>Properties Details</h4>
         <p>The <b>Property</b> tab appears as follows:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/PipelineProp.png" style="width: 877px;height: 436px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/PipelineProp.png" style="width: 877px;height: 436px;" MadCap:conditions="Version.17-0-died" />
+        </p>
+        <p>
+            <img src="../Resources/Images/17.0/SD_DP_Details2.png" style="width: 1075px;height: 583px;" MadCap:conditions="Version.17-0-born" />
         </p>
         <ul>
             <li>
@@ -89,6 +98,9 @@
             </li>
             <li>
                 <p><b>Type</b> –  Data type of the object property</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.17-0-born"><b>Transformations</b> -Displays the transformations performed on the specific table</p>
             </li>
         </ul>
         <h4>Indexes Details</h4>
@@ -110,15 +122,41 @@
                 <p><b>UNIQUE</b> –  Indicates if unique or non-unique values are allowed for the index</p>
             </li>
         </ul>
+        <div MadCap:conditions="Version.17-0-born">
+            <h4>Transformations Details</h4>
+            <p>The <b>Indexes</b> tab appears as follows:</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_DP_Details3.png" style="width: 715px;height: 503px;" />
+            </p>
+            <ul>
+                <li>
+                    <p><b>Transformation Name</b> –  Name the Transformation</p>
+                </li>
+                <li>
+                    <p><b>Transformation Type</b> – Type of Transformation</p>
+                </li>
+                <li>
+                    <p><b>Transformation</b> –  The Transformation applied</p>
+                </li>
+            </ul>
+        </div>
         <h2>View Pipelines Details – Configuration</h2>
         <p> The <b>Configuration</b> tab shows pipeline configuration information. The data is read-only when the pipeline is running.</p>
-        <p>If a Pipeline has been configured but it has not been started yet (i.e. Inactive state), it can be also be started from here by clicking <b>Start...</b></p>
+        <p MadCap:conditions="Version.17-0-died">If a Pipeline has been configured but it has not been started yet (i.e. Inactive state), it can be also be started from here by clicking <b>Start...</b></p>
+        <p MadCap:conditions="Version.17-0-born">If a Pipeline has been configured but it has not been started yet (i.e. Inactive state), it can be also be started from here by clicking <b>Start Pipeline</b></p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/Pipeline12.png" style="width: 930px;height: 543px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/Pipeline12.png" style="width: 930px;height: 543px;" MadCap:conditions="Version.17-0-died" />
         </p>
-        <p>If the Pipeline has been started (i.e. running state) then it can be also stopped from here by clicking <b>Stop</b>.</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/PipelineConfigStop.png" style="width: 937px;height: 515px;" />
+            <img src="../Resources/Images/17.0/SD_DP_Details4.png" style="width: 1190px;height: 654px;" MadCap:conditions="Version.17-0-born" />
+        </p>
+        <p MadCap:conditions="Version.17-0-died">If the Pipeline has been started (i.e. running state) then it can be also stopped from here by clicking <b>Stop</b>.</p>
+        <p MadCap:conditions="Version.17-0-born">If the Pipeline has been started (i.e. running state) then it can be also stopped from here by clicking <b>Stop Pipeline</b>.</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/16.4/PipelineConfigStop.png" style="width: 937px;height: 515px;" MadCap:conditions="Version.17-0-died" />
+        </p>
+        <p>
+            <img src="../Resources/Images/17.0/SD_DP_Details5.png" style="width: 1180px;height: 523px;" MadCap:conditions="Version.17-0-born" />
         </p>
         <p>For information about Pipeline configuration refer to <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref></p>
     </body>
