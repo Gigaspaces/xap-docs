@@ -12,7 +12,7 @@
             <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
-        <h1 class="tc-pagetitle">SpaceDeck – Data Pipeline – Create New Pipeline for Batchload</h1>
+        <h1 class="tc-pagetitle">SpaceDeck – Data Pipeline – Create New Pipeline for Batch Load</h1>
         <p>Data Pipelines allow a convenient, no-code method to pipe data from the System of Record to the GigaSpaces in-memory data grid. </p>
         <p>A new data pipeline definition will include the definitions of the System of Record databases, tables and fields that will provide data to the pipeline. The definition also indicates the in-memory <MadCap:xref href="../dev-java/the-gigaspace-interface-overview.html" class="space">Space</MadCap:xref> that will receive the pipeline data.</p>
         <p>Additional information includes optional validation rules and automatic conversion of specified field definitions.</p>
@@ -56,7 +56,7 @@
             </li>
         </ul>
         <h2>Create the Pipeline</h2>
-        <p>Once the Pipeline configuration has been completed, click Create Pipeline in order to move to the next stage of the configuration of including tables. In our example, we are creating a Pipeline which is connected to an Oracle DB but using <a href="../Data Integration/DI-Deployment-Batch-Load.html">Batchload</a>.</p>
+        <p>Once the Pipeline configuration has been completed, click Create Pipeline in order to move to the next stage of the configuration of including tables. In our example, we are creating a Pipeline which is connected to an Oracle DB but using <a href="../Data Integration/DI-Deployment-Batch-Load.html">batch load</a>.</p>
         <h2>Pipeline Configuration Screen</h2>
         <p>
             <img src="../Resources/Images/17.0/SD_DP_Batch1a.png" style="width: 1094px;height: 565px;" />
@@ -72,7 +72,7 @@
             <img src="../Resources/Images/17.0/SD_DP_batch2.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> It is possible to schedule a Batch Load for the following: Hourly, Daily,&#160;Weekly or Custom.</p>
-        <p><span style="color: #ff0000;">2:</span> If "First batch load will occur when the Pipeline is started" the batchload will begin when the Pipeline is started. Otherwise it will occur at the schedule batch loading time.</p>
+        <p><span style="color: #ff0000;">2:</span> If "First batch load will occur when the Pipeline is started" the batch load will begin when the Pipeline is started. Otherwise it will occur at the schedule batch loading time.</p>
         <div class="tc-admon-important">
             <p>Care must be taken not to schedule a batch load AFTER the current time together with NOT selecting the option of "First batch load will occur when the Pipeline is started" or the data will not be loaded until the date defined, once the Pipeline has been started for the first time.</p>
         </div>
@@ -82,7 +82,7 @@
         <p>
             <img src="../Resources/Images/17.0/SD_DP_Start.png" style="width: 1099px;height: 238px;" MadCap:conditions="Version.17-0-born" />
         </p>
-        <p>STATUS:&#160;Besides Inactive, Running,&#160;Error and&#160;Warning there are new Statuses for Batchload: Completed and&#160;Warning.</p>
+        <p><b>STATUS:</b>&#160;- Besides Inactive, Running,&#160;Error and&#160;Warning there are new Statuses for batch load: Completed and&#160;Warning.</p>
         <p>
             <img src="../Resources/Images/17.0/SD_DP_batch3.png" />
         </p>
