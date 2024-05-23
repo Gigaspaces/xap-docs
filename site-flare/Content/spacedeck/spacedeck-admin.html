@@ -90,14 +90,16 @@
         <h1><a name="Roles-Mangement"></a>Role Management</h1>
         <p>Each role that is configured will have certain privileges (permissions) assigned to it.</p>
         <p>The roles should be configured by the company IT&#160;manager in the config map of the Kubernetes environment or through IDP&#160;setup.</p>
-        <h2>Default Roles</h2>
-        <p>If there is no configuration in the config map (this is <b>not</b> recommended), there is one default roles that is included with the installation which cannot be edited via SpaceDeck and this is ROLE_ADMIN.</p>
-        <p>To see which privileges (permissions) are applied to a role (in this case ROLE_ADMIN), click the role name: </p>
-        <p> <img src="../Resources/Images/SpaceDeck/16.4/Roles-main1.png" style="width: 897px;height: 166px;" /></p>
-        <div class="tc-admon-note">
-            <p>From the IDP side the default role of ROLE_ADMIN will not be created automatically during launch. Therefore, the admin should manually create a group (role) in the IDP with the same name as the default role name in the config map.</p>
+        <div MadCap:conditions="Version.17-0-died">
+            <h2>Default Roles</h2>
+            <p>If there is no configuration in the config map (this is <b>not</b> recommended), there is one default roles that is included with the installation which cannot be edited via SpaceDeck and this is ROLE_ADMIN.</p>
+            <p>To see which privileges (permissions) are applied to a role (in this case ROLE_ADMIN), click the role name: </p>
+            <p> <img src="../Resources/Images/SpaceDeck/16.4/Roles-main1.png" style="width: 897px;height: 166px;" /></p>
+            <div class="tc-admon-note">
+                <p>From the IDP side the default role of ROLE_ADMIN will not be created automatically during launch. Therefore, the admin should manually create a group (role) in the IDP with the same name as the default role name in the config map.</p>
+            </div>
         </div>
-        <div MadCap:conditions="Version.16-4-born">
+        <div MadCap:conditions="Version.17-0-died">
             <p> Below are two screen-shots showing the <b>Resource Management</b> menu which displays all the permissions applied for the default <b>ROLE_ADMIN</b> at Monitor System Level and at Resources Level. &#160;Note that at Resources level, permissions can be applied per Space and Pipeline.</p>
             <p>An explanation of all the available permissions for each level can be found n the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
             <p>&#160;</p>
@@ -110,6 +112,33 @@
                 <img src="../Resources/Images/SpaceDeck/16.4/Resource_Mgmt_Admin_Role2.png" style="width: 872px;height: 320px;" />
             </p>
             <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Version.17-0-born">
+            <h2>Default Roles</h2>
+            <p>If there is no configuration in the config map (this is <b>not</b> recommended), there are several default roles that are included with the installation which cannot be edited via SpaceDeck. They all appear with the label "Default" next to them:</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin10.png" style="width: 1012px;height: 368px;" />
+            </p>
+            <p>To see which privileges (permissions) are applied to a role (in this case ROLE_ADMIN), click the role name: </p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin11.png" style="width: 1194px;height: 316px;" />
+            </p>
+            <div class="tc-admon-note">
+                <p>From the IDP side the default role of ROLE_ADMIN will not be created automatically during launch. Therefore, the admin should manually create a group (role) in the IDP with the same name as the default role name in the config map.</p>
+            </div>
+        </div>
+        <div MadCap:conditions="Version.17-0-born">
+            <p> Below are two screen-shots showing the <b>Resource Management</b> menu which displays all the permissions applied for the default <b>ROLE_ADMIN</b> at Monitor System Level and at Resources Level. &#160;Note that at Resources level, permissions can be applied per Space and Pipeline.</p>
+            <p>An explanation of all the available permissions for each level can be found n the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page or clicking on the "i" symbol above each type.</p>
+            <p>&#160;</p>
+            <p><b>System Level</b> - Monitor with permissions for MONITOR_PU and MONITOR_JVM:</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin12.png" />
+            </p>
+            <p><b>Resources Level</b> - Pipeline with permissions for START_STOP, CREATE, EDIT and DELETE:</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin13.png" style="width: 1464px;height: 452px;" />
+            </p>
         </div>
         <h2>Creating a new Role</h2>
         <div class="tc-admon-attention" MadCap:conditions="Version.16-4-born">
