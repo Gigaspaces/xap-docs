@@ -23,7 +23,7 @@
         <h1>Adding a Transformation</h1>
         <p>After completing the steps of adding tables to a pipeline (see <a href="spacedeck-data-pipeline-new-pipeline.html">setting up tables</a>), click edit next to a table name:</p>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP5.png" style="width: 1123px;height: 255px;" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest1aa.png" />
         </p>
         <p>This Configuration screen will be displayed. Click <b>Add Transformation</b>, to start the process of configuring Transformations:</p>
         <p>
@@ -31,7 +31,7 @@
         </p>
         <h2>Transformation&#160;Type: Calculated Column</h2>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans3.png" style="width: 1240px;height: 542px;" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest1.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> Provide a name for the Transformation</p>
         <p><span style="color: #ff0000;">2.</span> Select Transformation Type: Calculated Column</p>
@@ -41,17 +41,18 @@
         <p><span style="color: #ff0000;">6.</span> Click this to add another transformation if required.</p>
         <h2>Transformation Type: Filter</h2>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans4.png" style="width: 1279px;height: 462px;" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest2.png" />
         </p>
-        <p><span style="color: #ff0000;">1:</span> Provide a name for the Transformation</p>
-        <p><span style="color: #ff0000;">2.</span> Select Transformation Type: Filter</p>
-        <p><span style="color: #ff0000;">3.</span> Type the name of the columns to include.</p>
+        <p><span style="color: #ff0000;">1:</span> Provide a name for the Transformation.</p>
+        <p><span style="color: #ff0000;">2.</span> Select Transformation Type: Filter.</p>
+        <p><span style="color: #ff0000;">3.</span> Populate with the filter - an example is provided.</p>
         <p><span style="color: #ff0000;">4.</span> Each transformation must be validated before adding the next. &#160;If there are multiple validations, they must all be validate alone and against each other.</p>
         <p><span style="color: #ff0000;">5.</span> Once validation is successful, Transformation&#160;Validated will be displayed.</p>
-        <p><span style="color: #ff0000;">6.</span> Click this to add another transformation if required.</p>
+        <p><span style="color: #ff0000;">6.</span> The new column that was added through the first transformation is displayed here.</p>
+        <p><span style="color: #ff0000;">7.</span> Click this to add another transformation if required.</p>
         <h2>Transformation Type: Rest API</h2>
         <p>
-            <img src="../Resources/Images/17.0/D_DP_Trans5a.png" style="width: 1284px;height: 452px;" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest3.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> Provide a name for the Transformation</p>
         <p><span style="color: #ff0000;">2.</span> Select Transformation <b>Type: Filter</b></p>
@@ -61,26 +62,34 @@
         <p>&#160;</p>
         <h3>Select API&#160;Operation</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans6a.png" style="width: 1289px;height: 542px;" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest4.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> From the imported schema select an API Function.</p>
         <p><span style="color: #ff0000;">2.</span> From the drop-down select the API&#160;Operation.</p>
         <p><span style="color: #ff0000;">3.</span> In this example, a POST function is selected.</p>
         <h3>Select Server</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans7a.png" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest5.png" />
         </p>
-        <p>Select the external server where the API configuration is located and click <b>Apply.</b></p>
+        <p><span style="color: #ff0000;">1:</span> From the main Transformation setup menu, click <b>Choose</b>.</p>
+        <p><span style="color: #ff0000;">2.</span> Select the server.</p>
+        <p><span style="color: #ff0000;">3.</span> Click <b>Apply</b>.</p>
         <h3>POST:&#160;Request Body</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans8a.png" style="width: 1122px;height: 612px;" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest6.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> POST function previously selected</p>
         <p><span style="color: #ff0000;">2.</span> Server previously selected</p>
-        <p><span style="color: #ff0000;">3.</span> Provide the Input Request Body (there is a default example provided). This is mandatory.</p>
+        <p><span style="color: #ff0000;">3.</span> Provide the Input Request Body (there is a default example provided). This is mandatory. </p>
+        <div class="tc-admon-important">
+            <p>The user should update the input request body to use real values from the table instead of the default values provided.</p>
+        </div>
+        <p>The user should update the input request body to use real values from the table instead of the default values provided.</p>
+        <p>Example: <code class="language-sql">{"product": "${PRODUCT_NAME}","price": ${PRICE}}</code></p>
+        <p>The use of the $ denotes a placeholder for columns from the table. It will be substituted by the value in the actual column.</p>
         <h3>POST: Select and&#160;Define Columns</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans9a.png" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest7.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> Select Columns From Response.</p>
         <p><span style="color: #ff0000;">2.</span> Define Table Columns Value.</p>
@@ -88,29 +97,60 @@
         <p><span style="color: #ff0000;">4.</span> The is the JSON Path.</p>
         <h3>GET:&#160;Request Body</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans10a.png" style="width: 1235px;height: 458px;" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest8.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> From the imported schema select an API Function.</p>
         <p><span style="color: #ff0000;">2.</span> From the drop-down select the API&#160;Operation.</p>
         <p><span style="color: #ff0000;">3.</span> In this example, a GET function is selected.</p>
         <h3>POST:&#160;Select and&#160;Define Columns</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans11b.png" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest9.png" />
         </p>
         <p><span style="color: #ff0000;">1:</span> Define the API&#160;parameters</p>
-        <p><span style="color: #ff0000;">2.</span> Select columns from response.</p>
-        <p><span style="color: #ff0000;">3.</span> Define table column value.</p>
+        <p><span style="color: #ff0000;">2.</span> Click for Advanced&#160;Settings (see below).</p>
+        <p><span style="color: #ff0000;">3.</span> Select columns for response.</p>
+        <p><span style="color: #ff0000;">3.</span> Define table column values.</p>
+        <h2>Advanced Settings:</h2>
+        <p>These are used to provide global parameters for REST transformations.</p>
+        <p>
+            <img src="../Resources/Images/17.0/SD_DP_TransRest10.png" />
+        </p>
+        <h3>Advanced Settings Parameters</h3>
+        <ul>
+            <li>
+                <p><b>Authorization</b> – Used to specify authentication credentials that will be passed in “Authorization” header of http request, for example “Bearer &lt;bearer-token&gt;.</p>
+            </li>
+            <li>
+                <p><b>Execution&#160;mode</b> - Allows to chose between synchronous and Thread pool (asynchronous) mode. Later allows execution of multiple rest requests simultaneously increasing throughput of rest transformation.</p>
+            </li>
+            <li>
+                <p><b>Thread pool size</b> – This is used in thread pool  mode to control parallelism.</p>
+            </li>
+            <li>
+                <p><b>Timeout in millis </b> - Specifies maximum time allowed for request, If failed request will be retried up to “Number of retries” times.</p>
+            </li>
+            <li>
+                <p><b>Number of retries</b> - Define the number of retries.</p>
+            </li>
+            <li>
+                <p><b>Include http status</b> - If “Include http status” is enabled then “http status column name” will be added to the resulting table with status code of REST API.</p>
+            </li>
+            <li>
+                <p><b>Http status column name</b> - If “Include http status” is enabled then “http status column name” will be added to the resulting table with status code of REST API.</p>
+            </li>
+        </ul>
         <h2>Complete the Transformation Setup</h2>
         <h3>Close Setup</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans12.png" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest11.png" style="width: 1063px;height: 253px;" />
         </p>
-        <p>Once all the Transformations have been validated click <b>Close</b> from the top of the Transformations setup screen:</p>
+        <p>Once all the Transformations have been validated click <b>Close</b> from the top of the Transformations setup screen.</p>
+        <p>If you do not apply the Transformations, it is still possible to edit them.</p>
         <h3>Apply Transformations</h3>
         <p>
-            <img src="../Resources/Images/17.0/SD_DP_Trans13.png" />
+            <img src="../Resources/Images/17.0/SD_DP_TransRest1a.png" style="width: 1156px;height: 442px;" />
         </p>
-        <p><span style="color: #ff0000;">1:</span> List of all configured and validated Transformations.</p>
+        <p><span style="color: #ff0000;">1:</span> List of all configured Transformations.</p>
         <p><span style="color: #ff0000;">2.</span> Click <b>Apply</b></p>
         <h3>Save Table</h3>
         <p>Save the table. Refer to <a href="spacedeck-data-pipeline-new-pipeline.html">setting up tables</a> for the instructions.</p>
