@@ -15,7 +15,7 @@
             <p><a>Smart DIH</a>
             </p>
         </div>
-        <h1>JVM Tuning</h1>
+        <h1>JVM Settings and Tuning</h1>
         <div MadCap:conditions="Version.17-0-died">
             <p>In most cases, the applications that use  <MadCap:variable name="General.ProductNameXAP" /> are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.</p>
             <div class="tc-align-center">
@@ -137,17 +137,22 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
 </code></pre>
             <p>The above means that softly reachable objects will remain alive for 500 milliseconds after the last time they were referenced.</p>
         </div>
-        <p>&#160;</p>
-        <p>&#160;</p>
         <div MadCap:conditions="Version.17-0-born">
             <p>A Space instance JVM holds the following in memory:  Space entries, Indexes, Space class metadata,&#160;transaction,&#160;replication, redolog, leases and&#160;statistics.</p>
+            <div class="tc-admon-refer" MadCap:conditions="Default.DoNotShow">
+                <p>For more additional about memory management, refer to <a href="../dev-java/memory-management-overview.html">Cache Policy.</a></p>
+            </div>
             <p>In most cases, the applications that use  <MadCap:variable name="General.ProductNameXAP" /> are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.</p>
+            <h2><a name="JDK__17"></a>JDK  17</h2>
+            <div class="tc-admon-important">
+                <p><MadCap:variable name="General.CompanyName" /> code is now compiled for Java 17, therefore this is the minimal required version that can be used as client.</p>
+            </div>
             <h2><a name="space-object-footprint"></a>Space Object Footprint</h2>
             <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this for <MadCap:variable name="General.ProductXAP" />, refer to <a href="production-capacity-planning.html">Capacity Planning</a>.</p>
             <h3><a name="using-a-compound-index-to-reduce-the-index-footprint"></a>Using a Compound Index to Reduce the Index Footprint</h3>
             <p>A Compound Index can be used with <span class="tc-bold">AND</span> queries to speed up the query execution time. This approach combines multiple fields into a single index. Using a Compound Index avoids having multiple indexes on multiple fields, which in turn can reduce the index footprint.</p>
             <h3><a name="usecompressedoops-jvm-option"></a>UseCompressedOops JVM Option</h3>
-            <p>The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
+            <p>In Java 17, this option is defined by default. The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
             <h3><a name="compressed-storage-mode"></a>Storage Optimization</h3>
             <p>There are several types of storage optimization: </p>
             <ul>
@@ -188,18 +193,23 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
                 </li>
             </ul>
             <p>The redo logs swap over to the hard disk at some point, therefore is it recommended to place its location on an SSD drive. Do not use a regular hard drive to store redo log data. The redo log data footprint is similar to the actual raw data footprint without indexes.</p>
-            <p>It is recommended that for target as a backup or local view, to keep the redo log in memory. &#160;You need to take into account the redo log sizing when you are planning what will be in the RAM. For additional information refer to <a href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>.</p>
+            <p>It is recommended that for target as a backup or local view, to keep the redo log in memory. &#160;You need to take into account the redo log sizing when you are planning what will be in the RAM. </p>
+            <div class="tc-admon-refer">
+                <p>For additional information  refer to <a href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>.</p>
+            </div>
             <h1><a name="jvm-basic-settings"></a>JVM Basic Settings</h1>
             <p>This section provides examples of the JVM settings that are recommended for applications that generate A large number of temporary objects. In such situations, you afford long pauses due to garbage collection activity. These settings are appropriate for cases where you are running a IMDG, or when the business logic and the data grid are co-located. For example, a data grid with co-located polling/notify containers, task executors, or service remoting.</p>
-            <h2><a name="JDK__17"></a>JDK  17</h2>
-            <p><MadCap:variable name="General.CompanyName" /> code is now compiled for Java 17, therefore this is the minimal required version that can be used as client.</p>
             <h2>Soft References in Java 17</h2>
-            <p>In Java 17, the handling of soft references has evolved, and the JVM no longer exposes -XX:SoftRefLRUPolicyMSPerMB for tuning. Instead, the JVM internally manages soft references more efficiently, and tuning this specific aspect manually is generally not necessary.</p>
-            <p>Soft references in Java 17 are still used for caching purposes, and they are cleared at the discretion of the garbage collector when the JVM detects memory pressure. The lifetime of soft references is now managed more transparently and dynamically, in line with modern garbage collection algorithms.</p>
+            <p>Unlike in previous versions of Java, in Java 17 soft references cannot be set as they are handled internally.</p>
+            <div MadCap:conditions="Default.DoNotShow">
+                <p>From Java 17, in order to provide the highest level of performance, GigaSpaces takes advantage of features in the Java language that allow for effective caching in the face of memory demands. In particular, the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/index.html">SoftReference</a> class is used to store data until there is a need for explicit garbage collection, at which point the data stored in soft references will be collected if possible.</p>
+                <p>In Java 17, the handling of soft references has evolved, and the JVM no longer exposes -XX:SoftRefLRUPolicyMSPerMB for tuning. Instead, the JVM internally manages soft references more efficiently, and tuning this specific aspect manually is generally not necessary.</p>
+                <p>Soft references in Java 17 are still used for caching purposes, and they are cleared at the discretion of the garbage collector when the JVM detects memory pressure. The lifetime of soft references is now managed more transparently and dynamically, in line with modern garbage collection algorithms.</p>
+            </div>
             <h2>Optimizing Memory&#160;Usage</h2>
-            <p>the <code>-XX:+UseCompressedOops</code> option is an important feature for optimizing memory usage in Java applications, especially those with large heaps. It's typically enabled by default in modern JVMs, including Java 17, and provides memory efficiency benefits without significant performance impact. It's generally safe to rely on the default behavior, but you can explicitly enable it if needed.</p>
+            <p>In Java 17, the <code>-XX:+UseCompressedOops</code> option is now enabled by default. It is an important feature for optimizing memory usage in Java applications, especially those with large heaps. It  provides memory efficiency benefits without significant performance impact. </p>
             <h2><a name="maxdirectmemorysize"></a>MaxDirectMemorySize</h2>
-            <p>The <code>-XX:MaxDirectMemorySize</code> option in Java allows you to specify the maximum amount of memory that can be allocated for direct buffers used by the java.nio package, such as<code> ByteBuffer.allocateDirect()</code>. This memory is allocated outside of the Java heap, often by the operating system, and is not subject to garbage collection by the JVM.</p>
+            <p>The <code>-XX:MaxDirectMemorySize</code> option in Java 17 allows you to specify the maximum amount of memory that can be allocated for direct buffers used by the java.nio package, such as<code> ByteBuffer.allocateDirect()</code>. This memory is allocated outside of the Java heap, often by the operating system, and is not subject to garbage collection by the JVM.</p>
             <h3>Purpose</h3>
             <p>Direct memory is used for operations that require interaction with native code or I/O operations, such as reading or writing data from files, network sockets, or using certain APIs like NIO channels. By default, the maximum direct memory size is limited by the maximum heap size (-Xmx), but -<code>XX:MaxDirectMemorySize</code> allows you to specify a separate limit.</p>
             <h3>Usage</h3>
@@ -237,7 +247,11 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
                 <p>It is highly recommended to use the latest JDK release when using these options.</p>
             </div>
             <h2><a name="capturing-detailed-garbage-collection-statistics"></a>Capturing Detailed Garbage Collection Statistics</h2>
-            <p>In Java 17, the default GC is the G1 Garbage Collector. This makes it a good starting point for most applications unless specific requirements dictate otherwise.</p>
+            <p>In Java 17, the default Garbage Collector (GC) is the G1 Garbage Collector. This makes it a good starting point for most applications unless specific requirements dictate otherwise.</p>
+            <p>As with any Java application, the Garbage Collector (GC) should be fine-tuned and care should be taken to select a GC algorithm that meets requirements. It is recommended to set verbose GC and analyze GC files to optimally tune the system</p>
+            <div class="tc-admon-refer">
+                <p>For more information about garbage collection in Java-based systems, see Oracle’s <a href="https://docs.oracle.com/en/java/javase/17/gctuning/">Garbage Collection Tuning Guide</a> for Java 17.</p>
+            </div>
             <h3>Selecting the Appropriate GC Algorithm:</h3>
             <p>To enable a specific GC algorithm, you can use JVM options when starting your Java application.</p>
             <table style="width: 100%;" class="tc-standard">
@@ -247,10 +261,10 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
                 <col />
                 <thead>
                     <tr>
-                        <th style="text-align: center;">Type Options</th>
-                        <th>Recommendation</th>
-                        <th>Rationale</th>
-                        <th>Configuration</th>
+                        <th style="text-align: left;">Type Options</th>
+                        <th style="text-align: left;">Recommendation</th>
+                        <th style="text-align: left;">Rationale</th>
+                        <th style="text-align: left;">Configuration</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -284,7 +298,10 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
                 <p>From the options above, <MadCap:variable name="General.CompanyName" /> recommends using option 2</p>
             </div>
             <h3>How to Define a Verbose Garbage Collection</h3>
-            <p>Following is an example followed by an explanation of how to define a verbose garbage collection</p><pre xml:space="preserve"><code>#!/bin/bash
+            <p>Following is an example followed by an explanation of how to define a verbose garbage collection including disabling explicit GC collection calls and  out of memory.</p>
+            <div class="tc-admon-important">
+                <p><MadCap:variable name="General.CompanyName" /> strongly recommends that ALL the options explained below should be set.</p>
+            </div><pre xml:space="preserve"><code>#!/bin/bash
 LOG_DIR="/path/to/logs"                                                                                                        </code>                                                                     <code>JAVA_OPTS="-Xlog:gc*:file=${LOG_DIR}/gc_%p.log:tags,uptime,time,level:filecount=10,filesize=10M"</code></pre>
             <h3>Explanation of Options</h3>
             <ul>
@@ -341,8 +358,6 @@ LOG_DIR="/path/to/logs"                                                         
                         </li>
                     </ul>
                 </li>
-            </ul>
-            <ul>
                 <li>
                     <p><code>-XX:HeapDumpPath=/path/to/heapdumps/</code>:</p>
                     <ul>
@@ -351,12 +366,15 @@ LOG_DIR="/path/to/logs"                                                         
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <p><code>Dgs.gc.collectionTimeThresholdWarning=1000</code>:</p>
+                    <ul>
+                        <li>
+                            <p>This specifies that if GC takes longer than 1 sec a warning will be added in the proccess log.</p>
+                        </li>
+                    </ul>
+                </li>
             </ul>
-            <p>&#160;</p>
-            <p>&#160;</p>
-            <p>&#160;</p>
-            <p>Modify the path and file names appropriately. You must use a different file name for each invocation in order to not overwrite the files from multiple processes.</p>
-            <p>Adding <code>%p</code> to the log name, for example <code>gc-log-file_%p.log</code>, tells the JVM&#160;to generate an individual log file per PID.</p>
         </div>
     </body>
 </html>
