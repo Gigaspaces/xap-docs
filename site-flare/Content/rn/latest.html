@@ -264,22 +264,29 @@
             </div>
         </div>
         <div MadCap:conditions="Version.17-0-only">
-            <h3> Release Date: May-2024</h3>
+            <h3> Release Date: June-2024</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
             <p>&#160;</p>
             <h1>Upgrade to Java 17 and Spring 6</h1>
             <div class="tc-admon-note">
                 <p>This applies for <MadCap:variable name="General.ProductXAP" />, <MadCap:variable name="General.ProductXAPSkyline" /> and Smart DIH</p>
             </div>
-            <h3>Java Upgrade</h3>
-            <p>GigaSpaces has been upgraded to Java 17. This upgrade leverages the latest features and improvements in Java, providing enhanced performance, security, and functionality. Java 17 includes more advanced garbage collection (GC) mechanisms. Advanced garbage collectors open more possibilities for managing our memory footprint.</p>
-            <h3>Spring Framework Upgrade</h3>
-            <p>We have transitioned from Spring 5.3 to Spring 6. This move is driven by the upcoming end-of-support for Spring 5.3 in August 2024, ensuring we continue to receive necessary security updates and benefit from the latest features in the Spring ecosystem.</p>
+            <h2>Java Upgrade</h2>
+            <p>GigaSpaces has been upgraded to Java 17 as the upgrade Spring 6 (see below) requires Java 17 or higher.  In addition, this upgrade leverages updated features and improvements in Java, providing enhanced performance, security, and functionality. Java 17 includes more advanced garbage collection (GC) mechanisms. Advanced garbage collectors open more possibilities for managing our memory footprint.</p>
+            <h3>Why not Java 21?</h3>
+            <p>Java 21 was released in September 2023 and has not yet been widely adopted in the community. If <MadCap:variable name="General.CompanyName" /> enforce Java 21 on the server side (XAP), there might be a bigger impact on our install base that we can anticipate. Our recommendation to existing customers would be to consider upgrading their client applications  directly to Java 21 to support forward compatibility.</p>
+            <h2>Spring Framework Upgrade</h2>
+            <p>We have transitioned from Spring 5.3 to Spring 6. Upgrading to Spring 6 ensures continued compliance with security best practices and access to the latest patches and fixes.</p>
             <h3>Rationale: </h3>
-            <p><b>Security Enhancements</b>: The shift to Spring 6 addresses known security issues inherent in previous versions, aligning with our commitment to maintaining a secure and robust system.</p>
-            <p><b>End-of-Support Considerations</b>: Spring 5.3 will no longer receive security updates post-August 2024. Upgrading to Spring 6 ensures continued compliance with security best practices and access to the latest patches and fixes.</p>
+            <p><b>Security Enhancements</b>: The shift to Spring 6 addresses known security issues inherent in previous versions, aligning with our commitment to maintaining a secure and robust system. </p>
+            <p><b>End-of-Support Considerations</b>: This move is driven by the upcoming end-of-support for Spring 5.3 in August 2024, ensuring we continue to receive necessary security updates and benefit from the latest features in the Spring ecosystem. .</p>
             <h3>Impact:</h3>
             <p><b>Developers</b>:</p>
+            <ul>
+                <li>
+                    <p>Client Applications: This impacts all client applications which use Java SDK. Any applications which use .NET will be required to upgrade to Java 17.</p>
+                </li>
+            </ul>
             <ul>
                 <li>
                     <p>Codebase and dependencies need to be updated to ensure compatibility with Java 17 and Spring 6.</p>
@@ -299,7 +306,7 @@
             </ul>
             <p>We encourage all users to thoroughly test their applications in the updated environment to identify and resolve any issues prior to deploying the changes in production.</p>
             <p>For additional details, including upgrading from previous version, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
-            <h3>FAQ</h3>
+            <h2>FAQ</h2>
             <div class="easyui-accordion">
                 <div title="FAQ 1">
                     <p>Q: Will backward compatibility be broken when moving to <MadCap:variable name="General.CompanyName" /> version 17.0?</p>
@@ -309,35 +316,30 @@
                     <p>Q: If you are using an older <MadCap:variable name="General.CompanyName" /> version, will <MadCap:variable name="General.CompanyName" /> still support you?</p>
                     <p>A: Older versions will be supported as always, within policy or per an extended support contract. That said, any vulnerabilities resulting from 3rd party versions that are end-of-support (for example, Spring 5.3) will only be addressed by an upgrade to a supported version of the 3rd party. As result, this might force an upgrade to <MadCap:variable name="General.CompanyName" /> version 17.0 unless the customer accepts the risks that will exist due to those vulnerabilities.</p>
                 </div>
-                <div title="FAQ 3">
-                    <p>Q: The latest long-term support (LTS) version of Java is Java 21. Why are <MadCap:variable name="General.CompanyName" /> not upgrading directly to this version?</p>
-                    <p>A: Java 21 was released in September 2023 and has not yet been widely adopted in the community. If <MadCap:variable name="General.CompanyName" /> enforce Java 21 on the server side (XAP), there might be a bigger impact on our install base that we can anticipate. Our recommendation to existing customers would be to consider upgrading their client applications  directly to Java 21 to support forward compatibility.</p>
-                </div>
             </div>
             <h1>Security </h1>
             <div class="tc-admon-feature">
-                <p>Service Account Privilege Management</p>
+                <p>Service Account Privilege Management </p>
             </div>
-            <p>
-                <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
-            </p>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAPSkyline" /> and Smart DIH as it is only available on Kubernetes.</p>
+            </div>
             <p><MadCap:variable name="General.CompanyName" /> already secures <b>user accounts</b> by, for example, <a href="../spacedeck/spacedeck-admin.html">using IDP</a>. This is now being expanded to include the securing of <b>service accounts</b>. </p>
             <ul>
                 <li>
                     <p>A Service Account &#160;is an account that is typically used by an application or a compute workload. It is an application that wishes to access <MadCap:variable name="General.CompanyName" /> resources. This could either be a user of applications or components that wish to access <MadCap:variable name="General.CompanyName" /> APIs. </p>
                 </li>
                 <li>
-                    <p>A service account differs to a user account in that it is associated with software that runs in our <MadCap:variable name="General.ProductXAP" /> or Smart DIH environments. </p>
+                    <p>A service account differs to a user account in that it is associated with software that runs in our <MadCap:variable name="General.ProductXAPSkyline" /> or Smart DIH environments. </p>
                 </li>
             </ul>
             <p>For additional information, refer to our <a href="../security/security-service-account-privilege-mgmt.html">Service Account Privilege Management</a> page.</p>
             <h1>Data Integration (DI) Updates</h1>
             <div>
                 <div>
-                    <p>
-                        <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;">
-                        </img>
-                    </p>
+                    <div class="tc-admon-note">
+                        <p>This applies for Smart DIH.</p>
+                    </div>
                     <div class="tc-admon-feature">
                         <p>Multiversion Concurrency Control (MVCC)</p>
                     </div>
@@ -348,23 +350,23 @@
                     </div>
                 </div>
             </div>
-            <p><MadCap:variable name="General.ProductNameXAP" /> Data Integration feature will now include transformations. Configuring transformations enables data to be converted into a simple format that can then be used for the easy creation of services.</p>
+            <p><MadCap:variable name="General.ProductNameXAP" /> are introducing Transformations as part of our Data Integration module. Configuring Transformations enables data to be converted into a simple format that can then be used for the easy creation of services.</p>
             <ul>
                 <li>
-                    <p>A data pipeline is a method of transporting data from one place to another. Acting as a conduit for data, these pipelines should enable efficient processing, transformation, and delivery of data to the desired location.</p>
+                    <p>A data pipeline is a method of transporting data from one place to another. Acting as a conduit for data, these pipelines will enable efficient processing, transformation, and delivery of data to the desired location.</p>
                 </li>
                 <li>
-                    <p>Through data cleansing and transformation processes, data pipelines enhance data quality and ensure accuracy for analysis and decision-making. </p>
+                    <p>Through data cleansing and Transformation processes, data pipelines enhance data quality and ensure accuracy for analysis and decision-making. </p>
                 </li>
             </ul>
             <p>For additional information, refer to our <a href="../Data Integration/DI-Deployment-Transformations.html">Transformations </a>page.</p>
             <div class="tc-admon-feature">
                 <p>Batch Load (Feeders)</p>
             </div>
-            <p><MadCap:variable name="General.CompanyName"></MadCap:variable> now has the ability for Smart DIH to define batch loads via a standard pipeline interface. Batch load can now be performed without the use of IIDR.</p>
+            <p><MadCap:variable name="General.CompanyName" /> now has the ability for Smart DIH to define batch loads via a standard pipeline interface. </p>
             <ul>
                 <li>
-                    <p>Full batch loads  can now be performed as a "pull" functionality without requiring the use of "push" functionality used by a typical IIDR deployment.</p>
+                    <p>Full batch loads  can now be performed as a "pull" functionality.</p>
                 </li>
                 <li>
                     <p MadCap:conditions="Default.DoNotShow">The performance level will be 14K records per second.</p>
