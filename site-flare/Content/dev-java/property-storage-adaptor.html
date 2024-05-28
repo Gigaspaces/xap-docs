@@ -105,7 +105,7 @@
         </ul>
         <h3>Co-Located Execution</h3>
         <p>Storage adapters are triggered by the Space proxy. But in co-located execution (namely Processing Units or Space tasks), the Space proxy is co-located with the Space on the server side, which may not have access to the encryption key. If this is the case, you can't write or read encrypted data. You can, however, use projections to read unencrypted properties, and perform change operations to change unencrypted properties.</p>
-        <h1>Implementing a Custom Storage Adapter</h1>
+        <h1><a name="Implementing_a_Custom"></a>Implementing a Custom Storage Adapter</h1>
         <p>To implement a custom storage adapter, you can create a class that extends the <code>PropertyStorageAdapter</code>. There are two abstract methods that you have to implement (<code>toSpace </code>and <code>fromSpace</code>), and everything else is optional.</p>
         <p>Use the following guidelines for implementing a custom storage adapter:</p>
         <ul>

@@ -7,126 +7,356 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-        <h1>JVM Tuning</h1>
-        <MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" MadCap:conditions="Default.DoNotShow" />
-        <p>In most cases, the applications that use  <MadCap:variable name="General.ProductNameXAP" /> are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/jvm-vm-memory.jpg" alt="image" class="tc-picture100" />
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
             </p>
         </div>
-        <p>The following <MadCap:variable name="General.ProductNameXAP" /> processes may run on a virtual or a physical machine:</p>
-        <ul>
-            <li>
-                <p>GSA - Very lightweight process in terms of its memory and CPU usage. This process does not require any tuning. You should have one per machine, or in some cases one per Zone.</p>
-            </li>
-            <li>
-                <p>GSC - The runtime environment. This is where the data grid and the deployed processing units run. This process requires the relevant tuning to address the memory capacity required. Number of GSCs should not exceed: <code>Total # of cores / 4</code>. With virtual machine setup you should have one GSC per VM.</p>
-            </li>
-            <li>
-                <p>GSM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per data grid.</p>
-            </li>
-            <li>
-                <p>LUS - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per data grid.</p>
-            </li>
-            <li MadCap:conditions="Version.15-2-died">
-                <p>ESM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have one of this per data grid.</p>
-            </li>
-        </ul>
-        <p><span class="tc-bold"><MadCap:variable name="General.ProductNameXAP" /> VM Memory size = 
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1>JVM Tuning</h1>
+        <div MadCap:conditions="Version.17-0-died">
+            <p>In most cases, the applications that use  <MadCap:variable name="General.ProductNameXAP" /> are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.</p>
+            <div class="tc-align-center">
+                <p>
+                    <img src="../Resources/Static/attachment_files/jvm-vm-memory.jpg" alt="image" class="tc-picture100" />
+                </p>
+            </div>
+            <p>The following <MadCap:variable name="General.ProductNameXAP" /> processes may run on a virtual or a physical machine:</p>
+            <ul>
+                <li>
+                    <p>GSA - Very lightweight process in terms of its memory and CPU usage. This process does not require any tuning. You should have one per machine, or in some cases one per Zone.</p>
+                </li>
+                <li>
+                    <p>GSC - The runtime environment. This is where the data grid and the deployed processing units run. This process requires the relevant tuning to address the memory capacity required. Number of GSCs should not exceed: <code>Total # of cores / 4</code>. With virtual machine setup you should have one GSC per VM.</p>
+                </li>
+                <li>
+                    <p>GSM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per data grid.</p>
+                </li>
+                <li>
+                    <p>LUS - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per data grid.</p>
+                </li>
+                <li MadCap:conditions="Version.15-2-died">
+                    <p>ESM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have one of this per data grid.</p>
+                </li>
+            </ul>
+            <p><span class="tc-bold"><MadCap:variable name="General.ProductNameXAP" /> VM Memory size = 
 Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for LUS</span>
-            <MadCap:conditionalText MadCap:conditions="Version.15-2-died"><span class="tc-bold"> + JVM Memory for ESM</span><![CDATA[
+                <MadCap:conditionalText MadCap:conditions="Version.15-2-died"><span class="tc-bold"> + JVM Memory for ESM</span><![CDATA[
 ]]></MadCap:conditionalText>
-        </p>
-        <p><span class="tc-bold">JVM Memory for a GSC = 
+            </p>
+            <p><span class="tc-bold">JVM Memory for a GSC = 
 JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + "extra memory"
 </span>
-        </p>
-        <h2><a name="space-object-footprint"></a>Space Object Footprint</h2>
-        <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this, refer to <a href="production-capacity-planning.html">Capacity Planning</a>.</p>
-        <h3><a name="using-a-compound-index-to-reduce-the-index-footprint"></a>Using a Compound Index to Reduce the Index Footprint</h3>
-        <p>A Compound Index can be used with <span class="tc-bold">AND</span> queries to speed up the query execution time. This approach combines multiple fields into a single index. Using a Compound Index avoids having multiple indexes on multiple fields, which in turn can reduce the index footprint.</p>
-        <h3><a name="usecompressedoops-jvm-option"></a>UseCompressedOops JVM Option</h3>
-        <p>The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
-        <h3><a name="compressed-storage-mode"></a>Compressed Storage Mode</h3>
-        <p>Compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.</p>
-        <div class="tc-admon-note">
-            <p>This option is not available for <MadCap:variable name="General.XAPNet" />.</p>
-        </div>
-        <h3><a name="customized-initial-load"></a>Customized Initial Load</h3>
-        <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduce the amount of garbage generated during this process.</p>
-        <h3><a name="redo-log-sizing"></a>Redo Log Sizing</h3>
-        <p>The amount of redo log data depends on the following:</p>
-        <ul>
-            <li>
-                <p>Amount of in-flight activity</p>
-            </li>
-            <li>
-                <p>Backup performance</p>
-            </li>
-            <li>
-                <p>Primary backup connectivity (long disconnection means a lot of redo log data in memory).</p>
-            </li>
-        </ul>
-        <p>The redo logs swap over to the hard disk at some point, therefore is it recommended to place its location on an SSD drive. Do not use a regular hard drive to store redo log data. The redo log data footprint is similar to the actual raw data footprint without indexes.</p>
-        <h2><a name="jvm-basic-settings"></a>JVM Basic Settings</h2>
-        <p>This section provides examples of the JVM settings that are recommended for applications that generate A large number of temporary objects. In such situations, you afford long pauses due to garbage collection activity. These settings are appropriate for cases where you are running a IMDG, or when the business logic and the data grid are co-located. For example, a data grid with co-located polling/notify containers, task executors, or Sservice remoting.</p>
-        <h3><a name="jdk-1-7-1-8"></a>JDK  1.8</h3>
-        <p>The following JVM settings are for g1 mode, and are useful for low-latency scenarios:</p><pre><code class="language-bash">-server -Xms8g -Xmx8g -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:InitiatingHeapOccupancyPercent=50 -XX:+UseCompressedOops
+            </p>
+            <h2><a name="space-object-footprint"></a>Space Object Footprint</h2>
+            <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this, refer to <a href="production-capacity-planning.html">Capacity Planning</a>.</p>
+            <h3><a name="using-a-compound-index-to-reduce-the-index-footprint"></a>Using a Compound Index to Reduce the Index Footprint</h3>
+            <p>A Compound Index can be used with <span class="tc-bold">AND</span> queries to speed up the query execution time. This approach combines multiple fields into a single index. Using a Compound Index avoids having multiple indexes on multiple fields, which in turn can reduce the index footprint.</p>
+            <h3><a name="usecompressedoops-jvm-option"></a>UseCompressedOops JVM Option</h3>
+            <p>The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
+            <h3><a name="compressed-storage-mode"></a>Compressed Storage Mode</h3>
+            <p>Compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.</p>
+            <div class="tc-admon-note">
+                <p>This option is not available for <MadCap:variable name="General.XAPNet" />.</p>
+            </div>
+            <h3><a name="customized-initial-load"></a>Customized Initial Load</h3>
+            <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduce the amount of garbage generated during this process.</p>
+            <h3><a name="redo-log-sizing"></a>Redo Log Sizing</h3>
+            <p>The amount of redo log data depends on the following:</p>
+            <ul>
+                <li>
+                    <p>Amount of in-flight activity</p>
+                </li>
+                <li>
+                    <p>Backup performance</p>
+                </li>
+                <li>
+                    <p>Primary backup connectivity (long disconnection means a lot of redo log data in memory).</p>
+                </li>
+            </ul>
+            <p>The redo logs swap over to the hard disk at some point, therefore is it recommended to place its location on an SSD drive. Do not use a regular hard drive to store redo log data. The redo log data footprint is similar to the actual raw data footprint without indexes.</p>
+            <h2><a name="jvm-basic-settings"></a>JVM Basic Settings</h2>
+            <p>This section provides examples of the JVM settings that are recommended for applications that generate A large number of temporary objects. In such situations, you afford long pauses due to garbage collection activity. These settings are appropriate for cases where you are running a IMDG, or when the business logic and the data grid are co-located. For example, a data grid with co-located polling/notify containers, task executors, or Sservice remoting.</p>
+            <h3><a name="jdk-1-7-1-8"></a>JDK  1.8</h3>
+            <p>The following JVM settings are for g1 mode, and are useful for low-latency scenarios:</p><pre><code class="language-bash">-server -Xms8g -Xmx8g -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:InitiatingHeapOccupancyPercent=50 -XX:+UseCompressedOops
 </code></pre>
-        <div class="tc-admon-tip">
-            <p>If your JVM is throwing an "OutOfMemoryException', the JVM process should be restarted. You will have to to add this property to your JVM setting:
+            <div class="tc-admon-tip">
+                <p>If your JVM is throwing an "OutOfMemoryException', the JVM process should be restarted. You will have to to add this property to your JVM setting:
 SUN -XX:+HeapDumpOnOutOfMemoryError -XX:OnOutOfMemoryError="kill -9 %p"
 JROCKIT -XXexitOnOutOfMemory</p>
-        </div>
-        <p>For information on how to configure your environment for Java 11 or higher, refer to the page about <MadCap:xref href="../rn/java11-guidelines.html">Java 11 Guidelines</MadCap:xref> in the Release Notes.</p>
-        <h2><a name="young-generation-size-xmn"></a>Young Generation Size (Xmn)</h2>
-        <p>This setting controls the size of the heap allocated for the young generation objects (all the objects that have a short lifetime). Young generation objects are in a specific location in the heap, where the garbage collector passes frequently. All new objects are created in the young generation region (called "eden"). When an object survives (is still "alive") after more than 2-3 gc cleaning cycles, it will be moved to the "old generation" region; these objects are called "survivors". A recommended value for the <code>Xmn</code> should be 33% of the <code>Xmx</code> value.</p>
-        <h2><a name="thread-stack-tuning-xss"></a>Thread Stack Tuning (Xss)</h2>
-        <p>In many cases, the thread stack size needs to be tuned because the default size is too high. In Java SE 6 OS, the default thread stack size on Sparc is 512k for 32-bit VMs, and 1024k for 64-bit VMs. On x86 Solaris/Linux OS, the thread stack size is 320k for 32-bit VMs and 1024k for 64-bit VMs.</p>
-        <p>On Microsoft Windows OS, the default thread stack size is read from the binary (java.exe). As of Java SE 6, this value is 320k for 32-bit VMs and 1024k for 64-bit VMs.
+            </div>
+            <p>For information on how to configure your environment for Java 11 or higher, refer to the page about <MadCap:xref href="../rn/java11-guidelines.html">Java 11 Guidelines</MadCap:xref> in the Release Notes.</p>
+            <h2><a name="young-generation-size-xmn"></a>Young Generation Size (Xmn)</h2>
+            <p>This setting controls the size of the heap allocated for the young generation objects (all the objects that have a short lifetime). Young generation objects are in a specific location in the heap, where the garbage collector passes frequently. All new objects are created in the young generation region (called "eden"). When an object survives (is still "alive") after more than 2-3 gc cleaning cycles, it will be moved to the "old generation" region; these objects are called "survivors". A recommended value for the <code>Xmn</code> should be 33% of the <code>Xmx</code> value.</p>
+            <h2><a name="thread-stack-tuning-xss"></a>Thread Stack Tuning (Xss)</h2>
+            <p>In many cases, the thread stack size needs to be tuned because the default size is too high. In Java SE 6 OS, the default thread stack size on Sparc is 512k for 32-bit VMs, and 1024k for 64-bit VMs. On x86 Solaris/Linux OS, the thread stack size is 320k for 32-bit VMs and 1024k for 64-bit VMs.</p>
+            <p>On Microsoft Windows OS, the default thread stack size is read from the binary (java.exe). As of Java SE 6, this value is 320k for 32-bit VMs and 1024k for 64-bit VMs.
 You can reduce your thread stack size by running with the -Xss option. For example:</p><pre><code class="language-bash">java -server -Xss384k
 </code></pre>
-        <p>In some versions of Microsoft Windows, the OS may round up thread stack sizes using very coarse granularity. If the requested size is less than the default size by 1K or more, the stack size is rounded up to the default; otherwise, the stack size is rounded up to a multiple of 1 MB. 64K is the least amount of stack space allowed per thread.</p>
-        <h2><a name="extra-memory"></a>Extra Memory</h2>
-        <p>Extra memory is the memory required for NIO direct memory buffers, JIT code cache, classloaders, Socket Buffers (receive/send), JNI, and GC internal info.
+            <p>In some versions of Microsoft Windows, the OS may round up thread stack sizes using very coarse granularity. If the requested size is less than the default size by 1K or more, the stack size is rounded up to the default; otherwise, the stack size is rounded up to a multiple of 1 MB. 64K is the least amount of stack space allowed per thread.</p>
+            <h2><a name="extra-memory"></a>Extra Memory</h2>
+            <p>Extra memory is the memory required for NIO direct memory buffers, JIT code cache, classloaders, Socket Buffers (receive/send), JNI, and GC internal info.
 Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pre><code class="language-java">com.gs.transport_protocol.lrmi.maxBufferSize X com.gs.transport_protocol.lrmi.max-threads
 </code></pre>
-        <p>For example - with the default <code>maxBufferSize</code> size and 100 threads:</p><pre><code class="language-bash">64k X 100 = 6400KB = 6.4MB
+            <p>For example - with the default <code>maxBufferSize</code> size and 100 threads:</p><pre><code class="language-bash">64k X 100 = 6400KB = 6.4MB
 </code></pre>
-        <p>With large objects and batch operations (readMultiple, writeMultiple, Space Iterator) increasing the maxBufferSize may improve system performance.</p>
-        <h3><a name="maxdirectmemorysize"></a>MaxDirectMemorySize</h3>
-        <p>This JVM option specifies the maximum total size of java.nio (New I/O package) direct buffer allocations. It is used with network data transfer and serialization activity.</p>
-        <p>The default value for direct memory buffers depends on your version of your JVM. Oracle HotSpot has a default equal to the maximum heap size (<code>-Xmx</code> value), although some early versions may default to a particular value. To control this specific memory area, use the <code>-XX:MaxDirectMemorySize</code> property. See the following example:</p><pre><code class="language-bash">java -XX:MaxDirectMemorySize=2g myApp
+            <p>With large objects and batch operations (readMultiple, writeMultiple, Space Iterator) increasing the maxBufferSize may improve system performance.</p>
+            <h3><a name="maxdirectmemorysize"></a>MaxDirectMemorySize</h3>
+            <p>This JVM option specifies the maximum total size of java.nio (New I/O package) direct buffer allocations. It is used with network data transfer and serialization activity.</p>
+            <p>The default value for direct memory buffers depends on your version of your JVM. Oracle HotSpot has a default equal to the maximum heap size (<code>-Xmx</code> value), although some early versions may default to a particular value. To control this specific memory area, use the <code>-XX:MaxDirectMemorySize</code> property. See the following example:</p><pre><code class="language-bash">java -XX:MaxDirectMemorySize=2g myApp
 </code></pre>
-        <p>Format:</p><pre><code class="language-bash">-XX:MaxDirectMemorySize=size[g|G|m|M|k|K]`
+            <p>Format:</p><pre><code class="language-bash">-XX:MaxDirectMemorySize=size[g|G|m|M|k|K]`
 </code></pre>
-        <p>Some useful references:</p>
-        <ul>
-            <li>
-                <p><a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.html" target="_blank">Getting Started with the G1 Garbage Collector</a>
-                </p>
-            </li>
-            <li>
-                <p><a href="http://blog.sematext.com/2013/06/24/g1-cms-java-garbage-collector" target="_blank">g1 cms java garbage collector</a>
-                </p>
-            </li>
-            <li>
-                <p><a href="http://mpouttuclarke.wordpress.com/2013/03/13/large-java-heap-with-g1-collector-part-1" target="_blank">large java heap with g1 collector part 1</a>
-                </p>
-            </li>
-        </ul>
-        <div class="tc-admon-tip">
-            <p>It is highly recommended to use the latest JDK release when using these options.</p>
+            <p>Some useful references:</p>
+            <ul>
+                <li>
+                    <p><a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.html" target="_blank">Getting Started with the G1 Garbage Collector</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="http://blog.sematext.com/2013/06/24/g1-cms-java-garbage-collector" target="_blank">g1 cms java garbage collector</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="http://mpouttuclarke.wordpress.com/2013/03/13/large-java-heap-with-g1-collector-part-1" target="_blank">large java heap with g1 collector part 1</a>
+                    </p>
+                </li>
+            </ul>
+            <div class="tc-admon-tip">
+                <p>It is highly recommended to use the latest JDK release when using these options.</p>
+            </div>
+            <h2><a name="capturing-detailed-garbage-collection-statistics"></a>Capturing Detailed Garbage Collection Statistics</h2>
+            <p>To capture detailed information about garbage collection and how it is performing, add the following parameters to the JVM settings:</p><pre><code class="language-bash">-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:/path/to/log/directory/gc-log-file.log
+</code></pre>
+            <p>Modify the path and file names appropriately. You must use a different file name for each invocation in order to not overwrite the files from multiple processes.</p>
+            <p>Adding <code>%p</code> to the log name, for example <code>gc-log-file_%p.log</code>, tells the JVM&#160;to generate an individual log file per PID.</p>
+            <h2><a name="soft-references-lru-policy"></a>Soft References LRU Policy</h2>
+            <p>In order to provide the highest level of performance, <MadCap:variable name="General.ProductNameXAP" /> takes advantage of features in the Java language that allow for effective caching in the face of memory demands. In particular, the <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.html" target="_blank">SoftReference</a> class is used to store data until there is a need for explicit garbage collection, at which point the data stored in soft references will be collected if possible. The system default is 1000, which represents the amount of time (in milliseconds) that objects will survive past their last reference. <code>-XX:SoftRefLRUPolicyMSPerMB</code> is the parameter that allows you to determine how much data is cached by allowing the JVM to control how long it endures; it is recommended to set this value to <span class="tc-bold">500</span> in active, dynamic systems:</p><pre><code class="language-bash">-XX:SoftRefLRUPolicyMSPerMB=500
+</code></pre>
+            <p>The above means that softly reachable objects will remain alive for 500 milliseconds after the last time they were referenced.</p>
         </div>
-        <h2><a name="capturing-detailed-garbage-collection-statistics"></a>Capturing Detailed Garbage Collection Statistics</h2>
-        <p>To capture detailed information about garbage collection and how it is performing, add the following parameters to the JVM settings:</p><pre><code class="language-bash">-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:/path/to/log/directory/gc-log-file.log
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div MadCap:conditions="Version.17-0-born">
+            <p>A Space instance JVM holds the following in memory:  Space entries, Indexes, Space class metadata,&#160;transaction,&#160;replication, redolog, leases and&#160;statistics.</p>
+            <p>In most cases, the applications that use  <MadCap:variable name="General.ProductNameXAP" /> are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.</p>
+            <h2><a name="space-object-footprint"></a>Space Object Footprint</h2>
+            <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this for <MadCap:variable name="General.ProductXAP" />, refer to <a href="production-capacity-planning.html">Capacity Planning</a>.</p>
+            <h3><a name="using-a-compound-index-to-reduce-the-index-footprint"></a>Using a Compound Index to Reduce the Index Footprint</h3>
+            <p>A Compound Index can be used with <span class="tc-bold">AND</span> queries to speed up the query execution time. This approach combines multiple fields into a single index. Using a Compound Index avoids having multiple indexes on multiple fields, which in turn can reduce the index footprint.</p>
+            <h3><a name="usecompressedoops-jvm-option"></a>UseCompressedOops JVM Option</h3>
+            <p>The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
+            <h3><a name="compressed-storage-mode"></a>Storage Optimization</h3>
+            <p>There are several types of storage optimization: </p>
+            <ul>
+                <li>
+                    <p><a href="../dev-java/storage-optimization.htm">Type&#160;Level&#160;<a href="../dev-java/storage-optimization.htm">Storage Optimization</a></a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="../dev-java/property-storage-adaptor.html">Property Level Storage Optimization</a> </p>
+                </li>
+                <li>
+                    <p><a href="../dev-java/property-storage-adaptor.html#Implementing_a_Custom">Customized Property Optimization</a> </p>
+                </li>
+                <li>
+                    <p>Class Optimization</p>
+                </li>
+            </ul>
+            <p>This following mode is used to specify the Space itself as compressed. &#160;It is serialized level compressed. This compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.&#160;</p>
+            <div class="tc-admon-note">
+                <p>If there is still not enough room in RAM, consider using <a href="../admin/intelligent-tiering-details.html">Tiered Storage</a>.</p>
+            </div>
+            <div class="tc-admon-note">
+                <p>This option is not available for <MadCap:variable name="General.XAPNet" />.</p>
+            </div>
+            <h3><a name="customized-initial-load"></a>Customized Initial Load</h3>
+            <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. &#160;This is the default behavior for numerical routing keys. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduce the amount of garbage generated during this process.</p>
+            <h3><a name="redo-log-sizing"></a>Redo Log Sizing</h3>
+            <p>The amount of redo log data depends on the following:</p>
+            <ul>
+                <li>
+                    <p>Amount of in-flight activity</p>
+                </li>
+                <li>
+                    <p>Backup performance</p>
+                </li>
+                <li>
+                    <p>Primary backup connectivity (long disconnection means a lot of redo log data in memory).</p>
+                </li>
+            </ul>
+            <p>The redo logs swap over to the hard disk at some point, therefore is it recommended to place its location on an SSD drive. Do not use a regular hard drive to store redo log data. The redo log data footprint is similar to the actual raw data footprint without indexes.</p>
+            <p>It is recommended that for target as a backup or local view, to keep the redo log in memory. &#160;You need to take into account the redo log sizing when you are planning what will be in the RAM. For additional information refer to <a href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>.</p>
+            <h1><a name="jvm-basic-settings"></a>JVM Basic Settings</h1>
+            <p>This section provides examples of the JVM settings that are recommended for applications that generate A large number of temporary objects. In such situations, you afford long pauses due to garbage collection activity. These settings are appropriate for cases where you are running a IMDG, or when the business logic and the data grid are co-located. For example, a data grid with co-located polling/notify containers, task executors, or service remoting.</p>
+            <h2><a name="JDK__17"></a>JDK  17</h2>
+            <p><MadCap:variable name="General.CompanyName" /> code is now compiled for Java 17, therefore this is the minimal required version that can be used as client.</p>
+            <h2>Soft References in Java 17</h2>
+            <p>In Java 17, the handling of soft references has evolved, and the JVM no longer exposes -XX:SoftRefLRUPolicyMSPerMB for tuning. Instead, the JVM internally manages soft references more efficiently, and tuning this specific aspect manually is generally not necessary.</p>
+            <p>Soft references in Java 17 are still used for caching purposes, and they are cleared at the discretion of the garbage collector when the JVM detects memory pressure. The lifetime of soft references is now managed more transparently and dynamically, in line with modern garbage collection algorithms.</p>
+            <h2>Optimizing Memory&#160;Usage</h2>
+            <p>the <code>-XX:+UseCompressedOops</code> option is an important feature for optimizing memory usage in Java applications, especially those with large heaps. It's typically enabled by default in modern JVMs, including Java 17, and provides memory efficiency benefits without significant performance impact. It's generally safe to rely on the default behavior, but you can explicitly enable it if needed.</p>
+            <h2><a name="maxdirectmemorysize"></a>MaxDirectMemorySize</h2>
+            <p>The <code>-XX:MaxDirectMemorySize</code> option in Java allows you to specify the maximum amount of memory that can be allocated for direct buffers used by the java.nio package, such as<code> ByteBuffer.allocateDirect()</code>. This memory is allocated outside of the Java heap, often by the operating system, and is not subject to garbage collection by the JVM.</p>
+            <h3>Purpose</h3>
+            <p>Direct memory is used for operations that require interaction with native code or I/O operations, such as reading or writing data from files, network sockets, or using certain APIs like NIO channels. By default, the maximum direct memory size is limited by the maximum heap size (-Xmx), but -<code>XX:MaxDirectMemorySize</code> allows you to specify a separate limit.</p>
+            <h3>Usage</h3>
+            <ul>
+                <li>
+                    <p><b>Specifying Maximum Direct Memory Size</b>: You can specify the maximum amount of direct memory in bytes, kilobytes, megabytes, or gigabytes. For example: <code>sh java -XX:MaxDirectMemorySize=1G -jar your-application.jar</code></p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p><b>Default Value</b>: If you don't specify <code>-XX:MaxDirectMemorySize</code>, the maximum direct memory size defaults to the same value as the maximum heap size (-Xmx).</p>
+                </li>
+            </ul>
+            <h3>Considerations</h3>
+            <ul>
+                <li>
+                    <p><b>Impact on System Resources</b>: Direct memory is allocated outside of the Java heap and is managed by the operating system. Allocating too much direct memory can impact system resources, potentially leading to out-of-memory errors or decreased performance.</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p><b>Use Cases:</b> Use direct memory for operations that require interaction with native code or I/O operations. Examples include reading or writing large files, working with network sockets, or using NIO channels.</p>
+                </li>
+            </ul>
+            <h3>Conclusion</h3>
+            <p>The <code>-XX:MaxDirectMemorySize</code> option allows you to specify the maximum amount of memory that can be allocated for direct buffers in Java. It's useful for controlling the usage of direct memory, especially in scenarios involving I/O operations or interaction with native code. Be mindful of the potential impact on system resources and allocate direct memory judiciously based on your application's requirements.</p>
+            <h2><a name="extra-memory"></a>Extra Memory</h2>
+            <p>Extra memory is the memory required for NIO direct memory buffers, JIT code cache, classloaders, Socket Buffers (receive/send), JNI, and GC internal info.
+Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pre><code class="language-java">com.gs.transport_protocol.lrmi.maxBufferSize X com.gs.transport_protocol.lrmi.max-threads
 </code></pre>
-        <p>Modify the path and file names appropriately. You must use a different file name for each invocation in order to not overwrite the files from multiple processes.</p>
-        <p>Adding <code>%p</code> to the log name, for example <code>gc-log-file_%p.log</code>, tells the JVM&#160;to generate an individual log file per PID.</p>
-        <h2><a name="soft-references-lru-policy"></a>Soft References LRU Policy</h2>
-        <p>In order to provide the highest level of performance, <MadCap:variable name="General.ProductNameXAP" /> takes advantage of features in the Java language that allow for effective caching in the face of memory demands. In particular, the <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.html" target="_blank">SoftReference</a> class is used to store data until there is a need for explicit garbage collection, at which point the data stored in soft references will be collected if possible. The system default is 1000, which represents the amount of time (in milliseconds) that objects will survive past their last reference. <code>-XX:SoftRefLRUPolicyMSPerMB</code> is the parameter that allows you to determine how much data is cached by allowing the JVM to control how long it endures; it is recommended to set this value to <span class="tc-bold">500</span> in active, dynamic systems:</p><pre><code class="language-bash">-XX:SoftRefLRUPolicyMSPerMB=500
+            <p>For example - with the default <code>maxBufferSize</code> size and 100 threads:</p><pre><code class="language-bash">64k X 100 = 6400KB = 6.4MB
 </code></pre>
-        <p>The above means that softly reachable objects will remain alive for 500 milliseconds after the last time they were referenced.</p>
+            <p>With large objects and batch operations (readMultiple, writeMultiple, Space Iterator) increasing the maxBufferSize may improve system performance.</p>
+            <div class="tc-admon-tip">
+                <p>It is highly recommended to use the latest JDK release when using these options.</p>
+            </div>
+            <h2><a name="capturing-detailed-garbage-collection-statistics"></a>Capturing Detailed Garbage Collection Statistics</h2>
+            <p>In Java 17, the default GC is the G1 Garbage Collector. This makes it a good starting point for most applications unless specific requirements dictate otherwise.</p>
+            <h3>Selecting the Appropriate GC Algorithm:</h3>
+            <p>To enable a specific GC algorithm, you can use JVM options when starting your Java application.</p>
+            <table style="width: 100%;" class="tc-standard">
+                <col />
+                <col />
+                <col style="width: 413px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Type Options</th>
+                        <th>Recommendation</th>
+                        <th>Rationale</th>
+                        <th>Configuration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>1. General Purpose Use </b>
+                        </td>
+                        <td>G1 GC</td>
+                        <td>Balanced performance and pause times. Suitable for a wide range of applications.</td>
+                        <td>No special configuration needed as it is the default.</td>
+                    </tr>
+                    <tr>
+                        <td><b>2, Low Latency Requirements</b>
+                        </td>
+                        <td>ZGC or Shenandoah GC</td>
+                        <td>Both provide very low pause times, suitable for applications where latency is a critical factor.</td>
+                        <td>
+                            <p><b>ZGC</b>: Enable with <code>-XX:+UseZGC</code></p>
+                            <p><b>Shenandoah</b>: Enable with <code>-XX:+UseShenandoahGC</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>3. Throughput-Centric Applications</b>
+                        </td>
+                        <td>Parallel GC</td>
+                        <td>Maximizes throughput, suitable for batch processing or applications where throughput is more critical than pause times.</td>
+                        <td>Enable with <code>-XX:+UseParallelGC</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="tc-admon-note">
+                <p>From the options above, <MadCap:variable name="General.CompanyName" /> recommends using option 2</p>
+            </div>
+            <h3>How to Define a Verbose Garbage Collection</h3>
+            <p>Following is an example followed by an explanation of how to define a verbose garbage collection</p><pre xml:space="preserve"><code>#!/bin/bash
+LOG_DIR="/path/to/logs"                                                                                                        </code>                                                                     <code>JAVA_OPTS="-Xlog:gc*:file=${LOG_DIR}/gc_%p.log:tags,uptime,time,level:filecount=10,filesize=10M"</code></pre>
+            <h3>Explanation of Options</h3>
+            <ul>
+                <li>
+                    <p><code>-Xlog:gc*</code>: Enables logging of all garbage collection-related events.</p>
+                </li>
+                <li>
+                    <p><code>file=/path/to/logs/gc_%p.log</code>: Specifies the path and name pattern for the log file, where %p is replaced with the PID.</p>
+                </li>
+                <li>
+                    <p><code>tags,uptime,time,level</code>: Specifies the tags to include in the log entries:</p>
+                    <ul>
+                        <li>
+                            <p><b>tags</b>: Include tags in the log output.</p>
+                        </li>
+                        <li>
+                            <p><b>uptime</b>: Include the JVM uptime in the log entries.</p>
+                        </li>
+                        <li>
+                            <p><b>time</b>: Include the timestamp in the log entries.</p>
+                        </li>
+                        <li>
+                            <p><b>level</b>: Include the log level (e.g., info, warning, error).</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p><code>filecount=10</code>: Specifies the number of log files to keep.</p>
+                </li>
+                <li>
+                    <p><code>filesize=10M</code>: Specifies the maximum size of each log file.</p>
+                </li>
+            </ul>
+            <p>-XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path/to/heapdumps/</p>
+            <h3>Detailed Explanation of Options</h3>
+            <ul>
+                <li>
+                    <p><code>-XX:+DisableExplicitGC</code>:</p>
+                    <ul>
+                        <li>
+                            <p>This option disables explicit garbage collection calls (System.gc()) made by the application or third-party libraries. This can help in avoiding performance issues caused by frequent full GCs triggered explicitly.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p><code>-XX:+HeapDumpOnOutOfMemoryError</code>:</p>
+                    <ul>
+                        <li>
+                            <p>This option enables the JVM to generate a heap dump when it encounters an OutOfMemoryError. A heap dump is a snapshot of the JVM’s memory at a specific point in time and is useful for diagnosing memory leaks and other memory-related issues.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p><code>-XX:HeapDumpPath=/path/to/heapdumps/</code>:</p>
+                    <ul>
+                        <li>
+                            <p>This option specifies the directory where the heap dump file should be saved. Make sure the specified directory exists and the JVM has write permissions to this directory.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p>&#160;</p>
+            <p>&#160;</p>
+            <p>&#160;</p>
+            <p>Modify the path and file names appropriately. You must use a different file name for each invocation in order to not overwrite the files from multiple processes.</p>
+            <p>Adding <code>%p</code> to the log name, for example <code>gc-log-file_%p.log</code>, tells the JVM&#160;to generate an individual log file per PID.</p>
+        </div>
     </body>
 </html>
