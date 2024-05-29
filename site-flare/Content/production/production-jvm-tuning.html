@@ -138,7 +138,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
             <p>The above means that softly reachable objects will remain alive for 500 milliseconds after the last time they were referenced.</p>
         </div>
         <div MadCap:conditions="Version.17-0-born">
-            <p>A Space instance JVM holds the following in memory:  Space entries, Indexes, Space class metadata,&#160;transaction,&#160;replication, redolog, leases and&#160;statistics.</p>
+            <p>A basic Space instance JVM usually holds the following in memory: Space entries, Indexes, Space class metadata, transaction, replication redolog, leases data and statistics and temporal data.</p>
             <div class="tc-admon-refer" MadCap:conditions="Default.DoNotShow">
                 <p>For more additional about memory management, refer to <a href="../dev-java/memory-management-overview.html">Cache Policy.</a></p>
             </div>
@@ -147,13 +147,9 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
             <div class="tc-admon-important">
                 <p><MadCap:variable name="General.CompanyName" /> code is now compiled for Java 17, therefore this is the minimal required version that can be used as client.</p>
             </div>
-            <h2><a name="space-object-footprint"></a>Space Object Footprint</h2>
+            <h2><a name="space-object-footprint"></a>Space Memory Footprint</h2>
             <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this for <MadCap:variable name="General.ProductXAP" />, refer to <a href="production-capacity-planning.html">Capacity Planning</a>.</p>
-            <h3><a name="using-a-compound-index-to-reduce-the-index-footprint"></a>Using a Compound Index to Reduce the Index Footprint</h3>
             <p>A Compound Index can be used with <span class="tc-bold">AND</span> queries to speed up the query execution time. This approach combines multiple fields into a single index. Using a Compound Index avoids having multiple indexes on multiple fields, which in turn can reduce the index footprint.</p>
-            <h3><a name="usecompressedoops-jvm-option"></a>UseCompressedOops JVM Option</h3>
-            <p>In Java 17, this option is defined by default. The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
-            <h3><a name="compressed-storage-mode"></a>Storage Optimization</h3>
             <p>There are several types of storage optimization: </p>
             <ul>
                 <li>
@@ -161,24 +157,27 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
                     </p>
                 </li>
                 <li>
-                    <p><a href="../dev-java/property-storage-adaptor.html">Property Level Storage Optimization</a> </p>
+                    <p><a href="../dev-java/property-storage-adaptor.html">Property Level Storage Optimization</a>
+                    </p>
                 </li>
                 <li>
-                    <p><a href="../dev-java/property-storage-adaptor.html#Implementing_a_Custom">Customized Property Optimization</a> </p>
-                </li>
-                <li>
-                    <p>Class Optimization</p>
+                    <p><a href="../dev-java/property-storage-adaptor.html#Implementing_a_Custom">Customized Property Optimization</a>
+                    </p>
                 </li>
             </ul>
-            <p>This following mode is used to specify the Space itself as compressed. &#160;It is serialized level compressed. This compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.&#160;</p>
             <div class="tc-admon-note">
-                <p>If there is still not enough room in RAM, consider using <a href="../admin/intelligent-tiering-details.html">Tiered Storage</a>.</p>
+                <p>If there is still not enough room in RAM, consider using <a href="../admin/intelligent-tiering-details.html">Tiered Storage</a>. This option is not available for <MadCap:variable name="General.XAPNet" /></p>
             </div>
-            <div class="tc-admon-note">
-                <p>This option is not available for <MadCap:variable name="General.XAPNet" />.</p>
-            </div>
+            <h3 MadCap:conditions="Default.DoNotShow"><a name="usecompressedoops-jvm-option"></a>UseCompressedOops JVM Option</h3>
+            <p MadCap:conditions="Default.DoNotShow">In Java 17, this option is defined by default. The <code>-XX:+UseCompressedOops</code> allows a 64-bit JVM heap size of up to 32GB to use a 32-bit reference address. This can reduce the overall footprint by 20-40%.</p>
+            <ul>
+                <li>
+                    <p MadCap:conditions="Default.DoNotShow">Class Optimization</p>
+                </li>
+            </ul>
+            <p MadCap:conditions="Default.DoNotShow">This following mode is used to specify the Space itself as compressed. &#160;It is serialized level compressed. This compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.&#160;</p>
             <h3><a name="customized-initial-load"></a>Customized Initial Load</h3>
-            <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. &#160;This is the default behavior for numerical routing keys. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduce the amount of garbage generated during this process.</p>
+            <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. &#160;This is the default behavior for numerical routing keys. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduces the amount of garbage generated during this process. The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects for none numerical  routing types. Refer to <a href="../dev-java/space-persistency-initial-load.html#custom-initial-load-queries">Custom Initial Load Queries</a> for additional information. If you have none numerical routing keys custom inital load will help in creating less garbage and consume less memory during initial load.</p>
             <h3><a name="redo-log-sizing"></a>Redo Log Sizing</h3>
             <p>The amount of redo log data depends on the following:</p>
             <ul>
