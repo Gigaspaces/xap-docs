@@ -177,8 +177,24 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
             </ul>
             <p MadCap:conditions="Default.DoNotShow">This following mode is used to specify the Space itself as compressed. &#160;It is serialized level compressed. This compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.&#160;</p>
             <h3><a name="customized-initial-load"></a>Customized Initial Load</h3>
-            <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. &#160;This is the default behavior for numerical routing keys. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduces the amount of garbage generated during this process. The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects for none numerical  routing types. Refer to <a href="../dev-java/space-persistency-initial-load.html#custom-initial-load-queries">Custom Initial Load Queries</a> for additional information. If you have none numerical routing keys custom inital load will help in creating less garbage and consume less memory during initial load.</p>
+            <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. &#160;This is the default behavior for NONE numerical routing keys. For numerical routing keys, each partition will only load its related data. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduces the amount of garbage generated during this process.  Refer to <a href="../dev-java/space-persistency-initial-load.html#custom-initial-load-queries">Custom Initial Load Queries</a> for additional information. </p>
             <h3><a name="redo-log-sizing"></a>Redo Log Sizing</h3>
+            <p>Redolog is a structure that stores all Space operations until the relevant replication targets acknowledge that they have received them.</p>
+            <ul>
+                <li>
+                    <p>There is a single Redolog for all targets that tracks the last key each target has acknowledged (ACK).</p>
+                </li>
+                <li>
+                    <p>Targets can be backup, mirror, local views, durable notification and WAN GW.</p>
+                </li>
+                <li>
+                    <p>The Redolog can be stored in both memory and on disk.</p>
+                </li>
+                <li>
+                    <p>The difference between max capacity and max memory capacity defined is the amount of data that might be written to disk.</p>
+                </li>
+            </ul>
+            <p>&#160;</p>
             <p>The amount of redo log data depends on the following:</p>
             <ul>
                 <li>
@@ -242,9 +258,6 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
             <p>For example - with the default <code>maxBufferSize</code> size and 100 threads:</p><pre><code class="language-bash">64k X 100 = 6400KB = 6.4MB
 </code></pre>
             <p>With large objects and batch operations (readMultiple, writeMultiple, Space Iterator) increasing the maxBufferSize may improve system performance.</p>
-            <div class="tc-admon-tip">
-                <p>It is highly recommended to use the latest JDK release when using these options.</p>
-            </div>
             <h2><a name="capturing-detailed-garbage-collection-statistics"></a>Capturing Detailed Garbage Collection Statistics</h2>
             <p>In Java 17, the default Garbage Collector (GC) is the G1 Garbage Collector. This makes it a good starting point for most applications unless specific requirements dictate otherwise.</p>
             <p>As with any Java application, the Garbage Collector (GC) should be fine-tuned and care should be taken to select a GC algorithm that meets requirements. It is recommended to set verbose GC and analyze GC files to optimally tune the system</p>
@@ -366,7 +379,7 @@ LOG_DIR="/path/to/logs"                                                         
                     </ul>
                 </li>
                 <li>
-                    <p><code>Dgs.gc.collectionTimeThresholdWarning=1000</code>:</p>
+                    <p><code>-Dgs.gc.collectionTimeThresholdWarning=1000</code>:</p>
                     <ul>
                         <li>
                             <p>This specifies that if GC takes longer than 1 sec a warning will be added in the proccess log.</p>

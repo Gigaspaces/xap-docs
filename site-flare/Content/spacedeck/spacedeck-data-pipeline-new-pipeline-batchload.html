@@ -22,6 +22,9 @@
             <img src="../Resources/Images/17.0/SD_DP2.png" style="width: 1203px;height: 370px;" MadCap:conditions="Version.17-0-born" />
         </p>
         <h3>Basic Pipeline Information</h3>
+        <p>
+            <img src="../Resources/Images/17.0/SD_DP3.png" style="width: 977px;height: 443px;" MadCap:conditions="Version.17-0-born" />
+        </p>
         <div class="tc-admon-note">
             <p>You can fill in some or all of the pipeline configuration items (shown below) from a <MadCap:xref href="spacedeck-data-pipeline-format-of-configuration-file.html" class="JSON-format-configuration-file">JSON-format configuration file</MadCap:xref> by clicking  the <b>Load Configuration</b> button found at the top right side of the screen.<br />The configuration file may contains some or all of the required details. After the configuration details are loaded from the configuration file, they can be edited if desired, before saving . </p>
         </div>
@@ -62,10 +65,10 @@
             <img src="../Resources/Images/17.0/SD_DP_Batch1a.png" style="width: 1094px;height: 565px;" />
         </p>
         <p>The Pipeline Configuration screen is displayed:</p>
-        <p><span style="color: #ff0000;">1:</span> Choose a Pipeline Name</p>
-        <p><span style="color: #ff0000;">2:</span> Select a Space name (previously defined)</p>
+        <p><span style="color: #ff0000;">1:</span> Choose a Pipeline Name. The Pipeline name is not case sensitive and has no limits for naming but must not exceed a length of 63 characters.</p>
+        <p><span style="color: #ff0000;">2:</span> Select a Space name (previously defined). The name of the GigaSpaces Space object that will receive the pipeline data. This is a mandatory field.</p>
         <p><span style="color: #ff0000;">3.</span> Select Data Source Connection (previously defined) or create one here. Refer to <a href="spacedeck-data-sources.html#Data_Source_-_Batch_Load">Data Source -&#160;Batch Load</a>.</p>
-        <p><span style="color: #ff0000;">4.</span> Under Batch&#160;Settings, select Schedule Load, then click <b>Change</b>.</p>
+        <p><span style="color: #ff0000;">4.</span> Under Batch&#160;Settings, select <b>Schedule Load</b>, then click <b>Change</b>.</p>
         <p><span style="color: #ff0000;">5:</span> After batch schedule load has been set, click <b>Create Pipeline</b>.</p>
         <h3>Schedule Load</h3>
         <p>
@@ -94,7 +97,7 @@
         </p>
         <p>&#160;</p>
         <p><span style="color: #ff0000;">1:</span> In the Pipeline&#160;Configuration screen, click <b>Add Tables</b></p>
-        <p><span style="color: #ff0000;">2:</span> This is an example of selecting a materialized view table</p>
+        <p><span style="color: #ff0000;">2:</span> Following is an example of selecting a materialized view table. For adding regular tables refer to Select Schema and Tables for the Pipeline section in <a href="spacedeck-data-pipeline-new-pipeline.html">Data Pipeline-Create New Pipeline</a>.</p>
         <h3>Space ID&#160;Required</h3>
         <p>
             <img src="../Resources/Images/17.0/SD_DP_batch6.png" />
