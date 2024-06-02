@@ -105,9 +105,9 @@ the corresponding storage class, e.g. 10Gi</td>
 	.idProperty("id")
 	.supportsDynamicProperties(false)
 	.setTieredStorageTableConfig(
-		<span style="background-color: #ffff00;">new TieredStorageTableConfig()</span><![CDATA[
-			]]><span style="background-color: #ffff00;">.setName("SpaceTypeExample")</span> <span style="color: #c71585;">// set to space type name</span><![CDATA[
-			]]><span style="background-color: #ffff00;">.setCriteria("field1='1'")</span> <span style="color: #c71585;">// see examples below</span>
+		<span style="background-color: #ffff00;">new TieredStorageTableConfig()</span>
+			&gt;<span style="background-color: #ffff00;">.setName("SpaceTypeExample")</span><span style="color: #c71585;">// set to space type name</span>
+			&gt;<span style="background-color: #ffff00;">.setCriteria("field1='1'")</span><span style="color: #c71585;">// see examples below</span>
 	)
 	.create()
 </code></pre>
@@ -375,9 +375,89 @@ spaceTypes:</span><![CDATA[
                 </tr>
             </tbody>
         </table>
-        <h2>Limitations</h2>
-        <p>At this stage, primitive property types and selected Java classes are supported in Tiered Storage.</p>
-        <p>Tiered Storage policies cannot be changed after Space Type registration.</p>
+        <h1>Limitations and Recommendations</h1>
+        <table style="width: 100%;" class="tc-standard">
+            <col style="width: 677px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th><b>Supported</b>
+                    </th>
+                    <th style="text-align: left;font-weight: bold;">Not Supported</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>
+                                <p style="font-size: 12pt;">Broadcast Table: Recommended all (both disk and cache)
+</p>
+                            </li>
+                            <li>
+                                <p><span style="font-size: 12pt;">At this stage, primitive property types and selected Java classes are supported in Tiered Storage.</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">Property Types: Only native value types (integer, string, double, byte, <a href="../dev-java/data-types.html">data types</a>, array, etc.)
+</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">SpaceDocument: Only fixed properties
+</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">The number of backups per partition is zero or one
+                                </p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">16.2+: Transaction Support: Local transactions are supported
+LocalView
+</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">16.3+: K8s
+</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">16.3+: Dynamic Indexes
+ </p>
+                            </li>
+                        </ul>
+                    </td>
+                    <td style="text-align: left;">
+                        <ul>
+                            <li>
+                                <p style="font-size: 12pt;">Storage Optimization</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">Tiered Storage policies cannot be changed after Space Type registration.</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">
+Inheritance
+</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">FIFO
+</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">Lease (for non-transient types). Cannot have both time and criteria for the same type.
+Compound Indexes (id is the exception)
+</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;">Scale In/Out
+</p>
+                            </li>
+                        </ul>
+                        <p>&#160;</p>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <p MadCap:conditions="Default.DoNotShow">By defining business rules, you direct the system which data to store in the Hot tier and which in the Warm tier. The Hot/Warm decision can be based on the data content, or by data aging considerations. </p>
         <p MadCap:conditions="Default.DoNotShow">Using Tiered Storage can increase effective data capacity by a factor of ten.</p>
         <p style="text-align: center;">

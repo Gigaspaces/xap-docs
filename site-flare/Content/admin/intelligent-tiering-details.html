@@ -10,7 +10,7 @@
         <h1 class="tc-pagetitle">Tiered Storage&#160;Configuration for Service Grid</h1>
         <h1>Initial Load</h1>
         <p>The initial loading of data into each tier can be a time-consuming process, starting with the System of Record or other external data sources. Additionally, data in both tiers can be updated during the normal course of operations during the day.</p>
-        <p>During the normal use of Tiered Storage, priority data is stored in the Hot tier, and other data is stored in the Warm tier.</p>
+        <p>During the normal use of Tiered Storage, priority data is stored in the Hot tier, and other data (except transient) is stored in the Warm tier. If there is data in the Warm tier, it will be faster to recover it rather than recovering it from an external database.</p>
         <ul>
             <li>
                 <p>Initial load from external data source will be performed as usual if the local Database (DB) is empty (empty = no metadata).</p>
@@ -30,7 +30,7 @@
         </ul>
         <p>Using data persistency, data in both tiers is stored in a system repository. When the data is undeployed, the user has an option to persist the data. Subsequent redeployment of the data is performed at optimum speed.</p>
         <h2>Log:&#160;Source of Data </h2>
-        <p>In the primary space log:</p>
+        <p>In the primary Space log:</p>
         <p><code class="language-bash">Recovery from tier layer</code>
         </p>
         <p><code class="language-bash">Data source recovery</code>
@@ -44,7 +44,7 @@
         <p>This data can be compared with primary log of the initial run Recovery from  external data source:</p>
         <p><code class="language-bash">Entries found in data source</code>
         </p>
-        <p><code class="language-bash">Entries inserted to space:</code>
+        <p><code class="language-bash">Entries inserted to Space:</code>
         </p>
         <p><code class="language-bash">Entries ignored:</code>
         </p>
@@ -56,7 +56,7 @@
                 <p>Transient objects are not kept in SQLite but can still be mirrored to an external source.</p>
                 <ul>
                     <li>
-                        <p>In this case, after undeploy+deploy, the transient objects will not be in the space.</p>
+                        <p>In this case, after undeploy+deploy, the transient objects will not be in the Space.</p>
                     </li>
                 </ul>
             </li>
@@ -66,6 +66,288 @@
                 <p>If it is required to load from an external source, delete pu metadata &amp; data.</p>
             </li>
         </ul>
+        <h2>Tiered Storage Configuration for Space Types</h2>
+        <h3>Registering a Space Type with Tiered&#160;Storage Configuration</h3>
+        <p>In the Java example below, take note of the highlighted section.</p><pre><code class="language-java">SpaceTypeDescriptor typeDescriptorDoc1 = 
+   <span style="color: #4169e1;">new</span> SpaceTypeDescriptorBuilder(<span style="color: #008000;">"SpaceTypeExample"</span>)
+	.addFixedProperty(<span style="color: #008000;">"id"</span>, <span style="color: #4b0082;">Integer</span>.<span style="color: #4169e1;">class</span>)
+	.addFixedProperty(<span style="color: #008000;">"field1"</span>, <span style="color: #4b0082;">String</span>.<span style="color: #4169e1;">class</span>)
+	.addFixedProperty(<span style="color: #008000;">"field2"</span>, <span style="color: #4b0082;">String</span>.<span style="color: #4169e1;">class</span>)
+	.addFixedProperty(<span style="color: #008000;">"field3"</span>, <span style="color: #4b0082;">String</span><span style="color: #4169e1;">.class</span>)
+	.addFixedProperty(<span style="color: #008000;">"expireDate"</span>, LocalDateTime.<span style="color: #4169e1;">class</span>)
+	.idProperty("id")
+	.supportsDynamicProperties(false)
+	.setTieredStorageTableConfig(
+		<span style="background-color: #ffff00;">new TieredStorageTableConfig()</span>
+			&gt;<span style="background-color: #ffff00;">.setName("SpaceTypeExample")</span><span style="color: #c71585;">// set to space type name</span>
+			&gt;<span style="background-color: #ffff00;">.setCriteria("field1='1'")</span><span style="color: #c71585;">// see examples below</span>
+	)
+	.create()
+</code></pre>
+        <h2>Tiered Storage&#160;Policies in Type Registration</h2>
+        <table style="width: 100%;" class="tc-standard">
+            <col style="width: 364px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th style="font-weight: bold;">Example</th>
+                    <th style="text-align: left;font-weight: bold;">Hot/Warm Tiers Distribution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>new TieredStorageTableConfig()
+ .setName("SpaceTypeExample")
+ .setCriteria("field1='1'")
+Note: Supported operators:
+= != &gt;= &lt;= and or</td>
+                    <td>
+                        <p>Criteria-Based
+</p>
+                        <table style="width: 100%;">
+                            <col />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>Matching provided criteria</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>new TieredStorageTableConfig()
+ .setName("SpaceTypeExample")
+ .setTimeColumn("expireDate")
+ .setPeriod(Duration.ofMinutes(60))
+</td>
+                    <td>
+                        <p>Time-Based</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>Matching condition expireDate+60min&lt;now</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Note: Only the initial value of the expireDate column will define Hot Tier retention of an object.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>new TieredStorageTableConfig()
+ .setName("SpaceTypeExample")
+ .setTransient(true)</td>
+                    <td>
+                        <p>Memory&#160;Only</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>All</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>None</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>null
+(*) or no call to:
+.setTieredStorageTableConfi</td>
+                    <td>
+                        <p>Warm Tier Only</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>None</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>new TieredStorageTableConfig()
+ .setName("SpaceTypeExample")
+ .setCriteria("all")</td>
+                    <td>
+                        <p>Hot and Warm</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>All</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Tiered Storage Configuration in&#160;Pluggable Connector</h2>
+        <p>Pluggable Connector provides a configuration option ‘tiering’ for configuring tiered storage rules:</p><pre><code class="language-java"><span style="color: #4169e1;">
+dataFormat:</span><span style="color: #006400;">"JSON"</span><span style="color: #4169e1;">
+spaceTypes:</span><![CDATA[
+]]><span style="color: #4169e1;">- name:</span> "SpaceTypeExample"<span style="color: #4169e1;">
+  dataSource:</span><![CDATA[
+	]]><span style="color: #4169e1;">topic:</span><span style="color: #006400;"> "topic"</span><![CDATA[
+	]]><span style="color: #4169e1; background-color: #ffff00;">tiering:</span><span style="color: #006400;">“hot-and-warm”</span><span style="color: #4169e1;">
+  properties</span>:
+  <span style="color: #4169e1;">- name:</span><span style="color: #006400;"> "id"</span><![CDATA[
+	]]><span style="color: #4169e1;">type:</span><span style="color: #006400;">"java.lang.Integer"</span><![CDATA[
+	]]><span style="color: #4169e1;">selector: </span><span style="color: #006400;">"$.id"</span><![CDATA[
+	]]><span style="color: #4169e1;">attributes:</span><span style="color: #006400;">["spaceid"]</span><![CDATA[
+  ]]><span style="color: #4169e1;">- name: </span><span style="color: #006400;">"field1"</span><![CDATA[
+	]]><span style="color: #4169e1;">type:</span><span style="color: #006400;">"java.lang.String"</span><![CDATA[
+	]]><span style="color: #4169e1;">selector:</span><span style="color: #006400;"> "$.field1"</span><![CDATA[
+ ]]><span style="color: #4169e1;"> - name:</span><span style="color: #006400;">"expireDate"</span><![CDATA[
+	 ]]><span style="color: #4169e1;">type:</span><span style="color: #006400;">"java.time.LocalDateTime"</span><![CDATA[
+	 ]]><span style="color: #4169e1;">selector:</span><span style="color: #006400;">"$.expireDate"</span><![CDATA[
+]]></code></pre>
+        <h3>Supported Value&#160;Formats</h3>
+        <table style="width: 100%;" class="tc-standard">
+            <col style="width: 364px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th style="font-weight: bold;">Example</th>
+                    <th style="text-align: left;font-weight: bold;">Hot/Warm Tiers Distribution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>criteria: field1='1'</td>
+                    <td>
+                        <p>Criteria-Based
+</p>
+                        <table style="width: 100%;">
+                            <col />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>Matching provided criteria</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>period: expireDate 60min </td>
+                    <td>
+                        <p>Time-Based</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>Matching condition expireDate+60min&lt;now</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Note: Only the initial value of the expireDate column will define Hot Tier retention of an object.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>hot-only</td>
+                    <td>
+                        <p>Memory&#160;Only</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>All</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>None</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>warm-only</td>
+                    <td>
+                        <p>Warm Tier Only</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>None</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>hot-and-warm</td>
+                    <td>
+                        <p>Hot and Warm</p>
+                        <table style="width: 100%;">
+                            <col style="width: 299px;" />
+                            <col />
+                            <tbody>
+                                <tr>
+                                    <td>Hot Tier</td>
+                                    <td>All</td>
+                                </tr>
+                                <tr>
+                                    <td>Warm Tier</td>
+                                    <td>All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <h1>Underploy-Deploy </h1>
         <p>In the case of deploying using a different topology:</p>
         <p>
@@ -159,11 +441,15 @@
 </p>
                             </li>
                             <li>
+                                <p><span style="font-size: 12pt;">At this stage, primitive property types and selected Java classes are supported in Tiered Storage.</span>
+                                </p>
+                            </li>
+                            <li>
                                 <p style="font-size: 12pt;">Property Types: Only native value types (integer, string, double, byte, data types, array, etc.)
 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;">Space Document: Only fixed properties
+                                <p style="font-size: 12pt;">SpaceDocument: Only fixed properties
 </p>
                             </li>
                             <li>
@@ -191,6 +477,9 @@ LocalView
                                 <p style="font-size: 12pt;">Storage Optimization</p>
                             </li>
                             <li>
+                                <p style="font-size: 12pt;">Tiered Storage policies cannot be changed after Space Type registration.</p>
+                            </li>
+                            <li>
                                 <p style="font-size: 12pt;">
 Inheritance
 </p>
@@ -215,6 +504,6 @@ Compound Indexes (id is the exception)
                 </tr>
             </tbody>
         </table>
-        <p> </p>
+        <p>&#160;</p>
     </body>
 </html>

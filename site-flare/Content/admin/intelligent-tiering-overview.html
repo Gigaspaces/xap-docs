@@ -36,7 +36,9 @@
                     <td><b>Hot</b>
                     </td>
                     <td>RAM</td>
-                    <td>This tier is designed for high-speed access. It stores frequently accessed data, ensuring low latency and high throughput for read/write operations.</td>
+                    <td>
+                        <p>This tier is designed for high-speed access. It stores data that should be accessed fast according to business requirement ensuring low latency and high throughput for read operations.</p>
+                    </td>
                 </tr>
                 <tr>
                     <td><b>Warm</b>
@@ -95,7 +97,7 @@
         <ul>
             <li>
                 <li>
-                    <p>By analyzing the query criteria it is definitely seen that all data is in the Hot layer - only the cache will be queried.</p>
+                    <p>By analyzing the query criteria, if it is definitely seen that all data is in the Hot layer, only the cache will be queried.</p>
                 </li>
                 <li>
                     <p>If max entries for the read is specified and there are max entries in cache that meets the query condition, only cache will be queried. If there is no limit, the query will go to the disk.</p>
@@ -116,9 +118,6 @@
                     <p>According to the query criteria versus the Hot tier criteria, queries use the Hot tier only if all of the required data is present in the Hot tier. You can modify the <a href="../dev-java/transaction-read-modifiers.html">read modifier</a> to allow memory search only or the number of objects to read can be limited and they can be found in the Hot tier.</p>
                 </li>
             </li>
-            <li>
-                <p>Primitive property types and selected Java classes are supported in Tiered Storage. See <MadCap:xref href="tiered-storage-date-types.html">Tiered Storage Date Types</MadCap:xref> for a complete list of supported date types. </p>
-            </li>
             <li MadCap:conditions="Default.DoNotShow">
                 <p>Tiered Storage supports primitive property types, and Java Timestamp and Instant classes .</p>
             </li>
@@ -126,6 +125,9 @@
                 <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/persistency-for-a-database.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
             </li>
         </ul>
+        <div class="tc-admon-note">
+            <p>Primitive property types and selected Java classes are supported in Tiered Storage. See <MadCap:xref href="tiered-storage-date-types.html">Tiered Storage Date Types</MadCap:xref> for a complete list of supported date types.</p>
+        </div>
         <div class="tc-admon-note">
             <p>For tables configured as Tiered Storage, if no rules are defined for the table, its data will be stored in the Warm tier only.</p>
         </div>
