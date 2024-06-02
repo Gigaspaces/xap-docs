@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Tiered Storage Overview</h1>
+        <p MadCap:conditions="Default.DoNotShow">Tiered Storage provides seamless tiering of data between different storage tiers, to balance performance and storage media costs.</p>
+        <p>The goal of Tiered Storage is to offer a cost-effective solution for storing large amounts of data while balancing cost with read/write performance. Data is divided into two logical layers or 'tiers'. By abstracting the complexity of tiered storage management, developers can focus on building and optimizing their applications without concern for the specifics of data placement and performance tuning.</p>
+        <h1>Feature Overview</h1>
+        <p>Data can be stored in two tiers. By strategically dividing data between these two tiers, Tiered Storage optimizes both performance and cost, ensuring that critical data operations are executed efficiently while maintaining overall storage expenses at a manageable level.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col style="width: 152px;" />
+            <col style="width: 221px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Tier</th>
+                    <th style="text-align: left;">Storage Location</th>
+                    <th style="text-align: left;">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Hot</b>
+                    </td>
+                    <td>RAM</td>
+                    <td>This tier is designed for high-speed access. It stores frequently accessed data, ensuring low latency and high throughput for read/write operations.</td>
+                </tr>
+                <tr>
+                    <td><b>Warm</b>
+                    </td>
+                    <td>Disk</td>
+                    <td>This tier  is intended for data that is accessed less frequently. While it offers slower access times compared to the Hot Tier, it provides a more cost-effective storage solution for large volumes of data.</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul MadCap:conditions="Default.DoNotShow">
+            <li>
+                <p><b>Hot Tier</b> <b>— RAM</b>: Priority data, used for read/write operations and analysis requiring fastest access</p>
+            </li>
+            <li>
+                <p><b>Warm Tier — SSD</b> (recommended media): Additional data used mostly for read-only, analytical purposes</p>
+            </li>
+        </ul>
+        <p>Typically, the Warm Tier contains all the data, while the Hot Tier holds a subset based on user-defined rules. The Warm Tier also acts as the persistence layer for all data.  The distribution of data across these tiers is handled based on predefined rules and is seamless to client applications. Applications access data in both tiers via standard APIs, without needing to be aware of the tiered structure.</p>
+        <ul>
+            <li>
+                <p><b>Data Distribution</b>: The system transparently manages the placement of data between the Hot and Warm Tiers based on predefined rules. This ensures that the most critical data is readily accessible in the Hot Tier, while the full dataset remains stored in the Warm Tier.</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Seamless Integration</b>: Client applications interact with the data storage system using standard APIs. This abstraction means that applications do not need to be aware of the underlying tiered storage architecture. Whether data resides in RAM or on disk, the access and manipulation of data remain consistent and straightforward from the application's perspective.</p>
+            </li>
+        </ul>
+        <h1>Architectural Overview</h1>
+        <p>In Tiered Storage, space data partitioning adheres to the standard methodology. Space objects and documents are routed to partitions based on the routing key property value. Partitions not only manage data in RAM but also on disk volumes. Consequently, within a Space partition, an object can reside in RAM, on disk, or in both locations. This dual-layered storage approach ensures efficient data management and access within each partition.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/17.0/Tiering1.png" style="width: 803px;height: 368px;" />
+        </p>
+        <h2>Kubernetes Environments</h2>
+        <p>Tiered Storage implementation in Kubernetes involves managing disk volumes using standard resources:</p>
+        <ul>
+            <li>
+                <p><b>StorageClass</b>: A cluster-level resource abstracting the storage provisioner in a given environment. This resource must be created by an administrator before deploying a space with Tiered Storage.</p>
+            </li>
+            <li>
+                <p><b>StatefulSet</b>: Represents a space, ensuring a fixed relation between space partition pods and disk volumes. Created by running the space helm install command.</p>
+            </li>
+            <li>
+                <p><b>PersistentVolumeClaim (PVC)</b>: Represents a disk volume attached to a partition. PVCs (one per space partition) are created automatically by the space helm install command.</p>
+            </li>
+        </ul>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/17.0/Tiering4.png" style="width: 820px;height: 376px;" />
+        </p>
+        <p MadCap:conditions="Default.DoNotShow">Using Tiered Storage can increase effective data capacity by a factor of ten.</p>
+        <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
+            <img src="../Resources/Images/x16.0-tiered-storage-no-border.png" style="width: 595px;height: 382px;" />
+        </p>
+        <h1>Optimizing the Use of Tiered Storage</h1>
+        <p>In order to get the most out of Tiered Storage, please note the following:</p>
+        <ul>
+            <li>
+                <li>
+                    <p>By analyzing the query criteria it is definitely seen that all data is in the Hot layer - only the cache will be queried.</p>
+                </li>
+                <li>
+                    <p>If max entries for the read is specified and there are max entries in cache that meets the query condition, only cache will be queried. If there is no limit, the query will go to the disk.</p>
+                </li>
+                <li>
+                    <p>Using read API - ReadModifier : MEMORY_ONLY_SEARCH</p>
+                </li>
+                <li>
+                    <p>When running using jdbc init the connection with properties. add readModifiers property with MEMORY_ONLY_SEARCH value.</p>
+                </li>
+                <li>
+                    <p>Using the above modifier the number of objects in cache/total are revealed via the API.</p>
+                </li>
+                <li>
+                    <p>The metrics are reported by <MadCap:variable name="General.CompanyName" /> and can be viewed using a reporting tool such a Grafana.</p>
+                </li>
+                <li>
+                    <p>According to the query criteria versus the Hot tier criteria, queries use the Hot tier only if all of the required data is present in the Hot tier. You can modify the <a href="../dev-java/transaction-read-modifiers.html">read modifier</a> to allow memory search only or the number of objects to read can be limited and they can be found in the Hot tier.</p>
+                </li>
+            </li>
+            <li>
+                <p>Primitive property types and selected Java classes are supported in Tiered Storage. See <MadCap:xref href="tiered-storage-date-types.html">Tiered Storage Date Types</MadCap:xref> for a complete list of supported date types. </p>
+            </li>
+            <li MadCap:conditions="Default.DoNotShow">
+                <p>Tiered Storage supports primitive property types, and Java Timestamp and Instant classes .</p>
+            </li>
+            <li MadCap:conditions="Default.DoNotShow">
+                <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/persistency-for-a-database.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>For tables configured as Tiered Storage, if no rules are defined for the table, its data will be stored in the Warm tier only.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>For Service Grid SLA, the Processing Unit must specify the <a href="https://docs-staging.gigaspaces.com/[%=Versions.xap-release%]/admin/the-sla-zones.html#InstanceLevelRequirements">instance level SLA with host requirement</a> for each instance or alternatively, specify  <code>pu.autogenerated-instance-sla=true</code> as a context property of the deployment. This will allow the system to automatically generate the SLA .</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>For Service Grid, each instance is bound to a specific machine for the entire duration of the deployment. Redeployment is only possible with the <b>same </b>schema, unless delete was called.</p>
+        </div>
+        <h1>Deployment</h1>
+        <p MadCap:conditions="Version.16-4-born">For details of how to deploy Tiered Storage in a Kubernetes environment, refer to <a href="intelligent-tiering-details-K8s.html">Intelligent Tiering Details for Kubernetes</a></p>
+        <p>For details of how to deploy Tiered Storage in a Service Grid environment, refer to <a href="intelligent-tiering-details.html"><a href="intelligent-tiering-details-K8s.html">Intelligent Tiering Details for Service Grid</a></a></p>
+    </body>
+</html>
