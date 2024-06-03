@@ -213,8 +213,9 @@ Note: Supported operators:
                 </tr>
             </tbody>
         </table>
-        <h2>Tiered Storage Configuration in&#160;Pluggable Connector</h2>
-        <p>Pluggable Connector provides a configuration option ‘tiering’ for configuring tiered storage rules:</p><pre><code class="language-java"><span style="color: #4169e1;">
+        <div MadCap:conditions="Default.DoNotShow">
+            <h2>Tiered Storage Configuration in&#160;Pluggable Connector</h2>
+            <p>Pluggable Connector provides a configuration option ‘tiering’ for configuring tiered storage rules:</p><pre><code class="language-java"><span style="color: #4169e1;">
 dataFormat:</span><span style="color: #006400;">"JSON"</span><span style="color: #4169e1;">
 spaceTypes:</span><![CDATA[
 ]]><span style="color: #4169e1;">- name:</span> "SpaceTypeExample"<span style="color: #4169e1;">
@@ -233,121 +234,122 @@ spaceTypes:</span><![CDATA[
 	 ]]><span style="color: #4169e1;">type:</span><span style="color: #006400;">"java.time.LocalDateTime"</span><![CDATA[
 	 ]]><span style="color: #4169e1;">selector:</span><span style="color: #006400;">"$.expireDate"</span><![CDATA[
 ]]></code></pre>
-        <h3>Supported Value&#160;Formats</h3>
-        <table style="width: 100%;" class="tc-standard">
-            <col style="width: 364px;" />
-            <col />
-            <thead>
-                <tr>
-                    <th style="font-weight: bold;">Example</th>
-                    <th style="text-align: left;font-weight: bold;">Hot/Warm Tiers Distribution</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>criteria: field1='1'</td>
-                    <td>
-                        <p>Criteria-Based
+            <h3>Supported Value&#160;Formats</h3>
+            <table style="width: 100%;" class="tc-standard">
+                <col style="width: 364px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th style="font-weight: bold;">Example</th>
+                        <th style="text-align: left;font-weight: bold;">Hot/Warm Tiers Distribution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>criteria: field1='1'</td>
+                        <td>
+                            <p>Criteria-Based
 </p>
-                        <table style="width: 100%;">
-                            <col />
-                            <col />
-                            <tbody>
-                                <tr>
-                                    <td>Hot Tier</td>
-                                    <td>Matching provided criteria</td>
-                                </tr>
-                                <tr>
-                                    <td>Warm Tier</td>
-                                    <td>All</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>period: expireDate 60min </td>
-                    <td>
-                        <p>Time-Based</p>
-                        <table style="width: 100%;">
-                            <col style="width: 299px;" />
-                            <col />
-                            <tbody>
-                                <tr>
-                                    <td>Hot Tier</td>
-                                    <td>Matching condition expireDate+60min&lt;now</td>
-                                </tr>
-                                <tr>
-                                    <td>Warm Tier</td>
-                                    <td>All</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>Note: Only the initial value of the expireDate column will define Hot Tier retention of an object.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>hot-only</td>
-                    <td>
-                        <p>Memory&#160;Only</p>
-                        <table style="width: 100%;">
-                            <col style="width: 299px;" />
-                            <col />
-                            <tbody>
-                                <tr>
-                                    <td>Hot Tier</td>
-                                    <td>All</td>
-                                </tr>
-                                <tr>
-                                    <td>Warm Tier</td>
-                                    <td>None</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>warm-only</td>
-                    <td>
-                        <p>Warm Tier Only</p>
-                        <table style="width: 100%;">
-                            <col style="width: 299px;" />
-                            <col />
-                            <tbody>
-                                <tr>
-                                    <td>Hot Tier</td>
-                                    <td>None</td>
-                                </tr>
-                                <tr>
-                                    <td>Warm Tier</td>
-                                    <td>All</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>hot-and-warm</td>
-                    <td>
-                        <p>Hot and Warm</p>
-                        <table style="width: 100%;">
-                            <col style="width: 299px;" />
-                            <col />
-                            <tbody>
-                                <tr>
-                                    <td>Hot Tier</td>
-                                    <td>All</td>
-                                </tr>
-                                <tr>
-                                    <td>Warm Tier</td>
-                                    <td>All</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            <table style="width: 100%;">
+                                <col />
+                                <col />
+                                <tbody>
+                                    <tr>
+                                        <td>Hot Tier</td>
+                                        <td>Matching provided criteria</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Warm Tier</td>
+                                        <td>All</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>period: expireDate 60min </td>
+                        <td>
+                            <p>Time-Based</p>
+                            <table style="width: 100%;">
+                                <col style="width: 299px;" />
+                                <col />
+                                <tbody>
+                                    <tr>
+                                        <td>Hot Tier</td>
+                                        <td>Matching condition expireDate+60min&lt;now</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Warm Tier</td>
+                                        <td>All</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Note: Only the initial value of the expireDate column will define Hot Tier retention of an object.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>hot-only</td>
+                        <td>
+                            <p>Memory&#160;Only</p>
+                            <table style="width: 100%;">
+                                <col style="width: 299px;" />
+                                <col />
+                                <tbody>
+                                    <tr>
+                                        <td>Hot Tier</td>
+                                        <td>All</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Warm Tier</td>
+                                        <td>None</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>warm-only</td>
+                        <td>
+                            <p>Warm Tier Only</p>
+                            <table style="width: 100%;">
+                                <col style="width: 299px;" />
+                                <col />
+                                <tbody>
+                                    <tr>
+                                        <td>Hot Tier</td>
+                                        <td>None</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Warm Tier</td>
+                                        <td>All</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>hot-and-warm</td>
+                        <td>
+                            <p>Hot and Warm</p>
+                            <table style="width: 100%;">
+                                <col style="width: 299px;" />
+                                <col />
+                                <tbody>
+                                    <tr>
+                                        <td>Hot Tier</td>
+                                        <td>All</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Warm Tier</td>
+                                        <td>All</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h1>Underploy-Deploy </h1>
         <p>In the case of deploying using a different topology:</p>
         <p>
@@ -437,7 +439,7 @@ spaceTypes:</span><![CDATA[
                     <td>
                         <ul>
                             <li>
-                                <p style="font-size: 12pt;">Broadcast Table: Recommended all (both disk and cache)
+                                <p style="font-size: 12pt;">Broadcast Table: Recommended all (both disk and cache).
 </p>
                             </li>
                             <li>
@@ -445,28 +447,27 @@ spaceTypes:</span><![CDATA[
                                 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;">Only native value types (integer, string, double, byte, date types, array, etc.)
+                                <p style="font-size: 12pt;">Only native value types (integer, string, double, byte, date types, array, etc.).
                                 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;">SpaceDocument: Only fixed properties
+                                <p style="font-size: 12pt;">SpaceDocument: Only fixed properties.
 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;">The number of backups per partition is zero or one
+                                <p style="font-size: 12pt;">The number of backups per partition is zero or one.
                                 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;" MadCap:conditions="Version.16-2-born">16.2+: Transaction Support: Local transactions are supported
-LocalView
+                                <p style="font-size: 12pt;" MadCap:conditions="Version.16-2-born">Transaction Support: Local transactions are supported
+Local View.</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 12pt;" MadCap:conditions="Version.16-3-born">Kubernetes.
 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;" MadCap:conditions="Version.16-3-born">16.3+: K8s
-</p>
-                            </li>
-                            <li>
-                                <p style="font-size: 12pt;" MadCap:conditions="Version.16-3-born">16.3+: Dynamic Indexes
+                                <p style="font-size: 12pt;" MadCap:conditions="Version.16-3-born">Dynamic Indexes.
  </p>
                             </li>
                         </ul>
@@ -474,27 +475,27 @@ LocalView
                     <td style="text-align: left;">
                         <ul>
                             <li>
-                                <p style="font-size: 12pt;">Storage Optimization</p>
+                                <p style="font-size: 12pt;">Storage Optimization.</p>
                             </li>
                             <li>
                                 <p style="font-size: 12pt;">Tiered Storage policies cannot be changed after Space Type registration.</p>
                             </li>
                             <li>
                                 <p style="font-size: 12pt;">
-Inheritance
+Inheritance.
 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;">FIFO
+                                <p style="font-size: 12pt;">FIFO.
 </p>
                             </li>
                             <li>
                                 <p style="font-size: 12pt;">Lease (for non-transient types). Cannot have both time and criteria for the same type.
-Compound Indexes (id is the exception)
+Compound Indexes (id is the exception).
 </p>
                             </li>
                             <li>
-                                <p style="font-size: 12pt;">Scale In/Out
+                                <p style="font-size: 12pt;">Scale In/Out.
 </p>
                             </li>
                         </ul>
