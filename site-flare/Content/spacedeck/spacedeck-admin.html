@@ -242,73 +242,75 @@
                 <img src="../Resources/Images/17.0/SD_Admin9_ResourceMgmt.png" style="width: 1192px;height: 366px;" />
             </p>
         </div>
-        <h1><a name="Service_Account"></a>Service Account</h1>
-        <p>A Service Account &#160;is an account that is typically used by an application or a compute workload. It is an application that wishes to access <MadCap:variable name="General.CompanyName" /> resources. This could either be a user of applications or components that wish to access <MadCap:variable name="General.CompanyName" /> APIs. A service account differs to a user account in that it is associated with software that runs in our <MadCap:variable name="General.ProductXAPSkyline" /> or Smart DIH environments. </p>
-        <div class="tc-admon-refer">
-            <p>Refer to  <a href="../security/security-service-account-privilege-mgmt.html">Service Account Privilege Management</a> for a detailed overview.</p>
+        <div MadCap:conditions="Version.17-0-born">
+            <h1><a name="Service_Account"></a>Service Accounts</h1>
+            <p>A Service Account &#160;is an account that is typically used by an application or a compute workload. It is an application that wishes to access <MadCap:variable name="General.CompanyName" /> resources. This could either be a user of applications or components that wish to access <MadCap:variable name="General.CompanyName" /> APIs. A service account differs to a user account in that it is associated with software that runs in our <MadCap:variable name="General.ProductXAPSkyline" /> or Smart DIH environments. </p>
+            <div class="tc-admon-refer">
+                <p>Refer to  <a href="../security/security-service-account-privilege-mgmt.html">Service Account Privilege Management</a> for a detailed overview.</p>
+            </div>
+            <p>
+                <img src="../Resources/Images/17.0/SD_17_Admin3.png" style="width: 1335px;height: 528px;" />
+            </p>
+            <h2>Service Accounts Fields</h2>
+            <ul>
+                <li>
+                    <p><b>SERVICE NAME</b> – The name of the service followed by an indication of whether it is System or Resource level. &#160;It is not allowed to user the same service name more than once.</p>
+                </li>
+                <li>
+                    <p><b>STATUS</b> – Can either be Active or Revoked.</p>
+                </li>
+                <li>
+                    <p><b>DESCRIPTION</b> – Optional: Description of the service account.</p>
+                </li>
+                <li>
+                    <p><b>CREATION DATE</b> – Creation date and time of the service account.</p>
+                </li>
+                <li>
+                    <p><b>SECRET</b> – An application is introduced that wants to access the Space, like a PU. By default the Space is locked for read/write access. The application contains this secret (hidden) secret.</p>
+                </li>
+                <li>
+                    <p><b>ROLE</b> – The role that has been defined in the Resource Management stage.</p>
+                </li>
+                <li>
+                    <p><b>New +</b> - Click this to create a new Service Account.</p>
+                </li>
+            </ul>
+            <h2><span style="font-weight: normal;">Options for each Service Account</span>
+            </h2>
+            <p><b>Edit</b>
+            </p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount3.png" style="width: 1190px;height: 521px;" />
+            </p>
+            <p><span style="color: #ff0000;">1:</span> Details of the Service Account</p>
+            <p><span style="color: #ff0000;">2:</span> The Secret. There is an option to both view and copy the secret. It cannot be regenerated.</p>
+            <p><span style="color: #ff0000;">3.</span> The Token&#160;Expiry Interval is set here. The default is 30 minutes.</p>
+            <p><span style="color: #ff0000;">4.</span> An optional description</p>
+            <p><span style="color: #ff0000;">5.</span> The role can be updated or an additional role can be added</p>
+            <p><span style="color: #ff0000;">6.</span> Save the changes.</p>
+            <p><b>Revoke</b>
+            </p>
+            <p>Selecting to revoke a service, will disable that service.</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount4.png" />
+            </p>
+            <p><b>Delete</b>
+            </p>
+            <p>Selecting to delete the service, will delete it permanently.</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount5.png" />
+            </p>
+            <h2>Create New Service Account</h2>
+            <p>To create a new Service Account, click <b>+New</b> on the main Service Account page.</p>
+            <p>
+                <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount6.png" style="width: 1176px;height: 450px;" />
+            </p>
+            <p><span style="color: #ff0000;">1:</span> Account Name.</p>
+            <p><span style="color: #ff0000;">2:</span> The Token&#160;Expiry Interval is set here. The default is 30 minutes.</p>
+            <p><span style="color: #ff0000;">3.</span> An optional description.</p>
+            <p><span style="color: #ff0000;">4.</span> The role/s are assigned here. Refer <a href="#ResourceManagement">here</a> for details.</p>
+            <p><span style="color: #ff0000;">5.</span> Save</p>
         </div>
-        <p>
-            <img src="../Resources/Images/17.0/SD_17_Admin3.png" style="width: 1335px;height: 528px;" />
-        </p>
-        <h2>Service Accounts Fields</h2>
-        <ul>
-            <li>
-                <p><b>SERVICE NAME</b> – The name of the service followed by an indication of whether it is System or Resource level. &#160;It is not allowed to user the same service name more than once.</p>
-            </li>
-            <li>
-                <p><b>STATUS</b> – Can either be Active or Revoked.</p>
-            </li>
-            <li>
-                <p><b>DESCRIPTION</b> – Optional: Description of the service account.</p>
-            </li>
-            <li>
-                <p><b>CREATION DATE</b> – Creation date and time of the service account.</p>
-            </li>
-            <li>
-                <p><b>SECRET</b> – An application is introduced that wants to access the Space, like a PU. By default the Space is locked for read/write access. The application contains this secret (hidden) secret.</p>
-            </li>
-            <li>
-                <p><b>ROLE</b> – The role that has been defined in the Resource Management stage.</p>
-            </li>
-            <li>
-                <p><b>New +</b> - Click this to create a new Service Account.</p>
-            </li>
-        </ul>
-        <h2><span style="font-weight: normal;">Options for each Service Account</span>
-        </h2>
-        <p><b>Edit</b>
-        </p>
-        <p>
-            <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount3.png" style="width: 1190px;height: 521px;" />
-        </p>
-        <p><span style="color: #ff0000;">1:</span> Details of the Service Account</p>
-        <p><span style="color: #ff0000;">2:</span> The Secret. There is an option to both view and copy the secret. It cannot be regenerated.</p>
-        <p><span style="color: #ff0000;">3.</span> The Token&#160;Expiry Interval is set here. The default is 30 minutes.</p>
-        <p><span style="color: #ff0000;">4.</span> An optional description</p>
-        <p><span style="color: #ff0000;">5.</span> The role can be updated or an additional role can be added</p>
-        <p><span style="color: #ff0000;">6.</span> Save the changes.</p>
-        <p><b>Revoke</b>
-        </p>
-        <p>Selecting to revoke a service, will disable that service.</p>
-        <p>
-            <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount4.png" />
-        </p>
-        <p><b>Delete</b>
-        </p>
-        <p>Selecting to delete the service, will delete it permanently.</p>
-        <p>
-            <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount5.png" />
-        </p>
-        <h2>Create New Service Account</h2>
-        <p>To create a new Service Account, click <b>+New</b> on the main Service Account page.</p>
-        <p>
-            <img src="../Resources/Images/17.0/SD_Admin_ServiceAccount6.png" style="width: 1176px;height: 450px;" />
-        </p>
-        <p><span style="color: #ff0000;">1:</span> Account Name.</p>
-        <p><span style="color: #ff0000;">2:</span> The Token&#160;Expiry Interval is set here. The default is 30 minutes.</p>
-        <p><span style="color: #ff0000;">3.</span> An optional description.</p>
-        <p><span style="color: #ff0000;">4.</span> The role/s are assigned here. Refer <a href="#ResourceManagement">here</a> for details.</p>
-        <p><span style="color: #ff0000;">5.</span> Save</p>
         <p>&#160;</p>
     </body>
 </html>
