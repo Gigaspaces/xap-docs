@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-		<script src="../Custom/clipboard.min.js"> </script>
+    <script src="../Custom/clipboard.min.js"> </script>
     <head>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -8,8 +8,8 @@
 			j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
 			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer','GTM-MX7TMJ');</script>
-		<!--<meta name="google-site-verification" content="E9Fjs45cJElut6AsK1Va-rq8b-_bQGcHixs4IV4Rh30" />-->
-		<meta name="google-site-verification" content="BIrQRB7-nQcAkmqsZ_ACPf3_RXRJnMGo9ASDZ0yCQZE" />
+        <!--<meta name="google-site-verification" content="E9Fjs45cJElut6AsK1Va-rq8b-_bQGcHixs4IV4Rh30" />-->
+        <meta name="google-site-verification" content="BIrQRB7-nQcAkmqsZ_ACPf3_RXRJnMGo9ASDZ0yCQZE" />
         <!-- End Google Tag Manager -->
         <meta charset="utf-8" />
         <meta name="description" content="" />
@@ -28,11 +28,25 @@
         </script>
         <script src="../Custom/prism.js">
         </script>
-		<!-- SearchUnify Script -->
-		<link rel="stylesheet" href="https://d38wq0vgtrpxqz.cloudfront.net/b2d6caaee949b37036602c9a6c6e9ff7/search-clients/bf40851c-bf5f-11ee-b209-aa86cae4748a/searchbox.css"/>
-		<script type="text/javascript" src="https://d38wq0vgtrpxqz.cloudfront.net/b2d6caaee949b37036602c9a6c6e9ff7/search-clients/bf40851c-bf5f-11ee-b209-aa86cae4748a/an.js"></script>
-		<script type="text/javascript" src="https://d38wq0vgtrpxqz.cloudfront.net/b2d6caaee949b37036602c9a6c6e9ff7/search-clients/bf40851c-bf5f-11ee-b209-aa86cae4748a/searchbox.js"></script>
-		<!-- SearchUnify Script -->
+        <!-- SearchUnify Script - Staging
+        <link rel="stylesheet" href="https://d38wq0vgtrpxqz.cloudfront.net/b2d6caaee949b37036602c9a6c6e9ff7/search-clients/bf40851c-bf5f-11ee-b209-aa86cae4748a/searchbox.css" />
+        <script type="text/javascript" src="https://d38wq0vgtrpxqz.cloudfront.net/b2d6caaee949b37036602c9a6c6e9ff7/search-clients/bf40851c-bf5f-11ee-b209-aa86cae4748a/an.js">
+        </script>
+        <script type="text/javascript" src="https://d38wq0vgtrpxqz.cloudfront.net/b2d6caaee949b37036602c9a6c6e9ff7/search-clients/bf40851c-bf5f-11ee-b209-aa86cae4748a/searchbox.js">
+        </script>
+         SearchUnify Script - Staging -->
+		
+		
+		<!-- SearchUnify Script - Production -->
+		<link rel="stylesheet" href="https://d24f5uogtvlja2.cloudfront.net/c787e6000e4f3d6e36e0a4ebbc3a4f81/search-clients/baf270b8-e1f3-11ee-bd6b-3e3f7c426c8e/searchbox.css" />
+		<script type="text/javascript" src="https://d24f5uogtvlja2.cloudfront.net/c787e6000e4f3d6e36e0a4ebbc3a4f81/search-clients/baf270b8-e1f3-11ee-bd6b-3e3f7c426c8e/an.js">
+		</script>
+		<script type="text/javascript" src="https://d24f5uogtvlja2.cloudfront.net/c787e6000e4f3d6e36e0a4ebbc3a4f81/search-clients/baf270b8-e1f3-11ee-bd6b-3e3f7c426c8e/searchbox.js">
+		</script>
+		<!-- SearchUnify Script - Production -->
+		
+		
+		
     </head>
     <body>
         <div MadCap:conditions="Version.16-3-born">
@@ -92,19 +106,13 @@
 				/* ]]> */
 			</script>
         </div>
-		<script> 	$(document).ready(function() {
+        <script> 	$(document).ready(function() {
 			// Find the .search-bar.search-bar-container.needs-pie element
 			var $searchBar = $('.search-bar.search-bar-container.needs-pie');
 			$searchBar.find('input.search-field.needs-pie').remove();
 			$searchBar.find('.search-submit-wrapper').remove();
 			// Add the div#auto to the .search-bar.search-bar-container.needs-pie
-			$searchBar.prepend('			<!-- SearchUnify Code -->
-            <div id="auto">
-                <div ng-controller="SearchautoController">
-                    <div bind-html-compile="autocompleteHtml"></div>
-                </div>
-            </div>
-			<!-- SearchUnify Code -->');
+			$searchBar.prepend('			<!-- SearchUnify Code --><div id="auto"><div ng-controller="SearchautoController"><div bind-html-compile="autocompleteHtml"></div></div></div><!-- SearchUnify Code -->');
 		});
 			new ClipboardJS('.btn'); </script>
     </body>
