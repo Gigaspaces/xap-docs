@@ -54,7 +54,7 @@ helm repo update xap
 		</code></pre></li>
             <li>
                 <p>Fully install <MadCap:variable name="General.ProductXAPSkyline" /> (including Ingress and H/A for SpaceDeck):
-				</p><pre MadCap:conditions="Version.16-4-died"><code class="language-bash">helm install cache cache/smart-cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,global.security.password=rootpassword</code></pre><pre MadCap:conditions="Version.17-0-born"><code class="language-bash">helm install xap xap/xap-skyline --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,global.security.password=rootpassword</code></pre>
+				</p><pre MadCap:conditions="Version.16-4-died"><code class="language-bash">helm install cache cache/smart-cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,global.security.password=rootpassword</code></pre><pre MadCap:conditions="Version.17-0-born"><code class="language-bash">helm install xap xap/smart-cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,global.security.password=rootpassword</code></pre>
             </li>
             <li>
                 <p><MadCap:variable name="General.ProductXAPSkyline" /> is now installed in H/A mode. Wait for all pods to be ready.</p>
