@@ -38,12 +38,12 @@
 
 var resourcesData = {
   'Resources': { 'url': '#' },
-  'Early Access': { 'url': '/early-access.html' },
+//  'Early Access': { 'url': '/early-access.html' },
 //  'GigaSpaces Cloud': { 'url': '/gigaspaces-cloud.html', },  
   'Solution Hub': { 'url': '/solution-hub/intro.html' },
-  'Videos': { 'url': '/videos.html' },
+ // 'Videos': { 'url': '/videos.html' },
   'Blog': { 'url': 'https://www.gigaspaces.com/blog', 'target': '_blank' },
-  'Forum': { 'url': 'http://ask.gigaspaces.org', 'target': '_blank' }
+  //'Forum': { 'url': 'http://ask.gigaspaces.org', 'target': '_blank' }
 };
 
 var buttonsData = [
