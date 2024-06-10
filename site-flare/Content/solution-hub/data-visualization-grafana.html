@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Default.DoNotShow">
     <head>
     </head>
     <body>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAP" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle">Data Visualization with Grafana</h1>
         <table>
             <thead>
@@ -25,7 +25,7 @@
                     <td>January 2019</td>
                     <td>
                     </td>
-                    <td align="center"><a href="https://github.com/Gigaspaces/solution-hub/tree/master/grafana-connector">InsightEdge-Grafana Connector</a>
+                    <td align="center"><a href="https://github.com/Gigaspaces/solution-hub/tree/master/grafana-connector">GigaSpaces-Grafana Connector</a>
                     </td>
                 </tr>
             </tbody>
@@ -33,38 +33,38 @@
         <h1><a name="overview">&#160;</a>Overview</h1>
         <p>Data visualization helps people understand the significance of data by placing it in a visual context. Patterns, trends and correlations can be exposed and recognized using data visualization software.</p>
         <p>Data visualization software is also important for big data and advanced analytics projects. Businesses need a fast, easy way to get an overview of their data. Visualization is also key for advanced analytics; when implementing advanced predictive analytics or machine learning algorithms, the output needs to be visualized to monitor results and make sure that the data models are performing correctly.</p>
-        <p>The InsightEdge Platform can be easily integrated with <a href="http://grafana.org" target="_blank">Grafana</a>, a graph and dashboard builder for visualizing time-series metrics so users can create, explore, and share their dashboards no matter where the data is stored.</p>
-        <p>To use Grafana for data visualization with InsightEdge, you will have to do the following:</p>
+        <p>The GigaSpaces Platform can be easily integrated with <a href="http://grafana.org" target="_blank">Grafana</a>, a graph and dashboard builder for visualizing time-series metrics so users can create, explore, and share their dashboards no matter where the data is stored.</p>
+        <p>To use Grafana for data visualization with GigaSpaces, you will have to do the following:</p>
         <ol>
-            <li>Download and configure the InsightEdge-Grafana connector.</li>
+            <li>Download and configure the GigaSpaces-Grafana connector.</li>
             <li>Download and install the Grafana client.</li>
             <li>Download and install the Grafana SimpleJson data source plugin (available from the Grafana website).</li>
             <li>Change the default port of the Grafana client (the default port is usually blocked).</li>
-            <li>In the Grafana client, configure the data source and apply the URL for the InsightEdge-Grafana connector.</li>
+            <li>In the Grafana client, configure the data source and apply the URL for the GigaSpaces-Grafana connector.</li>
         </ol>
-        <p>After making the above changes, you can visualize data from the Space using Grafana dashboards. The following sections provide detailed instructions on integrating InsightEdge and Grafana.</p>
+        <p>After making the above changes, you can visualize data from the Space using Grafana dashboards. The following sections provide detailed instructions on integrating GigaSpaces and Grafana.</p>
         <div class="tc-admon-note">
             <p>This sample integration was run in the following environment:</p>
             <ul>
-                <li>InsightEdge Platform release 14.0.0</li>
+                <li>GigaSpaces XAP Platform release 14.0.0</li>
                 <li>Grafana version 5.2.4</li>
                 <li>SimpleJson version 1.4.0</li>
             </ul>
         </div>
-        <h1><a name="downloading-and-configuring-the-insightedge-grafana-connector">&#160;</a>Downloading and Configuring the InsightEdge-Grafana Connector</h1>
-        <p>The first step in integrating InsightEdge with Grafana is to download and configure the connector so that Grafana can access the data from the InsightEdge-based application.</p>
+        <h1><a name="downloading-and-configuring-the-GigaSpaces-grafana-connector">&#160;</a>Downloading and Configuring the GigaSpaces-Grafana Connector</h1>
+        <p>The first step in integrating GigaSpaces with Grafana is to download and configure the connector so that Grafana can access the data from the GigaSpaces-based application.</p>
         <div class="tc-admon-note">
-            <p>The sample configuration files are located in the <span class="tc-italic">&lt;host directory&gt;/timeseries-rest/tree/master/src/main/resources</span> folder. When you run the connector, the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/grafana-connector/src/main">Main</a> requires two parameters, the path to the <code>grafana-insightedge.properties</code> file and the path to the <code>tableData.txt</code> file (if you create different ones).</p>
+            <p>The sample configuration files are located in the <span class="tc-italic">&lt;host directory&gt;/timeseries-rest/tree/master/src/main/resources</span> folder. When you run the connector, the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/grafana-connector/src/main">Main</a> requires two parameters, the path to the <code>grafana-XAP.properties</code> file and the path to the <code>tableData.txt</code> file (if you create different ones).</p>
         </div>
-        <p>To install the InsightEdge-Grafana connector:</p>
+        <p>To install the GigaSpaces-Grafana connector:</p>
         <ol>
             <li>Clone the contents of the github repo.</li>
             <li>
-                <p>Modify the <a href="https://github.com/Gigaspaces/solution-hub/blob/master/grafana-connector/grafana-insightedge.properties">grafana-insightedge.properties file</a> to suit your local environment (host, port, space name, lookup group, and lookup locator (optional)) or create a new properties file.</p>
+                <p>Modify the <a href="https://github.com/Gigaspaces/solution-hub/blob/master/grafana-connector/grafana-XAP.properties">grafana-xap.properties file</a> to suit your local environment (host, port, space name, lookup group, and lookup locator (optional)) or create a new properties file.</p>
                 <p>Sample configuration:</p><pre><code>CONNECTOR_HOST=HostName
 CONNECTOR_PORT=8082
 <MadCap:variable name="General.EnvVariablePrefix" />_SPACE_NAME=demo
-<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=gaspaces-insightedge-enterprise-14.2.0
+<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=gaspaces-XAP-14.2.0
 #<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS=
 </code></pre>
                 <div class="tc-admon-note">
@@ -106,7 +106,7 @@ TelemetryVibration,com.gigaspaces.Telemetry,longDate,vibration,machineID
             <li>Type <code>grafana-cli plugins install grafana-simple-json-datasource</code>. The plugin is installed into your Grafana plugins directory; the default is <span class="tc-italic">/var/lib/grafana/plugins</span>.</li>
         </ol>
         <h2><a name="configuring-the-grafana-client">&#160;</a>Configuring the Grafana Client</h2>
-        <p>After installing the Grafana client and the SimpleJson data source plugin, you must configure the following so that Grafana will work with the InsightEdge connector and visualize the data in the Space:</p>
+        <p>After installing the Grafana client and the SimpleJson data source plugin, you must configure the following so that Grafana will work with the GigaSpaces connector and visualize the data in the Space:</p>
         <ul>
             <li>Change the default port of the Grafana client to an open port (the default port is usually blocked).</li>
             <li>Configure the data source.</li>
@@ -118,9 +118,9 @@ TelemetryVibration,com.gigaspaces.Telemetry,longDate,vibration,machineID
             <li>
                 <p>In the Settings tab of the Data Sources screen, configure the following:</p>
                 <ul>
-                    <li>Assign a <span class="tc-bold">Name</span> for the data source. For example, InsightedgeDS.</li>
+                    <li>Assign a <span class="tc-bold">Name</span> for the data source. For example, GigaSpacesDS.</li>
                     <li>Verify that the data source <span class="tc-bold">Type</span> is SimpleJson.</li>
-                    <li>In the HTTP area, type the URL of the connector in the <span class="tc-bold">URL</span> field using the syntax described in the section <a href="#downloading-and-configuring-the-insightedge-grafana-connector">above</a>.</li>
+                    <li>In the HTTP area, type the URL of the connector in the <span class="tc-bold">URL</span> field using the syntax described in the section <a href="#downloading-and-configuring-the-GigaSpaces-grafana-connector">above</a>.</li>
                 </ul>
             </li>
         </ol>
@@ -135,7 +135,7 @@ TelemetryVibration,com.gigaspaces.Telemetry,longDate,vibration,machineID
         </p>
         <ol>
             <li>In the upper-right area of the dashboard, define the time period for which you want to see data.</li>
-            <li>In the Metrics tab below the graph, select the <span class="tc-bold">InsightedgeDS</span> data source.</li>
+            <li>In the Metrics tab below the graph, select the <span class="tc-bold">GigaSpacesDS</span> data source.</li>
             <li>Select <span class="tc-bold">TelemetryPressure</span> from the dropdown list.</li>
         </ol>
         <div class="tc-align-center">
