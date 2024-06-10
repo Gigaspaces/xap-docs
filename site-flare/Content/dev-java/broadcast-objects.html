@@ -12,7 +12,7 @@
             </p>
         </div>
         <h1 class="tc-pagetitle">Broadcast Objects</h1>
-        <p>For Stateful PUs, InsightEdge object instances are partitioned across the cluster, by default.</p>
+        <p>For Stateful PUs, Space object instances are partitioned across the cluster, by default.</p>
         <p><MadCap:variable name="General.ProductNameIE" /> Objects contain data that can be used by multiple Processing Units.</p>
         <p>There are two kinds of Space Objects: Standard Space Objects, and Broadcast Objects. They differ in how the data is distributed among the Partitions.</p>
         <h1>What is a Standard Space Object?</h1>
@@ -38,7 +38,7 @@
         <p>Because the data is colocated to the code that is processing the data, there is no need to obtain data from a different partition. This reduces data shuffling latency and uses the Broadcast Object as co-located to the code running in the Processing Unit instance.</p>
         <p>Replicated data requires a larger memory footprint, thus it is relevant for relatively small tables (of course, the bigger the table, the more memory it will consume in each partition). Replicated data must also be maintained in a consistent state in all the Processing Unit instances where it is deployed. This may require additional system overhead if the data is frequently updated.</p>
         <h1>How to Decide Which Type of Space Object to Use</h1>
-        <p>The default option for InsightEdge Space Objects is the standard, sharded object.</p>
+        <p>The default option for Space Objects is the standard, sharded object.</p>
         <p>A Broadcast Object may provide better overall system performance if the following conditions are met:</p>
         <ul>
             <li>

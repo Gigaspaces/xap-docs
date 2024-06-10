@@ -88,6 +88,36 @@ Would you like to open it in file explorer? [y]:</code></pre>
             </ol>
             <h3>In Your Development Environment</h3>
             <p>You can open any standard Java IDE (for example, Eclipse or IntelliJ IDEA) and import the project using the pom.xml file. After the project is imported, you can run or debug it, and experiment with changing the test to become more familiar with the Space API.</p>
+            <h1>Starting a Whole Cluster</h1>
+            <p>This explains how to install and run <MadCap:variable name="General.ProductNameIE" /> on a cluster.</p>
+            <p>Your cluster should consist of one master node and several slave nodes for the following configuration:</p>
+            <ul>
+                <li>Master nodes usually host the Spark master and the <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> Manager (for data grid management)</li>
+                <li>Slave nodes host the Spark workers and data grid cluster members (Processing Unit instances)</li>
+            </ul>
+            <p>There are several environment variables that must be set in order for your <MadCap:variable name="General.ProductNameIE"></MadCap:variable> cluster to function correctly. The environment variables are located in the <code><MadCap:variable name="General.HomePath"></MadCap:variable>/bin/setenv-overrides.sh/bat</code> file, and can be configured as described in the <a href="common-environment-variables.html">Configuration</a> page of the Getting Started guide.</p>
+            <ul>
+                <li>
+                    <p><code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> - Must be configured on each machine and is required for the master node, which starts the <MadCap:variable name="General.ProductNameXAP" /> Manager along with Apache Zookeeper for high availability. See the <a href="../admin/xap-manager.html">the Manager</a> page for more information.</p>
+                </li>
+                <li>
+                    <p><code><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS</code> - This property is used to discover <MadCap:variable name="General.ProductNameXAP" /> components across the network.</p>
+                </li>
+                <li>
+                    <p><code><MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS</code> - Set this value based on the size of the JVMs that will host the Processing Unit instances. For example, you can configure the amount of memory required as <code>-Xmx5g -Xms5g</code>.</p>
+                </li>
+            </ul>
+            <h2>Starting a Cluster Locally</h2>
+            <p>The run-agent command automatically resolves which service to run on the current host.
+The resolution is based on the <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> environment variable, but when undefined it will use localhost as the server IP.</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --auto
+</code></pre>
+            <p>This command will run a <MadCap:variable name="General.ProductNameXAP" /> Manager, Web Management Console, Spark master, Spark worker and the Zeppelin interpreter.</p>
+            <p>REST URL - <a href="http://localhost:8090">http://localhost:8090</a>
+Web Management Console - <a href="http://localhost:8099">http://localhost:8099</a><![CDATA[
+]]></p>
+            <h1>Deploying an Empty Space</h1><pre><code class="language-bash">#   topology 2,1 starts 2 primary partitions with 1 backup partition for each primary
+<MadCap:variable name="General.HomePath" />/bin/gs.sh space deploy --partitions=2 --ha space
+</code></pre>
             <h1>Connecting Your Application to an Existing Space</h1>
             <h2>Starting a Service Grid</h2>
             <p>A data grid in a local environment is hosted on a <a href="../overview/the-runtime-environment.html">service grid</a>. The service grid is comprised of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent</a> (or GSA), and provides a framework to deploy and monitor applications on the data grid.</p>

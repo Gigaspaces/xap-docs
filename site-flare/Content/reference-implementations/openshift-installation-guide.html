@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">IBM&#160;Power: OpenShift Installation&#160;Guide</h1>
+            <h1>Objective&#160;</h1>
+            <p>This guide is intended for IT professionals, system administrators, and DevOps engineers responsible for deploying and managing enterprise-level data integration solutions. Use this guide to streamline your installation process with easy-to-follow instructions for a smooth setup. Whether you are deploying and configuring GigaSpaces Digital Integration Hub (<a href="../new-content/SmartDIH-Overview.htm">Smart DIH</a>) for the first time in your enterprise environment, or migrating to an existing deployment, this document is designed to support you through the entire process.</p>
+            <p>If you have experience with container orchestration platforms such as Kubernetes and OpenShift, as well as familiarity with IBM Power Systems, this guide will provide the specific steps and considerations needed to successfully install and configure GigaSpaces Smart DIH in your environment.</p>
+            <p>If additional assistance is required, refer to the resources provided or contact <a href="mailto:support@gigaspaces.com">GigaSpaces support</a>.</p>
+            <h1>Overview</h1>
+            <p>Deploying Smart DIH on OpenShift running on IBM Power Systems offers a robust, scalable, and high-performance solution for managing and integrating data across your enterprise. Whether you're leveraging the advanced capabilities of IBM Power Systems for high compute-intensive workloads or the flexible and containerized environment of OpenShift, this document will help you maximize the potential of your Smart DIH deployment. After following this guide, you will have GigaSpaces Smart DIH fully deployed on your OpenShift cluster running on IBM Power Systems, geared to handle your data integration needs with efficiency and reliability. This setup will provide a powerful, scalable, and efficient platform for your enterprise’s data integration needs.</p>
+            <h1>Prerequisites</h1>
+            <h2>System Requirements</h2>
+            <ol>
+                <li>
+                    <p><b>OpenShift Cluster</b>: Ensure this is properly installed. Refer to  <a href="https://docs.openshift.com/container-platform/4.8/installing/installing_ibm_power/installing-ibm-power.html">Installing OS on IBM Power</a>.</p>
+                </li>
+                <li>
+                    <p><b>OS</b>: Verify that the operating system installed is compatible with the OpenShift requirements (e.g. Red Hat Enterprise Linux (RHEL)).</p>
+                </li>
+                <li>
+                    <p><b>Network</b>: Configure the network, storage and any other integration that meets the requirements of this guide. Plan for additional components, other than Smart DIH, and future growth of the system.</p>
+                </li>
+                <li>
+                    <p><b>OpenShift Compatibility</b>: Make sure your Smart DIH installation matches the supported OpenShift versions for compatibility (currently this is OpenShift 14.4). This needs to be verified with the provider.</p>
+                </li>
+            </ol>
+            <h2>Smart DIH&#160;System Requirements</h2>
+            <p>Installing Smart DIH requires specific specs. For a detailed sizing plan, reach out to <a href="mailto:support@gigaspaces.com">GigaSpaces support</a>. Below are general guidelines for CPU, RAM and disk capacity:</p>
+            <ol>
+                <li>
+                    <p><b>CPU</b>: Minimum of 4 cores per node.  More cores are recommended for heavy workloads.</p>
+                </li>
+                <li>
+                    <p><b>RAM:</b> At least 8GB per node.  This should be adjusted based on workload and data size.</p>
+                </li>
+                <li>
+                    <p><b>Disk Space:</b> SSD storage is recommended for better performance.  Sufficient disk space should be allocated for data storage and commit logs.</p>
+                </li>
+            </ol>
+            <h2>Network Requirements</h2>
+            <p>It is important to pay attention to the following:</p>
+            <ol>
+                <li>
+                    <p>Isolate Smart DIH from other components on the same cluster using firewall rules and gateways.</p>
+                </li>
+                <li>
+                    <p>Configure ingress/routes to serve Smart DIH integration within the enterprise. For additional information refer to <a href="https://docs.openshift.com/container-platform/4.11/networking/routes/route-configuration.html">OpenShift route configuration</a>.</p>
+                </li>
+                <li>
+                    <p>Set up a VPN to control traffic into the cluster based on your architecture and requirements.</p>
+                </li>
+                <li>
+                    <p>	Ensure a 'zero-trust' configuration by enforcing all security measures.</p>
+                </li>
+            </ol>
+            <h1>Installing Smart DIH</h1>
+            <ol>
+                <li>
+                    <p>Follow the GigaSpaces <a href="../admin/DIH-installation-kubernetes.html">Smart DIH installation guide</a> for Helm-based setup instructions.</p>
+                </li>
+                <li>
+                    <p>For both initial installation and any future update, verify that the images used in Smart DIH are compatible with the underlying hardware and operating system.</p>
+                </li>
+                <li>
+                    <p>Customize the <code>values.yaml</code> file to address specific requirements: </p>
+                    <ul style="list-style-type: circle;">
+                        <li>
+                            <p>Determine java heap size memory and CPU constraints for the Data Grid (Space).</p>
+                        </li>
+                        <li>
+                            <p>Determine the <a href="../new-content/SmartDIH-Architecture-Security.htm">security context</a> for each of the Smart DIH components. Follow security context constraints and override necessary security settings.</p>
+                        </li>
+                        <li>
+                            <p>Determine High-Availability and Anti-affinity rules as per your requirements.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Apply routes to <MadCap:variable name="General.CompanyName" /> SpaceDeck UI and Grafana to enable access from outside the cluster. Refer to <a href="#Routes">Routes for SpaceDeck and Grafana</a> below. Based on your architecture, you have the option to include additional routes using a similar approach.</p>
+                </li>
+            </ol>
+            <h1>Monitoring</h1>
+            <p>Monitor cluster health and performance using SpaceDeck and Grafana. Details regarding <a href="../spacedeck/spacedeck-spaces-status-details.html#SpaceMonitoring">Spaces</a> and <a href="../spacedeck/spacedeck-data-pipeline-details.html">Pipeline</a> monitoring in the SpaceDeck <a href="../spacedeck/spacedeck-overview.html">User Guide</a>.</p>
+            <h1><a name="Routes"></a>Routes for SpaceDeck and&#160;Grafana</h1>
+            <p><code>spacedeck-route.yaml</code>:</p><pre><code class="language-java">apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+	app.kubernetes.io/instance: gigaspaces
+	app.kubernetes.io/name: spacedeck
+  name: spacedeck
+  namespace: gigaspaces
+spec:
+ host: [full domain name]
+ port:
+	targetPort: 3000
+ to:
+	kind: Service
+	name: spacedeck
+	weight: 100
+ wildcardPolicy: None	</code></pre>
+            <p><code>grafana-route-yaml</code>:</p><pre xml:space="preserve"><code class="language-java">kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+ name: grafana
+spec:
+ host: grafana-gigaspaces.apps.nice.edu.ihost.com
+ to:
+   kind: Service
+   name: grafana
+   weight: 100
+ port:
+   targetPort: service
+ wildcardPolicy: None</code></pre>
+        </div>
+    </body>
+</html>

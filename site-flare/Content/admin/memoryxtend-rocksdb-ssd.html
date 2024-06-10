@@ -266,21 +266,23 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                 <p>Two methods are available to deploy the data pod: using Kubernetes Operator (preferred method), and using Helm charts (deprecated method).</p>
                 <h2>Deploying the Data Pod using Kubernetes Operator (preferred method)</h2>
                 <p>Follow the procedure described in <MadCap:xref href="kubernetes-s10-deploying-and-managing-gigaspaces.html" MadCap:conditions="Version.15-8-born">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> to install the initial Helm chart and to deploy the processing unit. </p>
-                <h2>Deploying the Data Pod using Helm Charts (deprecated method)</h2>
-                <p>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid-helm-only.html">Getting Started with GigaSpaces in Kubernetes Using Helm Charts Only</MadCap:xref>, then use the <code>helm install</code> command to deploy the Processing Unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p>
-                <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
-                    <p MadCap:conditions="Version.15-5-born">
-                        <div class="easyui-tabs" plain="true">
-                            <div title="Helm 3">
-                                <p><pre><code>helm install my-pu insightedge-pu --set   memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
-                                </p>
+                <div MadCap:conditions="Version.14-0-died">
+                    <h2>Deploying the Data Pod using Helm Charts (deprecated method)</h2>
+                    <p>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid-helm-only.html">Getting Started with GigaSpaces in Kubernetes Using Helm Charts Only</MadCap:xref>, then use the <code>helm install</code> command to deploy the Processing Unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p>
+                    <div><pre MadCap:conditions="Version.15-5-died"><code>helm install xap-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                        <p MadCap:conditions="Version.15-5-born">
+                            <div class="easyui-tabs" plain="true">
+                                <div title="Helm 3">
+                                    <p><pre><code>helm install my-pu insightedge-pu --set   memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                                    </p>
+                                </div>
+                                <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                                    <p><pre><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                                    </p>
+                                </div>
                             </div>
-                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
-                                <p><pre><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
-                                </p>
-                            </div>
-                        </div>
-                    </p>
+                        </p>
+                    </div>
                 </div>
             </div>
             <h2>MemoryXtend Properties</h2>

@@ -7,10 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Configuring the Environment Variables</h1>
         <p>This topic explains how the <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> environments are configured, and how to customize them to suit your specific application needs.</p>
         <h2><a name="xap"></a><MadCap:variable name="General.ProductNameXAP" />
@@ -19,7 +19,7 @@
         <p>To use this utility, you can simply call it from within your script file. </p>
         <h2><a name="insightedge"></a><MadCap:variable name="General.ProductNameIE" />
         </h2>
-        <p>The <MadCap:variable name="General.ProductNameIE" /> environment configuration is maintained by a configuration script file called <code>insightedge-env</code>, located in the <code><MadCap:variable name="General.EnvVariablePrefix" />/insightedge/conf</code> directory. Each <MadCap:variable name="General.ProductNameIE" /> script invokes this script to load the <MadCap:variable name="General.ProductNameIE" /> configuration. Additionally, <code>insightedge-env</code> starts by invoking the <MadCap:variable name="General.ProductNameXAP" /> <code>setenv</code> configuration script, so all of the <MadCap:variable name="General.ProductNameXAP" /> environment configuration is also applied.</p>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> environment configuration is maintained by a configuration script file called <code>setenv-overrides</code>, located in the <code>/bin</code> directory. Each <MadCap:variable name="General.ProductNameIE" /> script invokes this script to load the <MadCap:variable name="General.ProductNameIE" /> configuration. Additionally, <code>isetenv-overrides</code> starts by invoking the <MadCap:variable name="General.ProductNameXAP" /> <code>setenv</code> configuration script, so all of the <MadCap:variable name="General.ProductNameXAP" /> environment configuration is also applied.</p>
         <h1><a name="customizing-the-environment-variables"></a>Customizing the Environment Variables</h1>
         <p>During the initial development stages, it is usually unnecessary to change any of the default <MadCap:variable name="General.ProductNameXAP" /> environment values. However, at some point the environment will need customization to suit your specific requirements (such as the Grid Service Container heap size).</p>
         <div class="tc-admon-note">

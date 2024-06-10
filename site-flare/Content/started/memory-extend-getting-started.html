@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -7,7 +7,7 @@
         <p> In a traditional deployment, all data grid entries are stored in RAM to provide the fastest performance possible. However, while RAM performs better than SSD, it is also more expensive. As SSD gains in popularity, we see new scenarios where storing part of the data in SSD and part in RAM provides great business value. It provides the ability to scale the amount of data you store and handle with a relative small footprint in a cost effective manner, while maintaining high performance where the indexes are always stored in RAM. The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the Space data.</p>
         <p>This topic demonstrates  how to implement tiered storage by adding MemoryXtend to a data grid, in order to store part of the data in SSD. For additional information please refer to the <a href="../admin/memoryxtend-overview.html">MemoryXtend</a> topic.</p>
         <h1>Adding Tiered Storage to the Data Grid</h1>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>For instructions on how to deploy the <MadCap:variable name="General.ProductNameIEP" />, see <a href="insightedge-in-5-minutes.html">InsightEdge in 5 Minutes</a>. </p>
         </div>
         <p>In this deployment, we utilize the available RAM storage to store the most time sensitive (hot) data, and store the less time sensitive (warm) data in SSD. The example uses 3 data types 0, 1 and 2. Data types 0 and 2 are the warm data and should be stored in SSD (which is persistent, and therefore the warm data remains available after the processing unit is redeployed). Data type 1 is the hot data and therefore stored in RAM for faster access.</p>

@@ -29,20 +29,22 @@ The resolution is based on the <code><MadCap:variable name="General.EnvVariableP
 </code></pre>
         <p>This command will run a <MadCap:variable name="General.ProductNameXAP" /> Manager, Web Management Console, Spark master, Spark worker and the Zeppelin interpreter.</p>
         <p>REST URL - <a href="http://localhost:8090">http://localhost:8090</a>
-Web Management Console - <a href="http://localhost:8099">http://localhost:8099</a>
-Spark master - <a href="http://localhost:8080/">http://localhost:8080/</a>
+Web Management Console - <a href="http://localhost:8099">http://localhost:8099</a><![CDATA[
+]]><MadCap:conditionalText MadCap:conditions="Default.DoNotShow">Spark master - <a href="http://localhost:8080/">http://localhost:8080/</a>
 Spark worker - <a href="http://localhost:8081/">http://localhost:8081/</a>
-Zeppelin - <a href="http://localhost:9090/">http://localhost:9090/</a></p>
-        <h2><a name="starting-a-master-node"></a>Starting a Master Node</h2>
-        <p>Master nodes consist of a <MadCap:variable name="General.ProductNameXAP" /> Manager and a Spark master. On each master node, run the following:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --manager --spark-master
+Zeppelin - <a href="http://localhost:9090/">http://localhost:9090/</a></MadCap:conditionalText></p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h2><a name="starting-a-master-node"></a>Starting a Master Node</h2>
+            <p>Master nodes consist of a <MadCap:variable name="General.ProductNameXAP" /> Manager and a Spark master. On each master node, run the following:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --manager --spark-master
 </code></pre>
-        <h2><a name="starting-slave-nodes"></a>Starting Slave Nodes</h2>
-        <p>Slave nodes consist of <MadCap:variable name="General.ProductNameXAP" /> containers and a Spark worker. On each slave node, run the following:</p>
-        <p>Use <code>--containers=n</code> to put <MadCap:variable name="General.ProductNameXAP" /> containers on a specific machine. If not specified, no <MadCap:variable name="General.ProductNameXAP" /> containers will be started.</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --spark-worker [--containers=n]
+            <h2><a name="starting-slave-nodes"></a>Starting Slave Nodes</h2>
+            <p>Slave nodes consist of <MadCap:variable name="General.ProductNameXAP" /> containers and a Spark worker. On each slave node, run the following:</p>
+            <p>Use <code>--containers=n</code> to put <MadCap:variable name="General.ProductNameXAP" /> containers on a specific machine. If not specified, no <MadCap:variable name="General.ProductNameXAP" /> containers will be started.</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --spark-worker [--containers=n]
 </code></pre>
-        <p>After installation, you can verify that the Spark workers are up and running using the Spark master web UI at <code>http://your-master-ip-here:8080</code>.</p>
+            <p>After installation, you can verify that the Spark workers are up and running using the Spark master web UI at <code>http://your-master-ip-here:8080</code>.</p>
+        </div>
         <h1><a name="deploying-an-empty-space"></a>Deploying an Empty Space</h1><pre><code class="language-bash">#   topology 2,1 starts 2 primary partitions with 1 backup partition for each primary
-<MadCap:variable name="General.HomePath" />/bin/gs.sh space deploy --partitions=2 --ha insightedge-space
+<MadCap:variable name="General.HomePath" />/bin/gs.sh space deploy --partitions=2 --ha space
 </code></pre>
     </body>
 </html>
