@@ -52,7 +52,7 @@ echo *** Site build completed ***
 goto end
 
 :build-all
-call :build-hugo
+REM call :build-hugo
 call :build-flare
 exit /b
 
