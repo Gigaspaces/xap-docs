@@ -8,6 +8,9 @@
             </p>
         </div>
         <h1 class="tc-pagetitle">Tiered Storage&#160;Configuration for Service Grid</h1>
+        <div class="tc-admon-note" MadCap:conditions="Version.16-2-born">
+            <p>For a Tiered Storage overview refer to <a href="intelligent-tiering-overview.html">Intelligent Tiering Overview</a>.</p>
+        </div>
         <h1>Initial Load</h1>
         <p>The initial loading of data into each tier can be a time-consuming process, starting with the System of Record or other external data sources. Additionally, data in both tiers can be updated during the normal course of operations during the day.</p>
         <p>During the normal use of Tiered Storage, priority data is stored in the Hot tier, and other data (except transient) is stored in the Warm tier. If there is data in the Warm tier, it will be faster to recover it rather than recovering it from an external database.</p>
