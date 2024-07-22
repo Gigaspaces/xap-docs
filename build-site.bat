@@ -36,7 +36,7 @@ if not defined DOCS_BUCKET echo Publishing skipped - destination not defined && 
 
 if %DOCS_BUILD_PROFILE%==default echo Skipping noindex generation - profile=%DOCS_BUILD_PROFILE% && goto publish
 echo *** Add noindex element to output ***
-call jarvis.bat generate-noindex %~dp0
+REM call jarvis.bat generate-noindex %~dp0
 
 :publish
 echo *** Publishing output ***
@@ -52,7 +52,7 @@ echo *** Site build completed ***
 goto end
 
 :build-all
-call :build-hugo
+REM call :build-hugo
 call :build-flare
 exit /b
 
