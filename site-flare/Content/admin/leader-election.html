@@ -36,13 +36,17 @@
                 <img src="../Resources/Static/attachment_files/cap.png" alt="image" class="tc-picture50" />
             </p>
         </div>
-        <p>As a result, you can have partition tolerance plus consistency, or partition tolerance plus availability. Gigaspaces provides two available implementations to support the approach that is best suited to your environment and business needs. </p>
+        <p>Gigaspaces provides two available implementations to support the approach that is best suited to your environment and business needs. </p>
         <p MadCap:conditions="Version.16-3-born">Consistency based implementation is based on Apache Zookeeper, whereas availability based is based on the native Lookup Service.</p>
         <div class="tc-admon-note">
-            <p>The default is using consistency based implementation for both <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" />. However with <MadCap:variable name="General.ProductXAP" /> there is also a limited availability option as there is no REST&#160;API&#160;in the new CLI.</p>
+            <p>Zookeeper is used to avoid split brain. This is because the instance that is disconnected from Zookeeper is suspended until it reconnects to Zookeeper. At this stage a decision is taken whether the instance can resume as primary or should become a backup.</p>
+        </div>
+        <p><MadCap:variable name="General.CompanyName" /> recommends that you use partition tolerance plus consistency. However, if your system does not include at least three machines, you can manually choose to work with partition tolerance plus availability. &#160;</p>
+        <div class="tc-admon-important">
+            <p>It is possible to start a cluster without using xap-manager and get the availability, but this means that you might risk <a href="leader-election-availability-biased.html">split brain</a>. If this option is required by your organization, please consult the <a href="mailto:support@gigaspaces.com">GigaSpaces support</a> team.</p>
         </div>
         <MadCap:miniTocProxy style="mc-toc-depth: 1;" class="topic-content" MadCap:conditions="Version.16-3-born" />
-        <ul MadCap:conditions="Version.16-3-died">
+        <ul MadCap:conditions="Version.16-3-born">
             <li>
                 <p><a href="leader-election-consistency-biased.html">Consistency biased</a> - this implementation is based on Apache Zookeeper.</p>
             </li>
@@ -50,5 +54,6 @@
                 <p><a href="leader-election-availability-biased.html">Availability biased</a> - this implementation is based on the native Lookup Service.</p>
             </li>
         </ul>
+        <p>&#160;</p>
     </body>
 </html>
