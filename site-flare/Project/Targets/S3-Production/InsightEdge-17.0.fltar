@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="MadCap HTML5 Target"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="first"
+  Skin="/Project/Skins/HTML5-2023.flskn"
+  ExcludeUnreferencedContent="true"
+  MoveOutputContentToRoot="true"
+  InsertMOTW="true"
+  UseCustomTopicFileExtension="true"
+  CustomTopicFileExtension="html"
+  MasterToc="/Project/TOCs/Production/Master-TOC-From-16.3 toc only.fltoc"
+  DefaultUrl="/Content/landing.html"
+  MasterPage="/Content/Resources/MasterPages/inner-pages-new.flmsp"
+  MobileBreakpoint="820"
+  ConditionTagExpression="include[Version.17-0-born or Version.17-0-only], exclude[Default.DoNotShow or NewSet.LatestOnly or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-5-only or Version.15-8-died or Version.15-8-only or Version.16-0-died or Version.16-0-only or Version.16-1-1-died or Version.16-1-1-only or Version.16-1-died or Version.16-1-only or Version.16-2-1-died or Version.16-2-1-only or Version.16-2-died or Version.16-2-only or Version.16-3-died or Version.16-3-only or Version.16-4-died or Version.16-4-only or Version.17-0-died]"
+  ContentInclusionType="Toc"
+  MasterStylesheet="/Content/Resources/Stylesheets/tc-styles-2023.css"
+  MasterStylesheetOverride="true"
+  TopNavTocPath="true"
+  EnableSitemap="true"
+  SitemapWebUrl="https://docs-staging.gigaspaces.com/17.0/ ">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true"
+    OutputFormat="doc" />
+  <Variables>
+    <Variable
+      Name="Versions/maven-version-MX">17.0-m1</Variable>
+    <Variable
+      Name="Versions/product-version-long">17.0.0</Variable>
+    <Variable
+      Name="Versions/rest-version">v2</Variable>
+    <Variable
+      Name="Versions/scala-version">2.12</Variable>
+    <Variable
+      Name="Versions/spark-version">2.4.4</Variable>
+    <Variable
+      Name="Versions/product-version-short">17.0.0</Variable>
+    <Variable
+      Name="Versions/helm-version-MX">17.0-m1</Variable>
+    <Variable
+      Name="Versions/gshome-directory">gigaspaces-xap-enterprise-17.0.0</Variable>
+    <Variable
+      Name="Versions/gshome-directory-oss">gigaspaces-xap-17.0.0</Variable>
+    <Variable
+      Name="Versions/default-lookup-group">xap-17.0</Variable>
+    <Variable
+      Name="Versions/xap-release">17.0.0</Variable>
+    <Variable
+      Name="Versions/xap-version">17.0.0</Variable>
+    <Variable
+      Name="Versions/msi-filename">gigaspaces-xap.net-17.0.0.msi</Variable>
+    <Variable
+      Name="Versions/gshome-net-directory">XAP.NET-17.0-x64</Variable>
+    <Variable
+      Name="Versions/spring-short">6</Variable>
+    <Variable
+      Name="Versions/mongo-java-driver">3.2.0</Variable>
+    <Variable
+      Name="Versions/antlr4-runtime">4.0</Variable>
+    <Variable
+      Name="Versions/mule">3.7.0</Variable>
+    <Variable
+      Name="Versions/openjpa">3.2.2</Variable>
+    <Variable
+      Name="Versions/cassandra-clientutil">1.1.6</Variable>
+    <Variable
+      Name="Versions/cassandra-thrift">1.1.6</Variable>
+    <Variable
+      Name="Versions/cassandra-jdbc">1.1.2</Variable>
+    <Variable
+      Name="Versions/hector-core">1.1-2</Variable>
+    <Variable
+      Name="Versions/slf4j-api">2.0.11</Variable>
+    <Variable
+      Name="Versions/slf4j-jdk14">2.0.11</Variable>
+    <Variable
+      Name="Versions/hsql">2.7.1</Variable>
+    <Variable
+      Name="Versions/topthreads">1.0.0</Variable>
+    <Variable
+      Name="Versions/scala">2.12</Variable>
+    <Variable
+      Name="Versions/product-version-svc-pack-MX">17.0-m1</Variable>
+    <Variable
+      Name="Versions/spring-long">6.1.1</Variable>
+    <Variable
+      Name="Versions/java-version">17</Variable>
+    <Variable
+      Name="Versions/hibernate-short">6.4.8</Variable>
+    <Variable
+      Name="General/EnvVariablePrefix">GS</Variable>
+    <Variable
+      Name="Versions/dash-ea">-ea</Variable>
+    <Variable
+      Name="HTML2023_Variables/CSS">custom-2023.css</Variable>
+    <Variable
+      Name="HTML2023_Variables/JS">custom-2023.js</Variable>
+    <Variable
+      Name="Links/ApiDotNetDoc">https://resources.gigaspaces.com/api/17.0.0/dotnet/index.html</Variable>
+    <Variable
+      Name="Links/ApiJavaDoc">https://resources.gigaspaces.com/api/17.0.0/java/index.html</Variable>
+    <Variable
+      Name="Versions/hibernate-medium">6.4.8</Variable>
+  </Variables>
+  <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
+  <MicroContentSearch>
+    <FeaturedSnippets
+      type="AllFiles"
+      numberOfResults="1">
+      <microContentSubset />
+    </FeaturedSnippets>
+    <KnowledgePanel
+      type="Empty"
+      numberOfResults="1">
+      <microContentSubset />
+    </KnowledgePanel>
+  </MicroContentSearch>
+  <Destinations>
+    <Destination
+      Link="/Project/Destinations/S3-Production/AWS-DOC-S3-PRODUCTION-17.0.fldes"
+      Publish="true"
+      IsResource="false" />
+  </Destinations>
+</CatapultTarget>
