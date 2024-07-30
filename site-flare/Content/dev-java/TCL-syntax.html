@@ -23,20 +23,46 @@
             </div>
             <div MadCap:conditions="Version.16-2-born">
                 <h2><a name="Transact"></a>Transaction Control Language (TCL&#160;Syntax)</h2>
-                <p>BEGIN/START and END/COMMIT are available to define the beginning and end of a Logical Unit of Work as a transaction. ROLLBACK can also be used to undo a transaction.</p>
+                <p>BEGIN/START and END/COMMIT are available to define the beginning and end of a Logical Unit of Work as a transaction.</p>
+                <p>
+                    <img src="../Resources/Images/SQL/SQL_TCL1.png" style="width: 416px;height: 154px;" />
+                </p>
+                <p>The default transaction isolation level is READ_COMMITTED.</p>
                 <p>Example 1:</p>
-                <table>
+                <table style="width: 1160px;">
+                    <col style="width: 220px;" />
+                    <col style="width: 456px;" />
+                    <col style="width: 324px;" />
                     <tbody>
                         <tr>
                             <td style="background-color: #dcdcdc;">Syntax</td>
                             <td style="background-color: #dcdcdc;">Explanation</td>
+                            <td style="background-color: #d3d3d3;">Examples</td>
                         </tr>
                         <tr>
                             <td>
                                 <p>BEGIN (or START); </p>
                             </td>
                             <td>
-                                <p>Opens a  Transaction</p>
+                                <ul>
+                                    <li>
+                                        <p style="font-size: 12pt;">Starts a  Transaction.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commands are case insensitive, meaning both upper and lower cases will work.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Transaction keyword is optional. This is also case insensitive.</p>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <p>  Using Begin:</p>
+                                <img src="../Resources/Images/SQL/SQL_TCL3.png" class="tc-thumbnail" />
+                                <p>
+                                    <p>  Using Start Transaction:</p>
+                                    <img src="../Resources/Images/SQL/SQL_TCL2.png" class="tc-thumbnail" />
+                                </p>
                             </td>
                         </tr>
                         <tr>
@@ -47,6 +73,7 @@
                             <td>
                                 <p>&#160;</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -56,6 +83,7 @@
                             <td>
                                 <p>&#160;</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -65,6 +93,7 @@
                             <td>
                                 <p>OK</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -74,23 +103,49 @@
                             <td>
                                 <p>OK</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
                                 <p>END (or COMMIT);</p>
                             </td>
                             <td>
-                                <p>End transaction with commit</p>
+                                <ul>
+                                    <li>
+                                        <p style="font-size: 12pt;">Both End and Commit commands are used to commit the changes.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commands are case insensitive, meaning both upper and lower cases will work.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commit command could be used both inside transaction block and instead of End command.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commit inside transaction block committing all above changes and then a new transaction is created to proceed below statements.</p>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <p>  Using End:</p>
+                                <img src="../Resources/Images/SQL/SQL_TCL4.png" class="tc-thumbnail" />
+                                <p>
+                                    <p>  Using Commit:</p>
+                                    <img src="../Resources/Images/SQL/SQL_TCL5.png" class="tc-thumbnail" />
+                                </p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <p>Example 2:</p>
-                <table>
+                <table style="width: 1171px;">
+                    <col style="width: 220px;" />
+                    <col style="width: 456px;" />
+                    <col style="width: 324px;" />
                     <tbody>
                         <tr>
                             <td style="background-color: #dcdcdc;">Syntax</td>
                             <td style="background-color: #dcdcdc;">Explanation</td>
+                            <td style="background-color: #d3d3d3;">Examples</td>
                         </tr>
                         <tr>
                             <td>
@@ -99,6 +154,7 @@
                             <td>
                                 <p>Begin transaction</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -108,6 +164,7 @@
                             <td>
                                 <p>&#160;</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -117,14 +174,60 @@
                             <td>
                                 <p>OK</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
                                 <p>  ROLLBACK;   </p>
                             </td>
                             <td>
-                                <p>Rollbacks a transaction in case of any error occurs.</p>
+                                <ul>
+                                    <li>
+                                        <p style="font-size: 12pt;">Rollback is used to rollback all the changes during one transaction (changes until explicit commit was run before).</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commands are case insensitive, meaning both upper and lower cases will work.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Rollback command can be called:</p>
+                                        <ul>
+                                            <li>
+                                                <p style="font-size: 12pt;">Explicitly</p>
+                                            </li>
+                                            <li>
+                                                <p style="font-size: 12pt;">In the case where an exception was thrown during transaction execution.</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Explicit Rollback rollbacks all changes during transaction execution and then a new transaction is created to proceed below statements.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Rollback in case of any exception occurs rollbacks all changes during transaction and all below statements won’t be executed.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Explicit Rollback rollbacks all changes during transaction execution and then a new transaction is created to proceed below statements</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Rollback in case of any exception occurs rollbacks all changes during transaction and all below statements will not be executed.</p>
+                                    </li>
+                                </ul>
                             </td>
+                            <td>
+                                <p>Explicit Rollback Call:</p>
+                                <p>
+                                    <img src="../Resources/Images/SQL/SQL_TCL6.png" class="tc-thumbnail" />
+                                </p>
+                                <p>Rollback in the Case of Exception:</p>
+                                <p>
+                                    <img src="../Resources/Images/SQL/SQL_TCL7.png" class="tc-thumbnail" />
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&#160;</td>
+                            <td>&#160;</td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -134,6 +237,7 @@
                             <td>
                                 <p>Not found</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -143,6 +247,7 @@
                             <td>
                                 <p>&#160;</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -152,6 +257,7 @@
                             <td>
                                 <p>OK</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -161,6 +267,7 @@
                             <td>
                                 <p>End transaction with commit</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
@@ -170,17 +277,76 @@
                             <td>
                                 <p>OK</p>
                             </td>
+                            <td>&#160;</td>
                         </tr>
                         <tr>
                             <td>
                                 <p>END (or COMMIT);</p>
                             </td>
                             <td>
-                                <p>End transaction with commit (nothing to commit)</p>
+                                <ul>
+                                    <li>
+                                        <p style="font-size: 12pt;">Both End and Commit commands are used to commit the changes.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commands are case insensitive, meaning both upper and lower cases will work.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commit command could be used both inside transaction block and instead of End command.</p>
+                                    </li>
+                                    <li>
+                                        <p style="font-size: 12pt;">Commit inside transaction block committing all above changes and then a new transaction is created to proceed below statements.</p>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>&#160;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Transaction Properties (Set Env Properties)</h2>
+                <table>
+                    <col style="width: 667px;" />
+                    <col style="width: 493px;" />
+                    <tbody>
+                        <tr>
+                            <td style="background-color: #dcdcdc;">Property</td>
+                            <td style="background-color: #dcdcdc;">Explanation</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>com.gs.jdbc.v3.transaction_manager.transaction_isolation_level</p>
+                            </td>
+                            <td>
+                                <p>Transaction isolation level. Default transaction isolation level is READ_COMMITTED.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  com.gs.jdbc.v3.transaction_manager.commit_timeout</p>
+                            </td>
+                            <td>
+                                <p>Commit timeout. Default value is MAX_VALUE of Long.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  com.gs.jdbc.v3.transaction_manager.rollback_timeout </p>
+                            </td>
+                            <td>
+                                <p>Rollback timeout. Default value is MAX_VALUE of Long.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>com.gs.jdbc.v3.transaction_manager.default_timeout  </p>
+                            </td>
+                            <td>
+                                <p>The requested lease time for the transaction. Default value is 90000.</p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <p>&#160;</p>
             </div>
         </div>
     </body>
