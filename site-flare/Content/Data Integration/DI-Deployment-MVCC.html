@@ -11,7 +11,9 @@
         <h1>Introduction</h1>
         <p>Multiversion concurrency control (MVCC) is method that allows a user to have a concurrent and persistent view of distributed transactions across partitions. <MadCap:variable name="General.CompanyName" /> keep multiple versions of modified entries to ensure that a user has a persistent view of the data that is consistent with the SoR.</p>
         <p>Processing a large number of simultaneous transactions in Smart DIH requires an extreme write throughput that cannot be paused. In order to maintain transactions in the platform, Space objects must not be locked. The MVCC mechanism provides an efficient solution, allowing massive updates while maintaining consistency in the Space with the systems of record (SoR). In this manner, the ACID properties of transactions are maintained, ensuring the consistency and integrity of the data before and after each update, even in highly available distributed systems.</p>
-        <p>For more information about  the MVCC&#160;mechanism and how it is used in Smart DIH, read our blog on <a href="https://www.gigaspaces.com/blog/acid-distributed-transactions">How to Achieve ACID&#160;Compliance on Distributed, Highly Available Systems</a> (search for MVCC).</p>
+        <div class="tc-admon-refer">
+            <p>For more information about  the MVCC&#160;mechanism and how it is used in Smart DIH, read our blog on <a href="https://www.gigaspaces.com/blog/acid-distributed-transactions">How to Achieve ACID Compliance on Distributed, Highly Available Systems</a> (search for MVCC).</p>
+        </div>
         <h1>MVCC&#160;Flow</h1>
         <p>The diagram below shows the process of how an update that is coming from the SoR to a CDC stream travels through the DI&#160;Layer and is finally updated in the Space.&#160;&#160;</p>
         <ul>

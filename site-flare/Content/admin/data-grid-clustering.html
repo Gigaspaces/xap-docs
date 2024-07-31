@@ -7,10 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Data Grid Clustering</h1>
         <h1><a name="overview"></a>Overview</h1>
         <p><MadCap:variable name="General.ProductNameXAP" />'s data grid clustering, scalability and high availability are based on the following concepts:</p>
@@ -52,6 +52,9 @@
         <p><MadCap:variable name="General.ProductNameXAP" /> uses synchronous backup to avoid the above-described scenario.  The performance overhead of synchronous replication is fixed, and is not related to the size of the cluster (each partition replicates data only to its backup replica). Data replication to the database is kept asynchronous to reduce the overhead of writing to disk.</p>
         <h1><a name="transaction-consistency"></a>Transaction Consistency</h1>
         <p>Single operations or groups of operations can be executed under transactions. This ensures that the ACID properties are preserved. Transactions can be made local to each partition. If local, they are bound to the scope of a single partition and are highly optimized in terms of performance. Transactions can also span between nodes, however in this case the overhead is higher.</p>
+        <div class="tc-admon-refer">
+            <p>For information about ACID compliance, read our blog on <a href="https://www.gigaspaces.com/blog/acid-distributed-transactions">How to Achieve ACID Compliance on Distributed, Highly Available Systems.</a></p>
+        </div>
         <h1><a name="ordering"></a>Ordering</h1>
         <p>All operations are ordered based on the time they were written. This is specifically relevant to ensure the consistency between the in-memory cluster and the long-term storage, which is updated asynchronously.</p>
         <h1><a name="availability"></a>Availability</h1>
