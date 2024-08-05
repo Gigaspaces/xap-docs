@@ -190,26 +190,8 @@
                                     </li>
                                     <li>
                                         <p style="font-size: 12pt;">Rollback command can be called:</p>
-                                        <ul>
-                                            <li>
-                                                <p style="font-size: 12pt;">Explicitly</p>
-                                            </li>
-                                            <li>
-                                                <p style="font-size: 12pt;">In the case where an exception was thrown during transaction execution.</p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <p style="font-size: 12pt;">Explicit Rollback rollbacks all changes during transaction execution and then a new transaction is created to proceed below statements.</p>
-                                    </li>
-                                    <li>
-                                        <p style="font-size: 12pt;">Rollback in case of any exception occurs rollbacks all changes during transaction and all below statements won’t be executed.</p>
-                                    </li>
-                                    <li>
-                                        <p style="font-size: 12pt;">Explicit Rollback rollbacks all changes during transaction execution and then a new transaction is created to proceed below statements</p>
-                                    </li>
-                                    <li>
-                                        <p style="font-size: 12pt;">Rollback in case of any exception occurs rollbacks all changes during transaction and all below statements will not be executed.</p>
+                                        <p style="font-size: 12pt;">1. Explicitly - Explicit Rollback rollbacks all changes during transaction execution and then a new transaction is created to proceed below statements.</p>
+                                        <p style="font-size: 12pt;">2. In the case where an exception was thrown during transaction execution -  rollbacks all changes during transaction and all below statements won’t be executed.</p>
                                     </li>
                                 </ul>
                             </td>
@@ -235,7 +217,13 @@
   …xxx…;  </p>
                             </td>
                             <td>
-                                <p>Not found</p>
+                                <p>Not found  </p>
+                                <ul>
+                                    <li>
+                                        <p><span style="font-size: 12pt;">This is because of the rollback. The xxx insert was rolled back and this is the reason the select xxx will return no results.</span>
+                                        </p>
+                                    </li>
+                                </ul>
                             </td>
                             <td>&#160;</td>
                         </tr>
