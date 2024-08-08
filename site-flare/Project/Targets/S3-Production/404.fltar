@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="New Target"
+  Type="CleanXHTML"
+  Destinations=""
+  ShowMadCapBacklink="true"
+  GlossaryTermConversion="marked"
+  MasterToc="/Project/TOCs/404.fltoc"
+  MasterStylesheetOverride="false"
+  ConvertStylesheetStylesToInlineStyles="true"
+  ContentInclusionType="Toc"
+  MasterPage="/Content/404-resources/404.flmsp"
+  MoveOutputContentToRoot="true"
+  MasterStylesheet="/Content/404-resources/404.css">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true"
+    OutputFormat="docx" />
+  <PDF
+    Tagged="true"
+    TitleBar="DocumentTitle" />
+  <Destinations>
+    <Destination
+      Link="/Project/Destinations/Production/AWS-DOC-S3-PRODUCTION-404.fldes"
+      Publish="true"
+      IsResource="false" />
+  </Destinations>
+</CatapultTarget>
