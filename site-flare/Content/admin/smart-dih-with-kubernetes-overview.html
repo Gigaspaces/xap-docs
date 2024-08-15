@@ -61,7 +61,7 @@ Through the persistent volume driver, <MadCap:variable name="General.ProductName
         <p style="text-align: center;">
             <img src="../Resources/Images/K8sHybridInstallation.png" style="width: 684px;height: 525px;" />
         </p>
-        <h1>High&#160;Availability (HA) and Self-Healing</h1>
+        <h1><a name="HA"></a>High&#160;Availability (HA) and Self-Healing</h1>
         <h2>Space High Availability</h2>
         <p>The In-Memory Data Grid (IMDG) is at the center of Smart DIH. The data grid (also called a space) is maintained by an automation component (Kubernetes operator) that guarantees that the data will not be lost in the case of a pod going down.</p>
         <p>Pods that serve the data grid, hold the data in memory and on disk (see Tiered Storage capabilities). The data grid is divided into partitions and each pod is assigned to hold a partition of the data as well as an availability mode - a “primary” or a “backup”. The Primary pods are online, however, if a primary pod goes down, the backup pod then becomes the primary and a new backup is quickly reassembled. This flow avoids downtime as data is seamlessly served from the pods memory by switching between a primary pod and its backup.</p>
