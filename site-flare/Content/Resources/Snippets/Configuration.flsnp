@@ -90,13 +90,13 @@
         <p>By default, all services are configured with the ClusterIP. The following services have to be accessed from outside the cluster:</p>
         <ol>
             <li>
-                <p>SpaceDeck - Used for running the UI </p>
+                <p>SpaceDeck - Used for running the UI.</p>
             </li>
             <li>
-                <p>XAP&#160;Security Service - For OAuth2.0 re-direction endpoint</p>
+                <p>XAP&#160;Security Service - For OAuth2.0 re-direction endpoint.</p>
             </li>
             <li>
-                <p>Data Gateway - When enabled, needs JDBC&#160;access (TCP&#160;connection)</p>
+                <p>Data Gateway - When enabled, provides JDBC&#160;access (TCP&#160;connection).</p>
             </li>
             <li>
                 <p MadCap:conditions="SnippetConditions.SnippetConditionDIHOnly">Kafka - To have to ability to connect directly to Kafka. </p>
@@ -177,18 +177,18 @@ tcp:
   5432:  &lt;dih-namespace&gt;/xap-dgw-service:5432
   9092:  &lt;dih-namespace&gt;/kafka:9092  #Smart DIH&#160;only</pre>
         <p><u style="font-weight: bold;">Legend</u>:</p>
-        <p><b>nginx-asg</b>: A dedicated node group for an nginx instance</p>
-        <p><b>dih-namespace</b>: The namespace where Smart DIH is installed</p>
-        <p><b>node-port</b>: The host port, for example 30820</p>
+        <p><b>nginx-asg</b>: A dedicated node group for an nginx instance.</p>
+        <p><b>dih-namespace</b>: The namespace where Smart DIH is installed.</p>
+        <p><b>node-port</b>: The host port, for example 30820.</p>
         <p>Helm command used to install the Nginx controller calling the nginx-values.yaml:</p><pre xml:space="preserve">helm install nginx nginx/ingress-nginx -n ingress --version=4.6.0 --values=nginx-values.yaml</pre>
         <h2>Space High Availability (H/A) and Partitioning</h2>
         <p>The Space can be divided by two dimensions.</p>
         <ol>
             <li>
-                <p><b>Partition</b> - Adding more pods to extend the capacity of the Space</p>
+                <p><b>Partition</b> - Adding more pods to extend the capacity of the Space.</p>
             </li>
             <li>
-                <p><b>Replication</b> - Adding a backup pod per partition for h/a of the Space</p>
+                <p><b>Replication</b> - Adding a backup pod per partition for h/a of the Space.</p>
             </li>
         </ol>
         <div class="tc-admon-note">
@@ -391,7 +391,7 @@ topology.kubernetes.io/host
         <p>There are two ways to set properties:</p>
         <ol>
             <li>
-                <p>As an array by setting the <i>properties</i> value at the PU&#160;level</p>
+                <p>As an array by setting the <i>properties</i> value at the PU&#160;level.</p>
             </li>
             <li>
                 <p>Using <code>valueFrom</code> enable to point to a specific value in a config map (or secret):</p>
@@ -409,9 +409,17 @@ topology.kubernetes.io/host
         </ol>
         <h3>Environment Variables</h3>
         <p>Similar to properties, there are the same three options:</p>
-        <p>As an array of env variables (as in a container) using <b>env</b> parameter</p>
-        <p>Using <code>valueFrom</code> enable to point to a specific value in a config map (or secret)</p>
-        <p>Using <code>envFrom</code> enable to reference a configmap of a secret</p>
+        <ol>
+            <li>
+                <p>As an array of env variables (as in a container) using <b>env</b> parameter.</p>
+            </li>
+            <li>
+                <p>Using <code>valueFrom</code> enable to point to a specific value in a config map (or secret).</p>
+            </li>
+            <li>
+                <p>Using <code>envFrom</code> enable to reference a configmap of a secret.</p>
+            </li>
+        </ol>
         <h2>StatefulSet Extensions</h2>
         <p>The <MadCap:variable name="General.ProductNameIE" /> operator creates a StatefulSet out of values given in the PU&#160;manifest. These values are used for handling the installation and various other conditions&#160;(for example, scale), by the operator. The user might want to have additional settings on the StatefulSet. These settings are integrated as-is to the created StatefulSet.</p>
         <table style="width: 1124px;">
