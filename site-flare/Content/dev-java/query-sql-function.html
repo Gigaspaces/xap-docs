@@ -13,7 +13,7 @@
         </div>
         <h1>SQL Functions</h1>
         <div class="tc-admon-attention">
-            <p>This also supports JDBC&#160;V1</p>
+            <p>This can be used with <MadCap:variable name="General.CompanyName" /> API or JDBC&#160;V1</p>
         </div>
         <p>You can query the Space using <span class="tc-bold">built-in</span> functions and <span class="tc-bold">user-defined</span> functions.</p>
         <h1><a name="built-in-functions"></a>Built-In Functions</h1>
@@ -71,6 +71,9 @@ Person[] persons = space.readMultiple(query);
             <li>LOWER, UPPER</li>
             <li>CONCAT, APPEND</li>
             <li>INSTR</li>
+            <li MadCap:conditions="Version.16-1-1-born">
+                <p>SUBSTRING()</p>
+            </li>
             <li>TO_NUMBER</li>
             <li>TO_CHAR (datetime), TO_CHAR (number)</li>
             <li MadCap:conditions="Version.15-8-born">REPLACE</li>
