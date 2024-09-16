@@ -1470,6 +1470,45 @@ h1 {
   padding-right: 30px;
 }
 
+  /* Interactive Banner */
+
+  @keyframes scroll-left {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  #interactive-banner p {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 40s linear infinite;
+  }
+  #interactive-banner {
+    overflow: hidden;
+    width: 100%;
+    height: 60px;
+  }
+
+  #interactive-banner img {
+    margin-right: 3px;
+    vertical-align: middle;
+}
+
+span.banner-button {
+  display: inline-block;
+  background: #00c0f3;
+  border-radius: 17px;
+  color: white;
+  height: 30px;
+  margin-left: 11px;
+}
+
+.banner-button a {
+  color: white!important;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+
 @media screen and (max-width: 1600px) {
   #ref-imp-header {
     display: none;

@@ -1,6 +1,7 @@
 $(document).ready(function(){	
   $('.header-left').insertAfter('.logo-wrapper');
   $('.header-right').insertAfter('.header-left');
+  $('#interactive-banner').insertBefore('.main-section');
   if($('.product-bar').length) {
     $('.product-bar').insertAfter('#last-updated');
   }
