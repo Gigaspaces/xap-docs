@@ -96,13 +96,14 @@ should be set to false when gc is tuned In addition its recommended to set java 
         <p>When using a memory manager, it's essential to maintain a service limit of 1, ensuring only one service instance runs per JVM.</p>
         <h2>Setting a Warning Threshold for Long Garbage Collector (GC)&#160;Collection</h2>
         <p>You can obtain log indicators for long GC events by setting the following parameter:</p>
-        <p><code>Dgs.gc.collectionTimeThresholdWarning=1000</code>
+        <p><code>-Dgs.gc.collectionTimeThresholdWarning=1000</code>
         </p>
         <p>This will generate a warning if a GC cycle takes longer than 1 second.</p>
         <p>Additionally, it is recommended to enable verbose GC logs for more detailed monitoring and analysis.</p>
-        <h3>Java 8</h3>
-        <p>For example, in Java 8, you can enable verbose GC logging with the following JVM options:</p>
-        <div title="REST" style="padding:10px"><pre><code class="language-java">XX:+PrintGCDetails
+        <div MadCap:conditions="Version.17-0-died">
+            <h3>Java 8</h3>
+            <p>For example, in Java 8, you can enable verbose GC logging with the following JVM options:</p>
+            <div title="REST" style="padding:10px"><pre><code class="language-java">XX:+PrintGCDetails
 XX:+PrintGCDateStamps
 XX:+PrintTenuringDistribution
 XX:+PrintGCApplicationStoppedTime
@@ -111,8 +112,9 @@ XX:NumberOfGCLogFiles=10
 XX:GCLogFileSize=10M
 Xloggc:/path/to/gc.log
 </code></pre>
+            </div>
         </div>
-        <h3>Java After Version 8</h3>
+        <h3>Java (Post Version 8)</h3>
         <p>Using Java versions later than 8, you can enable GC logging using the following option:</p><pre><code class="language-java">Xlog:gc*:file=${LOG_DIR}/gc_%p.log:tags,uptime,time,level:filecount=10,filesize=10M
 			</code></pre>
         <p>This configuration logs GC events to a file with tags, uptime, timestamps, and log levels, and it limits the number of log files to 10, with each file capped at 10MB.</p>
