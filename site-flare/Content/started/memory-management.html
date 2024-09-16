@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>Memory Management</h1>
+        <h2>High Memory Consumption, Capacity planning , MemoryShortageException and OutOfMemoryException</h2>
+        <p>When memory consumption increases, it is advisable to verify whether the number of objects in the Space aligns with expected values and to assess whether the operational load has increased. Additionally, reviewing verbose Garbage Collector (GC) logs can help determine if the memory growth corresponds to actual memory usage or if it is due to garbage accumulation, which can be addressed by adjusting GC parameters.</p>
+        <h2>Memory Manager</h2>
+        <p>To prevent OutOfMemory (OOM) exceptions, the Space includes a MemoryManager that helps mitigate OOM errors by blocking operations when memory usage reaches a predefined threshold.</p>
+        <p>Multiple configurable thresholds are available, allowing you to define when memory checks should be initiated per operation and when to block further operations once usage exceeds the specified limits.</p>
+        <h3>Key Configuration Parameters</h3>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Parameters</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>space-config.engine.memory_usage.
+high_watermark_percentage</code>
+                    </td>
+                    <td>If the Space container's memory usage exceeds this threshold, a com.j_spaces.core.MemoryShortageException is thrown.</td>
+                    <td>95</td>
+                </tr>
+                <tr>
+                    <td><code>space-config.engine.memory_usage.
+write_only_block_percentage</code>
+                    </td>
+                    <td>Above this level, only read/take operations are allowed.</td>
+                    <td>85</td>
+                </tr>
+                <tr>
+                    <td><code>space-config.engine.memory_usage.
+write_only_check_percentage</code>
+                    </td>
+                    <td>Upper threshold for checking only write-type operations. Above this level, all operations are checked.</td>
+                    <td>76</td>
+                </tr>
+                <tr>
+                    <td><code>space-config.engine.memory_usage.
+low_watermark_percentage</code>
+                    </td>
+                    <td>Specifies the recommended lower threshold for the JVM heap size that should be occupied by the Space container. When the system reaches the high_watermark_percentage value, it evicts objects on an LRU basis, and attempts to reach the low_watermark_percentage value. This process continues until there are no more objects to be evicted, or until memory use reaches the low_watermark_percentage value.</td>
+                    <td>75</td>
+                </tr>
+                <tr>
+                    <td><code>space-config.engine.memory_usage.
+gc-before-shortage</code>
+                    </td>
+                    <td>If true, GC will be called before throwing shortage Exception.
+
+should be set to false when gc is tuned In addition its recommended to set java flag to avoid explicit GC (-XX:+DisableExplicitGC)</td>
+                    <td>True</td>
+                </tr>
+                <tr>
+                    <td><code>space-config.engine.query.result.size.limit </code><![CDATA[   ]]></td>
+                    <td>Limit size of multiple operations (till 16.1.1 only read, from 16.1.1 also takeMultiple &amp; changeMultiple) throw related exception when reaching the limit</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><code>space-config.engine.query.result.size.limit.memory.check.batch.size</code>
+                    </td>
+                    <td>From 16.1.1 version onwards, if this parameter is greater than zero, an internal memory check is performed during ReadMultiple/ChangeMultiple/TakeMultiple operations.Every batch of this size that is added to the result</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-important">
+            <p>For large (above for 4G) heap size, the recommended parameters are 97,96,95 and false respectively.</p>
+        </div>
+        <h2>Enable/Disable Memory Manager</h2>
+        <p>You can disable the memory manager entirely or disable its activity in the backup. In the case of the LRU cache policy, these memory manager parameters must be used:</p>
+        <ul>
+            <li>
+                <p><code>space-config.engine.memory_usage.enabled=true</code> (Enables the memory manager for all Space instances, default setting).</p>
+            </li>
+            <li>
+                <p><code>space-config.engine.memory_usage.enabled=primary-only</code> (Enables the memory manager for primary Space instances only).</p>
+            </li>
+        </ul>
+        <p>When using a memory manager, it's essential to maintain a service limit of 1, ensuring only one service instance runs per JVM.</p>
+        <h2>Setting a Warning Threshold for Long Garbage Collector (GC)&#160;Collection</h2>
+        <p>You can obtain log indicators for long GC events by setting the following parameter:</p>
+        <p><code>Dgs.gc.collectionTimeThresholdWarning=1000</code>
+        </p>
+        <p>This will generate a warning if a GC cycle takes longer than 1 second.</p>
+        <p>Additionally, it is recommended to enable verbose GC logs for more detailed monitoring and analysis.</p>
+        <h3>Java 8</h3>
+        <p>For example, in Java 8, you can enable verbose GC logging with the following JVM options:</p>
+        <div title="REST" style="padding:10px"><pre><code class="language-java">XX:+PrintGCDetails
+XX:+PrintGCDateStamps
+XX:+PrintTenuringDistribution
+XX:+PrintGCApplicationStoppedTime
+XX:+UseGCLogFileRotation
+XX:NumberOfGCLogFiles=10
+XX:GCLogFileSize=10M
+Xloggc:/path/to/gc.log
+</code></pre>
+        </div>
+        <h3>Java After Version 8</h3>
+        <p>Using Java versions later than 8, you can enable GC logging using the following option:</p><pre><code class="language-java">Xlog:gc*:file=${LOG_DIR}/gc_%p.log:tags,uptime,time,level:filecount=10,filesize=10M
+			</code></pre>
+        <p>This configuration logs GC events to a file with tags, uptime, timestamps, and log levels, and it limits the number of log files to 10, with each file capped at 10MB.</p>
+        <h2>Operation Rejected due to Memory Shortage</h2>
+        <p>When operations are blocked due to memory shortages, they should be retried, as the issue may be temporary.</p>
+        <p>Additionally, operations should also be retried if the Space is in suspended or quiesce mode.</p>
+        <h2>Memory Shortage False Alarm</h2>
+        <p>When <code>space-config.engine.memory_usage.gc-before-shortage</code> is set to `false`, the assumption is that the GC is properly tuned and memory shortages will not occur. However, it is possible that memory is not truly being consumed, and GC will only be triggered after hitting the memory manager thresholds. To prevent this, there should be proper alignment between the memory manager thresholds and GC parameters. It is important to thoroughly test and tune the GC configuration to avoid unnecessary memory shortages.</p>
+        <h2>MemoryShortageException Only in Backup </h2>
+        <p>The backup holds the same data as the primary but may exhibit different GC behavior due to its distinct activities. If a memory shortage exception occurs only in the backup and the service limit of 1 is maintained, this could indicate a false alarm. In such cases, further tuning of thresholds and GC settings is necessary.</p>
+        <p>By default, if a memory shortage exception is thrown in the backup, the Space instance is marked as unhealthy and stopped. The backup should then be reallocated, triggering a full recovery from the primary.</p>
+        <h2>Configuration Heap Dump to Analyze Memory Consumption</h2>
+        <p>The system can be configured to generate a heap dump when a memory shortage occurs, allowing for in-depth debugging and heap analysis.</p>
+        <p>Relevant parameters for heap dump on memory shortage:</p>
+        <table style="width: 1214px;" class="tc-standard">
+            <col style="width: 613px;" />
+            <col style="width: 438px;" />
+            <col style="width: -51px;" />
+            <thead>
+                <tr>
+                    <th>Parameters</th>
+                    <th style="text-align: left;">Description</th>
+                    <th style="text-align: left;">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>com.gs.memory.create-heap-dump-on-memory-shortage</code>
+                    </td>
+                    <td>Turn on and off the heap dump </td>
+                    <td>False</td>
+                </tr>
+                <tr>
+                    <td><code>com.gs.memory.max-heaps-on-memory-shortage</code>
+                    </td>
+                    <td>Turn off the heap dump after n times </td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td><code>com.gs.memory.heaps-on-memory-shortage-quiet-period</code>
+                    </td>
+                    <td>How long to wait between heap dumps </td>
+                    <td>24 hours</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To ensure that a heap dump is generated in the event of an `OutOfMemoryError`, verify that the `-XX:+HeapDumpOnOutOfMemoryError` flag is set in your component's Java settings.</p>
+        <p>For additional information refer to <a href="../dev-java/memory-management-overview.html">memory management overview</a>.</p>
+        <h2>Out-Of-Memory (OOM)&#160;Error</h2>
+        <p>The memory manager should be configured to protect against `OutOfMemoryError` (OOM) conditions, but certain configurations or disabling the memory manager can still lead to OOM occurrences. Since the behavior of the process after an OOM is unpredictable, the default behavior of the `gs-agent` is to restart any process that reports an OOM.</p>
+        <p>Configuration Details:</p>
+        <ul>
+            <li>
+                <p>In the <code>gs-home/config/gsa directory</code>, each component has its own configuration and regex expression definitions for process restart. The component will be restarted when the regex matches a log record.</p>
+            </li>
+            <li>
+                <p>Default restart regex: <code>&lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;</code></p>
+            </li>
+        </ul>
+        <p>Behavior on Restart:</p>
+        <ul>
+            <li>
+                <p>If the Space instance was the primary, the backup will be promoted to the new primary while the failing instance is reallocated.</p>
+            </li>
+            <li>
+                <p>If the Space instance was a backup, the primary will continue to operate as usual (subject to the consistency level). The backup will perform a full recovery from the primary once it is reallocated.</p>
+            </li>
+        </ul>
+        <h2>OOM in Server Caused by a Client Operation</h2>
+        <p>When a client reads a large amount of data at once, performs a change operation, or executes multiple operations, the server may need to allocate, serialize, and send a significant number of objects back to the client.</p>
+        <p>To handle large data sets efficiently, a Space iterator should be used. Refer to the documentation on <a href="../dev-java/query-paging-support.html">Space Iterator</a> for more details.</p>
+        <p>To protect the Space from excessive client operations, configure the following settings:</p>
+        <ul>
+            <li>
+                <p><code>space-config.engine.query.result.size.limit</code> (Limits the number of results that a client can retrieve in a single operation).</p>
+            </li>
+            <li>
+                <p><code>space-config.engine.query.result.size.limit.memory.check.batch.size</code> (Triggers memory checks during the execution of large operations to manage memory usage effectively).</p>
+            </li>
+        </ul>
+        <h2>Avoiding Memory Consumption&#160;Issues: Capacity Planning</h2>
+        <p>Starting from version 15.5, you can estimate the memory consumption of each object type and property using the Ops Manager (accessible via the browser at `manager_host:8090`). This tool is intended for use in testing environments to help plan capacity based on the expected number of objects for each type.</p>
+        <p>For versions earlier than 15.5 or if the GS-Manager is not used, refer to the  documentation on  <a href="../production/production-capacity-planning.html">capacity planning</a> for more details.</p>
+        <div MadCap:conditions="Version.15-5-born">
+            <p>Using the Ops&#160;Manager from version 15.5:</p>
+            <p>To trigger an object analysis, click the<b>Run Objects Analysis</b> icon on the Ops Manager Space view screen. This icon is represented as a circle on the right side of the screen.</p>
+            <p>
+                <img src="../Resources/Images/OpsManager1.png" style="width: 822px;height: 414px;" class="tc-thumbnail" />
+            </p>
+            <p>If the Space has no backup, the option to generate a report will not be available. Upon completion of the analysis, you will see the following message:</p>
+            <p>
+                <img src="../Resources/Images/OpsManager2.png" />
+            </p>
+            <p>Click <b>Show object analysis</b> report to view the memory usage report.</p>
+            <p>Alternatively, you can click the icon next to the Report icon to access the report.</p>
+            <p>When generating a report, a heap dump of the relevant backup is taken and queried to determine the average property footprint and index footprint.</p>
+            <p>If a previous report exists, the current report will be compared with it to highlight any changes.</p>
+            <p>These reports are primarily intended for development and testing stages to optimize data structures and plan capacity. However, they can also be run periodically by an administrator to ensure that memory consumption is behaving as expected.</p>
+            <p>Report Storage:</p>
+            <ul>
+                <li MadCap:conditions="Version.15-5-only">
+                    <p>Reports are stored as JSON files at `GS_HOME/config/ui/heapReports`.</p>
+                </li>
+                <li MadCap:conditions="Version.15-8-born">
+                    <p>Reports are stored in Zookeeper.</p>
+                </li>
+            </ul>
+            <div class="tc-admon-note">
+                <p>Report generation is not possible if no backup is available.</p>
+            </div>
+            <p>You can view the average property consumption per type in the report:</p>
+            <p>
+                <img src="../Resources/Images/OpsManager3.png" style="width: 817px;height: 435px;" class="tc-thumbnail" />
+            </p>
+            <p>In the type definition under the Index tab, you can view the index efficiency and estimate its memory consumption relative to its usage.</p>
+            <p>In the <b>Properties</b> tab, you will see the estimated RAM usage for each property.</p>
+            <p>
+                <img src="../Resources/Images/OpsManager4.png" class="tc-thumbnail" />
+            </p>
+            <p>After estimating the memory consumption for each type and the expected number of objects, you should determine the appropriate number of partitions and consider using tiered storage to reduce RAM usage. Refer to the  documentation on <a href="../admin/intelligent-tiering-details.html">Tiered&#160;Storage&#160;Configuration</a> for more details.</p>
+            <p>Additionally, you can reduce object footprints by storing some properties in binary or compressed formats.</p>
+            <div MadCap:conditions="Version.15-8-born">
+                <p>Starting in version 15.8, out-of-the-box (OOTB) implementations are available for memory footprint reduction with minimal impact on performance:</p>
+                <ul>
+                    <li>
+                        <p>Class-Level Storage Optimization</p>
+                    </li>
+                    <li>
+                        <p>Property-Level Storage Optimization</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h2>Number of Partitions:&#160;Some Considerations</h2>
+        <p>Consider the following factors when determining the number of partitions:</p>
+        <ol>
+            <li>
+                <p><b>Processing Requirements</b>: How many cores are needed to handle processing and calculations for the data?</p>
+            </li>
+            <li>
+                <p><b>Initial Load Speed</b>: How quickly should the initial load from the data source be completed?</p>
+            </li>
+            <li>
+                <p><b>Query and Task Performance</b>: How fast should queries or tasks return results?</p>
+            </li>
+        </ol>
+        <p>Increasing the number of partitions allows for greater parallelism, enabling the distribution of work across more processes. However, larger partitions may require more extensive GC tuning.</p>
+        <p>The number of partitions should strike a balance between CPU and memory requirements. Additionally, routing properties should be configured to ensure that memory consumption is evenly distributed across partitions.</p>
+        <p>To assist with this, a data distribution per partition graph has been added for visualization.</p>
+        <p MadCap:conditions="Version.15-5-born">Starting from version 15.5, you can adjust the number of partitions at runtime. Refer to the  documentation on <a href="../production/production-Scale-Out-In.html">Scale IN/OUT</a> for more details.</p>
+        <p MadCap:conditions="Version.15-5-born">&#160;</p>
+    </body>
+</html>
