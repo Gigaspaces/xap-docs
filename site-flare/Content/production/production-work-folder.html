@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Work Directory</h1>
+        <p>After deploying the application, a work directory is automatically created. You can find this directory at <code>gs-home/work</code>. Inside, you'll see folders that manage different system operations, including:</p>
+        <table>
+            <col style="width: 221px;" />
+            <col style="width: 853px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th align="left">Folder</th>
+                    <th align="left">Usage</th>
+                    <th style="text-align: left;">Link to Additional Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">replication</td>
+                    <td align="left">
+                        <p align="left">Used for byte buffer redo log.</p>
+                        <div class="tc-admon-important">
+                            <p>This is system data and cannot be deleted while the application is running.</p>
+                        </div>
+                        <p align="left">This data cannot be updated manually.</p>
+                    </td>
+                    <td><a href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">redolog</td>
+                    <td align="left">
+                        <p align="left">Used for SQLite based redo log.</p>
+                        <div class="tc-admon-important">
+                            <p>This is system data and cannot be deleted while the application is running.</p>
+                        </div>
+                        <p>You can use the data if you are manually recovering data. (redo log page in). Automatically it will not be used in a restart of the system and will be deleted.</p>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td><a href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.17-0-died">
+                    <td align="left">db</td>
+                    <td align="left">
+                        <p align="left">Contains the (HyperSQL) HSQL metrics DB from the previous 5 minutes.</p>
+                        <div class="tc-admon-important">
+                            <p>Ensure that the data does not grow over time. If growth is detected, it is acceptable to delete all data within the directory. Note that some graphs in the Ops UI may be temporarily unavailable after deletion, but this will not persist for long.</p>
+                            <p>Starting from version 17.1, the database folder will no longer be present by default. All metrics will be stored in alternate locations (e.g., InfluxDB), eliminating the need for redundant storage in multiple locations.</p>
+                        </div>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td><a href="../admin/xap-manager.html">XAP&#160;Manager</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">gsa</td>
+                    <td align="left">
+                        <p align="left">XAP&#160;Only.</p>
+                        <p align="left">Where the PID of the GSA is saved, plus related files for process control.</p>
+                        <div class="tc-admon-important">
+                            <p>This cannot be deleted while the application is running.</p>
+                        </div>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td><a href="../admin/the-runtime-environment.html">The Runtime Environment</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">manager</td>
+                    <td align="left">
+                        <p align="left">Zookeeper Database</p>
+                        <div class="tc-admon-important">
+                            <p>This cannot be deleted while the application is running.</p>
+                        </div>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td><a href="../admin/xap-manager.html">XAP&#160;Manager</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">memoryxtend</td>
+                    <td align="left">
+                        <p align="left">MemoryXtend RocksDB data files (if being used).</p>
+                        <div class="tc-admon-important">
+                            <p>This is system data and cannot be deleted while the application is running. Additionally, if this data is being used as the persistence layer and you plan to load a new system with it, deletion is not recommended to ensure data reuse. </p>
+                        </div>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td><a href="../admin/memoryxtend-overview.html">MemoryXtend Overview</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">processing-units</td>
+                    <td align="left">
+                        <p align="left">A Snapshot of Processing Units deployed to a Space.</p>
+                        <p align="left">Each entry is timestamped, so it is possible to delete old files that have not been used during the last install of the system.</p>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td align="left">rest-jetty</td>
+                    <td align="left">
+                        <p align="left">A temp directory where the REST&#160;manager is extracted to.</p>
+                        <p align="left">It is permissible to delete the contents of this folder if the files have not been deleted which could happen when managers are restarted too often.</p>
+                        <p>his data cannot be updated manually.</p>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td align="left">RESTresources</td>
+                    <td align="left">
+                        <p align="left">These are resources using in PUs</p>
+                        <div class="tc-admon-important">
+                            <p>This cannot be deleted while the application is running.</p>
+                        </div>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td align="left">tiered-storage</td>
+                    <td align="left">
+                        <p align="left">SQLite DB for tiered storage (if it is being used).</p>
+                        <div class="tc-admon-important">
+                            <p>This is system data and cannot be deleted while the application is running. Additionally, if this data is being used as the persistence layer and you plan to load a new system with it, deletion is not recommended to ensure data reuse. </p>
+                        </div>
+                        <p>This data cannot be updated manually.</p>
+                    </td>
+                    <td><a href="../admin/intelligent-tiering-overview.html">Tiered Storage Overview</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>For any additional information, please contact the <a href="mailto:support@gigaspaces.com">GigaSpaces support team</a> or open a ticket through the <a href="https://support2.gigaspaces.com/">GigaSpaces Support Portal</a>.</p>
+    </body>
+</html>
