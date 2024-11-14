@@ -32,12 +32,54 @@
  
  # 1b  Perform the copy operation from the S3 production root to the S3 backup folder in a different bucket excluding the folders and files that will not be updated
     Write-Output "Copying contents from the root to S3 backup bucket..."
-    aws s3 cp "s3://$productionBucketName/" $backupFolderPath --recursive --exclude "backup/*" --exclude "attachment_files/*" --exclude "download_files/*"  --exclude "google575574ad80067fc1.html" --exclude "404.html" --exclude "404-resources/*" --exclude "favicon.ico" --exclude "robots.txt" --exclude "index.html" --exclude "terms-of-use.html"
+    aws s3 cp "s3://$productionBucketName/" $backupFolderPath --recursive --exclude "backup/*" --exclude "attachment_files/*" --exclude "download_files/*"  --exclude "google575574ad80067fc1.html" --exclude "404.html" --exclude "404-resources/*" --exclude "favicon.ico" --exclude "robots.txt" --exclude "index.html" --exclude "terms-of-use.html" --exclude "latest/search-results.html" 
 	Write-Output "Backup to backup folder completed successfully."
 	Read-Host -Prompt "Press Enter to continue. Sync from local directory to s3 root"
     
  # 2.  Upload (via sync) new files from local to S3 production root exlcuding any old Flare search files
     Write-Output "Syncing contents from the local directory to S3 production root"
-    aws s3 sync $productionLocalDirectory "s3://$productionBucketName/" --exclude "*GigaSpaces-*.zip" --exclude "*/Data/SearchPhrase_*" --exclude "*/Data/SearchStem_*" --exclude "*/Data/SearchTopic_*" --exclude "*/Data/SearchUrl_*"   
-    Write-Output "Sync from local to S3 root completed successfully.  Now run the CloudFront Invalidation script"
-	Read-Host -Prompt "Press Enter to end"	
+    aws s3 sync $productionLocalDirectory "s3://$productionBucketName/" --exclude "*GigaSpaces-*.zip" --exclude "*/Data/SearchPhrase_*" --exclude "*/Data/SearchStem_*" --exclude "*/Data/SearchTopic_*" --exclude "*/Data/SearchUrl_*" --exclude "latest/search-results.html" 
+    Write-Output "Sync from local to S3 root completed successfully." 
+	Read-Host -Prompt "Press Enter initiate CloudFront Invalidation"	
+
+ # 3. Initialize AWS configuration to use the SSO profile
+	#Write-Host "Setting AWS credentials for the Documentation profile..."
+	#Initialize-AWSDefaultConfiguration -ProfileName default
+
+	# Import the AWS CloudFront module
+	Import-Module AWS.Tools.CloudFront
+
+	# Define the CloudFront distribution ID
+	#$distributionId = "arn:aws:cloudfront::573366771204:distribution/E2L8FM1PIJHONP"
+	$distributionId = "E2L8FM1PIJHONP"
+
+	# Define the paths you want to invalidate
+	$pathsToInvalidate = @(
+    "/*"
+   # "/path/to/file2.css",
+   # "/another/path/to/file3.js"
+	)
+
+	# Create a unique caller reference (to ensure the request is unique)
+	$callerReference = [Guid]::NewGuid().ToString()
+
+	# Prepare the InvalidationBatch structure
+	$invalidationBatch = @{
+		CallerReference = $callerReference
+		Paths = @{
+			Quantity = $pathsToInvalidate.Count
+			Items    = $pathsToInvalidate
+		}
+	}
+
+	# Perform the CloudFront invalidation
+	$invalidation = New-CFInvalidation -DistributionId $distributionId `
+                                   -InvalidationBatch_CallerReference $invalidationBatch.CallerReference `
+                                   -Paths_Item $invalidationBatch.Paths.Items `
+                                   -Paths_Quantity $invalidationBatch.Paths.Quantity
+
+	# Output the invalidation ID and status
+	Write-Host "Invalidation ID: $($invalidation.Invalidation.Id)"
+	Write-Host "Status: $($invalidation.Invalidation.Status)"
+	Read-Host -Prompt "Press Enter to end. If required, now run the Search Unify msitemaps.xml creation process from AWS Lambda"		
+
