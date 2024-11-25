@@ -27,27 +27,126 @@ Product=XAP;Version=[%=Versions.xap-version%];Type=ENTERPRISE;Customer=yourname@
             <p>The license key can be viewed in the application logs. When the system starts, it writes an information summary to the logs and console, including the license key. You can use the logs to verify that you are using the correct license key.</p>
         </div>
         <h1><a name="license-validation-on-start-up"></a>License Validation on Start-Up</h1>
-        <p>The license is validated whenever the service grid is started. If the license is invalid for some reason (for example, if it is expired), the system will report a problem with the license and terminate. If the license expires while the system is up and running, it will continue to run. However, if a system components fails and tries to restart, it will fail because the license is not valid.</p>
+        <div class="tc-admon-note">
+            <p>If the XAP services are restarted when the license has expired, they will not run. Update the license using one of the methods described in the <a href="#license-lookup-order">License Lookup Order</a> section below.</p>
+        </div>
+        <p>The license is validated whenever the service grid is started. If the license is invalid for some reason (for example, if it is expired), the system will report a problem with the license and terminate. If the license expires while the system is up and running, it will continue to run. However, if a system components fails and tries to restart, it will fail because the license is not valid. Example:</p>
+        <p>
+            <img src="../Resources/Images/XAP/XAPLicense11.png" style="width: 849px;height: 145px;" />
+        </p>
         <h1><a name="license-lookup-order"></a>License Lookup Order</h1>
+        <div class="tc-admon-note">
+            <p>For any of the methods selected, make sure to save the file and restart the XAP services.</p>
+        </div>
         <p>The system looks for the license key in the following locations, in the following order:</p>
         <ol>
             <li>
-                <p>The <code>com.gs.licensekey</code> system property.</p>
+                <p>The <code>com.gs.licensekey</code> system property. <b><a href="#Option_1:" style="font-weight: normal;">See expanded explanation below</a></b>.</p>
             </li>
             <li>
-                <p>The <code><MadCap:variable name="General.EnvVariablePrefix" />_LICENSE</code> environment variable.</p>
+                <p>The <code><MadCap:variable name="General.EnvVariablePrefix" />_LICENSE</code> environment variable. <a href="#Option_2">See expanded explanation below</a>.</p>
             </li>
             <li>
                 <p>A <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code>xap-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code>gs-license.txt</code></MadCap:conditionalText> file in the Classpath.</p>
             </li>
             <li>
-                <p>A <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code>xap-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code>gs-license.txt</code></MadCap:conditionalText> file in the <MadCap:variable name="General.CompanyName" /> installation folder (can be explicitly set using <code>com.gs.home</code> system property)</p>
+                <p>A <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code>xap-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code>gs-license.txt</code></MadCap:conditionalText> file in the <MadCap:variable name="General.CompanyName" /> installation folder (can be explicitly set using <code>com.gs.home</code> system property). <a href="#Option_4">See expanded explanation below</a>.</p>
             </li>
             <li>
                 <p>A <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code>xap-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code>gs-license.txt</code></MadCap:conditionalText> file in the current directory.</p>
             </li>
         </ol>
         <p>&#160;</p>
+        <p><b><a name="Option_4"></a>Option 4</b> </p>
+        <p>This is the simplest option:</p>
+        <ol style="list-style-type: lower-alpha;">
+            <li>
+                <p>Open the gs-license text file</p>
+                <p>
+                    <img src="../Resources/Images/XAP/XapLicense1.png" />
+                </p>
+            </li>
+            <li>
+                <p>Paste the license key inside. </p>
+                <p>
+                    <img src="../Resources/Images/XAP/XAPLicense2.png" style="width: 728px;height: 135px;" />
+                </p>
+            </li>
+            <li>
+                <p>Save and restart XAP&#160;services</p>
+            </li>
+        </ol>
+        <p>&#160;</p>
+        <p><b><a name="Option_1:"></a>Option 1:</b>
+        </p>
+        <p>Upload the license directly into the system properties. </p>
+        <p>Use either the command line, startup script, batch file or update the <code>setenv-overrides</code> bat/sh file:</p>
+        <p>
+            <img src="../Resources/Images/XAP/XAPLicense3.png" style="width: 251px;height: 539px;" />
+        </p>
+        <p>set GS_OPTIONS_EXT=-Dcom.gs.licensekey=12345</p>
+        <p>
+            <img src="../Resources/Images/XAP/XAPLicense4.png" style="width: 811px;height: 442px;" />
+        </p>
+        <p><b><a name="Option_2"></a>Option 2</b>
+        </p>
+        <ol style="list-style-type: lower-alpha;">
+            <li>
+                <p>Add the GS_LICENSE environment variable which is located in the <code>setenv-overrides</code> bat/sh file.</p>
+            </li>
+            <li>
+                <p>For the GS_LIECNSE you will need to set the value <code>GS_LICENSE=licensekeyvalue</code>.</p>
+            </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/XAP/XAPLicense5.png" style="width: 578px;height: 358px;" />
+        </p>
+        <p>Following are the ways to verify if the license  in the system properties is valid:</p>
+        <ol style="list-style-type: lower-alpha;">
+            <li>
+                <p>The XAP services are running.</p>
+            </li>
+            <li>
+                <p>From the log folder, open one of the recent log files:</p>
+                <p>
+                    <img src="../Resources/Images/XAP/XAPLicense6.png" style="width: 763px;height: 366px;" />
+                </p>
+            </li>
+            <li>
+                <p>From the Java monitoring and management console, review the license:</p>
+                <p>
+                    <img src="../Resources/Images/XAP/XAPLicense7.png" style="width: 751px;height: 629px;" />
+                </p>
+            </li>
+            <li>
+                <p>Access the Java console from the GigaSpaces Management Center:</p>
+                <p>
+                    <img src="../Resources/Images/XAP/XAPLicense8.png" style="width: 692px;height: 421px;" />
+                </p>
+            </li>
+            <li>
+                <p>Using the command line, type the following:</p>
+                <ol style="list-style-type: lower-roman;">
+                    <li>
+                        <p><code>jcmd PID&#160;VM.system_properties</code>
+                        </p>
+                        <p>Example: PID = one of the GSC. From the screen capture above GSC&#160;PID = 38244. Type in the command line: <code>jcmd 38244 VM.system_properties</code>.</p>
+                    </li>
+                    <li>
+                        <p>Search for <b>com.gs.licensekey</b>=license. In the screen capture below, this is <b>tryme</b>.</p>
+                    </li>
+                </ol>
+                <p>
+                    <img src="../Resources/Images/XAP/XAPLicense9.png" style="width: 810px;height: 412px;" />
+                </p>
+            </li>
+            <li>
+                <p>The upper right corner of the GigaSpaces Management Console UI will display the license status:</p>
+                <p>
+                    <img src="../Resources/Images/XAP/XAPLicense10.png" />
+                </p>
+            </li>
+        </ol>
         <p>&#160;</p>
         <!--
 ## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
