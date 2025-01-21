@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.17-1-born">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">GraphQL&#160;and SpaceQL</h1>
+            <p>Smart DIH&#160;includes embedded GraphQL API&#160;Gateway functionality.</p>
+            <p>The GraphQL&#160;API Gateway service allows to query XAP spaces using GraphQL&#160;syntax. </p>
+            <p>The service detects all Spaces and corresponding types that exist in each Space. It then auto-generates GraphQL&#160;functions that can be used to easily query the Space and retrieve faster results in comparison to using the equivalent SQL queries.</p>
+            <p>You can query the GraphQL&#160;service through SpaceQL, or using the <b>dihctl</b> application. </p>
+            <h2>Enable GraphQL</h2>
+            <p>To enable GraphQL, add the following global option when installing Smart DIH: </p><pre>--set global.graphql.enabled=true</pre>
+            <h2>SpaceQL</h2>
+            <p>SpaceQL is a GraphQL&#160;user interface, integrated in the DIH SpaceDeck. It allows  to perform interactive GraphQL queries.</p>
+            <p>For an overview of the SpaceQL menu in SpaceDeck, refer to the <a href="../spacedeck/spacedeck-spaceql.htm">SpaceDeck - SpaceQL</a> page.</p>
+            <h2>Configure Relations Between GraphQL Schemas</h2>
+            <p>You can configure relations between GraphQL schemas: </p>
+            <ul>
+                <li>
+                    <p>Through SpaceQL, as above.  </p>
+                </li>
+                <li>
+                    <p>Using the <b>dihctl</b> application, for example:</p>
+                    <p>This yaml file contains relations between two tables - customers and orders, and orders and products:</p><pre>graphqlTypes:
+- name: "CUSTOMERS"
+  space: "demo"
+  relations:
+  - name: "orders"
+    referencedType: "ORDERS"
+    referencedTypeSpace: "demo"
+    usingId: false
+    foreignKeyColumn: "CUSTOMER_ID"
+    referencedTypeColumn: "CUSTOMER_ID"
+- name: "ORDERS"
+  space: "demo"
+  relations:
+  - name: "product"
+    referencedType: "PRODUCTS"
+    referencedTypeSpace: "demo"
+    usingId: true
+    foreignKeyColumn: "PRODUCT_ID"</pre>
+                    <p>This file can be applied and the two relations can be created using the following command:</p><pre>./dihctl -e YOUR_ENV apply -f PATH_TO_FILE.yaml</pre>
+                </li>
+            </ul>
+            <h2>Export Existing Relations</h2>
+            <p>You can export existing relations for all Spaces in a cluster:</p>
+            <ul>
+                <li>
+                    <p> Through SpaceQL, as above. </p>
+                </li>
+                <li>
+                    <p>Using the <b>dihctl</b> application, by performing the following command:</p><pre>./dihctl -e YOUR_ENV export relations -o OUTPUT_FILE_NAME.yaml</pre>
+                </li>
+            </ul>
+            <h2>Query the GraphQL Service Using dihctl</h2>
+            <h3>Example 1: Querying a Customer</h3>
+            <p>This example shows  querying a customer after creating relevant relations  that will hold all relevant data regarding the customer's orders and corresponding order products.</p><pre>query customers($customerId: BigDecimal!) {
+    demo_customersById(CUSTOMER_ID: $customerId) {
+        COMMENTS CREDIT_LIMIT CUSTOMER_CITY CUSTOMER_COUNTRY CUSTOMER_FIRST_NAME
+        CUSTOMER_ID CUSTOMER_LAST_NAME CUSTOMER_STREET
+        CUSTOMER_ZIPCODE DATE_OF_BIRTH EMAIL GENDER INCOME_LEVEL
+        LAST_UPDATE PHONE_NUMBER ZZ_META_DI_TIMESTAMP
+        orders {
+            CARD_TYPE CUSTOMER_ID LAST_UPDATE ORDER_DATE ORDER_ID
+            ORDER_NOTES ORDER_STATUS ORDER_TOTAL PRODUCT_ID ZZ_META_DI_TIMESTAMP
+            product {
+                CATALOG_URL LAST_UPDATE LIST_PRICE PRODUCT_DESCRIPTION
+                PRODUCT_ID PRODUCT_NAME PRODUCT_SIZE ZZ_META_DI_TIMESTAMP
+            }
+        }
+    }
+}</pre>
+        </div>
+    </body>
+</html>
