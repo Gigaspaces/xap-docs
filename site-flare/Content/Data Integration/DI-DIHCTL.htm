@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.17-1-born">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">DIHCTL</h1>
+        <h1>Overview</h1>
+        <p>The dihctl command line application is intended to perform different actions on the working Smart DIH installation (environment). It can be run manually, or as part of a CI/CD pipeline.</p>
+        <p>dihctl can connect to multiple Smart DIH environments, and can be used to clone Smart DIH configurations from one environment to another. dihctl operates by sending REST/GraphQL requests to the dih-admin service, which is part of the Smart DIH installation. For that purpose, dih-admin is added to the ingress of the Kubernetes cluster.</p>
+        <p>To authenticate dihctl use dedicated User Access Token configuration screen.</p>
+        <p>In order to authenticate dihctl,  a dedicated User Access Token must be configured.</p>
+        <h1>DIHCTL&#160;Installation</h1>
+        <ol>
+            <li>
+                <p>Download  the dihctl installer for your operating system:</p>
+                <table>
+                    <col style="width: 280px;" />
+                    <col style="width: 290px;" />
+                    <col />
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Operating system</p>
+                            </td>
+                            <td>
+                                <p>Arch</p>
+                            </td>
+                            <td>
+                                <p>Download link</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>macOS</p>
+                            </td>
+                            <td>
+                                <p>arm64</p>
+                            </td>
+                            <td>
+                                <p><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-releases/17.1.0/dihctl-1.0.0-Darwin-arm64.tgz">Download</a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Linux</p>
+                            </td>
+                            <td>
+                                <p>x86_64</p>
+                            </td>
+                            <td>
+                                <p><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-releases/17.1.0/dihctl-1.0.0-Linux-x86_64.tgz">Download</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <p>Open a terminal in the download location and run the following command:</p><pre xml:space="preserve">tar -xzvf dihctl-1.0.0-Darwin-arm64.tgz -C ~
+cd ~
+sudo xattr -r -d com.apple.quarantine dihctl/
+dihctl/dihctl version
+</pre>
+            </li>
+        </ol>
+        <h1>Creating a User Access Token for DIHCTL</h1>
+        <p>A user access token is needed to authenticate dihctl. </p>
+        <p class="tc-todo">To create a user access token:</p>
+        <ol>
+            <li>
+                <p>In SpaceDeck, click <b>Settings</b> and go to <b>User&#160;Access Tokens</b>.</p>
+                <p>
+                    <img src="../Resources/Images/DI/DI_dihctl-uat.png" />
+                </p>
+            </li>
+            <li>
+                <p>Click <b>New</b>.</p>
+            </li>
+            <li>
+                <p>Enter a <b>Description</b>.</p>
+            </li>
+            <li>
+                <p>Select the <b>Duration in Days</b>.</p>
+            </li>
+            <li>
+                <p>Click <b>Create Token</b>.</p>
+                <p>
+                    <img src="../Resources/Images/DI/DI_dihctl-uat-create.png" />
+                </p>
+            </li>
+            <li>
+                <p>After the new token is created, a popup window appears, showing the access key and the command required for dihctl to login.</p>
+                <p>
+                    <img src="../Resources/Images/DI/DI_dihctl-uat-key.png" style="width: 351px;height: 264px;" />
+                </p>
+                <p>You have only one chance to copy the access key and command. Copy the  command and execute it from the dihctl installation folder (i.e. ~/dihctl):</p><pre xml:space="preserve">ch ~/dihctl
+./dihctl -e team9.gigaspaces.net login http://team9.gigaspaces.net/dih-admin --bearer TOKEN
+</pre>
+                <p>The <b>-e</b> parameter specifies the alias name for the Smart DIH&#160;environment.</p>
+                <p>SpaceDeck generates environment names by the ingress hostname. You can modify these environment names, for example: <i>staging</i>, <i>production</i>, <i>dev</i>.</p>
+            </li>
+        </ol>
+        <h1>Show Entities</h1>
+        <p>You can use dihctl to show entities in a Smart DIH&#160;environment. For example, to show entities in an environment with the alias name <b>staging</b>:</p><pre xml:space="preserve">./dihctl help show
+./dihctl -e staging show pipelines
+./dihctl -e staging show pipelines --help
+./dihctl -e staging show services -f csv
+./dihctl -e staging show spaces
+./dihctl -e staging show datasources
+</pre>
+        <h1>Export Existing Configurations</h1>
+        <p><span class="tc-italic">Description:</span>
+        </p>
+        <p>To export definitions of existing pipelines, services, spaces, or relations in a certain environment into a specified output file in yaml format.</p>
+        <p><span class="tc-italic">Command:</span>
+        </p><pre xml:space="preserve">dihctl -e &lt;environment_name&gt; export &lt;entity_name&gt; &lt;name1 name2 ...&gt; -o &lt;output.yaml&gt;</pre>
+        <p><span class="tc-italic">Parameters:</span>
+        </p>
+        <table>
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th align="left">Parameter Name</th>
+                    <th align="left">Description</th>
+                    <th>
+                        <p>Required</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">environment_name</td>
+                    <td align="left">
+                        <p>The environment to where the configuration will be exported.</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">entity_name</td>
+                    <td align="left">
+                        <p>Which entity to export: pipelines, services, spaces, relations.</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">name1, name2,... </td>
+                    <td align="left">
+                        <p>A list of entities to export, for example: </p>
+                        <p>myPipelineName1 myPipelineName2</p>
+                        <p> If this is not provided, all existing entities will be exported.</p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">output.yaml</td>
+                    <td align="left">
+                        <p>The full path of the output file.</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><span class="tc-italic">Examples:</span>
+        </p>
+        <ol>
+            <li>
+                <p>Export pipelines myPipelineName1 myPipelineName2 from myEnv1 environment:</p><pre xml:space="preserve">dihctl -e myEnv1 export pipelines myPipelineName1 myPipelineName2  -o /home/user/pipelines.yaml</pre>
+                <p>Example of output <b>pipelines.yaml</b>:</p><pre xml:space="preserve">pipelines:
+- name: "myPipelineName1"
+  datasource: "ORA1"
+  spaceName: "demo"
+  tablePipelines:
+  - schema: "RETAIL_DEMO"
+    name: "PRODUCTS"
+    spaceTypeName: "PRODUCTS3"
+    spaceId: []
+    routingKey: "PRODUCT_ID"
+    indexes: []
+    tieredStorageConfig:
+      rule: "DEFAULT"
+    transformations: []
+- name: "myPipelineName2"
+  datasource: "ORA1"
+  spaceName: "demo1"
+  advanced:
+    checkpointInterval: 2000
+    batchWrite: 10
+  tablePipelines:
+  - schema: "RETAIL_DEMO"
+    name: "CUSTOMERS"
+    spaceTypeName: "CUSTOMERS3"
+    spaceId: []
+    routingKey: "CUSTOMER_ID"
+    indexes: []
+    tieredStorageConfig:
+      rule: "DEFAULT"
+    transformations: []
+</pre>
+            </li>
+            <li>
+                <p>Export all relations from myEnv1 environment:</p><pre xml:space="preserve">dihctl -e myEnv1 export relations -o /home/user/relations.yaml</pre>
+            </li>
+        </ol>
+        <h1>Apply New Configurations (Import)</h1>
+        <p><span class="tc-italic">Description:</span>
+        </p>
+        <p>To apply a new configuration to the certain environment from the specified yaml file. Apply will attempt to create specified entities based on a conflict resolution mechanism and start/deploy them.</p>
+        <p><span class="tc-italic">Command:</span>
+        </p><pre xml:space="preserve">dihctl -e &lt;environment_name&gt; apply -s -f &lt;input.yaml&gt; --force --continue-on-errors</pre>
+        <p><span class="tc-italic">Parameters:</span>
+        </p>
+        <table>
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th align="left">Parameter Name</th>
+                    <th align="left">Description</th>
+                    <th>
+                        <p>Required</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">environment_name</td>
+                    <td align="left">
+                        <p>The environment to which the configuration will be applied.</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-fis</td>
+                    <td align="left">
+                        <p>The full path of the input file containing the configuration definition in yaml format. It can contain any mix of configuration entities: pipelines, services, spaces, relations.</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-s </td>
+                    <td align="left">
+                        <p>For applying pipelines only. Whether to start the pipelines after the import.</p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>--force</p>
+                    </td>
+                    <td align="left">
+                        <p>For applying pipelines only.  Whether to try and override existing pipelines, if possible.</p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>--continue-on-errors</p>
+                    </td>
+                    <td align="left">
+                        <p>For applying pipelines only. Whether to continue execution even if an error occurs in any of the table pipelines.</p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><span class="tc-italic">Examples:</span>
+        </p>
+        <ol>
+            <li>
+                <p>Force apply pipelines myPipelineName1 myPipelineName2 to myEnv1 environment and start them:</p><pre xml:space="preserve">dihctl -e myEnv1 apply -s -f /home/user/input.yaml --force --continue-on-errors</pre>
+                <p>Apply pipelines myPipelineName1 myPipelineName2 to myEnv1 environment, but do not start them:</p><pre xml:space="preserve">dihctl -e myEnv1 apply -f /home/user/input.yaml</pre>
+                <p>Example <b>input.yaml</b>:</p><pre xml:space="preserve">pipelines:
+- name: "myPipelineName1"
+  datasource: "ORA1"
+  spaceName: "demo"
+  tablePipelines:
+  - schema: "RETAIL_DEMO"
+    name: "PRODUCTS"
+    spaceTypeName: "PRODUCTS3"
+    spaceId: []
+    routingKey: "PRODUCT_ID"
+    indexes: []
+    tieredStorageConfig:
+      rule: "DEFAULT"
+    transformations: []
+- name: "myPipelineName2"
+  datasource: "ORA1"
+  spaceName: "demo1"
+  advanced:
+    checkpointInterval: 2000
+    batchWrite: 10
+  tablePipelines:
+  - schema: "RETAIL_DEMO"
+    name: "CUSTOMERS"
+    spaceTypeName: "CUSTOMERS3"
+    spaceId: []
+    routingKey: "CUSTOMER_ID"
+    indexes: []
+    tieredStorageConfig:
+      rule: "DEFAULT"
+    transformations: []
+</pre>
+            </li>
+            <li>
+                <p>Apply and deploy service myService1 to myEnv1 environment:</p><pre xml:space="preserve">dihctl -e myEnv1 apply -f /home/user/input.yaml</pre>
+                <p>Example <b>input.yaml</b>:</p><pre xml:space="preserve">services:
+- serviceName: "myService1"
+  spaceName: "demo"
+  sqlTemplate: "select * from CUSTOMERS"
+  description: ""
+  replicas: 1
+</pre>
+            </li>
+        </ol>
+        <h1>Delete Entities</h1>
+        <p><span class="tc-italic">Description:</span>
+        </p>
+        <p>To delete specific pipelines or services in a specific environment.</p>
+        <p><span class="tc-italic">Command:</span>
+        </p><pre xml:space="preserve">dihctl -e &lt;environment_name&gt; delete &lt;entity_name&gt; &lt;name1 name2 ...&gt; --delete-subscription</pre>
+        <p><span class="tc-italic">Parameters:</span>
+        </p>
+        <table>
+            <col>
+            </col>
+            <col>
+            </col>
+            <col>
+            </col>
+            <thead>
+                <tr>
+                    <th align="left">Parameter Name</th>
+                    <th align="left">Description</th>
+                    <th>
+                        <p>Required</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">environment_name</td>
+                    <td align="left">
+                        <p>The environment from which the configuration will be deleted.</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">entity_name</td>
+                    <td align="left">
+                        <p>Which entity to delete, pipelines or services.</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">name1, name2,... </td>
+                    <td align="left">
+                        <p>A list of entities to delete, for example: </p>
+                        <p>myPipelineName1 myPipelineName2</p>
+                    </td>
+                    <td>
+                        <p>Yes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">--delete-subscription</td>
+                    <td align="left">
+                        <p>For deleting pipelines only. Whether or not  to delete the pipeline subscription. The default value is 'yes'.</p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><span class="tc-italic">Examples:</span>
+        </p>
+        <ol>
+            <li>
+                <p>Delete pipelines myPipelineName1 myPipelineName2 from myEnv1 environment:</p><pre xml:space="preserve">dihctl -e myEnv1 delete pipelines myPipelineName1 myPipelineName2</pre>
+            </li>
+            <li>
+                <p>Delete service myService1 from myEnv1 environment:</p><pre xml:space="preserve">dihctl -e myEnv1 delete services myService1 </pre>
+            </li>
+        </ol>
+    </body>
+</html>

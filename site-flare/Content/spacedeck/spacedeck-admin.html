@@ -57,7 +57,10 @@
             <img src="../Resources/Images/SpaceDeck/16.4/Admin_Main.png" style="width: 1135px;height: 309px;" MadCap:conditions="Version.16-4-only" />
         </p>
         <p>
-            <img src="../Resources/Images/17.0/SD_Admin4.png" style="width: 1311px;height: 411px;" MadCap:conditions="Version.17-0-born" />
+            <img src="../Resources/Images/17.0/SD_Admin4.png" style="width: 1311px;height: 411px;" MadCap:conditions="Version.17-0-only" />
+        </p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin4.png" style="width: 575px;height: 243px;" MadCap:conditions="Version.17-1-born" />
         </p>
         <h2><a name="IDPConnectionFields"></a>Connection Fields</h2>
         <ul>
@@ -311,6 +314,31 @@
             <p><span style="color: #ff0000;">4.</span> The role/s are assigned here. Refer <a href="#ResourceManagement">here</a> for details.</p>
             <p><span style="color: #ff0000;">5.</span> Save</p>
         </div>
-        <p>&#160;</p>
+        <div MadCap:conditions="Version.17-1-born">
+            <h1>Access Tokens</h1>
+            <p>The Access Tokens view allows you to manage user access tokens. </p>
+            <p>You can create new tokens, revoke active tokens, and delete expired tokens.</p>
+            <p class="tc-todo">To create a new access token:</p>
+            <ol>
+                <li>
+                    <p>Click <b>New</b>. A dialog box appears.</p>
+                </li>
+                <li>
+                    <p>Fill in a <b>Description</b> for the access token, and the <b>Duration in Days</b> for which the token should remain active.</p>
+                    <p>
+                        <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin-Tokens.png" />
+                    </p>
+                </li>
+                <li>
+                    <p>Click <b>Create Token</b>.</p>
+                    <p>After the new token is created, a dialog box appears showing the secret API access key.</p>
+                    <p>Additionally, the user is provided with a command to log in to the DIHCTL&#160;application using the new token.</p>
+                    <p>The access key must be saved securely, as it will not be available again after the dialog box is closed.</p>
+                    <p>
+                        <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin-TokenSecret.png" />
+                    </p>
+                </li>
+            </ol>
+        </div>
     </body>
 </html>

@@ -127,5 +127,28 @@
                 <img src="../Resources/Static/attachment_files/web-console/monitor3.jpg" alt="image" class="tc-picture100" />
             </p>
         </div>
+        <div MadCap:conditions="Version.17-1-born">
+            <h1>Enabling Grafana Alerts</h1>
+            <p>Grafana alerts are based on Kapacitor , which allows monitoring and alerts on time series data.</p>
+            <p>To use Kapacitor alerts, include the following parameters when installing a new chart:</p>
+            <ul>
+                <li>
+                    <p><strong>kapacitor.smtp.enabled</strong> - enable the SMTP&#160;service for sending alert mails.</p>
+                </li>
+                <li>
+                    <p><strong>kapacitor.smtp.to</strong> - list of recipient email addresses.</p>
+                </li>
+                <li>
+                    <p><strong>kapacitor.smtp.from</strong> - the email address Kapacitor will use to send alerts.</p>
+                </li>
+                <li>
+                    <p><b>kapacitor.smtp.username</b> - the SMTP&#160;username. This is an optional parameter, set it if your SMTP server requires authentication.</p>
+                </li>
+                <li>
+                    <p><b>kapacitor.smtp.password</b> - the SMTP&#160;password. This is an optional parameter, set it if your SMTP server requires authentication.</p>
+                </li>
+            </ul>
+            <p>For example:</p><pre xml:space="preserve">--set kapacitor.smtp.enabled=true, kapacitor.smtp.to=your-to-mail@mail.com, kapacitor.smtp.from=your-from-mail@mail.com</pre>
+        </div>
     </body>
 </html>

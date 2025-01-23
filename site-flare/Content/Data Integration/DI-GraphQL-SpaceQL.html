@@ -13,12 +13,12 @@
             <p>The GraphQL&#160;API Gateway service allows to query XAP spaces using GraphQL&#160;syntax. </p>
             <p>The service detects all Spaces and corresponding types that exist in each Space. It then auto-generates GraphQL&#160;functions that can be used to easily query the Space and retrieve faster results in comparison to using the equivalent SQL queries.</p>
             <p>You can query the GraphQL&#160;service through SpaceQL, or using the <b>dihctl</b> application. </p>
-            <h2>Enable GraphQL</h2>
+            <h1>Enable GraphQL</h1>
             <p>To enable GraphQL, add the following global option when installing Smart DIH: </p><pre>--set global.graphql.enabled=true</pre>
-            <h2>SpaceQL</h2>
+            <h1>SpaceQL</h1>
             <p>SpaceQL is a GraphQL&#160;user interface, integrated in the DIH SpaceDeck. It allows  to perform interactive GraphQL queries.</p>
             <p>For an overview of the SpaceQL menu in SpaceDeck, refer to the <a href="../spacedeck/spacedeck-spaceql.htm">SpaceDeck - SpaceQL</a> page.</p>
-            <h2>Configure Relations Between GraphQL Schemas</h2>
+            <h1>Configure Relations Between GraphQL Schemas</h1>
             <p>You can configure relations between GraphQL schemas: </p>
             <ul>
                 <li>
@@ -47,7 +47,7 @@
                     <p>This file can be applied and the two relations can be created using the following command:</p><pre>./dihctl -e YOUR_ENV apply -f PATH_TO_FILE.yaml</pre>
                 </li>
             </ul>
-            <h2>Export Existing Relations</h2>
+            <h1>Export Existing Relations</h1>
             <p>You can export existing relations for all Spaces in a cluster:</p>
             <ul>
                 <li>
@@ -57,8 +57,8 @@
                     <p>Using the <b>dihctl</b> application, by performing the following command:</p><pre>./dihctl -e YOUR_ENV export relations -o OUTPUT_FILE_NAME.yaml</pre>
                 </li>
             </ul>
-            <h2>Query the GraphQL Service Using dihctl</h2>
-            <h3>Example 1: Querying a Customer</h3>
+            <h1>Query the GraphQL Service Using dihctl</h1>
+            <h2>Example 1: Querying a Customer</h2>
             <p>This example shows  querying a customer after creating relevant relations  that will hold all relevant data regarding the customer's orders and corresponding order products.</p><pre>query customers($customerId: BigDecimal!) {
     demo_customersById(CUSTOMER_ID: $customerId) {
         COMMENTS CREDIT_LIMIT CUSTOMER_CITY CUSTOMER_COUNTRY CUSTOMER_FIRST_NAME
