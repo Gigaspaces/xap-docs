@@ -12,7 +12,7 @@
             <p>Smart DIH&#160;includes embedded GraphQL API&#160;Gateway functionality.</p>
             <p>The GraphQL&#160;API Gateway service allows to query XAP spaces using GraphQL&#160;syntax. </p>
             <p>The service detects all Spaces and corresponding types that exist in each Space. It then auto-generates GraphQL&#160;functions that can be used to easily query the Space and retrieve faster results in comparison to using the equivalent SQL queries.</p>
-            <p>You can query the GraphQL&#160;service through SpaceQL, or using the <b>dihctl</b> application. </p>
+            <p>You can query the GraphQL&#160;service through SpaceQL, or using the <b>DIHCTL</b> application. </p>
             <h1>Enable GraphQL</h1>
             <p>To enable GraphQL, add the following global option when installing Smart DIH: </p><pre>--set global.graphql.enabled=true</pre>
             <h1>SpaceQL</h1>
@@ -25,7 +25,7 @@
                     <p>Through SpaceQL, as above.  </p>
                 </li>
                 <li>
-                    <p>Using the <b>dihctl</b> application, for example:</p>
+                    <p>Using the <b>DIHCTL</b> application, for example:</p>
                     <p>This yaml file contains relations between two tables - customers and orders, and orders and products:</p><pre>graphqlTypes:
 - name: "CUSTOMERS"
   space: "demo"
@@ -54,10 +54,10 @@
                     <p> Through SpaceQL, as above. </p>
                 </li>
                 <li>
-                    <p>Using the <b>dihctl</b> application, by performing the following command:</p><pre>./dihctl -e YOUR_ENV export relations -o OUTPUT_FILE_NAME.yaml</pre>
+                    <p>Using the <b>DIHCTL</b> application, by performing the following command:</p><pre>./dihctl -e YOUR_ENV export relations -o OUTPUT_FILE_NAME.yaml</pre>
                 </li>
             </ul>
-            <h1>Query the GraphQL Service Using dihctl</h1>
+            <h1>Query the GraphQL Service Using DIHCTL</h1>
             <h2>Example 1: Querying a Customer</h2>
             <p>This example shows  querying a customer after creating relevant relations  that will hold all relevant data regarding the customer's orders and corresponding order products.</p><pre>query customers($customerId: BigDecimal!) {
     demo_customersById(CUSTOMER_ID: $customerId) {

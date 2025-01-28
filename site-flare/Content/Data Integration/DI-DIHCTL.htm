@@ -9,14 +9,14 @@
         </div>
         <h1 class="tc-pagetitle">DIHCTL</h1>
         <h1>Overview</h1>
-        <p>The dihctl command line application is intended to perform different actions on the working Smart DIH installation (environment). It can be run manually, or as part of a CI/CD pipeline.</p>
-        <p>dihctl can connect to multiple Smart DIH environments, and can be used to clone Smart DIH configurations from one environment to another. dihctl operates by sending REST/GraphQL requests to the dih-admin service, which is part of the Smart DIH installation. For that purpose, dih-admin is added to the ingress of the Kubernetes cluster.</p>
-        <p>To authenticate dihctl use dedicated User Access Token configuration screen.</p>
-        <p>In order to authenticate dihctl,  a dedicated User Access Token must be configured.</p>
-        <h1>DIHCTL&#160;Installation</h1>
+        <p>The DIHCTL command line application is intended to perform different actions on the working Smart DIH installation (environment). It can be run manually, or as part of a CI/CD pipeline.</p>
+        <p>DIHCTL can connect to multiple Smart DIH environments, and can be used to clone Smart DIH configurations from one environment to another. dihctl operates by sending REST/GraphQL requests to the dih-admin service, which is part of the Smart DIH installation. For that purpose, dih-admin is added to the ingress of the Kubernetes cluster.</p>
+        <p>To authenticate DIHCTL use dedicated User Access Token configuration screen.</p>
+        <p>In order to authenticate DIHCTL,  a dedicated User Access Token must be configured.</p>
+        <h1>DIHCTL Installation</h1>
         <ol>
             <li>
-                <p>Download  the dihctl installer for your operating system:</p>
+                <p>Download  the DIHCTL installer for your operating system:</p>
                 <table>
                     <col style="width: 280px;" />
                     <col style="width: 290px;" />
@@ -69,7 +69,7 @@ dihctl/dihctl version
             </li>
         </ol>
         <h1>Creating a User Access Token for DIHCTL</h1>
-        <p>A user access token is needed to authenticate dihctl. </p>
+        <p>A user access token is needed to authenticate DIHCTL. </p>
         <p class="tc-todo">To create a user access token:</p>
         <ol>
             <li>
@@ -94,11 +94,11 @@ dihctl/dihctl version
                 </p>
             </li>
             <li>
-                <p>After the new token is created, a popup window appears, showing the access key and the command required for dihctl to login.</p>
+                <p>After the new token is created, a popup window appears, showing the access key and the command required for DIHCTL to login.</p>
                 <p>
                     <img src="../Resources/Images/DI/DI_dihctl-uat-key.png" style="width: 351px;height: 264px;" />
                 </p>
-                <p>You have only one chance to copy the access key and command. Copy the  command and execute it from the dihctl installation folder (i.e. ~/dihctl):</p><pre xml:space="preserve">ch ~/dihctl
+                <p>You have only one chance to copy the access key and command. Copy the  command and execute it from the DIHCTL installation folder (i.e. ~/dihctl):</p><pre xml:space="preserve">ch ~/dihctl
 ./dihctl -e team9.gigaspaces.net login http://team9.gigaspaces.net/dih-admin --bearer TOKEN
 </pre>
                 <p>The <b>-e</b> parameter specifies the alias name for the Smart DIH&#160;environment.</p>
@@ -106,7 +106,7 @@ dihctl/dihctl version
             </li>
         </ol>
         <h1>Show Entities</h1>
-        <p>You can use dihctl to show entities in a Smart DIH&#160;environment. For example, to show entities in an environment with the alias name <b>staging</b>:</p><pre xml:space="preserve">./dihctl help show
+        <p>You can use DIHCTL to show entities in a Smart DIH environment. For example, to show entities in an environment with the alias name <b>staging</b>:</p><pre xml:space="preserve">./dihctl help show
 ./dihctl -e staging show pipelines
 ./dihctl -e staging show pipelines --help
 ./dihctl -e staging show services -f csv
