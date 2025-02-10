@@ -28,6 +28,10 @@ nav.title-bar.tab-bar.sticky {
   height: 200px;
 }
 
+.sidenav > li:first-child, .sidenav > li:last-child {
+  display: none;
+  }
+
 /* New header */
 
 .header-left {
@@ -295,12 +299,13 @@ li.demo-button {
 }
 
 ul.landing-tiles {
-  display: flex;
-  justify-content: space-between;
-  max-width: 95%;
-  margin: 30px auto;
-  flex-wrap: wrap;
-  padding: 0;
+	display: flex;
+	justify-content: center;
+	max-width: 95%;
+	margin: 30px auto;
+	flex-wrap: wrap;
+	gap: 40px;
+	padding: 0;
 }
 
 ul.landing-tiles li {
@@ -403,6 +408,10 @@ ul.landing-tiles li {
   position: absolute;
   top: -50px;
   font-size: 40px;
+}
+
+.landing.erag .nav-search-wrapper:before {
+  content: "eRAG Technical Documentation";
 }
 
 /* SU Feedback */
@@ -514,7 +523,7 @@ ul.footer-col > li > p {
 }
 
 .footer-top {
-  padding: 40px 40px 10px 40px;
+  padding: 40px 40px 0px 40px;
   display: none;
 }
 
@@ -523,7 +532,7 @@ ul.footer-col > li > p {
 }
 
 .landing .footer-copyright {
-  padding: 0 40px 10px 40px;
+  padding: 0 40px 0px 40px;
 }
 
 .footer-copyright {
