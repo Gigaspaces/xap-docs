@@ -45,7 +45,7 @@
         <p>As our application description suggests, there are two primary entities, and two status-related types. The entities are <code>OrderEvent</code> and <code>AccountData</code>; the statuses are, surprisingly, <code>Status</code> and <code>Operation</code>.</p>
         <p>The <code>Status</code> is a Java enum that reflects the states an order can be in.</p>
         <p>The <code>Operation</code> is a Java enum that reflects one of two operations for an order: Buy or Sell.</p>
-        <p>The <code>OrderEvent</code> is a simple <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-support.html">JavaBean</a>, which exposes an id (a unique identifier for the data grid), an account key, a price, the order status, and an operation for the order.</p>
+        <p>The <code>OrderEvent</code> is a simple <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/pojo-support.html">JavaBean</a>, which exposes an id (a unique identifier for the data grid), an account key, a price, the order status, and an operation for the order.</p>
         <p>The <code>AccountData</code> object is much simpler, exposing only an account key (called the username in this model) and a balance.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  AccountData " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.tutorials.common.model;

@@ -31,11 +31,11 @@
         </table>
         <h1><a name="overview">&#160;</a>Overview</h1>
         <p>The following example is based on the standard <a href="http://www.vaannila.com/spring/spring-hibernate-integration-1.html">Spring Hibernate Integration tutorial</a>.
-In this pattern you will see how to modify an existing simple spring/hibernate application to leverage GigaSpaces as the <a href="/product_overview/the-in-memory-data-grid.html">in-memory Data-grid</a> and the application server hosting both the <a href="https://docs.gigaspaces.com/latest/dev-java/web-application-support.html">web application</a> and the data in-memory. The Hibernate persistency settings will still be leveraged by <a href="https://docs.gigaspaces.com/latest/dev-java/hibernate-space-persistency.html">GigaSpaces Hibernate External Data Source</a> storing the data in-memory into a database in an <a href="https://docs.gigaspaces.com/latest/dev-java/asynchronous-persistency-with-the-mirror.html">asynchronous manner</a>.</p>
+In this pattern you will see how to modify an existing simple spring/hibernate application to leverage GigaSpaces as the <a href="/product_overview/the-in-memory-data-grid.html">in-memory Data-grid</a> and the application server hosting both the <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/web-application-support.html">web application</a> and the data in-memory. The Hibernate persistency settings will still be leveraged by <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/hibernate-space-persistency.html">GigaSpaces Hibernate External Data Source</a> storing the data in-memory into a database in an <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/asynchronous-persistency-with-the-mirror.html">asynchronous manner</a>.</p>
         <p>Moving Spring/Hibernate application to GigaSpaces involves the following basic steps:</p>
         <ol>
             <li>Spring bean Configuration file changes</li>
-            <li><a href="https://docs.gigaspaces.com/latest/dev-java/pojo-support.html">POJO Class</a> changes</li>
+            <li><a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/pojo-support.html">POJO Class</a> changes</li>
             <li>DAO implementation changes</li>
             <li>Deploying the data-grid and the Spring based web application into GigaSpaces</li>
         </ol>
@@ -419,7 +419,7 @@ public interface UserDAO {
 }
 </code></pre>
         <h1><a name="the-dao-implementation">&#160;</a>The DAO Implementation</h1>
-        <p>The DAO implementation should be modified to use the <a href="https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html">GigaSpace interface</a> to access the data grid instead of using the <code>HibernateTemplate</code> that is accessing the database. The <code>GigaSpace</code> interface similar methods to the <code>HibernateTemplate</code> to write and <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">Query</a> for objects.</p>
+        <p>The DAO implementation should be modified to use the <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/the-gigaspace-interface-overview.html">GigaSpace interface</a> to access the data grid instead of using the <code>HibernateTemplate</code> that is accessing the database. The <code>GigaSpace</code> interface similar methods to the <code>HibernateTemplate</code> to write and <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/query-sql.html">Query</a> for objects.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Hibernate DAO Implemenation " style="padding:10px"><pre><code class="language-java">package com.vaannila.dao;
 
@@ -479,7 +479,7 @@ public class UserDAOSpaceImpl implements UserDAO {
             </div>
         </div>
         <h1><a name="deploying-the-data-grid-and-the-application">&#160;</a>Deploying the Data Grid and the Application</h1>
-        <p>To deploy the Data Grid and the web Application into the <a href="https://docs.gigaspaces.com/latest/admin/the-runtime-environment.html">GigaSpaces runtime environment</a> perform the following:</p>
+        <p>To deploy the Data Grid and the web Application into the <a href="https://docs.gigaspaces.com/xapdih/latest/admin/the-runtime-environment.html">GigaSpaces runtime environment</a> perform the following:</p>
         <ul>
             <li>Download the <a href="/attachment_files/sbp/3rd_party_libraries.zip">3rd party libraries</a> package, and extract it into the <code><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</code> folder.</li>
             <li>Download the <a href="/attachment_files/sbp/application.war">application.war</a> , <a href="/attachment_files/sbp/myDataGrid.jar">myDataGrid.jar</a> and the <a href="/attachment_files/sbp/myMirror.jar">myMirror.jar</a>.</li>

@@ -10,11 +10,11 @@
         <h1 class="tc-pagetitle">Data Types, Schema Types and Schema Evolution</h1>
         <div>
             <h1>What Kinds of Data Stores are Available in <MadCap:variable name="General.ProductNameXAP" />?</h1>
-            <p>When a Data Store object is defined in <MadCap:variable name="General.ProductNameXAP" />, the object can be defined as a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">Space Object</a> or a <a href="https://docs.gigaspaces.com/latest/dev-java/document-overview.html">Space Document</a>.</p>
+            <p>When a Data Store object is defined in <MadCap:variable name="General.ProductNameXAP" />, the object can be defined as a <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/pojo-overview.html">Space Object</a> or a <a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/document-overview.html">Space Document</a>.</p>
             <p>Within each object type, the data schema can be defined with:</p>
             <ul>
                 <li>Fixed or static properties (columns), sometimes referred to as  <i>schema on write</i>,</li>
-                <li><a href="https://docs.gigaspaces.com/latest/dev-java/dynamic-properties.html">Dynamic properties</a>, sometimes referred to as <i>schema on read</i>, or</li>
+                <li><a href="https://docs.gigaspaces.com/xapdih/latest/dev-java/dynamic-properties.html">Dynamic properties</a>, sometimes referred to as <i>schema on read</i>, or</li>
                 <li>Hybrid, a combination of both fixed and dynamic properties.</li>
             </ul>
             <p>The choice of object type and schema definition can have a profound impact on an application's memory footprint and processing speed, and on the procedure required to make a change in the schema.</p>
@@ -149,7 +149,7 @@ public interface SpaceTypeSchemaAdapter extends Serializable  {
         <p>The type adapter is implemented by the user for each type they plan to adapt. The typeName is used to fetch the specific type adapter.</p>
         <p>In order to use it in schema evolution, the adapter(s) must be present in the CLASSPATH of the new service.</p>
         <h2>Dynamic Space Data Source Loading</h2>
-        <p>The SpaceDataSource API is an existing feature that enables loading data from an external data source (database, s3 etc.) upon service deployment. (see <a href="https://docs.gigaspaces.com/15.5/dev-java/space-data-source-api.html?Highlight=data%20source">here</a>).</p>
+        <p>The SpaceDataSource API is an existing feature that enables loading data from an external data source (database, s3 etc.) upon service deployment. (see <a href="https://docs.gigaspaces.com/xapdih/15.5/dev-java/space-data-source-api.html?Highlight=data%20source">here</a>).</p>
         <p>With dynamic data source loading, the service can load the data source at any given time. This API also allows an optional adaptation of the data during the loading.</p>
         <p>The API starting point is the GigaSpacesclass, where a new asyncLoad method was introduced:</p>
         <div style="padding:10px"><pre><code class="language-java">

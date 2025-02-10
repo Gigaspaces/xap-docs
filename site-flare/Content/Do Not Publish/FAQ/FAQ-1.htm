@@ -17,7 +17,7 @@
                 <p>2. The primary space is not responding - a common reason for a primary delay in response is GC activity</p>
                 <p>to verify have a look at the verbose gc log of that primary space.</p>
                 <p>make sure verbose GC is enabled, (You can use https://gceasy.io/ to analyze the verbose gc logs) and if the problem is indeed GC, you can tune GC parameters or increase heap size if needed and/or analyze the heap dump to have a better understanding regarding what the process hold in memory.</p>
-                <p>see: <a href="https://docs.gigaspaces.com/latest/production/production-jvm-tuning.html?Highlight=verbose%20gc">https://docs.gigaspaces.com/latest/production/production-jvm-tuning.html?Highlight=verbose%20gc</a></p>
+                <p>see: <a href="https://docs.gigaspaces.com/xapdih/latest/production/production-jvm-tuning.html?Highlight=verbose%20gc">https://docs.gigaspaces.com/xapdih/latest/production/production-jvm-tuning.html?Highlight=verbose%20gc</a></p>
                 <p>Another reason for primary delays can be high load, in this case, you should look at the CPU monitor at the time of the exception. Taking several thread dumps of the primary can also give some indication regarding what it's doing.</p>
                 <p>Any delay in network response can be a cause for this error. Some uncommon causes we have seen are virus scans, vmware vmotion events taking too long, faulty network cards.</p>
             </MadCap:dropDownBody>
@@ -31,7 +31,7 @@
                 <p>Creating JMX URL per each GS component allows accessing the component using that URL and allows accessing it with jconsole, jtop visualvm etc, Common usage of JMX in GS product, is changing log level at run time.</p>
                 <p>Most of the other capabilities accessing space and container beans can be achieved using admin API or rest API.</p>
                 <p>That said, for security reasons, You can either configure secure JMX or disable it altogether.</p>
-                <p>In gs-ui doc you can see jmx function: <a href="https://docs.gigaspaces.com/latest/admin/space-jmx-management.html">https://docs.gigaspaces.com/latest/admin/space-jmx-management.html</a></p>
+                <p>In gs-ui doc you can see jmx function: <a href="https://docs.gigaspaces.com/xapdih/latest/admin/space-jmx-management.html">https://docs.gigaspaces.com/xapdih/latest/admin/space-jmx-management.html</a></p>
                 <p>Disable JMX</p>
                 <p>Starting from GS version 15.8 disabling JMX requires setting the following parameters:</p>
                 <p>-Dcom.gs.jmx.enabled=false and  -Dcom.gs.jndi.enabled=false</p>
@@ -58,10 +58,10 @@
             <MadCap:dropDownBody>
                 <p>This message means that the number of File Descriptors/Handlers reached its limit.</p>
                 <p>You can change the limit using ulimit cmd</p>
-                <p>please see:<a href="https://docs.gigaspaces.com/latest/admin/tuning-infrastructure.html?Highlight=Ulimit">https://docs.gigaspaces.com/latest/admin/tuning-infrastructure.html?Highlight=Ulimit</a>
+                <p>please see:<a href="https://docs.gigaspaces.com/xapdih/latest/admin/tuning-infrastructure.html?Highlight=Ulimit">https://docs.gigaspaces.com/xapdih/latest/admin/tuning-infrastructure.html?Highlight=Ulimit</a>
 			for more details.</p>
                 <p>In some rare cases, the number of threads is larger than expected, in that case, taking a thread dump will help to identify the affected pool, and max threads allowed at the pool should be configured.
-			see: <a href="https://docs.gigaspaces.com/latest/admin/tuning-threads-usage.html?Highlight=Thread">https://docs.gigaspaces.com/latest/admin/tuning-threads-usage.html?Highlight=Thread</a></p>
+			see: <a href="https://docs.gigaspaces.com/xapdih/latest/admin/tuning-threads-usage.html?Highlight=Thread">https://docs.gigaspaces.com/xapdih/latest/admin/tuning-threads-usage.html?Highlight=Thread</a></p>
             </MadCap:dropDownBody>
         </MadCap:dropDown>
         <p>&#160;</p>

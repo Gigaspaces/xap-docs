@@ -29,7 +29,7 @@
                 </tr>
             </tbody>
         </table>
-        <p><a href="https://www.confluent.io/resources/kafka-the-definitive-guide">Kafka</a> is enterprise software that provides a publish/subscribe data communication service. Kafka can be used to indicate the location of output data for a <MadCap:variable name="General.ProductNameXAP" /><a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition"> SpaceType Descriptor</a>. </p>
+        <p><a href="https://www.confluent.io/resources/kafka-the-definitive-guide">Kafka</a> is enterprise software that provides a publish/subscribe data communication service. Kafka can be used to indicate the location of output data for a <MadCap:variable name="General.ProductNameXAP" /><a href="https://docs.gigaspaces.com/xapdih/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition"> SpaceType Descriptor</a>. </p>
         <h1>Prerequisites</h1>
         <p>In order to deploy the <MadCap:variable name="General.ProductNameIE" /> Kafka Sink Connector, the following prerequisites are required:</p>
         <ul>
@@ -80,7 +80,7 @@ key.converter.schemas.enable=false
 #value.converter.schemas.enable=true<br /><br />offset.storage.file.filename=/tmp/connect.offsets
 # Flush much faster than normal, which is useful for testing/debugging
 offset.flush.interval.ms=10000
-				</code></pre><p>&#160;</p>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.<div class="tc-admon-note"><p>These JSON fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
+				</code></pre><p>&#160;</p>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.<div class="tc-admon-note"><p>These JSON fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/xapdih/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
 				[{
 				"type": "com.gs.Person",
 				"FixedProperties": {
