@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultSkin Version="6" SkinType="Component" Comment="HTML5 Toolbar skin" ComponentType="TopicToolbar" EnableResponsiveOutput="True">
+    <Stylesheet>
+        <Styles>
+            <Style Name="ToolbarItem">
+                <Classes>
+                    <StyleClass Name="SendFeedback" Custom="true">
+                        <Properties>
+                            <Property Name="BackgroundRepeat">no-repeat</Property>
+                            <Property Name="BackgroundPosition">center center</Property>
+                            <Property Name="Click">sendEmailToDocumentation()</Property>
+                            <Property Name="ButtonIcon">url('Message-Mail-22.png')</Property>
+                            <Property Name="ButtonTextDisplay">block</Property>
+                            <Property Name="BoxShadowVShadow">1px</Property>
+                            <Property Name="Width">170px</Property>
+                            <Property Name="Display">block</Property>
+                        </Properties>
+                    </StyleClass>
+                    <StyleClass Name="Share" Custom="true">
+                        <Properties>
+                            <Property Name="BackgroundRepeat">no-repeat</Property>
+                            <Property Name="BackgroundPosition">center center</Property>
+                            <Property Name="ButtonIcon">url('Share-06-WF-22.png')</Property>
+                            <Property Name="Click">sendEmail()</Property>
+                        </Properties>
+                    </StyleClass>
+                    <StyleClass Name="Print">
+                        <Properties>
+                            <Property Name="ButtonIcon">url('Print-01-22.png')</Property>
+                            <Property Name="PaddingLeft">4px</Property>
+                        </Properties>
+                    </StyleClass>
+                </Classes>
+                <Properties>
+                    <Property Name="BorderLeft">none 1px #e1e1e1</Property>
+                    <Property Name="BorderRight">none 1px #e1e1e1</Property>
+                    <Property Name="BorderTop">none 1px #e1e1e1</Property>
+                    <Property Name="BorderBottom">none 1px #e1e1e1</Property>
+                    <Property Name="BoxShadowVShadow">0px</Property>
+                    <Property Name="BackgroundColor">#ffffff</Property>
+                    <Property Name="BackgroundGradient">vertical #ffffff #ffffff</Property>
+                    <Property Name="BorderTopLeftRadius">0px</Property>
+                    <Property Name="BorderTopRightRadius">0px</Property>
+                    <Property Name="BorderBottomRightRadius">0px</Property>
+                    <Property Name="BorderBottomLeftRadius">0px</Property>
+                    <Property Name="FontFamily">Montserrat, sans-serif</Property>
+                    <Property Name="FontSize">16px</Property>
+                    <Property Name="Color">#006DB8</Property>
+                </Properties>
+            </Style>
+            <Medium Name="Tablet">
+                <Style Name="ToolbarItem">
+                    <Classes>
+                        <StyleClass Name="ShareFeedback">
+                            <Properties>
+                                <Property Name="BackgroundRepeat">no-repeat</Property>
+                                <Property Name="BackgroundPosition">center center</Property>
+                            </Properties>
+                        </StyleClass>
+                        <StyleClass Name="SendFeedback">
+                            <Properties>
+                                <Property Name="BackgroundRepeat">no-repeat</Property>
+                                <Property Name="BackgroundPosition">center center</Property>
+                            </Properties>
+                        </StyleClass>
+                        <StyleClass Name="Share">
+                            <Properties>
+                                <Property Name="BackgroundRepeat">no-repeat</Property>
+                                <Property Name="BackgroundPosition">center center</Property>
+                            </Properties>
+                        </StyleClass>
+                    </Classes>
+                </Style>
+            </Medium>
+            <Medium Name="Mobile">
+                <Style Name="ToolbarItem">
+                    <Classes>
+                        <StyleClass Name="ShareFeedback">
+                            <Properties>
+                                <Property Name="BackgroundRepeat">no-repeat</Property>
+                                <Property Name="BackgroundPosition">center center</Property>
+                            </Properties>
+                        </StyleClass>
+                        <StyleClass Name="SendFeedback">
+                            <Properties>
+                                <Property Name="BackgroundRepeat">no-repeat</Property>
+                                <Property Name="BackgroundPosition">center center</Property>
+                                <Property Name="Width">22px</Property>
+                            </Properties>
+                        </StyleClass>
+                        <StyleClass Name="Share">
+                            <Properties>
+                                <Property Name="BackgroundRepeat">no-repeat</Property>
+                                <Property Name="BackgroundPosition">center center</Property>
+                            </Properties>
+                        </StyleClass>
+                    </Classes>
+                </Style>
+            </Medium>
+        </Styles>
+        <Stylesheet>
+        </Stylesheet>
+        <Resources>
+            <Resource Name="Share-06-WF-22.png">H4sIAAAAAAAEAAFOArH9iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAACFUlEQVQ4y6WVzysuURjH5x2vn4vrx1qSlUjXj5C8bhYU/gVZWaibcXeKP+B277VhK7KyslCSRrcsJISlSGyEuElkhRuv7znzPeY5Myxe79TnPWfOvPN9nnm+z5xxnEwOzzejy/EbOAJp8hdUOBkfStjzczjvodge+A7GwDU4BZWZCic45oBzsBJ5ghJwCfxMhU22Tcw2xfN8UMD5mL72yTKkKFzP81wtHsyHA2FpiOcniSvWpXCS8yJwByZ4nhRl2gSHYSZxITdSUxmsjSaltbjnV4NGsMy1bln4cjAIRsBXISiDppiRunkd/AYPot1uQJ+s3w9eeAZPnM+DPF7vAFtc39c3h8FK2M8tos6u+hngDSr6Fzrcz7UF3TqhYK+ot/HEbkdjMPtx2TJQumsytAVleRKiZInQp+DmYS7kiZaqi/RqAdsqavKHwqquf0Sjmzp1UXgWlAmRJEe7m94pxQwNqxV/UH26C674ir7o4J5fGhPw/GJ2S5MwW5unDNtgdotgDtyCe912wVMoYx+ZwC8RYBT8Z+A0N6Ee+QiFYJxGnYDpt+0vzKyUAZ7Zr0sUmwQ1oFlvSsFal3ksV7gu6+VadQ37dooCP995pbfBgRMxxbXm8Vfc1LCVwg0fb0LxHcyxnLbXTbAWCrdnv23GN/oL68UKO0Str2bzaepj1jtgiB3yD5yBKifLj2knOBa725r53r0CvLDRJGnF9wcAAAAASUVORK5CYIKUCctHTgIAAA==</Resource>
+            <Resource Name="Message-Mail-22.png">H4sIAAAAAAAEAOsM8HPn5ZLiYmBg4PX0cAkC0mIgzMEMJD9nzeFkYGC8HuAT4grkMuTuGEXDDCkHiX0ExuyckiC/YAZGJiYmRkYGJklVcWkQEFeRlJC/8fEbGHy8KS91T5nv6N////8e41N7+ER1/u+//4Dg7++FGs//PNOt/vv/799ag5d//rwwCv/258+3SNPXf/7/eWVq9uj37ycWlm///HljLnPipJz1+z9/3llyrN/Iafvxz58P1uzs9p+Aej/ZOX35+/ebhc2Pv3/fvf/7/99fiPF//32XZXog97kFmBRlPF0cQyQul55KDWZyYGh5KBqis4F7926BN4feHXkHBHlH78m/9jyj0fy+ffftdL4NEz1y/6tMvcH4bcJBJUkZBnf1dPGdh65OcXr37N1DzorK3xeun4+XTPCQlBA5M+GCQYu7i5uhVduypMcS8yfMYFFbrjA1c1XJVrfF506cSTIrKuq0eSa+YIKrVtZWHb1EzVOnIhnDNq2SMt26Rvn1zQsdy9K2CVht27RWVnbum1dp/vq/flk6yK54qtDeZmjk1debnDQpuMmh0Kc4Taz4M3d3RNSzrgZ5seta169t3Ni5NvddwXQ3sX3H/zI/+NBxnM10U8W8D1/e/Gma7ma6USJ8z76Huu9/zD66p76ixkj7Y47X/0+/vq0z1/+c3/0h0bQmivf/l9St+YKye1gniu8+Dsqqnq5+LuucEpoA9ZSKHeADAAA=</Resource>
+            <Resource Name="Print-01-22.png">H4sIAAAAAAAEAOsM8HPn5ZLiYmBg4PX0cAkC0mIgzMEMJD9nzeFkYGBqCvAJcQVyGXJ3jaJRNFBIr5zZHJgIr5YE+QUzMDA3/v3//28zMJk+2BWamhy66yED48sOlo6XTKwsjK96eDiYGIS5GRhMGxrqy6sb6hsaqstr6+rNXv779/rvbxD42ah3+9/////sdwCJu1v//QcLAw0FGvvn//8/G4JCgoKC/tWZGhoa/gPKfa+U+AeUf/WvXlRAQECQX0yr7t8b88b66obmhvr6ura4ln/V9Y0WDAxvGgQ+vH3z5tXPDZ2vGECued3FAso9DIwcXa8ZWViZQM4EOjotGQhSQQ5vBnmljcFjI7cdUNUCTxfHEInLyQkJKUkJ+04dqhLluXFjfZFBQZGhgUGBscGHD58+cjcw7l8wwYC5mSMgYkqjo88cxyZGHhUJlaUHnC4ZbSr6xMXT5ZWw4MQCBX117cVnFjCFLF51bAFf4NpzC5ZxLTGRMNm6pbTk6xdenoMHDpy4ceTKmTtNBz+tuhpqklB7te3gtXP3DgoyzpmzfteOXbGpBftfNa65dPn1KvPm86Fs8QLHr/Pz/VnPxsIWm8rAxRbPy8nLzd68oePE6sCLhgmJIgLVpnp2D7WcH11d7Rk+OTjo8iVjo0uXg4InNd5ZHS5ptL7KIu5s0olzJ8+ePn32ZNqJXa9eFJrOX7hgw4ofWZ4vr65OTQiJKtq6Y8+iSQtfZW19fFWq7dauX23Hlj0Ta7u2ui83/LakldXuXeu/GXz59tV/hkWmEfPhKSsvLzs/46RBthnz4Tk7Pz/Tj9iR8XHSUh6e09OMDc7EHdxQdPWVafZ1wzX3NxRefqYbvd0w5/7G4uvvbB8Y3N/dn2ivkvDdWOYGtxiT662Dzu39MrZVX258FFb3n2vH3Lllsw/P83Xz9jN8fHzUO1zfuCAukYGh/+OxN8mCd/aB4tTT1c9lnVNCEwDUWl7/SAUAAA==</Resource>
+        </Resources>
+    </Stylesheet>
+    <Strings>
+        <Stylesheet lang="en-us">
+            <Stylesheet>
+                <Styles>
+                    <Style Name="ToolbarItem">
+                        <Classes>
+                            <StyleClass Name="SendFeedback">
+                                <Properties>
+                                    <Property Name="Label">Send feedback</Property>
+                                    <Property Name="Tooltip">Send feedback</Property>
+                                    <Property Name="AltText">Send feedback</Property>
+                                </Properties>
+                            </StyleClass>
+                            <StyleClass Name="Share">
+                                <Properties>
+                                    <Property Name="Tooltip">Share</Property>
+                                    <Property Name="AltText">Share</Property>
+                                    <Property Name="Label">Share</Property>
+                                </Properties>
+                            </StyleClass>
+                        </Classes>
+                    </Style>
+                </Styles>
+            </Stylesheet>
+        </Stylesheet>
+    </Strings>
+    <TopicToolbar EnableCustomLayout="true" Buttons="Share|Print">
+        <Script>function sendEmail() {
+   const subject = "GigaSpaces Documentation - Topic Title: " + encodeURIComponent(document.title);
+  const body = "I'm sharing this page with you:%0D%0A%0D%0A" + encodeURIComponent(window.location.href);
+ 
+  const mailtoUrl = `mailto:?subject=${subject}&amp;body=${body}`;
+  window.open(mailtoUrl);
+}
+
+function sendEmailToDocumentation() {
+  const to = 'documentation@gigaspaces.com';
+  const subject = "Topic Title: " + encodeURIComponent(document.title);
+const body = "We%20appreciate%20your%20feedback.%20Please%20type%20your%20comments%20here...%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A________________________________________________________________________________%0D%0ADocumentation%20team%20internal%20use%3A%0D%0AURL: " + encodeURIComponent(window.location.href);
+   const mailtoUrl = `mailto:${to}?subject=${subject}&amp;body=${body}`;
+  window.open(mailtoUrl);
+}</Script>
+    </TopicToolbar>
+</CatapultSkin>

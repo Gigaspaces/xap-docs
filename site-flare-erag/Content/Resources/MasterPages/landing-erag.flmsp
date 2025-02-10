@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <script src="../Custom/clipboard.min.js"> </script>
+    <head>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-MX7TMJ');</script>
+        <!--<meta name="google-site-verification" content="E9Fjs45cJElut6AsK1Va-rq8b-_bQGcHixs4IV4Rh30" />-->
+        <meta name="google-site-verification" content="BIrQRB7-nQcAkmqsZ_ACPf3_RXRJnMGo9ASDZ0yCQZE" />
+        <!-- End Google Tag Manager -->
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>
+        </title>
+        <script src="https://use.fontawesome.com/ed7d2ff279.js">
+        </script>
+        <link href="../Custom/easyui.css" rel="stylesheet" type="text/css" />
+        <link href="../Custom/vs.css" rel="stylesheet" type="text/css" />
+        <script src="../Custom/jquery.easyui.min.js" type="text/javascript">
+        </script>
+        <script src="../Custom/highlight.pack.js" type="text/javascript">
+        </script>
+        <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet" />
+        <link href="../Custom/[%=HTML2023_Variables.CSS%]" rel="stylesheet" type="text/css" />
+        <script src="../Custom/[%=HTML2023_Variables.JS%]" type="text/javascript">
+        </script>
+        <script src="../Custom/prism.js">
+        </script>
+        <link rel="stylesheet" href="https://[%=HTML2023_Variables.SU%]/searchbox.css" />
+        <script type="text/javascript" src="https://[%=HTML2023_Variables.SU%]/an.js">
+        </script>
+        <script type="text/javascript" src="https://[%=HTML2023_Variables.SU%]/searchbox.js">
+        </script>
+    </head>
+    <body>
+        <div>
+            <MadCap:snippetBlock src="header-content-erag.flsnp" />
+            <MadCap:bodyProxy />
+            <MadCap:snippetBlock src="footer-content-erag.flsnp" />
+        </div>
+        <script> 	$(document).ready(function() {
+			// Find the .search-bar.search-bar-container.needs-pie element
+			var $searchBar = $('.search-bar.search-bar-container.needs-pie');
+			$searchBar.find('input.search-field.needs-pie').remove();
+			$searchBar.find('.search-submit-wrapper').remove();
+			// Add the div#auto to the .search-bar.search-bar-container.needs-pie
+			$searchBar.prepend('			<!-- SearchUnify Code --><div id="auto"><div ng-controller="SearchautoController"><div bind-html-compile="autocompleteHtml"></div></div></div><!-- SearchUnify Code -->');
+		});
+			new ClipboardJS('.btn'); </script>
+    </body>
+</html>
