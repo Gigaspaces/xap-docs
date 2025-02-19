@@ -7,58 +7,88 @@
         <p>eRAG provides connectors to various different data sources.
 </p>
         <p>
-Some of the data sources can be combined with one another (these are specified as “Multi Mode” below), and some can only be used as a single data source.
+Some of the data sources can be combined with one another (these are specified as “Multi Source Support” below), and some can only be used as a single data source.
 
 </p>
         <p>The table below shows the types of data sources that are supported by eRAG, although additional data sources can be added on-demand, with short notice (depending on the actual data source).</p>
         <table>
+            <col />
+            <col />
+            <col />
+            <col />
             <thead>
                 <tr>
                     <th>Data Source</th>
                     <th>Version</th>
-                    <th>Multi Mode</th>
+                    <th>Multi Source Support</th>
+                    <th>Level (pricing)
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>AS/400 DB2</td>
+                    <td>DB2 for IBM i (AS/400)</td>
                     <td>pyodbc - 5.2.0<br />ibm driver - v1r1</td>
-                    <td>N</td>
+                    <td>No</td>
+                    <td>
+                        <p class="tc-tablebody">2</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>Google BigQuery</td>
                     <td>N/A</td>
-                    <td>Y</td>
+                    <td>Yes</td>
+                    <td>
+                        <p class="tc-tablebody">1</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>MSSQL</td>
                     <td>SQL Server 2019 or higher, or Azure SQL Database</td>
-                    <td>Y</td>
+                    <td>Yes</td>
+                    <td>
+                        <p class="tc-tablebody">1</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>MySQL</td>
                     <td>5.7, 8.0 or higher</td>
-                    <td>Y</td>
+                    <td>Yes</td>
+                    <td>
+                        <p class="tc-tablebody">1</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>Oracle11</td>
                     <td>11</td>
-                    <td>N</td>
+                    <td>No</td>
+                    <td>
+                        <p class="tc-tablebody">2</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>Oracle</td>
                     <td>19</td>
-                    <td>Y</td>
+                    <td>Yes</td>
+                    <td>
+                        <p class="tc-tablebody">1</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>PostgreSQL</td>
                     <td>12.x or higher</td>
-                    <td>Y</td>
+                    <td>Yes</td>
+                    <td>
+                        <p class="tc-tablebody">1</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>SAP HANA</td>
                     <td> </td>
-                    <td>N</td>
+                    <td>No</td>
+                    <td>
+                        <p class="tc-tablebody">2</p>
+                    </td>
                 </tr>
             </tbody>
         </table>
