@@ -39,14 +39,19 @@
                 <p>When conditions are related to 2 tables as t1.f1 &gt; t2.f3 add the condition to the join: ON ti.f1=t2.f2 and t1.f1 &gt; t2.f3</p>
             </li>
             <li>
-                <p>Consider using broadcast tables for small tables. Also, use colocated filters and colocated joins where suitable. To allow colocated joins with <a href="broadcast-objects.html">small tables</a>. A colocated join will copy the smaller table in join to all partitions - consider if the small table of the join is indeed small. In the future, routing properties will also be used to optimize joins.</p>
+                <p>Consider using broadcast tables for small tables. Also, use colocated filters and colocated joins where suitable. To allow colocated joins with <a href="broadcast-objects.html">small tables</a>. A colocated join will copy the smaller table in join to all partitions - consider if the small table of the join is indeed small. <MadCap:conditionalText MadCap:conditions="Version.17-1-died">In the future, routing properties will also be used to optimize joins.</MadCap:conditionalText></p>
+            </li>
+            <li MadCap:conditions="Version.17-1-born">
+                <p>Using routing as a join condition adds the ability to cut results at the server side similarly to broadcast tables.</p>
+            </li>
+            <li MadCap:conditions="Version.17-1-born">
+                <p> For queries where join conditions significantly reduce results, consider using <a href="sql-hints.htm#Dynamic">Dynamic Filter Hints</a> for optimized execution algorithms.</p>
             </li>
             <li>
                 <p>Imagine you have large amount of data that is split into several smaller amounts, called partitions. Now, let's say you want to combine information from two different tables, but both of these tables are also big and split into partitions.</p>
                 <p>Normally, when you're combining data from two tables, you can filter out the records you don't need based on certain conditions. But if these tables are both split into partitions and spread out, it becomes tricky. You can't directly filter out records from each partition based on the conditions you want to apply for the join. Instead, you have to bring all the data from these partitions to your client and then do the filtering there. It's like gathering all the puzzle pieces onto your table before you can start putting the puzzle together.</p>
             </li>
         </ul>
-        <p>&#160;</p>
         <p>The following table shows how to enhance basic database queries using a <MadCap:variable name="General.CompanyName" /> query using JDBC V3:</p>
         <table style="width: 1446px;" class="tc-standard">
             <col style="width: 520px;" />

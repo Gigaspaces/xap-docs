@@ -241,6 +241,47 @@ As a participant of the ZooKeeper leader election, the GSM is configurable using
                 </tr>
             </tbody>
         </table>
+        <div MadCap:conditions="Version.17-1-born">
+            <h2><a name="Secure"></a>Secured ZooKeeper</h2>
+            <p>You can set up secured ZooKeeper as follows:</p>
+            <ol>
+                <li>
+                    <p>Create keystore and truststore (self-signed for testing purposes only):</p>
+                    <ol>
+                        <li><code>keytool -genkeypair -alias mycert -keyalg RSA -keysize 2048 -dname "cn=localhost" -keypass keypassword -keystore keystore.jks -storepass keystorepassword
+</code>
+                        </li>
+                        <li><code>keytool -genkeypair -alias mycert -keyalg RSA -keysize 2048 -dname "cn=localhost" -keypass keypassword -keystore keystore.jks -storepass keystorepassword
+</code>
+                        </li>
+                        <li><code>keytool -exportcert -alias mycert -keystore keystore.jks -file thiscert.cer -rfc
+</code>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>Set up  ZooKeeper configuration file <b>zookeeper-server.cfg</b> as follows:</p><pre>secureClientPort=2181
+clientPort=2181
+dataDir=/path/to/datadir/
+serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory
+ssl.keyStore.location=/path/to/files/keystore.jks
+ssl.keyStore.password=keystorepassword
+ssl.trustStore.location=/path/to/files/truststore.jks
+ssl.trustStore.password=truststirepassword
+</pre>
+                </li>
+                <li>
+                    <p>In <b>setenv-overides.sh</b>, add the following java options (replace with the relevant path):</p><pre>-Dzookeeper.ssl.keyStore.password=keystorepassword 
+-Dzookeeper.ssl.trustStore.location=/path/to/files/truststore.jks  
+-Dzookeeper.ssl.trustStore.password=truststorepassword 
+-Dcom.gs.zookeeper.client.config-file=/path/to/files/zookeeper-server.cfg 
+-Dcom.gs.security.enabled=false 
+-Dcom.gs.manager.rest.ssl.enabled=false  
+-Dcom.gs.ui.metrics.db.files-defrag-threshold=10 -Xdebug -Xnoagent 
+-Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n'</pre>
+                </li>
+            </ol>
+        </div>
         <h1><a name="backwards-compatibility"></a>Backwards Compatibility</h1>
         <p>The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We think this is a better way of working with <MadCap:variable name="General.ProductNameXAP" />, and we want new users and customers to work solely with it.
 On the same note we understand that it requires some effort from existing users which upgrade to 12.1 (probably not too much, mostly on changing the scripts they use to start the environment),

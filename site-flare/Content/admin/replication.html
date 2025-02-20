@@ -105,5 +105,16 @@
         <p>There are many parameters that affect the replication behavior. For a full list of the parameters, refer to <a href="replication-parameters.html">Replication Parameters</a>.</p>
         <h2><a name="monitoring-and-statistics"></a>Monitoring and Statistics</h2>
         <p>The replication module can be monitored, and exposes various statistics using the <a href="../dev-java/administration-and-monitoring-overview.html">Administration and Monitoring API</a> via <a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/filters/ReplicationStatistics.html">Replication Statistics</a>.</p>
+        <div MadCap:conditions="Version.17-1-born">
+            <h1><a name="Embedded"></a>Embedded Replication Mode Change Listener </h1>
+            <p>The embedded replication mode change listener is relevant for primary backup replication, to identify situations when replication moves to <b>async</b> mode.</p>
+            <p>Relevant parameter: <code>com.gs.groups.sync.external.listener=&lt;&gt;</code>  to specify your custom listener class.</p>
+            <p>The listener should implement the following interface:</p><pre>public interface IReplicationSyncModeChangeHandler {
+	void onModeInit(boolean isSyncMode, String groupName, String memberName);
+	void onSyncMode(String groupName, String memberName);
+	void onASyncMode(String groupName, String memberName);
+}
+</pre>
+        </div>
     </body>
 </html>
