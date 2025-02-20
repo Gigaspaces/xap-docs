@@ -137,9 +137,11 @@
         <div class="tc-admon-note">
             <p>For Service Grid, each instance is bound to a specific machine for the entire duration of the deployment. Redeployment is only possible with the <b>same </b>schema, unless delete was called.</p>
         </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.17-1-born">
+            <p>In order to improve recovery time from tiered storage space, counters initialization occurs in async mode, allowing the space to be ready before filling up statistics.</p>
+        </div>
         <h1>Deployment</h1>
         <p MadCap:conditions="Version.16-4-born">For details of how to deploy Tiered Storage in a Kubernetes environment, refer to <a href="intelligent-tiering-details-K8s.html">Intelligent Tiering Details for Kubernetes</a></p>
         <p>For details of how to deploy Tiered Storage in a Service Grid environment, refer to <a href="intelligent-tiering-details.html"><a href="intelligent-tiering-details-K8s.html">Intelligent Tiering Details for Service Grid</a></a></p>
-        <p>&#160;</p>
     </body>
 </html>

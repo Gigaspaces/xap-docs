@@ -377,5 +377,204 @@
             </ul>
             <p>For additional information, refer to our <a href="../Data Integration/DI-Deployment-Batch-Load.html">Batch Load </a>page.</p>
         </div>
+        <div MadCap:conditions="Version.17-1-only">
+            <h3> Release Date: February-2025</h3>
+            <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+            <h1>Aggregator and Tier Improvements</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /></p>
+            </div>
+            <h2>Aggregator Memory Consumption Improvements</h2>
+            <p>Prior to this version, aggregation kept UIDs of all scanned objects during an operation, in case the same object ID&#160;is deleted and recreated. When the relevant table is very large, such as in tiered storage, this could lead to high memory consumption. To solve this, parameters were added to control UID&#160;storage for tiered storage and in-memory spaces. For more information, see <MadCap:xref href="../dev-java/aggregators.html#Paramete">Aggregators</MadCap:xref>.</p>
+            <h2>Aggregator Local Space Injection</h2>
+            <p>Aggregation usually iterates over a group of entries and aggregates values from related entries. There are some cases in which there is a need to access another object in the local Space. Local Space injection was added for this purpose. For more information, see <MadCap:xref href="../dev-java/aggregators.html#Local">Aggregators</MadCap:xref>.</p>
+            <h2>Aggregator Index Usage</h2>
+            <p>In some scenarios, using indexes for aggregations can avoid a full table scan and reduce execution time significantly. However, relying on the index can be risky in cases with a high load of transactions. Therefore, changes were made to optimize index usage for different cases: For more information, see <MadCap:xref href="../dev-java/aggregators.html#Aggregat">Aggregators</MadCap:xref>.</p>
+            <h2>New Custom Aggregator Methods</h2>
+            <p>The following custom Aggregator methods were added:</p>
+            <ul>
+                <li>
+                    <p>isIndexUsed() - check if aggregation index optimization can be used.</p>
+                </li>
+                <li>
+                    <p> skipProcessedUidStore() - when iterating one by one, determine whether or not to store UIDs&#160;in order to avoid duplication.</p>
+                </li>
+                <li>
+                    <p>handleIntermediateResultOfMemoryStorage() - determine how to handle partition results for memory space if one by one aggregation is skipped.</p>
+                </li>
+                <li>
+                    <p>handleIntermediateResultOfDbStorage() - determine how to handle partition results for tiered space if one by one aggregation is skipped.</p>
+                </li>
+                <li>
+                    <p>getSQLQuery() - set the query to be used for tiered storage if one by one aggregation is skipped.</p>
+                </li>
+            </ul>
+            <p>For more information, see <MadCap:xref href="../solution-hub/aggregators-custom.html">Custom Aggregators</MadCap:xref>.</p>
+            <h2>Counters for Count&#160;Aggregation and API</h2>
+            <p>Counters can be used when asking for a table count (count(*)) with no conditions, or Ignoring transactions or there are no active transactions &amp; lease expirations. For more information, see <MadCap:xref href="../dev-java/aggregators.html#Using">Aggregators</MadCap:xref>.</p>
+            <h2>Push Down Aggregation  to Tiered Storage (SQLite) </h2>
+            <p>When tiered storage is used and the query should be performed in the underlying database, queries can now be pushed down. For more information, see <MadCap:xref href="../dev-java/aggregators.html#Push">Aggregators</MadCap:xref>.</p>
+            <h2>Tiered Storage Initial Load</h2>
+            <p>In order to improve recovery time from tiered storage space, counters initialization was moved to async mode, allowing the space to be ready before filling up statistics.</p>
+            <h1>Read-only Quiesce Mode</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /></p>
+            </div>
+            <div class="tc-admon-feature">
+                <p>Read-only quiesce mode</p>
+            </div>
+            <p>This is a maintenance mode that differs from the regular quiesce mode by allowing read-only operations so the space is available to read but not for write/update/take operations. For more information, see <MadCap:xref href="../admin/quiescemode.html">Quiesce Mode</MadCap:xref>.</p>
+            <h1>Durable Tasks</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" /> and <MadCap:variable name="General.ProductXAPSkyline" /></p>
+            </div>
+            <div class="tc-admon-feature">
+                <p>Durable&#160;Tasks</p>
+            </div>
+            <p>A Durable Task is a Task that can be canceled and recovered.&#160;It extends distributed tasks.</p>
+            <p>Use cases :</p>
+            <ul>
+                <li>
+                    <p>A task that does a job that takes long time and needs the ability to be cancelled.</p>
+                </li>
+                <li>
+                    <p>Business logic - adds the ability to change the business logic of the space without redeploying the space.</p>
+                </li>
+            </ul>
+            <p>Durable Tasks can be created using the Durable Task API. For more information, see <MadCap:xref href="../dev-java/task-execution-overview.html#DurableT">Task Execution</MadCap:xref>.</p>
+            <h1>Query Protective Mode</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" />, <MadCap:variable name="General.ProductXAPSkyline" /> and Smart DIH</p>
+            </div>
+            <div class="tc-admon-feature">
+                <p>Query Protection Mode</p>
+            </div>
+            <p>The new query protection mode provides protection against executing queries that perform a full scan if the table size is above a limit. By default, protective mode is disabled. If enabled,  an exception will be thrown when a query as” select * from the table” is performed and the table size is larger than the specified limit. </p>
+            <p>If protective mode is disabled, a warning message will be logged if a query meets the protective mode conditions. It is recommended to enable this property in QA and stage environments.</p>
+            <p>For more information, see <MadCap:xref href="../dev-java/indexing.html#Query">Space Index</MadCap:xref>.</p>
+            <h1>JDBC V3 Improvements</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" />, <MadCap:variable name="General.ProductXAPSkyline" /> and Smart DIH</p>
+            </div>
+            <p>The following improvements to JDBC&#160;V3 have been made:</p>
+            <ul>
+                <li>
+                    <p>Support for queries starting with “with”.</p>
+                </li>
+                <li>
+                    <p>Support for the NVL function, as in Oracle.</p>
+                </li>
+                <li>
+                    <p>Dynamic filters hints - a different algorithm to execute a query, to be used when a join condition significantly reduces results. For more information, see <MadCap:xref href="../dev-java/sql-hints.htm">Hints</MadCap:xref>.</p>
+                </li>
+                <li>
+                    <p>Colocated joining based on routing</p>
+                </li>
+                <li>
+                    <p>IN query improvement-previously, the IN condition was translated into OR conditions, which is not efficient when used for many items,. Now, if there are more than 10 items, the condition will be propagated to the gigaspace api. </p>
+                    <p><b>Note:</b>&#160;It's important to have equal index for the related property to avoid a full table scan.</p>
+                </li>
+            </ul>
+            <h1>Secured ZooKeeper</h1>
+            <p>You can now set up secured ZooKeeper. For more information, see <MadCap:xref href="../admin/xap-manager.html#Secure"> Manager</MadCap:xref>.</p>
+            <h1>New Service Level Script</h1>
+            <p>A new <b>service-overrides</b> script was added to allow changes per service without restarting the GSA. For more information, see <MadCap:xref href="../admin/scripts.html#general-scripts">Scripts</MadCap:xref>.</p>
+            <h1>Embedded Replication Mode Change Listener</h1>
+            <p>Relevant for primary backup replication, to identify situations when replication moves to async mode. For more information, see <MadCap:xref href="../admin/replication.html#Embedded">Replication</MadCap:xref>.</p>
+            <h1>LDAP Changes</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" /></p>
+            </div>
+            <p>Due to changes in Spring LDAP, the class attribute in LDACP&#160;configuration must be updated to <b>com.gigaspaces.security.ldap.XAPLdapAuthoritiesPopulator</b>.</p>
+            <p>For example:</p><pre xml:space="preserve">&lt;bean id=“populator” class=“com.gigaspaces.security.ldap.XAPLdapAuthoritiesPopulator”&gt;
+	&lt;constructor-arg ref=“contextSource” /&gt;
+	&lt;!--  group based DN - we will be searching for groups in “ou=groups,dc=example,dc=com” --&gt;
+	&lt;constructor-arg value=“ou=groups” /&gt;
+	&lt;!-- the name of the attribute that will contain role information (which effectively translates to a user’s granted authorities. Default is “cn” --&gt;
+	&lt;property name=“groupRoleAttribute” value=“ou” /&gt;
+	…
+&lt;/bean&gt;
+</pre>
+            <h1>XAP.NET Improvements</h1>
+            <div class="tc-admon-note">
+                <p>This applies for <MadCap:variable name="General.ProductXAP" /></p>
+            </div>
+            <p>The following XAP.NET&#160;improvements have been made:<br /></p>
+            <ul>
+                <li>
+                    <p>Support for Broadcast tables</p>
+                </li>
+                <li>
+                    <p>Ability to get replication statistics from an embedded space</p>
+                </li>
+            </ul>
+            <h1>Kubernetes Improvements</h1>
+            <p>The following Kubernetes improvements have been made:</p>
+            <ul>
+                <li>
+                    <p>Readiness probe for xap manager to allow safe rolling upgrade of managers.</p>
+                </li>
+                <li>
+                    <p>Parallel mode deployment of space with multi partitions when HA is false to allow faster deployment and faster rolling upgrade</p>
+                </li>
+                <li>
+                    <p>Added jvm utilities as jmap to the image.</p>
+                </li>
+                <li>
+                    <p>Utility to backup and restore tiered storage space data.</p>
+                </li>
+                <li>
+                    <p>Added OOB alert system with installation of Kapacitor and config map for default alert settings.</p>
+                </li>
+                <li>
+                    <p>Auto scaler operator that can add/remove more clusters (including copy data from original cluster if needed),  according to defined rules.</p>
+                </li>
+            </ul>
+            <h1>Data Integration (DI) Updates</h1>
+            <div>
+                <div>
+                    <div class="tc-admon-note">
+                        <p>This applies for Smart DIH</p>
+                    </div>
+                    <h2>DIHCTL Command Line Application</h2>
+                    <div class="tc-admon-feature">
+                        <p>DIHCTL&#160;Application</p>
+                    </div>
+                    <p>The new DIHCTL command line application is intended to perform different actions on the working Smart DIH installation (environment). It can be run manually, or as part of a CI/CD pipeline. For more information, see <MadCap:xref href="../Data Integration/DI-DIHCTL.htm">DIHCTL</MadCap:xref>.</p>
+                    <h2>Import &amp; Export Capabilities</h2>
+                    <div class="tc-admon-feature">
+                        <p>Import and Export</p>
+                    </div>
+                    <p>You now have the ability to:</p>
+                    <ul>
+                        <li>
+                            <p> Import/export pipeline definitions</p>
+                        </li>
+                        <li>
+                            <p>Import/export service configurations</p>
+                        </li>
+                        <li>
+                            <p>Import/export GraphQL&#160;relationship definitions</p>
+                        </li>
+                    </ul>
+                    <p>These actions can be performed through SpaceDeck or using the DIHCTL application. Fore more information, see <MadCap:xref href="../spacedeck/spacedeck-overview.html">SpaceDeck </MadCap:xref> and <MadCap:xref href="../Data Integration/DI-DIHCTL.htm">DIHCTL</MadCap:xref>.</p>
+                </div>
+                <h2>GraphQL&#160;and&#160;SpaceQL</h2>
+                <div class="tc-admon-feature">
+                    <p>GraphQL</p>
+                </div>
+                <p>Smart DIH now includes embedded GraphQL API Gateway functionality. The GraphQL API Gateway service allows to query XAP spaces using GraphQL syntax.</p>
+                <p>The service detects all Spaces and corresponding types that exist in each Space. It then auto-generates GraphQL functions that can be used to easily query the Space and retrieve faster results in comparison to using the equivalent SQL queries.</p>
+                <p>You can query the GraphQL service through SpaceQL, or using the DIHCTL application.</p>
+                <p>For more information, see <MadCap:xref href="../Data Integration/DI-GraphQL-SpaceQL.html">GraphQL&#160;and SpaceQL</MadCap:xref>.</p>
+                <h2>Kafka as a Data Source</h2>
+                <p>You can now add Confluent Kafka as a data source. For more information, see <MadCap:xref href="../Data Integration/DI-Kafka-DataSource.htm">Kafka as a Data Source</MadCap:xref>.</p>
+                <h2>Grafana Alerts</h2>
+                <p>You can now enable Grafana alerts. See <MadCap:xref href="../admin/web-management-monitoring.html#Enabling">Using Grafana for Monitoring and Analytics</MadCap:xref>.</p>
+                <h2>Manage User Access Tokens using SpaceDeck</h2>
+                <p>You can now manage user access token using SpaceDeck. For more information, see <MadCap:xref href="../spacedeck/spacedeck-admin.html">SpaceDeck – Administration</MadCap:xref>.</p>
+                <p>&#160;</p>
+            </div>
+        </div>
     </body>
 </html>

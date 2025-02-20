@@ -71,6 +71,52 @@
                 <p>By default this is set to true which means the trailing zeros of big decimals are being dropped. &#160;To change this, it needs to be set explicitly to false in both the client and server.</p>
             </div>
         </div>
+        <div MadCap:conditions="Version.17-1-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+            <h1>End-Of-Life</h1>
+            <p>As of version 17.1, the following features have reached end-of-life:</p>
+            <ul>
+                <li>
+                    <p>SNMP&#160;alert integration</p>
+                </li>
+                <li>
+                    <p>Cassandra integration</p>
+                </li>
+                <li>
+                    <p>HSQLDB for last 5 minutes for ops - UI disabled by default.</p>
+                    <p>It can be enabled by  <code>com.gs.hsqldb.all-metrics-recording.enabled</code>.</p>
+                </li>
+            </ul>
+            <p>If required, please contact support and related code will be supplied.</p>
+            <h1>Upgrading to Version 17.1</h1>
+            <p>For version 17.1, the behavior of aggregations has changed to improve memory consumption and performance, restoring previous version behavior:</p>
+            <p>When upgrading to version 17.1, set the following system properties:</p>
+            <ul>
+                <li>
+                    <p><code>com.gs.aggregation.ignore.processed.uids false</code>
+                    </p>
+                </li>
+                <li>
+                    <p><code>com.gs.aggregation.consider.open.transactions  true</code>
+                    </p>
+                </li>
+                <li>
+                    <p><code>com.gs.aggregation.consider.lease.expiration  true</code>
+                    </p>
+                </li>
+            </ul>
+            <p>The behavior of the query without index protective mode was changed:</p>
+            <ul>
+                <li>
+                    <p><code>com.gs.protectiveMode.queryWithoutIndex false- only warning,  true -exception</code>
+                    </p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p><code>com.gs.protectiveMode.queryWithoutIndex.queryWithoutIndexLimitValue YourNumber</code> - where YourNumber is the sizeOfTable to warn about (default is 10000).</p>
+                </li>
+            </ul>
+        </div>
         <div MadCap:conditions="Version.16-3-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
             <h1>Hot Upgrade Overview</h1>
             <p>Hot Upgrade is required in order to perform changes without downtime, allowing the application users to keep working,</p>

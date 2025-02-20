@@ -27,6 +27,18 @@
                 <img src="../Resources/Static/attachment_files/aggregators-custom.png" alt="aggregators.jpg" class="tc-picture50" />
             </p>
         </div>
+        <div MadCap:conditions="Version.17-1-born">
+            <h2>IsIndexUsed</h2>
+            <p>The isIndexUsed method checks if aggregation index optimization can be used.</p>
+            <h2>SkipProcessedUidStore</h2>
+            <p>When iterating one by one, the skipProcessedUidStore method determines whether or not to store UIDs&#160;in order to avoid duplication.</p>
+            <h2>HandleIntermediateResultOfMemoryStorage</h2>
+            <p>The handleIntermediateResultOfMemoryStorage method determines how to handle partition results for memory space if one by one aggregation is skipped.</p>
+            <h2>HandleIntermediateResultOfDbStorage</h2>
+            <p>The handleIntermediateResultOfDbStorage method determines how to handle partition results for tiered space if one by one aggregation is skipped.</p>
+            <h2>GetSQLQuery</h2>
+            <p>The getSQLQuery method sets the query to be used for tiered storage if one by one aggregation is skipped.</p>
+        </div>
         <h1>Simple Aggregator</h1>
         <p>In the following example we will implement a custom aggregator to retrieve a result set of employee-id and salary. In the aggregate method, we place the employee-id and salary-id in a key value map.  On the client side, each partition result is assembled in the aggregateIntermediateResult method. After the results are assembled the getFinalResult method is called. In this case we implemented getFinalResult to be explicit, but by default getFinalResult behavior will invoke getIntermediateResult.</p>
         <div class="easyui-tabs" plain="true" data-options="">

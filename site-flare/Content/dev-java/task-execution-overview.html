@@ -153,7 +153,7 @@ public class MyTask implements Task&lt;Integer&gt; implements TaskRoutingProvide
         <p>Using either mechanism to define routing at the the <code>Task</code> level removes the need for the routing parameter:</p><pre><code class="language-java">AsyncFuture&lt;Integer&gt; future = gigaSpace.execute(new MyTask(2));
 int result = future.get();
 </code></pre>
-        <h1>DistributedTask API</h1>
+        <h1><a name="Distribu"></a>DistributedTask API</h1>
         <p>A <code>DistributedTask</code> is a <code>Task</code> that is executed more than once (concurrently). It returns a result that is the reduced product of all operations. This reduction is calculated in the <code>Task</code>'s <code>reduce(...)</code> method.</p>
         <ul>
             <li>
@@ -253,6 +253,91 @@ long result = future.get(); // result will be the number of primary spaces
             </li>
         </ul>
         <p>The filter can also be used to identify that results have arrived and we can do something within our application as a result. In this case, make sure that heavy processing is performed on a separate (probably pooled) thread.</p>
+        <div MadCap:conditions="Version.17-1-born">
+            <h1><a name="DurableT"></a>DurableTask API</h1>
+            <p>A Durable Task is a Task that can be canceled and recovered.&#160;It extends Distributed Tasks.</p>
+            <p>Use cases :</p>
+            <ul>
+                <li>
+                    <p>A task that does a job that takes long time and needs the ability to be cancelled.</p>
+                </li>
+                <li>
+                    <p>Business logic - adds the ability to change the business logic of the space without redeploying the space.</p>
+                </li>
+            </ul>
+            <p>Durable Tasks can be created using the Durable Task API:</p>
+            <p><code>interface DurableTask&lt;T extends  Serializable, R&gt; extends DistributedTask&lt;T, R&gt;</code>
+            </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>String name()</p>
+                        </td>
+                        <td>
+                            <p>Name of the durable task</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>String description()</p>
+                        </td>
+                        <td>
+                            <p>Description of what the task does.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>boolean isAutoStart()</p>
+                        </td>
+                        <td>
+                            <p>Set to <b>true</b> for a business logic task, to allow automatic&#160;start upon register and rerun after failover.&#160;</p>
+                            <p>Set to <b>false</b> for a long running task, where execution should be called explicitly.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>boolean cancel()&#160;</p>
+                        </td>
+                        <td>
+                            <p>Add logic as to what to do to terminate job or cancel business logic.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Durable task extends distributed tasks. </p>
+            <p>The execute method should be implemented instructing what to do in each partition. For more information, see <MadCap:xref href="#Distribu">Task Execution</MadCap:xref>. </p>
+            <p>Unlike a regular task, don’t call the <code>execute</code> method directly and instead use <code>executeDurable</code>  for tasks that return false to <code>isAutoStart</code>, in order to maintain task status. For auto started tasks, <code>execute</code> will be called automatically when needed.</p>
+            <p>As a task, it supports the <code>@SupportCodeChange</code> annotation. For more information, see <MadCap:xref href="#Changing">Task Execution</MadCap:xref>.</p>
+            <ul>
+                <li>
+                    <p>For Business logic tasks, this annotation must be used to allow change task code without restarts.</p>
+                </li>
+                <li>
+                    <p>For Business logic tasks, (autoStart=true) related classes will be kept in ZooKeeper to allow automatic re-execution in case of failover. In order not to store too much data, it is recommended to consider task dependencies and decide what should be dynamically loaded and what is in the common class loader.</p>
+                </li>
+            </ul>
+            <p>The following GigaSpace APIs support Durable&#160;Tasks:</p>
+            <ul>
+                <li>
+                    <p><code>UUID registerDurableTask(DurableTask&lt;T, R&gt; eventTask)</code>
+                    </p>
+                </li>
+                <li>
+                    <p><code>AsyncFuture executeDurable(UUID uuid)</code>
+                    </p>
+                </li>
+                <li>
+                    <p><code>Set&lt;DurableTaskInfo&gt; listDurableTasks()</code>
+                    </p>
+                </li>
+                <li>
+                    <p><code>Boolean  UnRegisterDurableTask(UUID task)</code>
+                    </p>
+                </li>
+            </ul>
+            <p>List and unregister methods are available in Rest API.</p>
+        </div>
         <h1>ExecutorBuilder API</h1>
         <p>The executor builder API allows combining several task executions (both distributed and non-distributed) into a seemingly single execution (with a reduce phase). Think of the <code>ExecutorBuilder</code> as a cartridge that accumulates all the tasks to be executed, and then executes all of them at once giving back a reduced result (in a concurrent and asynchronous manner). The following is an example of the API:</p>
         <div class="tc-align-center">
@@ -401,7 +486,7 @@ int result = future.get(); // returns the number of active cluster members
         <div class="tc-admon-note">
             <p>See the <a href="aggregators.html">Aggregators</a> section for more details.</p>
         </div>
-        <h1>Changing Code without Restarts</h1>
+        <h1><a name="Changing"></a>Changing Code without Restarts</h1>
         <p>When executing a task over the Space, the code is loaded from the remote client and cached for future executions. Since the code is cached, modifications are ignored, and users are forced to restart the Space whenever they modify the code.</p>
         <p>Starting with <MadCap:variable name="General.ProductNameXAP" /> version 12.1, you can use the <code>@SupportCodeChange</code> annotation to tell the Space your code has changed. The Space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.</p>
         <p>For example, start with annotating your task with <code>@SupportCodeChange(id="1")</code>. When the code changes, set the annotation to <code>@SupportCodeChange(id="2")</code>, and the Space will load the new task.</p>

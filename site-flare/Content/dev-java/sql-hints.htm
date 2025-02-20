@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.17-1-born">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Hints</h1>
+        <h2><a name="Dynamic"></a>Dynamic Filter Hints</h2>
+        <p>Dynamic filter hints use a different algorithm to execute a query. They should be used when a join condition significantly reduces results.</p>
+        <p>When a dynamic hint is used, several  rules should be disabled:</p>
+        <ul>
+            <li>
+                <p>FILTER_INTO_JOIN</p>
+            </li>
+            <li>
+                <p>GSJoinCommuteRule.INSTANCE</p>
+            </li>
+        </ul>
+        <p>Disable the rules by adding the system property: </p>
+        <p><code>-DCoreRules.FILTER_INTO_JOIN=false</code>
+        </p>
+        <p><code>-DGSJoinCommuteRule.INSTANCE=false</code>
+        </p>
+        <p>
+            <p>When a step returns more than maxResults allowed, an exception will be thrown.</p>
+        </p>
+        <p>The <b>from</b> table clause should be correctly ordered so that each step brings a minimal amount of data.</p>
+        <p>No nested joins are supported for this hint, the expectation is that we have a join between two tables.</p>
+        <p>It is recommended to put in the <b>join</b> condition only the condition we want to be pushed to the joined tables condition, and move all the rest to the <b>where</b> clause.</p>
+        <p>Join conditions with an expression are not supported for dynamic filters. </p>
+        <p>For example, <code>T1.f1=T2.f2 ok, expression(T1.f1)=T2.f2</code> is not valid.</p>
+        <h3>When to Use Dynamic Filter Hints</h3><pre>Select t1.f1, t1,f2, t2.f3,t2.f4 ,t2.f5
+From (Select f1, f2  from table1 where f2=?) AS  t1
+Join (Select f1,f2,f3  from table2 where f3&lt;?) t2
+On t1.f1=t2.f1</pre>
+        <p>Dynamic filter hints should be used when the t2 condition returns too many results, and the join condition filters the results significantly.</p>
+        <p>Without a dynamic filter in case t1.f1 and t2.f1 are not the table-related routing keys, we will bring results according to each table condition to the client and the join filter will be performed on the client side.</p>
+        <p>Using dynamic filters, the client will call the t1 query and use the results received in this step to add as a condition to the next step. This method makes more remote calls but is efficient in avoiding bringing too many objects to the client. When this approach is used it is important to order the tables according to minimal expected results per each taking into account the previous steps.</p>
+        <h2>Specifying a Hint</h2><pre>Select /*+ DYNAMIC_FILTER(maxResponseSize='1000') */ t1.f1, t1,f2, t2.f3,t2.f4 ,t2.f5
+From (Select f1, f2  from table1 where f2=?) AS  t1
+Join (Select f1,f2,f3  from table2 where f3&lt;?) t2 On t1.f1=t2.f1</pre>
+        <p><code>maxResponseSize</code> represents the number of rows received in each step, if number of rows is more than specified an exception will be thrown as it means we will add on next step IN condition including that amount of items which might be inefficient and indicates the query is not ordered correctly.</p>
+        <p>If <code>maxResponseSize</code> is not specified the default will be used (1000). The global default can be set by <code>com.gs.jdbc.v3.max_response_dynamic_filter</code>.</p>
+        <p>In case of union,  specify a hint for each block.</p>
+        <p><code>skipDynamicFilter</code> hint option - it's not always efficient to use dynamic filter per each table. When the size of the table or table condition cuts enough results, there is no need to add all additional conditions for those tables - instead, it is recommended to specify in the hint to skip:</p><pre>Select /*+ DYNAMIC_FILTER(maxResponseSize='1000')  skipDynamicFilter(table3) */ t1.f1, t1,f2, t2.f3,t2.f4 ,t2.f5,t3.f6,t3.f7
+From (Select f1, f2  from table1 where f2=?) AS  t1
+Join (Select f1,f2,f3  from table2 where f3&lt;?) AS t2 On t1.f1=t2.f1
+Join (Select * from table3 where  f7=?) AS t3 on (t3.f6=t2.f1 or t3.f7&lt;t1.f1)
+</pre>
+    </body>
+</html>

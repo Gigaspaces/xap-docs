@@ -507,5 +507,78 @@ public class ConcatAggregator extends SpaceEntriesAggregator&lt;String&gt; {
         <div class="tc-admon-note">
             <p>For more information, see the <a href="custom-serialization.html">Custom Serialization</a> page.</p>
         </div>
+        <div MadCap:conditions="Version.17-1-born">
+            <h1><a name="Paramete"></a>Parameters to Ignore&#160;Processed UIDs</h1>
+            <p>Prior to version 17.1, aggregation kept UIDs of all scanned objects while the operation was performed,  to handle rare situations when the same object ID&#160;is deleted and recreated while the operation took place. When the relevant table is very large, such as in tiered storage, this could lead to high memory consumption. </p>
+            <p>To solve this, these parameters are available:</p>
+            <ol>
+                <li>
+                    <p><b>For tiered storage:</b> UIDs do not need to be kept, as we get a snapshot from SQLite, which is stable and not affected by other operations.This parameter controls whether or not to ignore processed UIDs, so that we can override the default if  SQLite changes behavior in future. Customers are advised not to change this parameter. </p>
+                    <ul>
+                        <li>
+                            <p><b>Parameter: </b><code>com.gs.aggregation.sqlite.ignore.processed.uids</code>
+                            </p>
+                        </li>
+                        <li>
+                            <p><b>Default:</b> Do NOT keep the UIDs in memory.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p> <b>For an In-Memory Space:</b> For each aggregation, there is a default whether to keep the UIDs or not. There is also a parameter that overrides them for all aggregations. </p>
+                    <p>When there is no need to be sensitive to change whilst the scan is performed, and when duplications are not a problem, set relevant parameter to TRUE. Otherwise, set it to FALSE </p>
+                    <ul>
+                        <li>
+                            <p><b>Relevant parameter: </b><code>com.gs.aggregation.ignore.processed.uids</code>
+                            </p>
+                        </li>
+                        <li>
+                            <p>By default, <b>min</b>, <b>max</b>, and <b>Distinct</b>  will ignore UID storage, as aggregating the same entries twice will still give the same result.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><b>Adding custom aggregation override:</b> <code>public boolean skipProcessedUidStore()</code></p>
+                </li>
+            </ol>
+            <h1><a name="Aggregat"></a>Aggregator Index Usage</h1>
+            <p>In some scenarios, using indexes for aggregations can avoid a full table scan and reduce execution time significantly. For example: <code>select min field from table1</code></p>
+            <p>In cases where a field has an ordered index, the calculation can rely on the index instead of doing a full table scan to look for the minimal value.</p>
+            <p>However, relying on the index can be risky in cases with a high load of transactions.</p>
+            <p>Therefore, the index will be used in cases where there are no active transactions at the time of the query, or when <code>com.gs.aggregation.consider.open.transactions</code> is set to <b>False</b> (which is the default). </p>
+            <p>In cases where objects are written for a short lease, and it could be that the lease manager has not run yet, but objects should expire in a timely fashion, this optimization also can’t be used - <code>com.gs.aggregation.consider.lease.expiration</code> should be set to <b>True</b>.</p>
+            <p>By default, index usage was implemented for <b>orderby</b>, <b>min</b>, <b>max</b>, <b>count (count(field))</b>, <b>distinct</b>, <b>avg</b> in Tiered Storage.</p>
+            <h1><a name="Local"></a>Local Space Injection</h1>
+            <p>Aggregation usually iterates over a group of entries and aggregates values from related entries. There are some cases in which there is a need to access another object in the local Space. Local Space injection can be used for this purpose.</p>
+            <p>Add the following to custom aggregation to inject a local Space:</p>
+            <p><code>@GigaSpaceAggregation</code>
+            </p>
+            <p><code>private transient GigaSpace gs;</code>
+            </p>
+            <h1><a name="Using"></a>Using Counters</h1>
+            <p>Counters can be used when: </p>
+            <ul>
+                <li>
+                    <p>Asking for a table count (count(*)) with no conditions.</p>
+                </li>
+                <li>
+                    <p> Ignoring transactions or there are no active transactions &amp; lease expirations.</p>
+                </li>
+            </ul>
+            <p>For an In-Memory space, use the size of the internal data structure for the table in memory.</p>
+            <p>For a Tiered Storage space, use tier counter which is ready in async manner on space start and continually per operations.</p>
+            <p>For count(field) – according to index.</p>
+            <h1><a name="Push"></a>Push Down Aggregation  to Tiered Storage (SQLite) </h1>
+            <p>When tiered storage is used and the query should be performed in the underlying database, queries can be pushed down. This is implemented for the out of the box aggregations.</p>
+            <p>For custom aggregations, use:</p>
+            <p><code>Override: public String getSQLQuery(String typeName)</code>
+            </p>
+            <p>Example for max entry aggregation:</p><pre>public String getSQLQuery(String typeName) {
+   return String.format("SELECT * FROM '%s' WHERE %s = (SELECT %s(%s) FROM '%s');", typeName, getPath(), getName(), getPath(), typeName);
+}
+Select * from table1 where field1= (select max(field1) from table1) 
+</pre>
+            <p>For more information about tiered storage, see <MadCap:xref href="../admin/intelligent-tiering-overview.html">Tiered Storage Overview</MadCap:xref>.</p>
+        </div>
     </body>
 </html>

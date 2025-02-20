@@ -55,6 +55,15 @@
             <li>Commit and prepare of single-phase transactions are rejected.</li>
             <li>The Lease manager is paused, except for extend lease operations, in order to prevent losing notify listener templates.</li>
         </ul>
+        <div MadCap:conditions="Version.17-1-born">
+            <h2>Read-Only Quiesce Mode</h2>
+            <p>This is a maintenance mode that differs from the regular Quiesce Mode by allowing read-only operations, so that the space is available to read but not for write/update/take operations.</p>
+            <p>The quiesce API includes an additional boolean flag to indicate if it allows read-only mode.</p>
+            <p>The default is <b>false</b>.</p>
+            <p>Rest API &amp; CLI:</p>
+            <p><code class="language-sql">pusIdQuiescePost(id: String, description: Option[String], readonly: Option[Boolean])</code>
+            </p>
+        </div>
         <h2><a name="security"></a>Security</h2>
         <p>In a secure system, <code>Manage PU</code> privileges are required to quiesce/unquiesce a Processing Unit.</p>
         <h2><a name="configuration"></a>Configuration</h2>
