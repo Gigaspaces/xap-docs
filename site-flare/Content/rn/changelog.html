@@ -6,7 +6,149 @@
         <h1 class="tc-pagetitle">Changelog</h1>
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
-        <p>&#160;</p>
+        <div MadCap:conditions="Version.17-1-only">
+            <h1>17.1</h1>
+            <h2>Features and Enhancements</h2>
+            <table>
+                <col style="width: 143px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5571</td>
+                        <td>Upgrade third party jars</td>
+                        <td>See <MadCap:xref href="third-party-license.html">Third-Party License Agreements</MadCap:xref>.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-3241</td>
+                        <td>Add readiness probe to XAP&#160;manager</td>
+                        <td>Allow safe rolling upgrade of managers.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5444</td>
+                        <td>REST command GET /spaces/{id}/cfg</td>
+                        <td> For In-Memory and Tiered Storage Spaces in both Service Grid and Kubernetes environments.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5442</td>
+                        <td>Read Only mode for Space</td>
+                        <td> Add functionality that will allow using a Space in a read-only mode, blocking all WRITE/CHANGE/TAKE operations and allowing only READ.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5339</td>
+                        <td>Add API&#160;to support import/export of space configuration</td>
+                        <td>As part of the effort to allow an import and export of configuration, there are now APIs to allow creation of a Tiered Storage space, and an API that will allow retrieval of space configuration for creation in another environment.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5300</td>
+                        <td>JDBC V3 - can't run query that doesn't start with select or explain, add option to start using 'with'</td>
+                        <td>Support query starting with 'with'.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5251</td>
+                        <td>Add Kapacitor as part of Smart DIH / XAP umbrella in Kubernetes and allow configuration of default alerts</td>
+                        <td>
+                            <p>Allow to configure the following two properties: </p>
+                            <p>*&#160;enabled</p>
+                            <p>*&#160;value (for condition) </p>
+                            <p><b>Example: </b>
+                            </p><pre>dihFlinkJobManagerTaskSlots:
+  enabled: true
+  value: 0{noformat}</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5155</td>
+                        <td>Allow custom defined alerts</td>
+                        <td> In addition to allowing customers to configure various aspects of default alerts, add the ability to add user defined alerts based on default or custom metrics.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5179</td>
+                        <td>Handle durable task recovery</td>
+                        <td>Handle long task in high availability (with backups) and after partition restart.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5161</td>
+                        <td>Push down aggregation functions (max,min) to tier when relevant</td>
+                        <td>
+                            <p>In Tiered Storage spaces, if aggregation can be pushed to tier, the aggregation will be performed on the underlying tier in one step per partition.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5057</td>
+                        <td>Ability to inject gigaspace instance to aggregation</td>
+                        <td>During aggregation on one table, looks for data in the reference table.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4999</td>
+                        <td>Colocated join in case join condition includes routing info</td>
+                        <td>As with broadcast tables.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4935</td>
+                        <td>Update DI/XAP components to the latest image OpenJDK 17.3 and add utilities as jmap and jstack</td>
+                        <td>gigaspaces/openjdk:17.3, jmap and jstack utilities were added.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4665</td>
+                        <td>Allow overriding podManagementPolicy in xap-pu</td>
+                        <td>By default, parallelmod for non high availability spaces.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4623</td>
+                        <td>Improve Tiered Storage space initialization time</td>
+                        <td>Move the count per table to run in the async manner, as it's needed only for statistics and should not block partition from starting.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5344</td>
+                        <td>Add Broadcast support to space document and Poco in DotNet</td>
+                        <td>Broadcast tables are now supported in DotNet, can be added as part of spaceclass annotation.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table style="margin-left: 0;margin-right: auto;">
+                <col style="width: 145px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5565</td>
+                        <td>Fix connect to data source for Oracle, Postgress And MySQL in ops-ui</td>
+                        <td>Missing dependency.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5338</td>
+                        <td>LDAP - some permissions not getting read after securing grid with LDAP</td>
+                        <td>Change LDAP configuration to include GS implementation of populator bean.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4653</td>
+                        <td>TrieredStorage mode over Windows SQLite not initialized properly</td>
+                        <td> In Windows, SQLite DB not created properly due to Windows file naming policy, the XAP create a DB name that includes : which is allowed in Linux but forbidden in Windows.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4628</td>
+                        <td>Select * on a broadcast table with no Tiered Storage policy returns only part of records</td>
+                        <td>Fix broadcast read for Tiered Storage space with multiple partitions.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div MadCap:conditions="Version.17-0-only">
             <h1>17.0</h1>
             <h2>Features and Enhancements</h2>
@@ -60,8 +202,7 @@
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14552," />: Add support for using customer certificate for REST manager of jks format</li>
                 <li>
-                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14532,">
-                    </MadCap:snippetText>: Add support for passing configurations to K8s pod pu properties &amp; env variables as yaml</li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14532," />: Add support for passing configurations to Kubernetes pod pu properties &amp; env variables as yaml</li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14836,">
                     </MadCap:snippetText>: Add support to add dynamic index in tiered storage, and allow to remove it before writing to tier</li>
@@ -454,7 +595,7 @@
             </ul>
             <ul MadCap:conditions="NewSet.JustAColorForDivs">
                 <li>
-                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14429," />: Issue with deploying Manager to multiple namespace in K8s (GS-15.8)</li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14429," />: Issue with deploying Manager to multiple namespace in Kubernetes (GS-15.8)</li>
             </ul>
             <ul MadCap:conditions="NewSet.JustAColorForDivs">
                 <li>
@@ -845,7 +986,7 @@
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14258," />:  Display a tooltip showing the index hits count in the object drill down page of the Ops Manager UI </li>
                 <li>
-                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14225," />:  Added support for scale up/down stateful pu without HA </li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14225," />:  Added support for scale up/down stateful pu without high availability </li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14247," />:  Set logger level using environment variable or system property </li>
                 <li>
@@ -1021,8 +1162,7 @@
             </ul>
             <ul>
                 <li>
-                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14225,">
-                    </MadCap:snippetText>:  Added support for scale up/down stateful pu without HA </li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14225," />:  Added support for scale up/down stateful pu without high availability </li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14247,">
                     </MadCap:snippetText>:  Set logger level using environment variable or system property </li>
