@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAP" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle">Securing the Transport Layer</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> provides a generic network filter that also provides SSL support, through an SSL communication filter.</p>
         <div class="tc-align-center">
@@ -101,7 +101,7 @@ However, when you wish to run this code with SSL encryption, you should run it w
 -Dcom.gs.lrmi.filter.security.password=password
 </code></pre>
         <div class="tc-admon-note">
-            <p>Regarding <code class="language-bash">com.gigaspaces.lrmi.nio.filters.</code><b>SSLFilterFactory</b> - It is possible to implement your own filter and indicate the class name here. See information regarding TLS 1.3 <a href="#choosing-the-encryption-protocol">below</a>.</p>
+            <p>Regarding <code class="language-bash">com.gigaspaces.lrmi.nio.filters.</code><b>SSLFilterFactory</b> - It is possible to implement your own filter and indicate the class name here. <MadCap:conditionalText MadCap:conditions="Version.17-1-died">See information regarding TLS 1.3 <a href="#choosing-the-encryption-protocol">below</a>.</MadCap:conditionalText></p>
         </div>
         <div class="tc-admon-note" MadCap:conditions="Version.16-4-died">
             <p>You can find an example of using <code>SSLFilterFactory</code> with self signed certs <a href="/sbp/ssl-self-signed-cert-example.html">here</a>.</p>
@@ -116,7 +116,7 @@ However, when you wish to run this code with SSL encryption, you should run it w
 </code></pre>
         <h1><a name="choosing-the-encryption-protocol"></a>Choosing the Encryption Protocol</h1>
         <p>Support for TLS 1.3 was added in Java 11. This is also true for Java 8 version 8u261 +.</p>
-        <div class="tc-admon-attention">
+        <div class="tc-admon-attention" MadCap:conditions="Version.17-1-died">
             <p>TLS 1.3 is not directly compatible with previous TLS versions, and is currently not supported in the <MadCap:variable name="General.ProductNameIEP" /> or the <MadCap:variable name="General.ProductNameXAP" /> data grid. When configuring TLS usage for GigaSpaces products using the <code>com.gs.lrmi.filter.security.protocol </code>system property, the default is to choose the latest TLS available. In Java 11 this is TLS&#160;1.3  and it will fail. To prevent this from happening, explicitly specify the requested TLS version, such as “TLSv1.2”. For example, instead of: <code>-Dcom.gs.lrmi.filter.security.protocol=TLS</code>, specify <code>-Dcom.gs.lrmi.filter.security.protocol=TLSv1.2</code>.</p>
         </div>
         <p>The indication that SSL is used is the message:</p><pre><code class="language-bash">Communication Filters Information:

@@ -221,11 +221,23 @@ call gs.bat host run-agent --manager --gsc=4</code></pre>
     &lt;/vm&gt;
     &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
 &lt;/process&gt;
-</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born,Version.17-1-died"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
         &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_COMPONENT_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre><pre MadCap:conditions="Version.17-1-born"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+        &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
     &lt;/script&gt;
     &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
         &lt;input-argument&gt;&lt;/input-argument&gt;
@@ -247,11 +259,23 @@ call gs.bat host run-agent --manager --gsc=4</code></pre>
     &lt;/vm&gt;
     &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
 &lt;/process&gt;
-</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born,Version.17-1-died"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
         &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_COMPONENT_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre><pre MadCap:conditions="Version.17-1-born"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+        &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
     &lt;/script&gt;
     &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
         &lt;input-argument&gt;&lt;/input-argument&gt;

@@ -165,6 +165,64 @@
                 </li>
             </ul>
             <p>For example:</p><pre xml:space="preserve">--set kapacitor.smtp.enabled=true, kapacitor.smtp.to=your-to-mail@mail.com, kapacitor.smtp.from=your-from-mail@mail.com</pre>
+            <p>Each of following predefined alerts has the properties <b>enabled</b> (default value: <b>true</b> ), <b>value</b> (default value: depends on alert) and <b>writeToLog</b> (default value:&#160;<b>true</b>):</p>
+            <ul>
+                <li>
+                    <p>kapacitor.alerts.dihFlinkJobRunningState</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.dihFlinkJobCancellingState</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.dihFlinkJobFailingState</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.dihFlinkJobRestartingState</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.dihFlinkJobManagerTaskSlots</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.xapRedoLogSize</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.xapJvmAppFailed</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.xapJvmMemoryUsedPercent</p>
+                </li>
+                <li>
+                    <p>kapacitor.alerts.xapJvmProcFailed</p>
+                </li>
+            </ul>
+            <p>Example of usage above alerts with thier properties:</p><pre>--set kapacitor.alerts.dihFlinkJobRunningState.enabled=true,kapacitor.alerts.dihFlinkJobCancellingState.enabled=false,kapacitor.alerts.xapRedoLogSize.enabled=false,kapacitor.alerts.dihFlinkJobRestartingState.enabled=false,kapacitor.alerts.dihFlinkJobManagerTaskSlots.value=2</pre>
+            <p>There is also an option to provide custom alerts, defined in a separate configuration yaml file, in the following way:</p><pre>--set-file kapacitor.customTicksConfig=/Users/john/dev/kapacitor/tick-config.yaml</pre>
+            <p>Example of tick-config.yaml:</p><pre><code class="language-xml">mydb1.tick: |
+  dbrp "mydb"."one_week_policy"
+
+  stream
+      |from()
+          .measurement('jvm_memory_heap_used-percent')
+          .where(lambda: isPresent("pu_instance_id"))
+          .groupBy('pu_instance_id','pu_name','host','pid')
+      |alert()
+          .crit(lambda: "value" &gt; 0)
+          .stateChangesOnly(1d)
+          .message('{{ index .Tags "host" }}  :: {{ index .Tags "pu_instance_id" }}  ')
+
+cpu-alert.tick: |
+  dbrp "mydb"."autogen"
+  
+  var alert_name = 'cpu-alert'
+  
+  stream
+      |from()
+          .measurement('os_cpu_used-percent')
+      |alert()
+          .crit(lambda: int("value") &gt; 15)
+          .stateChangesOnly(1d)
+  		.message('{{ .Vars.alert_name }} on {{ index .Tags "host" }} - {{ .Level }} - {{ .Name }}')
+  		.details('Process PPID={{ index .Tags "pid" }} on {{ index .Tags "host" }} use {{ index .Fields "value" }} CPU%')</code></pre>
         </div>
     </body>
 </html>
