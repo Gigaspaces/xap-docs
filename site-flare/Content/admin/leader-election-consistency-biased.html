@@ -92,6 +92,7 @@
             <li>Each “follower” node listens to the node with the next lower sequence number.</li>
             <li>Upon leader removal, go to election path and find a new leader, or become the leader if it has the lowest sequence number.</li>
             <li>Upon session expiration (disconnection), check the election state and go to election if needed. If there is a disconnection, the primary Space instance is moved to Quiese mode and will be restarted.</li>
+            <li>To protect partition data while an instance is restarted, that partition is marked as unhealthy in ZooKeeper. If after starting, a primary can’t be found, the recovery process will wait for the primary up to 5 minutes.&#160;If a primary is not found during that time, the restarted instance will become a primary, but there will be a risk of data loss.<br />The system parameter to configure this timeout is: <code>com.gs.waiting-timeout-for-leader-if-unhealthy</code> - the default is 5*60*1000.</li>
         </ul>
         <h2><a name="partition-split-brain-instances"></a>Partition Split Brain Instances</h2>
         <p>The Apache Zookeeper leader selector prevents split-brain instances through quorum. If the primary Space is not

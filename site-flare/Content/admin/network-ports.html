@@ -7,10 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <h1>Port Usage Control</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> space and client components open different ports in various situations. The following list describes the different ports used by <MadCap:variable name="General.ProductNameXAP" /> and how these can be modified:</p>
         <div class="tc-admon-refer">
@@ -35,7 +35,7 @@
                     <td align="left">
                         <p align="left">RMI registry listening port <br />Used as an alternative directory service.</p>
                         <p>
-                            <MadCap:conditionalText MadCap:conditions="Version.15-8-born">The RMI registry can be also changed by providing environment variable <code style="font-weight: normal;">GS_JMX_REMOTE_BASE_PORT</code>. <br />For details, see <MadCap:xref href="space-jmx-management.html#Remote_JConsole_Connection">Remote JConsole Connection</MadCap:xref>. </MadCap:conditionalText>
+                            <MadCap:conditionalText MadCap:conditions="Version.15-8-born">The RMI registry can also be changed by providing environment variable <code style="font-weight: normal;">GS_JMX_REMOTE_BASE_PORT</code>. <br />For details, see <MadCap:xref href="space-jmx-management.html#Remote_JConsole_Connection">Remote JConsole Connection</MadCap:xref>. </MadCap:conditionalText>
                         </p>
                     </td>
                     <td align="left">10098 and above.</td>
@@ -49,6 +49,47 @@
                     <td align="left">com.gigaspaces.start.httpPort</td>
                     <td align="left">Webster listening port<br />Internal web service used as part of the application deployment process.</td>
                     <td align="left">9813</td>
+                </tr>
+                <tr>
+                    <td align="left">
+						export GS_MANAGER_SERVERS="hostname;lus=4174"<br />com.gs.multicast.discoveryPort<br />com.sun.jini.reggie.initialUnicastDiscoveryPort (optional)</td>
+                    <td align="left">LUS port<br />Should be set on clients and servers.</td>
+                    <td align="left">4174</td>
+                </tr>
+                <tr>
+                    <td align="left">com.gs.multicast.enabled</td>
+                    <td align="left">Recommended to set to false, to disable multicast discovery.</td>
+                    <td align="left">true</td>
+                </tr>
+                <tr>
+                    <td align="left">org.openspaces.launcher.port</td>
+                    <td align="left">Web UI port</td>
+                    <td align="left">8099</td>
+                </tr>
+                <tr>
+                    <td align="left">com.gs.manager.rest.port</td>
+                    <td align="left">REST Manager port<br />If <code>gs.sh</code> CLI tools are run outside the cluster, this needs to be set.</td>
+                    <td align="left">8090</td>
+                </tr>
+                <tr>
+                    <td align="left">com.gs.ui.metrics.db.port</td>
+                    <td align="left">The metrics DB is used to track metrics within the cluster.</td>
+                    <td align="left">9101</td>
+                </tr>
+                <tr>
+                    <td align="left">com.gs.zookeeper.client.port</td>
+                    <td align="left">Zookeeper client port<br />Should be set on clients and servers.</td>
+                    <td align="left">2181</td>
+                </tr>
+                <tr>
+                    <td align="left">export GS_MANAGER_SERVERS="hostname;zookeeper=2888:3888;lus=4174"<br />com.gs.manager.zookeeper.discovery.port (optional on server, set on client)<br />com.gs.manager.zookeeper.leader-election.port (optional on server, set on client)</td>
+                    <td align="left">Zookeeper discovery port<br />Should be set on clients and servers.</td>
+                    <td align="left">2888</td>
+                </tr>
+                <tr>
+                    <td align="left">export GS_MANAGER_SERVERS="hostname;zookeeper=2888:3888;lus=4174"<br />com.gs.manager.zookeeper.discovery.port (optional on server, set on client)<br />com.gs.manager.zookeeper.leader-election.port (optional on server, set on client)</td>
+                    <td align="left">Zookeeper leader election<br />Should be set on clients and servers.</td>
+                    <td align="left">3888</td>
                 </tr>
             </tbody>
         </table>

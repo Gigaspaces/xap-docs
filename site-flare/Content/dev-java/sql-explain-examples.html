@@ -78,11 +78,10 @@ order by [firsName DESC-nulls-last]    <b>(time=1ms rows=2)</b>
 				partitions: [1, 2]
 					selected index:
 						- (lastName = Levi), size=1</code></pre>
-                <p>&#160;</p>
                 <p><b>Query 2:</b>
                 </p>
-                <p>This Explain Analyze shows that there will be two FULL SCANS on tables Product and Purchase and all result sets from both will be taken to the client side and <b>Equi JOIN</b> (hash join algorithm will be used for match comparison) will be performed on the client side. </p><pre><code class="language-sql"><b>explain analyze for</b> select P.id as product_id, P.name, P.price, sum(PU.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" 
-as PU LEFT JOIN "com.gs.Product" as P ON PU.productId=P.id group by P.id,P.name,P.price
+                <p>This Explain Analyze shows that there will be two FULL SCANS on tables Product and Purchase and all result sets from both will be taken to the client side and <b>Equi JOIN</b> (hash join algorithm will be used for match comparison) will be performed on the client side. </p><pre><code class="language-sql"><b>explain analyze for</b> select P.id as product_id, P.name, P.price, sum(PUR.amount) as purchase_amount, sum(PUR.amount)*P.price as total from "com.gs.Purchase" 
+as PUR LEFT JOIN "com.gs.Product" as P ON PUR.productId=P.id group by P.id,P.name,P.price
 
 <b>PLAN (Explain&#160;Analyze) Analysis:</b>
 projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]    (time=8ms rows=10)
@@ -161,8 +160,8 @@ order by [firsName DESC-nulls-last]
 					selected index:
 					- (lastName = Levi), size=1</code></pre>
                 <p><b>Query 2:</b>
-                </p><pre><code class="language-sql"><b>explain plan for</b> select P.id as product_id, P.name, P.price, sum(P.amount) as purchase_amount, sum(PU.amount)*P.price as total from "com.gs.Purchase" as 
-PU  LEFT JOIN "com.gs.Product" as P ON P.productId=P.id group by P.id,P.name,P.price
+                </p><pre><code class="language-sql"><b>explain plan for</b> select P.id as product_id, P.name, P.price, sum(P.amount) as purchase_amount, sum(PUR.amount)*P.price as total from "com.gs.Purchase" as 
+PUR  LEFT JOIN "com.gs.Product" as P ON P.productId=P.id group by P.id,P.name,P.price
 
 <b>PLAN (Explain&#160;Plan) Analysis:</b>
 projections= [id, name, price, purchase_amount, TIMES(purchase_amount, price)]

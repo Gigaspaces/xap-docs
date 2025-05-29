@@ -86,6 +86,7 @@ public class Person
             <p>Doing <code>readMultiple </code>and limiting the results with max entries less than the limit will pass successfully.</p>
             <p>Also, “select count(*) from table” or using an aggregation that uses the index will pass the protective mode, as no full scan is performed.</p>
             <p>If the protective mode is disabled, a warning message will be logged if the query meets the protective mode conditions. It is recommended to enable this property in QA and stage environments.</p>
+            <p>To disable the warning log related to a query with no index, you can set the following log level <code>com.gigaspaces.cache.index.level=OFF</code></p>
         </div>
     </body>
 </html>

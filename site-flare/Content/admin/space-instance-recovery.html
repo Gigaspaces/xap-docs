@@ -7,10 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <div class="product-bar">
             <p><a>Smart DIH</a>
             </p>
@@ -132,6 +132,7 @@ If there are other space instances in the same replication group, after recovery
         </ol>
         <p>For further info and configuration options see <a href="../dev-java/direct-persistency.html#distributed-databases">Distributed Databases</a></p>
         <h2><a name="space-instance-recovery-failure-handling"></a>Space Instance Recovery Failure Handling</h2>
-        <p>If the recovery process fails, it is retried 3 times before failing.</p>
+        <p>If the recovery process fails, it is retried 3 times, by default, before failing.</p>
+        <p>The number of retries can be configured by setting system property <code>com.gs.recovery-retries</code>.</p>
     </body>
 </html>
