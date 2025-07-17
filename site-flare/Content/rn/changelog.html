@@ -7,6 +7,201 @@
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
         <div MadCap:conditions="Version.17-1-only">
+            <h1>17.1.2</h1>
+            <h2>Features and Enhancements</h2>
+            <table>
+                <col style="width: 143px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5601</td>
+                        <td>Allow helm charts to easily integrate with istio</td>
+                        <td>Change helm charts to allow easy integration with istio in k8s env : --set global.sidecarIstioInject=true.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5673</td>
+                        <td>Allow not to block primary operations in case of redolog of recovery reached</td>
+                        <td>Ability to fail recovery in case of redolog for recovery limit is reached, instead of block primary operations : added space property: cluster-config.groups.group.repl-policy.on-recovery-redo-log-exceeded-block-primary=false.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5649</td>
+                        <td>Detailed DI status including CDC and all tasks status</td>
+                        <td>DI - Enhance pipeline status details returned in Rest API.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5660</td>
+                        <td>Allow fast recovery from RocksDB data source (to regular space)</td>
+                        <td>Add RocksDB as a data source to in-memory space.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5679</td>
+                        <td>Allow configuring the ratio between the memory limit and heap size in Kubernetes environment</td>
+                        <td>
+                            <p>Allow to configure maxRamPercentage in Kubernetes environment: </p>
+                            <p>For xap-manager, --set manager.maxRamPercentage=67 . </p>
+                            <p>For xap-pu  --set 'env[0].name=XAP_MAX_RAM_PERCENTAGE,env[0].value="45"'.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5299</td>
+                        <td>Ability to retrieve only changed properties in DotNet external data source</td>
+                        <td>Change API - get only changed properties in direct persistence in DotNet -Dcom.gs.direct_persistency.return-changed-properties=true.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5693</td>
+                        <td>Upgrade apache-jsp</td>
+                        <td>Upgrade apache-jsp v 10.1.7 version due to CVE.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5603</td>
+                        <td>Upgrade Jetty</td>
+                        <td>Upgrade Jetty to version 12.0.16.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table style="margin-left: 0;margin-right: auto;">
+                <col style="width: 145px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5624</td>
+                        <td>Configuring secure JMX stopped working in 17.0 version</td>
+                        <td>Fixed secured JMX Regression (from version 17.0).</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5697</td>
+                        <td>Fix getEntryByUID in tieredStorage to protect from SQL&#160;injection</td>
+                        <td>Tiered Storage - SQL injection vulnerability in getEntryByUID.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5685</td>
+                        <td>Protective Query without index warning causes execution failure in some scenarios.</td>
+                        <td>Protective query warning throws an exception in some scenarios, failing the operation.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5686</td>
+                        <td>Zookeeper security fails in cluster mode</td>
+                        <td>ZK security fails in cluster mode.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5668</td>
+                        <td>Unexpected memory shortage exception in backup when memory manager configured to only work in primary</td>
+                        <td>Recovery of backup fails due to memory shortage when memory manager in backup is disabled.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5691</td>
+                        <td>Unexpected warnings related to HSQLDB when it is disabled.</td>
+                        <td>HSQLDB - when disabled, should not start and should not see activity regarding it.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5672</td>
+                        <td>Fix polling container cleanup in space shutdown</td>
+                        <td>Regression from 17.1.1 - having 2 space instances in same jvm when a polling container is related to one, closing either one will close the polling.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div MadCap:conditions="Version.17-1-only">
+            <h1>17.1.1</h1>
+            <h2>Features and Enhancements</h2>
+            <table>
+                <col style="width: 143px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5595</td>
+                        <td>Specific log for protective warning</td>
+                        <td>Warning regarding protective mode should be on specific logger so customer will be able to filter out.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5503</td>
+                        <td>Details regarding query with no index</td>
+                        <td>Enhance details about the related query in case of protective mode warning.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5329</td>
+                        <td>Add configurable number of retries for space recovery</td>
+                        <td>Add configuration for number of retries in case of recovery failure: com.gs.recovery-retries default 3</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table style="margin-left: 0;margin-right: auto;">
+                <col style="width: 145px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5594</td>
+                        <td>Prevent failover when backup not healthy</td>
+                        <td>Data loss due to unhealthy backup electing itself as the primary after restarting com.gs.waiting-timeout-for-leader-if-unhealthy. Default 5*60*1000.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5559</td>
+                        <td>CLI fails in certain MAC versions</td>
+                        <td>Running gs.sh script on certain versions of mac machine failed - related dependency was upgraded.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5500</td>
+                        <td>ClassLoader cleanup in no class cache aggregation</td>
+                        <td>Support the use of code change with no ID with immediate ClassLoader cleanup to allow loading all required classes in each aggregation.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5445</td>
+                        <td>Inconsistent query behavior when parameter type mismatch related data in space</td>
+                        <td>Inconsistent query behavior - unexpected exception in some scenarios when a given parameter can't be compared with data in the space.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5440</td>
+                        <td>Split Brain was not resolved after two managers were down and reconnected</td>
+                        <td>Split brain not resolved after zookeeper quorum is lost and resumed (downgrade zookeeper curator)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5330</td>
+                        <td>Space is not started after initial load failures when Space is in HA mode</td>
+                        <td>HA Space pu is not becoming active after initial load failure.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5626</td>
+                        <td>DI stops writing to the space in case of partition failover in the middle of task execution</td>
+                        <td>DI should handle failover in one of the space partitions while task is executed, timeout and retry in waiting for task results from all the partitions.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div MadCap:conditions="Version.17-1-only">
             <h1>17.1</h1>
             <h2>Features and Enhancements</h2>
             <table>

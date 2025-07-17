@@ -246,41 +246,82 @@ As a participant of the ZooKeeper leader election, the GSM is configurable using
             <p>You can set up secured ZooKeeper as follows:</p>
             <ol>
                 <li>
-                    <p>Create keystore and truststore (self-signed for testing purposes only):</p>
+                    <p>Create keystore and truststore:</p>
                     <ol>
-                        <li><code>keytool -genkeypair -alias mycert -keyalg RSA -keysize 2048 -dname "cn=localhost" -keypass keypassword -keystore keystore.jks -storepass keystorepassword
-</code>
+                        <li><pre>keytool -genkeypair \
+  -alias mykey \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 3650 \
+  -keystore zk-keystore.p12 \
+  -storetype PKCS12 \
+  -storepass password \
+  -keypass password \
+  -dname "CN=localhost"
+</pre>
                         </li>
-                        <li><code>keytool -genkeypair -alias mycert -keyalg RSA -keysize 2048 -dname "cn=localhost" -keypass keypassword -keystore keystore.jks -storepass keystorepassword
-</code>
+                        <li><pre>keytool -exportcert \
+  -alias mykey \
+  -keystore zk-keystore.p12 \
+  -storepass password \
+  -rfc \
+  -file mycert.crt
+</pre>
                         </li>
-                        <li><code>keytool -exportcert -alias mycert -keystore keystore.jks -file thiscert.cer -rfc
-</code>
+                        <li><pre>keytool -importcert \
+  -alias trustedcert \
+  -file mycert.crt \
+  -keystore zk-truststore.p12 \
+  -storetype PKCS12 \
+  -storepass password \
+  -noprompt
+</pre>
                         </li>
                     </ol>
                 </li>
                 <li>
-                    <p>Set up  ZooKeeper configuration file <b>zookeeper-server.cfg</b> as follows:</p><pre>secureClientPort=2181
-clientPort=2181
-dataDir=/path/to/datadir/
-serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory
-ssl.keyStore.location=/path/to/files/keystore.jks
-ssl.keyStore.password=keystorepassword
-ssl.trustStore.location=/path/to/files/truststore.jks
-ssl.trustStore.password=truststirepassword
+                    <p>Set up  ZooKeeper configuration file <b>zookeeper-server.cfg</b> as follows:</p><pre>clientPort=2181
+
+# ZK server listens for incoming secured TLS connections from clients
+secureClientPort=2281
+# Decides whether TLS should be ON or OFF for the ZK server
+ssl=true
+sslQuorum=true          serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory           ssl.keyStore.location=../config/zookeeper/zk-keystore.p12
+ssl.keyStore.password=password
+ssl.keyStore.type=PKCS12
+ssl.trustStore.location=../config/zookeeper/zk-truststore.p12
+ssl.trustStore.password=password
+ssl.quorum.keyStore.location=../config/zookeeper/zk-keystore.p12
+ssl.quorum.keyStore.password=password
+ssl.quorum.trustStore.location=../config/zookeeper/zk-truststore.p12
+ssl.quorum.trustStore.password=password
+# Allow quorum TLS connections with mismatched hostnames
+ssl.quorum.hostnameVerification=false
 </pre>
                 </li>
                 <li>
-                    <p>In <b>setenv-overides.sh</b>, add the following java options (replace with the relevant path):</p><pre>-Dzookeeper.ssl.keyStore.password=keystorepassword 
--Dzookeeper.ssl.trustStore.location=/path/to/files/truststore.jks  
--Dzookeeper.ssl.trustStore.password=truststorepassword 
--Dcom.gs.zookeeper.client.config-file=/path/to/files/zookeeper-server.cfg 
--Dcom.gs.security.enabled=false 
--Dcom.gs.manager.rest.ssl.enabled=false  
--Dcom.gs.ui.metrics.db.files-defrag-threshold=10 -Xdebug -Xnoagent 
--Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n'</pre>
+                    <p>Set up <b>zoo-client.cfg</b> file:</p><pre># Secure client connection port
+            secureClientPort=2281
+
+            # SSL/TLS settings
+            ssl=true
+            zookeeper.client.secure=true
+            zookeeper.sasl.client=false
+           zookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty
+            zookeeper.ssl.keyStore.location=../config/zookeeper/zk-keystore.p12
+zookeeper.ssl.keyStore.password=password
+zookeeper.ssl.keyStore.type=PKCS12          zookeeper.ssl.trustStore.location=../config/zookeeper/zk-truststore.p12
+            zookeeper.ssl.trustStore.password=password
+
+            # disables hostname verification on the client side when connecting to a ZooKeeper server over TLS/SSL
+            zookeeper.ssl.hostnameVerification=false
+</pre>
                 </li>
             </ol>
+            <div class="tc-admon-note">
+                <p>:<b>zoo-client.cfg</b> was added with version 17.1.2. The default file location is next to <b>zoo.cfg </b>- <b>$GS_HOME/config/zookeeper/zoo-client.cfg</b>.</p>
+                <p>The default ZooKeeper client configuration file path can be changed by setting the <b>ZOOKEEPER_CLIENT_CONFIG_FILE</b> environment variable, or by using the system property <b>com.gs.zookeeper.client.config-file</b>.</p>
+            </div>
         </div>
         <h1><a name="backwards-compatibility"></a>Backwards Compatibility</h1>
         <p>The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We think this is a better way of working with <MadCap:variable name="General.ProductNameXAP" />, and we want new users and customers to work solely with it.

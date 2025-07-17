@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.17-1-born">
+    <head>
+    </head>
+    <body>
+        <h1>RocksDB as a Data Source</h1>
+        <h2>MemoryXtend for fast recovery (from 17.1.2 version)
+</h2>
+        <p>Using memoryXtend persistence can speed up recovery time significantly compared to recovery from standard relational databases.
+</p>
+        <p>In some use cases, the in-memory space can’t use memoryXtened as extreme write/update/take performance is required, and a direct persistence approach can’t be used.
+In these cases, it is recommended to use two spaces - one as the main in-memory space and a secondary space for persistence.
+</p>
+        <p>This can be achieved by one of the following ways:</p>
+        <ul>
+            <li>
+                <p>Streaming change operations to both spaces, as shown in the diagram below:
+</p>
+                <p>
+                    <img src="../Resources/Images/rocksdb-1.png" />
+                </p>
+            </li>
+            <li>
+                <p>Replicating  all changes from the main space to the secondary space in an async manner, as shown in the diagram below:</p>
+                <p>
+                    <img src="../Resources/Images/rocksdb-2.png" />
+                </p>
+            </li>
+        </ul>
+        <p>This is the recovery flow for both options:</p>
+        <p>
+            <img src="../Resources/Images/rocksdb-3.png" />
+        </p>
+        <h3>Define the recovery flow in the space PU</h3>
+        <p>Use the following code to define the recovery flow in the space PU:</p>
+        <p>&#160;</p><pre><code class="language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:context="http://www.springframework.org/schema/context"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+  http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
+
+
+   &lt;!-- Enables the usage of @GigaSpaceContext annotation based injection. --&gt;
+   &lt;os-core:giga-space-context /&gt;
+   &lt;!-- Enables Spring Annotation configuration --&gt;
+   &lt;context:annotation-config /&gt;
+   &lt;os-core:annotation-support /&gt;
+
+   &lt;!--regular space --&gt;
+   &lt;bean id="rocksDBDataSource" class="com.gigaspaces.blobstore.rocksdb.RocksDBDataSource"&gt;
+       &lt;property name="spaceName" value="mxspace"/&gt;
+       &lt;property name="basePath" value="gs-home/work/memoryxtend/rocksdb"/&gt;
+   &lt;/bean&gt;
+   &lt;os-core:embedded-space id="space" space-name="rcspace"  space-data-source="rocksDBDataSource"  &gt;
+   &lt;/os-core:embedded-space&gt;
+
+   &lt;!-- OpenSpaces simplified space API built on top of IJSpace/JavaSpace. --&gt;
+   &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+
+&lt;/beans&gt;
+</code></pre>
+    </body>
+</html>

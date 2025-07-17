@@ -85,6 +85,11 @@
                     <td align="left">Specifies the total capacity of replication packets the redo log can hold for a standard replication target while it is undergoing a recovery process.</td>
                     <td align="left">5000000</td>
                 </tr>
+                <tr MadCap:conditions="Version.17-1-born">
+                    <td align="left">cluster-config.groups.group.repl-policy.on-recovery-redo-log-exceeded-block-primary</td>
+                    <td align="left">Specifies what happens when the redolog reaches its limit while it is undergoing a recovery process. If set to true, it will  block primary operations. If set to false, recovery will fail and will be retried.</td>
+                    <td align="left">true (since version 17.1.2)</td>
+                </tr>
                 <tr>
                     <td align="left">cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded</td>
                     <td align="left">See the <a href="#handling-a-increasingly-larger-redo-log">Handling an Increasing Redo Log</a> section for details.</td>

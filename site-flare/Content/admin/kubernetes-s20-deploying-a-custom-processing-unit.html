@@ -87,7 +87,7 @@ ADD target/my-pu-stateful-0.1.jar /opt/gigaspaces/bin/pu.jar
 ENTRYPOINT ["/opt/entrypoint.sh"]
 CMD ["host", "run-agent", "--auto"]
 </code></pre><pre MadCap:conditions="Version.16-3-born"><code class="language-bash">
-FROM gigaspaces/xap-skyline-enterprise:<MadCap:variable name="Versions.product-version-long" />
+FROM gigaspaces/xap-enterprise:<MadCap:variable name="Versions.product-version-long" />
 ADD target/my-pu-stateful-0.1.jar /opt/gigaspaces/bin/pu.jar
 
 ENTRYPOINT ["/opt/entrypoint.sh"]

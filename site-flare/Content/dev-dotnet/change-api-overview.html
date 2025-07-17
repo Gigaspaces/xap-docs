@@ -251,6 +251,32 @@ catch(ChangeException e)
         <ol>
             <li>When replicated to a gateway and a conflict occurs, change operation only supports the built-in <code>abort</code> resolution, as <code>override</code> in change case can result in an inconsistent state of the object.</li>
             <li>The change operation is converted to a regular update when delegated to a data source.</li>
+            <li MadCap:conditions="Version.17-1-born">
+                <p>Since version 17.1.2, the above behavior can change if a custom jvm arg is added: <code>-Dcom.gs.direct_persistency.return-changed-properties=true</code></p>
+                <p>In that case, the <code>BulkOperation.Change</code> type will be received in the <code>executeBulk</code> method, and a <code>ChangeBulkItem</code> containing a dictionary of the changed property names and new values will be available. For example:</p><pre><code class="language-csharp">        protected virtual void ExecuteBulkItem(BulkItem bulkItem, int retries)
+        {
+            object entry = bulkItem.Item;
+
+            switch (bulkItem.Operation)
+            {
+                case BulkOperation.Remove:
+                   Log("Remove called for: - " + entry);
+                    break;
+                case BulkOperation.Write:
+                    Log("Write called for: - " + entry);
+                    break;
+                case BulkOperation.Update:
+                    Log("Update called for: - " + entry);
+                    break;
+                case BulkOperation.Change:
+                Log("Change called for: - " + entry);
+                ChangeBulkItem changeBulkItem = (ChangeBulkItem) bulkItem;
+                 var counter = changeBulkItem.ChangedProperties["Counter"];
+                    var order = changeBulkItem.ChangedProperties["Order"];
+…
+<![CDATA[
+]]></code></pre>
+            </li>
         </ol>
     </body>
 </html>

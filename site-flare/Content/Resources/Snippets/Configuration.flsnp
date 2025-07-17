@@ -85,6 +85,18 @@
                 </tr>
             </tbody>
         </table>
+        <div class="tc-admon-note" MadCap:conditions="Version.17-1-born">
+            <p>By default, the heap size of each process will be 75% of the specified limit.</p>
+            <p>From version 17.1.2, you can change this using:</p>
+            <ul>
+                <li>
+                    <p>For xap-manager:&#160;<code>--set manager.maxRamPercentage=newval</code></p>
+                </li>
+                <li>
+                    <p>For xap-pu:&#160;<code>--set 'env[0].name=XAP_MAX_RAM_PERCENTAGE,env[0].value="newval"'</code></p>
+                </li>
+            </ul>
+        </div>
         <h2>Pods/Service/Ingress (Networking Configuration, H/A)</h2>
         <h3>Network Configuration</h3>
         <p>By default, all services are configured with the ClusterIP. The following services have to be accessed from outside the cluster:</p>

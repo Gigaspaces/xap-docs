@@ -434,6 +434,9 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <p>Deleting and reallocating memory takes longer then overwriting the same memory area, but if the size of the new value is smaller then the old value, then the overwrite option leaves part of the original allocated memory underutilized. You can use the <code>BLOBSTORE_OFF_HEAP_MIN_DIFF_TO_ALLOCATE_PROP</code> Space property to control when to trade off system performance for maximizing the memory usage.</p>
         <p>This Space property works as follows: if the oldValueSize - newValueSize &gt; blobstore.off-heap.update_threshold, then delete and reallocate memory for the object. Otherwise overwrite the old object value with the new object value.</p>
         <p>The default threshold is 50B.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.17-1-born">
+            <p>Using memoryXtend for persistency can speed up recovery time significantly when compared to initial load from a relational database. If memoryXtened is required for this purpose, see <MadCap:xref href="../dev-java/rocksdb-datasource.htm">RocksDB as a Data Source</MadCap:xref>.</p>
+        </div>
         <h2><a name="example"></a>Example</h2>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="pu.xml" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
