@@ -280,13 +280,14 @@ As a participant of the ZooKeeper leader election, the GSM is configurable using
                     </ol>
                 </li>
                 <li>
-                    <p>Set up  ZooKeeper configuration file <b>zookeeper-server.cfg</b> as follows:</p><pre>clientPort=2181
-
+                    <p>Set up  ZooKeeper configuration file <b>zookeeper-server.cfg</b> as follows:</p><pre><code>clientPort=2181
 # ZK server listens for incoming secured TLS connections from clients
 secureClientPort=2281
 # Decides whether TLS should be ON or OFF for the ZK server
 ssl=true
-sslQuorum=true          serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory           ssl.keyStore.location=../config/zookeeper/zk-keystore.p12
+sslQuorum=true          
+serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory           
+ssl.keyStore.location=../config/zookeeper/zk-keystore.p12
 ssl.keyStore.password=password
 ssl.keyStore.type=PKCS12
 ssl.trustStore.location=../config/zookeeper/zk-truststore.p12
@@ -296,26 +297,25 @@ ssl.quorum.keyStore.password=password
 ssl.quorum.trustStore.location=../config/zookeeper/zk-truststore.p12
 ssl.quorum.trustStore.password=password
 # Allow quorum TLS connections with mismatched hostnames
-ssl.quorum.hostnameVerification=false
-</pre>
+ssl.quorum.hostnameVerification=false</code><![CDATA[
+]]></pre>
                 </li>
                 <li>
-                    <p>Set up <b>zoo-client.cfg</b> file:</p><pre># Secure client connection port
-            secureClientPort=2281
-
-            # SSL/TLS settings
-            ssl=true
-            zookeeper.client.secure=true
-            zookeeper.sasl.client=false
-           zookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty
-            zookeeper.ssl.keyStore.location=../config/zookeeper/zk-keystore.p12
+                    <p>Set up <b>zoo-client.cfg</b> file:</p><pre><code># Secure client connection port
+secureClientPort=2281
+# SSL/TLS settings
+ssl=true
+zookeeper.client.secure=true
+zookeeper.sasl.client=false
+zookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty
+zookeeper.ssl.keyStore.location=../config/zookeeper/zk-keystore.p12
 zookeeper.ssl.keyStore.password=password
-zookeeper.ssl.keyStore.type=PKCS12          zookeeper.ssl.trustStore.location=../config/zookeeper/zk-truststore.p12
-            zookeeper.ssl.trustStore.password=password
-
-            # disables hostname verification on the client side when connecting to a ZooKeeper server over TLS/SSL
-            zookeeper.ssl.hostnameVerification=false
-</pre>
+zookeeper.ssl.keyStore.type=PKCS12          
+zookeeper.ssl.trustStore.location=../config/zookeeper/zk-truststore.p12
+zookeeper.ssl.trustStore.password=password
+# disables hostname verification on the client side when connecting to a ZooKeeper server over TLS/SSL
+zookeeper.ssl.hostnameVerification=false
+</code></pre>
                 </li>
             </ol>
             <div class="tc-admon-note">
