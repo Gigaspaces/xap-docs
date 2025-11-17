@@ -7,6 +7,134 @@
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
         <div MadCap:conditions="Version.17-1-only">
+            <h1>17.1.4</h1>
+            <h2>Features and Enhancements</h2>
+            <table>
+                <col style="width: 143px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5786</td>
+                        <td>Partial data in space in case of initial load failure with memoryXtended</td>
+                        <td>Partial data in space in case of failure in initial load from database when memoryXtended is used.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5715</td>
+                        <td>Space Type query and create service</td>
+                        <td>Ability to query type and create service from Space Type screen.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5325</td>
+                        <td>Configure environment-specific logo</td>
+                        <td>Ability to define different logo per environment (ENV_LABEL="DEV", ENV_BG_COLOR="#5FB224" (green)..).</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5787</td>
+                        <td>Tooltip for space error and warning details</td>
+                        <td>Show tooltip when space is in error or warning mode with details about the problem.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5680</td>
+                        <td>Reuse query parameters in SpaceDeck</td>
+                        <td>Allow reuse the same parameter more than once in a query built in SpaceDeck.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4554</td>
+                        <td>Specify JVM args in service creator</td>
+                        <td>Service creator - allow to specify JVM args for service.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table style="margin-left: 0;margin-right: auto;">
+                <col style="width: 145px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-781</td>
+                        <td>Reduce admin API network traffic</td>
+                        <td>High network traffic between admin APIs (decrease monitor rate: -Dcom.gs.manager.pu.monitor.interval=20000, default 1 sec).</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5617</td>
+                        <td>.NET tests and examples fixes</td>
+                        <td>.NET tests, benchmarks and examples fixes.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5698</td>
+                        <td>Off-heap routing after DB initial load</td>
+                        <td>Off-heap after initial load from DB read goes to off-heap even though entry type is blobstore false.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5760</td>
+                        <td>Deploy hangs in k8s after multiple attempts</td>
+                        <td>Deploy hangs in Kubernetes after several trials of deploy undeploy.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5748</td>
+                        <td>IN condition in prepared statement</td>
+                        <td>IN condition fails when used in prepared statement.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5762</td>
+                        <td>Query exception on timestamp with zone</td>
+                        <td>Exception executing query on timestamp field with condition when value includes zone.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5746</td>
+                        <td>Windows deployment IOException on folder rename</td>
+                        <td>Intermittent Deployment Failure in Windows environment: IOException During Folder Rename.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5721</td>
+                        <td>JDBC delete with condition fails silently</td>
+                        <td>JDBC delete with condition not working in certain scenario (nothing is deleted, no exception).</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4072</td>
+                        <td>Start-pipeline button appears while running</td>
+                        <td>Start-pipeline appears after pipeline is running.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-4071</td>
+                        <td>Disable table operations during pipeline run</td>
+                        <td>Option to add or remove tables should be disabled when pipeline is running.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5709</td>
+                        <td>Space creation limited to 3 parameters in SpaceDeck</td>
+                        <td>Can't create space with more than 3 parameters via SpaceDeck.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5508</td>
+                        <td>Pipeline type fields exclusion not working</td>
+                        <td>Pipeline creation - Type fields exclusion does not work.</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5793</td>
+                        <td>Shade third party libraries in xap-jdbc</td>
+                        <td>Shade third party libraries in xap-jdbc jar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div MadCap:conditions="Version.17-1-only">
             <h1>17.1.2</h1>
             <h2>Features and Enhancements</h2>
             <table>

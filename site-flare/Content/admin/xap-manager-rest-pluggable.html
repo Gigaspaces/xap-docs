@@ -55,7 +55,7 @@ You can override the location using the following system property:</p><pre><code
 public Response report(@QueryParam("hostname") String hostname) {
     Machine machine = admin.getMachines().getMachineByHostName(hostname);
     if (machine == null)
-        return Response.status(javax.ws.rs.core.Response.Status.NOT_FOUND).entity("Host not found").build();    
+        return Response.status(jakarta.ws.rs.core.Response.Status.NOT_FOUND).entity("Host not found").build();    
     String result = "Custom report: host=" + hostname + 
             ", containers=" + machine.getGridServiceContainers() + 
             ", PU instances=" + machine.getProcessingUnitInstances();

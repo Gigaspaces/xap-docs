@@ -49,6 +49,9 @@
     &lt;/grafana&gt;
 
 </code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.17-1-born">
+            <p>In a Kubernetes environment, InfluxDB will be installed as part of the dih umbrella.</p>
+        </div>
         <h1><a name="installing-and-configuring-grafana"></a>Installing and Configuring Grafana</h1>
         <p>To install Grafana (6.7.3 or earlier), download from <a href="http://grafana.org/download/" target="_blank">here</a>, and follow the <a href="http://docs.grafana.org/installation/" target="_blank">installation instructions</a>.</p>
         <div class="tc-admon-note">
@@ -82,6 +85,10 @@
         </ul>
         <div class="tc-admon-note">
             <p>We recommend verifying that the default database exists. Some InfluxDB packages do not automatically create the default <code>mydb</code> database. You can use the InfluxDB <a href="https://influxdb.com/docs/v0.9/tools/web_admin.html">Web Admin</a> or <a href="https://influxdb.com/docs/v0.9/tools/shell.html">shell</a> to check if the database exists, and create it if needed. For more information, see the <a href="https://influxdb.com/docs/v0.9/introduction/getting_started.html#logging-in-and-creating-your-first-database">Getting Started with InfluxDB</a> topic on the InfluxDB website .</p>
+            <p>&#160;</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>In a Kubernetes environment, Grafana will be installed as part of the dih umbrella.</p>
         </div>
         <h1><a name="getting-started"></a>Getting Started</h1>
         <p>
@@ -90,6 +97,10 @@
         <div MadCap:conditions="Version.16-0-born">
             <h1><a name="dashboards"></a>Dashboards</h1>
             <p>Following are examples of predefined dashboards.</p>
+            <div MadCap:conditions="Version.17-1-born">
+                <p>In a non-Kubernetes environment, you will need to import the dashboards from <code>$GS_HOME/config/grafana/dashboards</code>.</p>
+                <p> In a Kubernetes environment, the Grafana dashboards are pre-installed.</p>
+            </div>
             <h2><a name="GigaSpac"></a>GigaSpaces Spaces Dashboard</h2>
             <p>
                 <img src="../Resources/Static/images/grafana-1.png" alt="image" class="tc-picture100" />

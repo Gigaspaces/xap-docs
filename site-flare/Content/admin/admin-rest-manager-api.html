@@ -209,7 +209,7 @@ public class BasicPluggableOperationTest {
     }
 }
 </code></pre>
-        <p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/v2/demo/report?hostname=mypc</code>.</p>
+        <p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/demo/report?hostname=mypc</code>.</p>
         <p>To run the example, compile it and package it into a .jar file, then copy the .jar to <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> and start the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
         <p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
         <h2><a name="configuration"></a>Configuration</h2>
