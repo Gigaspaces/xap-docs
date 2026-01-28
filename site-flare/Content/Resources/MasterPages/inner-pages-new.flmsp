@@ -28,14 +28,6 @@
         </script>
         <script src="../Custom/prism.js">
         </script>
-        <script type="text/javascript" src="https://[%=HTML2023_Variables.SU%]/an.js">
-        </script>
-        <link rel="stylesheet" href="https://[%=HTML2023_Variables.SU%]/searchbox.css" />
-        <script type="text/javascript" src="https://[%=HTML2023_Variables.SU%]/searchbox.js">
-        </script>
-        <script type="text/javascript" src="https://[%=HTML2023_Variables.SU%]/feedback.js">
-        </script>
-        <link rel="stylesheet" href="https://[%=HTML2023_Variables.SU%]/feedback.css" />
     </head>
     <body class="content">
         <MadCap:snippetBlock src="header-content.flsnp" />
@@ -51,10 +43,10 @@
             </div>
             <div class="ipn-content">
                 <MadCap:menuProxy style="mc-toc-depth: 2;mc-context-sensitive: True;mc-include-parent: True;mc-include-siblings: True;mc-include-children: True;" data-mc-skin="/Project/Skins/HTML5 - Side Menu.flskn" mc-linked-toc="$topicHeadings" />
-                <div id="suPageRateApp">
+                <!-- <div id="suPageRateApp">
                     <su-app>
                     </su-app>
-                </div>
+                </div> -->
             </div>
         </div>
         <MadCap:snippetBlock src="footer-content.flsnp" />
@@ -65,16 +57,7 @@
             <div id="ipn-toggle-closed" style="visibility: visible; display: none;" title="Show navigation"> </div>
         </div>
         <script>
-			$(document).ready(function() {
-			// Find the .search-bar.search-bar-container.needs-pie element
-			var $searchBar = $('.search-bar.search-bar-container.needs-pie');
-			$searchBar.find('input.search-field.needs-pie').remove();
-			$searchBar.find('.search-submit-wrapper').remove();
-			// Add the div#auto to the .search-bar.search-bar-container.needs-pie
-			$searchBar.prepend('			<!-- SearchUnify Code --><div id="auto" class="su__innerPage-autocomplete"><div ng-controller="SearchautoController"><div bind-html-compile="autocompleteHtml"></div></div></div><!-- SearchUnify Code -->');
-			});
-
-			
+		
 			/*                   <![CDATA[ */
 			$('pre code').each(function(i, block) {
 			hljs.highlightBlock(block);

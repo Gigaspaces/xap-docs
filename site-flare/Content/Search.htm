@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" class="algolia-search">
+    <head>
+        <!-- Algolia InstantSearch CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css" />
+        <style>
+			/* Custom styles for search interface */
+			
+			#search-results {
+			display: none;
+			}
+			
+			.ipn-content,
+			.breadcrumb-container,
+			#last-updated {
+			display: none !important;
+			}
+			
+			li.ais-Pagination-item:before {
+			display: none;
+			}
+			
+			.search-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 20px 60px 20px;
+			}
+            
+			.search-header {
+			margin-bottom: 30px;
+			display: flex;
+			align-items: flex-start;
+			gap: 15px;
+			}
+			
+			.filter-dropdown {
+			flex: 0 0 auto;
+			position: relative;
+			}
+			
+			.filter-button {
+			padding: 10px 10px 10px 16px;
+			font-size: 16px;
+			border: 2px solid #e4e4e4;
+			border-radius: 4px;
+			background-color: white;
+			cursor: pointer;
+			min-width: 180px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			transition: border-color 0.2s;
+			height: 40px;
+			box-sizing: border-box;
+			}
+			
+			.filter-button:hover {
+			border-color: #006db8;
+			}
+			
+			.filter-button.active {
+			border-color: #006db8;
+			}
+			
+			.filter-arrow {
+			margin-left: 10px;
+			font-size: 10px;
+			transition: transform 0.2s;
+			}
+			
+			.filter-button.active .filter-arrow {
+			transform: rotate(180deg);
+			}
+			
+			.filter-menu {
+			position: absolute;
+			top: calc(100% + 4px);
+			left: 0;
+			min-width: 180px;
+			background: white;
+			border: 2px solid #006db8;
+			border-radius: 4px;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+			display: none;
+			z-index: 1000;
+			}
+			
+			.filter-menu.active {
+			display: block;
+			}
+			
+			.filter-option {
+			padding: 12px 16px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+			}
+			
+			.filter-option:hover {
+			background-color: #f4f4f4;
+			}
+			
+			.filter-option.selected {
+			background-color: #006db8;
+			color: white;
+			font-weight: 600;
+			}
+			
+			.filter-option:first-child {
+			border-radius: 2px 2px 0 0;
+			}
+			
+			.filter-option:last-child {
+			border-radius: 0 0 2px 2px;
+			}
+            
+			.search-box-container {
+			margin-bottom: 20px;
+			flex: 1;
+			}
+            
+			.ais-SearchBox {
+			margin-bottom: 20px;
+			}
+            
+			.ais-SearchBox-input {
+			width: 100%;
+			padding: 12px 48px;
+			font-size: 16px;
+			border: 2px solid #e4e4e4;
+			border-radius: 4px;
+			}
+            
+			.ais-SearchBox-input:focus {
+			border-color: #006db8;
+			outline: none;
+			}
+            
+			.search-results {
+			width: 100%;
+			}
+            
+			.ais-Hits-item {
+			margin-bottom: 20px;
+			padding: 20px;
+			border: 1px solid #e4e4e4;
+			border-radius: 4px;
+			background: white;
+			}
+ 
+			.hit-title {
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 10px;
+			color: #333;
+			}
+			
+			.hit-title a {
+			color: #006db8;
+			text-decoration: none;
+			}
+			
+			.hit-title a:hover {
+			text-decoration: underline;
+			}
+			
+			.hit-title a:after,
+			.ais-Pagination-link:after
+			 {
+			display: none;
+			}
+			
+			ol.ais-Hits-list {
+			margin: 0;
+			}
+            
+			.hit-description {
+			color: #666;
+			line-height: 1.6;
+			margin-bottom: 10px;
+			}
+            
+			.hit-breadcrumb {
+			font-size: 12px;
+			color: #999;
+			}
+            
+			.ais-RefinementList-item {
+			margin-bottom: 8px;
+			}
+            
+			.ais-RefinementList-label {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			}
+            
+			.ais-RefinementList-checkbox {
+			margin-right: 8px;
+			}
+            
+			.ais-Stats {
+			font-size: 14px;
+			color: #666;
+			margin-bottom: 15px;
+			}
+            
+			.ais-Pagination {
+			margin-top: 30px;
+			}
+            
+			.ais-Pagination-list {
+			display: flex;
+			gap: 5px;
+			list-style: none;
+			padding: 0;
+			justify-content: center;
+			}
+            
+			.ais-Pagination-item {
+			display: inline-block;
+			}
+            
+			.ais-Pagination-link {
+			padding: 8px 12px;
+			border: 1px solid #e4e4e4;
+			border-radius: 4px;
+			text-decoration: none;
+			color: #333;
+			}
+            
+			.ais-Pagination-link:hover {
+			background-color: #f4f4f4;
+			}
+            
+			.ais-Pagination-item--selected .ais-Pagination-link {
+			background: #006db8;
+			color: white;
+			border-color: #006db8;
+			}
+			
+			li.ais-Hits-item:before {
+			display: none;
+			}
+            
+			/* Highlight matched terms */
+			.ais-Highlight-highlighted {
+			background-color: #fef5d4;
+			font-style: normal;
+			font-weight: bold;
+			}
+			
+			mark {
+			background-color: #fef5d4;
+			font-weight: bold;
+			padding: 0 2px;
+			}
+			.ais-Pagination-link::after {
+			display: none!important;
+			}
+		</style>
+    </head>
+    <body>
+        <MadCap:searchResultsProxy />
+        <div class="search-container">
+            <div class="search-header">
+                <div class="filter-dropdown">
+                    <div class="filter-button" id="filter-button"><span id="filter-text">All Results</span><span class="filter-arrow">▼</span>
+                    </div>
+                    <div class="filter-menu" id="filter-menu">
+                        <div class="filter-option selected" data-value="all">All Results</div>
+                        <div class="filter-option" data-value="exclude">Exclude X​AP.NET</div>
+                    </div>
+                </div>
+                <div id="searchbox" class="search-box-container">
+                </div>
+                <p style="margin-top: 10px;">
+                    <img src="Resources/Custom/images/algolia.svg" style="width: 80px;" />
+                </p>
+            </div>
+            <div id="stats">
+            </div>
+            <div class="search-layout">
+                <main class="search-results">
+                    <div id="hits">
+                    </div>
+                    <div id="algolia-pagination">
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- Algolia InstantSearch JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.20.0/dist/algoliasearch-lite.umd.js">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.60.0/dist/instantsearch.production.min.js">
+        </script>
+        <script>/*<![CDATA[*/
+			// ============================================================
+			// CONFIGURATION - Algolia credentials
+			// ============================================================
+			const baseSearchClient = algoliasearch(
+			'6IL720VTD3',
+			'bd773bee0540679fd0d9268fbdfb4c56'
+			);
+                                                    
+			// Wrap search client to prevent empty queries
+			const searchClient = {
+			...baseSearchClient,
+			search(requests) {
+			// If all queries are empty, return empty results
+			if (requests.every(({ params }) => !params.query || params.query.trim() === '')) {
+			return Promise.resolve({
+			results: requests.map(() => ({
+			hits: [],
+			nbHits: 0,
+			nbPages: 0,
+			page: 0,
+			processingTimeMS: 0,
+			})),
+			});
+			}
+			return baseSearchClient.search(requests);
+			},
+			};
+                                                    
+			const indexName = 'GigaSpaces Docs';
+                                                    
+			// ============================================================
+			// Initialize InstantSearch
+			// ============================================================
+			const search = instantsearch({
+			indexName: indexName,
+			searchClient: searchClient,
+			routing: {
+			stateMapping: {
+			stateToRoute(uiState) {
+			const indexUiState = uiState[indexName] || {};
+			return {
+			q: indexUiState.query,
+			page: indexUiState.page,
+			};
+			},
+			routeToState(routeState) {
+			return {
+			[indexName]: {
+			query: routeState.q,
+			page: routeState.page,
+			},
+			};
+			},
+			},
+			},
+			});
+                                                    
+			// ============================================================
+			// Add Widgets
+			// ============================================================
+                                                    
+			// Configure search parameters
+			search.addWidgets([
+			instantsearch.widgets.configure({
+			hitsPerPage: 20,
+			attributesToSnippet: ['content:50'],
+			snippetEllipsisText: '...',
+			highlightPreTag: '<mark>',
+			highlightPostTag: '</mark>',
+			})
+			]);
+                                                    
+			// Search box
+			search.addWidgets([
+			instantsearch.widgets.searchBox({
+			container: '#searchbox',
+			placeholder: 'Search documentation...',
+			showReset: true,
+			showSubmit: true,
+			autofocus: true,
+			})
+			]);
+                                                    
+			// Stats
+			search.addWidgets([
+			instantsearch.widgets.stats({
+			container: '#stats',
+			templates: {
+			text(data) {
+			// Hide stats if no query
+			if (!data.query || data.query.trim() === '') {
+			return '';
+			}
+                                                    
+			let count = '';
+			if (data.hasManyResults) {
+			count += data.nbHits;
+			} else if (data.hasOneResult) {
+			count += '1';
+			} else {
+			count += 'no';
+			}
+			return count + ' results found in ' + data.processingTimeMS + 'ms';
+			}
+			}
+			})
+			]);
+                                                    
+			// Hits (results)
+			search.addWidgets([
+			instantsearch.widgets.hits({
+			container: '#hits',
+			templates: {
+			item(hit, { html }) {
+			// Get page title
+			const pageTitle = hit.hierarchy?.lvl1 || hit.hierarchy?.lvl0 || 'Untitled';
+			const highlightedPageTitle = hit._highlightResult?.hierarchy?.lvl1?.value || 
+			hit._highlightResult?.hierarchy?.lvl0?.value || 
+			pageTitle;
+                                                    
+			// Get section heading if it exists and has highlights
+			let sectionHeading = '';
+			if (hit._highlightResult?.hierarchy?.lvl2?.matchLevel !== 'none') {
+			sectionHeading = hit._highlightResult?.hierarchy?.lvl2?.value || hit.hierarchy?.lvl2;
+			} else if (hit.hierarchy?.lvl2) {
+			sectionHeading = hit.hierarchy.lvl2;
+			}
+                                                    
+			// Get content snippet - try multiple sources
+			let contentSnippet = '';
+			if (hit._snippetResult?.content?.value) {
+			contentSnippet = hit._snippetResult.content.value;
+			} else if (hit._highlightResult?.content?.value) {
+			contentSnippet = hit._highlightResult.content.value;
+			} else if (hit.content) {
+			// Fallback to plain content if no snippet
+			contentSnippet = hit.content.substring(0, 200) + '...';
+			}
+                                                    
+			// Build URL with Highlight parameter
+			const pageUrl = hit.url_without_anchor || hit.url.split('#')[0];
+			let finalUrl = pageUrl;
+                                                    
+			// Get search query from InstantSearch state
+			const searchQuery = search.helper ? search.helper.state.query : '';
+                                                    
+			if (searchQuery && searchQuery.trim() !== '') {
+			const separator = finalUrl.includes('?') ? '&' : '?';
+			finalUrl += separator + 'Highlight=' + encodeURIComponent(searchQuery);
+			}
+                                                    
+			return html`
+			<article class="hit-item">
+			<div class="hit-title">
+			<a href="${finalUrl}" dangerouslySetInnerHTML=${{ __html: highlightedPageTitle }}></a>
+			${pageUrl.includes('dev-dotnet') ? html`
+			<span style="display: inline-block; margin-left: 8px; padding: 2px 8px; background-color: #0066cc; color: white; font-size: 11px; font-weight: bold; border-radius: 3px; vertical-align: middle;">XAP.NET</span>
+			` : ''}
+			</div>
+			${sectionHeading ? html`
+			<div style="font-weight: 600; color: #666; margin-bottom: 8px; font-size: 14px;" dangerouslySetInnerHTML=${{ __html: sectionHeading }}></div>
+			` : ''}
+			${contentSnippet ? html`
+			<div class="hit-description" dangerouslySetInnerHTML=${{ __html: contentSnippet }}></div>
+			` : ''}
+			</article>
+			`;
+			},
+			empty(results, { html }) {
+			return html`
+			<div style="text-align: center; padding: 40px;">
+			<p style="font-size: 18px; color: #666;">
+			No results found for <strong>"${results.query}"</strong>
+			</p>
+			<p style="color: #999;">
+			Try different keywords or check your spelling
+			</p>
+			</div>
+			`;
+			}
+			}
+			})
+			]);
+                                                    
+			// Pagination
+			search.addWidgets([
+			instantsearch.widgets.pagination({
+			container: '#algolia-pagination',
+			padding: 2,
+			showFirst: true,
+			showLast: true,
+			showPrevious: true,
+			showNext: true,
+			})
+			]);
+                                                    
+			// ============================================================
+			// Start the search
+			// ============================================================
+			search.start();
+                                                    
+			// ============================================================
+			// Filter dropdown handler - switch between indexes
+			// ============================================================
+			const filterButton = document.getElementById('filter-button');
+			const filterMenu = document.getElementById('filter-menu');
+			const filterText = document.getElementById('filter-text');
+			const filterOptions = document.querySelectorAll('.filter-option');
+                                                    
+			// Toggle dropdown
+			filterButton.addEventListener('click', function(e) {
+			e.stopPropagation();
+			filterButton.classList.toggle('active');
+			filterMenu.classList.toggle('active');
+			});
+                                                    
+			// Close dropdown when clicking outside
+			document.addEventListener('click', function() {
+			filterButton.classList.remove('active');
+			filterMenu.classList.remove('active');
+			});
+                                                    
+			// Handle option selection
+			filterOptions.forEach(option => {
+			option.addEventListener('click', function(e) {
+			e.stopPropagation();
+                                                    
+			const value = this.getAttribute('data-value');
+			const text = this.textContent;
+                                                    
+			// Update selected state
+			filterOptions.forEach(opt => opt.classList.remove('selected'));
+			this.classList.add('selected');
+                                                    
+			// Update button text
+			filterText.textContent = text;
+                                                    
+			// Close dropdown
+			filterButton.classList.remove('active');
+			filterMenu.classList.remove('active');
+                                                    
+			// Switch the index based on filter selection
+			if (value === 'exclude') {
+			search.helper.setIndex('GigaSpaces Docs - No DOTNET').search();
+			} else {
+			search.helper.setIndex('GigaSpaces Docs').search();
+			}
+			});
+			});
+		/*]]>*/</script>
+    </body>
+</html>

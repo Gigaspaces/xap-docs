@@ -18,6 +18,38 @@ body {
   font-family: "Montserrat", Arial, sans-serif;
 }
 
+/* Algolia */
+
+div#docsearch {
+  background: white;
+  order: 2;
+  border-radius: 6px;
+  z-index: 1001;
+}
+
+.DocSearch.DocSearch-Container {
+  z-index: 1001;
+}
+
+button.DocSearch-Cancel {
+  display: none;
+}
+
+button.DocSearch-Reset {
+  background: none;
+  border: none;
+}
+
+span.SearchHighlight,
+span.SearchHighlight1,
+span.SearchHighlight2,
+span.SearchHighlight3,
+span.SearchHighlight4,
+span.SearchHighlight5,
+span.SearchHighlight6 {
+  background-color: #fef5d4;
+}
+
 nav.title-bar.tab-bar.sticky {
   background-size: cover;
   height: auto;
@@ -1208,6 +1240,14 @@ div#ipn-toggle-open:before {
 
 .searchTopic .content .topic-container {
   padding-right: 0;
+}
+
+html.searchTopic .ipn-content {
+  display: none!important;
+}
+
+html.searchTopic .topic-content {
+  padding: 0 20px!important;
 }
 
 /* Product label bar */
