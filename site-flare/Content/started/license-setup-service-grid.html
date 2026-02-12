@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:searchable="False" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Service Grid License Setup</h1>
+        <h1>License Validation on Start-Up</h1>
+        <p>The license is validated whenever the service grid is started. If the license is invalid for some reason (for example, if it is expired), the system will report a problem with the license and terminate. If the license expires while the system is up and running, it will continue to run. However, if a system components fails and tries to restart, it will fail because the license is not valid. Example:</p>
+        <p>
+            <img src="../Resources/Images/XAP/XAPLicense11.png" style="width: 849px;height: 145px;" />
+        </p>
+        <div class="tc-admon-note">
+            <p>If you're using Docker images for evaluation, add the -e GS_LICENSE=... option to the Docker run command, using the license key you got.</p>
+        </div>
+        <h1><a name="license-lookup-order"></a>License Lookup Order</h1>
+        <div class="tc-admon-note">
+            <p>For any of the methods selected, make sure to save the file and restart the XAP services.</p>
+        </div>
+        <p>The system looks for the license key in the following 5 locations, in the following order:</p>
+        <div class="tc-admon-important">
+            <p>The 5 options below are in sequential order. That is, option 1 will override option 2. Option 2 will override option 3. &#160;And so on.</p>
+        </div>
+        <table style="width: 100%;" class="tc-standard">
+            <col style="width: 106px;" />
+            <col style="width: 561px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th>Option</th>
+                    <th style="text-align: left;">Description</th>
+                    <th style="text-align: left;">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 0;border-left-color: #e0e0e0;">1</td>
+                    <td style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">The <code>com.gs.licensekey</code> system property.</td>
+                    <td>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Upload the license directly into the system properties. </p>
+                            </li>
+                            <li>
+                                <p>Use either the command line, startup script, batch file or update the <code>setenv-overrides</code> bat/sh file:</p>
+                            </li>
+                        </ol>
+                        <p>
+                            <img src="../Resources/Images/XAP/XAPLicense3.png" style="width: 251px;height: 539px;" />
+                        </p>
+                        <p>set GS_OPTIONS_EXT=-Dcom.gs.licensekey=12345:</p>
+                        <p>
+                            <img src="../Resources/Images/XAP/XAPLicense4.png" style="width: 811px;height: 442px;" />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 0;border-left-color: #e0e0e0;">2</td>
+                    <td style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">The <code><MadCap:variable name="General.EnvVariablePrefix" />_LICENSE</code> environment variable.</td>
+                    <td>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Add the GS_LICENSE environment variable which is located in the <code>setenv-overrides</code> bat/sh file.</p>
+                            </li>
+                            <li>
+                                <p>For the GS_LICENSE you will need to set the value <code>GS_LICENSE=licensekeyvalue</code>.</p>
+                            </li>
+                        </ol>
+                        <p>
+                            <img src="../Resources/Images/XAP/XAPLicense5.png" style="width: 578px;height: 358px;">
+                            </img>
+                        </p>
+                        <p>Following are the ways to verify if the license  in the system properties is valid:</p>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>The XAP services are running.</p>
+                            </li>
+                            <li>
+                                <p>From the log folder, open one of the recent log files:</p>
+                                <p>
+                                    <img src="../Resources/Images/XAP/XAPLicense6.png" style="width: 763px;height: 366px;">
+                                    </img>
+                                </p>
+                            </li>
+                            <li>
+                                <p>From the Java monitoring and management console, review the license:</p>
+                                <p>
+                                    <img src="../Resources/Images/XAP/XAPLicense7.png" style="width: 751px;height: 629px;">
+                                    </img>
+                                </p>
+                            </li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">3</td>
+                    <td>A <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code>xap-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code>gs-license.txt</code></MadCap:conditionalText> file in the Classpath.</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 0;border-left-color: #e0e0e0;">4</td>
+                    <td style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">A <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code>xap-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code>gs-license.txt</code></MadCap:conditionalText> file in the <MadCap:variable name="General.CompanyName" /> installation folder (can be explicitly set using <code>com.gs.home</code> system property).</td>
+                    <td>
+                        <p><span style="background-color: #98fb98;">This is the simplest option:</span>
+                        </p>
+                        <ol style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Open the gs-license text file:</p>
+                                <p>
+                                    <img src="../Resources/Images/XAP/XapLicense1.png" />
+                                </p>
+                            </li>
+                            <li>
+                                <p>Paste the license key inside:</p>
+                                <p>
+                                    <img src="../Resources/Images/XAP/XAPLicense2.png" style="width: 728px;height: 135px;" />
+                                </p>
+                            </li>
+                            <li>
+                                <p>Save and restart XAP&#160;services.</p>
+                            </li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">5</td>
+                    <td>A <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><code>xap-license.txt</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><code>gs-license.txt</code></MadCap:conditionalText> file in the current directory.</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
+
+Apache Zeppelin is a multi-purpose web notebook that supports data ingestion and discovery, as well as data analytics, visualization, and collaboration.
+
+Apache Zeppelin contains a built-in Apache Spark integration. This provides the following:
+
+- Automatic SparkContext and SQLContext injection
+- Runtime JAR dependency loading from the local file system or Maven repository
+- Ability to view job progress and cancel jobs 
+
+The Zeppelin notebook packaged with <MadCap:variable name="General.ProductNameIE" /> includes several <MadCap:variable name="General.ProductNameIE" /> demo applications, along with <MadCap:variable name="General.ProductNameIE" />-specific settings that can be configured in the Spark interpreter in order to establish the connection between Spark and the data grid. 
+
+KubeGrid runs Apache Zeppelin in a dedicated Pod, to enable ???
+-->
+    </body>
+</html>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.17-1-born">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1>Single Sign-On for Service Grid</h1>
+        <p><b>Single Sign-On (SSO)</b> is a concept that allows a user to log in once with a single set of credentials and access multiple applications without re-authenticating.</p>
+        <p><b>OpenID Connect (OIDC)</b> is an authentication protocol built on top of the OAuth 2.0 authorization framework that enables SSO. It's the technical standard that makes "Sign in with Google" or "Sign in with Facebook" possible.</p>
+        <p>Since version 17.1.5, SSO is also available in the service grid installation.</p>
+        <p>To use SSO you must first define the IDP and use the groups field for specifying roles.</p>
+        <p>See <MadCap:xref href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO&#160;IDP&#160;Setup</MadCap:xref> for IDP setup example.</p>
+        <div>
+            <h2>Setting up a cluster with SSO in Service Grid</h2>
+            <ol>
+                <li>
+                    <p>
+                        <p>Edit gs-home/config/security/openid-security.properties:</p>
+                        <p><code>com.gs.security.security-manager.class=com.gigaspaces.security.openid.OpenIdSecurityManager</code>
+                        </p>
+                        <p># OpenID Provider Configuration</p><code class="language-bash">com.gs.openid.clientId=</code><code class="language-bash">com.gs.openid.clientSecret=</code><code class="language-bash">com.gs.openid.issueURL=</code><code class="language-bash">com.gs.openid.redirectUris=http://&lt;xap-manager-host&gt;:9000/oauth2/authorization-code/callback</code><code class="language-bash">com.gs.openid.authorityClaim=groups  (default roles fields)</code><code class="language-bash">com.gs.openid.id=1</code><code class="language-bash">com.gs.openid.spacedeckUrl=https://&lt;xap-manager-host&gt;:8888/api/auth/login</code><code class="language-bash">com.gs.openid.providerType=OKTA (as example)</code><code class="language-bash">spring-security-config-location=../config/security/security-config-openid.xml</code><code class="language-bash">spring.config.additional-location=file:../config/security/security-openid.yaml</code>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <p>Edit gs-home/bin/setenv-overrides.sh to point to the openid security properties and turn on security:</p>
+                        <p><code>export GS_OPTIONS_EXT="-Dcom.gs.security.enabled=true -Dcom.gs.security.properties-file=$HOME/config/security/openid-security.properties -Dcom.gs.manager.rest.ssl.enabled=false"</code>
+                        </p>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <p>As a result of starting the service grid with the above settings a new security service will be started on the manager machine with default port 9000</p>
+                        <p>You can see the available REST API for this service at: </p>
+                        <p>http://&lt;xap-manager-host&gt;:9000/swagger-ui/index.html</p>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <p>In order to use XAP manager api in the secured environment, a token from the security service is required.</p>
+                        <p>To obtain a token - http://&lt;xap-manager-ip&gt;:9000/oauth2/authorize</p>
+                        <p>If the user is already logged in, token will be retrieved directly; otherwise, a step redirecting to IDP login will be performed. (use  https://www.jwt.io/ for debug tokens)</p>
+                        <p>The token should be used in xap manager Rest API to access the APIs.</p>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <p>Service accounts are used for long-running services, both for internal services as pipelines and can also be created for external pus or long-running space clients</p>
+                        <p>See more at: https://docs.gigaspaces.com/latest/security/security-service-account-privilege-mgmt.html</p>
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

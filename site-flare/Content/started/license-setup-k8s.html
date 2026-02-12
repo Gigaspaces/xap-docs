@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:searchable="False" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.17-1-born">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Kubernetes License Setup</h1>
+        <p>First, install the umbrella and set the license:</p>
+        <p><pre><code class="language-bash">helm install xap xap/smart-cache --version 17.1.5 --set license="your-license-key"</code></pre>
+        </p>
+        <div class="tc-admon-note">
+            <p>If the license is not specified, a tryme license valid only for 24 hours will be used.</p>
+        </div>
+        <h1>License Update Methods</h1>
+        <p>This section lists the methods you can use to update the license from version 17.1.5.</p>
+        <p>The license is stored in a ConfigMap (<code>gs-license-config</code>) and mounted as a file in the PU pods. When you update the ConfigMap, existing pods continue running with their current license. New pods (including those that restart naturally) will pick up the updated license.</p>
+        <h2>Method 1: Update via Helm (Recommended)</h2>
+        <p>Update the license value in your Helm values and upgrade the release:</p><pre><code class="language-bash"># Update the license in your values file or via --set flag
+helm upgrade xap-operator /path/to/xap-operator/chart \
+  --reuse-values \
+  --set license="your-new-license-key" \
+  --namespace your-namespace
+</code></pre>
+        <p>This updates the ConfigMap without triggering pod restarts.</p>
+        <h2>Method 2: Direct ConfigMap Update via kubectl</h2>
+        <p>Edit the ConfigMap directly:</p><pre><code class="language-bash">kubectl edit configmap gs-license-config -n your-namespace</code></pre>
+        <p>Or use kubectl patch:</p><pre><code class="language-bash">kubectl patch configmap gs-license-config -n your-namespace \
+  --type merge \
+  -p '{"data":{"license.txt":"your-new-license-key"}}'</code></pre>
+        <h2>Method 3: Update via kubectl apply</h2>
+        <p>Create or update a YAML file:</p><pre><code class="language-bash">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gs-license-config
+  namespace: your-namespace
+data:
+  license.txt: "your-new-license-key"
+</code></pre>
+        <p>Apply it:</p><pre><code class="language-bash">kubectl apply -f license-configmap.yaml</code><![CDATA[
+]]></pre>
+        <h2>When Does the New License Take Effect?</h2>
+        <ul>
+            <li>
+                <p><b>Existing running pod</b>s will continue using their current license.</p>
+            </li>
+            <li>
+                <p><b>New pods</b> automatically use the updated license.</p>
+            </li>
+            <li>
+                <p><b>Pods that restart</b> will pick up the updated license on restart.</p>
+            </li>
+        </ul>
+        <p>The license is read from the ConfigMap file at pod startup time, so updating the ConfigMap does not trigger automatic pod restarts.</p>
+        <h2>Verifying the License Update</h2>
+        <p>To check the ConfigMap was updated:</p><pre><code class="language-bash">kubectl get configmap gs-license-config -n your-namespace -o yaml</code></pre>
+        <p>To apply the new license to a specific StatefulSet, you can perform a rolling restart:</p><pre><code class="language-bash">kubectl rollout restart statefulset &lt;statefulset-name&gt; -n your-namespace</code></pre>
+        <p>Check the logs of a newly started pod to confirm it loaded the license:</p><pre><code class="language-bash">kubectl logs &lt;pod-name&gt; -n your-namespace | grep -i license</code></pre>
+        <h2>Implementation Details</h2>
+        <h3>How It Works</h3>
+        <ol>
+            <li>
+                <p><b>ConfigMap Storage:</b> License is stored in<code> gs-license-config</code> ConfigMap as <code>license.txt</code>.</p>
+            </li>
+            <li>
+                <p><b>Volume Mount:</b> ConfigMap is mounted at <code>/opt/gigaspaces/config/license/license.txt</code> in each PU pod.</p>
+            </li>
+            <li>
+                <p><b>Runtime Reading:</b> License is read from the file at pod startup.</p>
+            </li>
+            <li>
+                <p><b>No Pod Restart:</b> Updating ConfigMap doesn't change StatefulSet spec, so pods don't restart.</p>
+            </li>
+        </ol>
+        <h3>Backward Compatibility</h3>
+        <p>The system maintains backward compatibility:</p>
+        <ul>
+            <li>
+                <p>If <code>gs-license-config</code> ConfigMap doesn't exist, the system falls back to license property.</p>
+            </li>
+            <li>
+                <p>If license file read fails, the system falls back to the license from the PU specification.</p>
+            </li>
+            <li>
+                <p>A default trial key (tryme) is used if no license is specified.</p>
+            </li>
+        </ul>
+    </body>
+</html>

@@ -7,10 +7,10 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-		<div class="product-bar">
-			<p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
-			</p>
-		</div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
         <div class="product-bar">
             <p><a>Smart DIH</a>
             </p>
@@ -438,6 +438,11 @@
                     <td align="left">Total number of entries in the Space of that data type.</td>
                     <td align="left">Integer</td>
                 </tr>
+                <tr MadCap:conditions="Version.17-1-born">
+                    <td align="left">space_data_index-hits-total</td>
+                    <td align="left">Total index hits per type and index</td>
+                    <td align="left">Long</td>
+                </tr>
                 <tr>
                     <td align="left">space_data_notify_templates_total</td>
                     <td align="left">Total number of notify templates in the Space.</td>
@@ -745,8 +750,130 @@
                 </tr>
             </tbody>
         </table>
-        <h3 MadCap:conditions="Version.15-0-born">AnalyticsXtreme</h3>
-        <table MadCap:conditions="Version.15-0-born">
+        <h3 MadCap:conditions="Version.17-1-born">TieredStorage</h3>
+        <table MadCap:conditions="Version.17-1-born">
+            <thead>
+                <tr>
+                    <th align="left">Metric</th>
+                    <th align="left">Description</th>
+                    <th align="left">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">
+                        <p>space_data_tiered-storage-disk-entries</p>
+                    </td>
+                    <td align="left">
+                        <p>Total Number of entries in disk per space instance per type</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_data_tiered-storage-disk-modify-access</p>
+                    </td>
+                    <td align="left">
+                        <p>Number of modify operations to disk per space instance per type</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="">
+                    <td align="left">
+                        <p>space_data_tiered-storage-disk-read-access</p>
+                    </td>
+                    <td align="left">
+                        <p>Number of modify operations to disk per space instance per type</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_data_tiered-storage-ram-read-access</p>
+                    </td>
+                    <td align="left">
+                        <p>Number of reads accessed to RAM</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_data_tiered-storage-ram-entries</p>
+                    </td>
+                    <td align="left">
+                        <p>Number of entries in RAM</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_disk-size</p>
+                    </td>
+                    <td align="left">
+                        <p>Current size (bytes) of disk used by tiered storage per space instance</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_tiered-storage-read-tp</p>
+                    </td>
+                    <td align="left">
+                        <p>Throughput of reads from disk per space instance per type</p>
+                    </td>
+                    <td align="left">
+                        <p>Double</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_tiered-storage-read-tp</p>
+                    </td>
+                    <td align="left">
+                        <p>Throughput of modification to disk per space instance per type</p>
+                    </td>
+                    <td align="left">
+                        <p>Double</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_tiered-storage-sqlite-update-latency</p>
+                    </td>
+                    <td align="left">
+                        <p>SQLite Update Latency in nanoseconds</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>space_tiered-storage-sqlite-query-latency</p>
+                    </td>
+                    <td align="left">
+                        <p>SQLite Read Latency&#160; in nanoseconds&#160;</p>
+                    </td>
+                    <td align="left">
+                        <p>Long</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 MadCap:conditions="Version.15-0-born,Version.17-1-died">AnalyticsXtreme</h3>
+        <table MadCap:conditions="Version.15-0-born,Version.17-1-died">
             <thead>
                 <tr>
                     <th align="left" MadCap:conditions="Version.15-0-born">Metric</th>
@@ -901,5 +1028,190 @@ space_replication_mirror-service_container:mirror-service_received-traffic-bytes
 space_replication_mirror-service_container:mirror-service_retained-size-packets
 space_replication_redo-log_external-storage-bytes
 </code></pre>
+        <h2 MadCap:conditions="Version.17-1-born">DI_METRICS</h2>
+        <table MadCap:conditions="Version.17-1-born">
+            <thead>
+                <tr>
+                    <th align="left">Metric</th>
+                    <th align="left">Description</th>
+                    <th align="left">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">
+                        <p>readMessageNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Successfully read and processed CDC messages per table, schema, operation type, and pipeline.&#160;</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>kafkaMessageParseTime</p>
+                    </td>
+                    <td align="left">
+                        <p>Time taken to parse and process Kafka messages. Measured in microseconds with 1-minute sliding window</p>
+                    </td>
+                    <td align="left">
+                        <p>Histogram (Dropwizard with SlidingTimeWindowReservoir)</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="">
+                    <td align="left">
+                        <p>failedReadMessageNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Failed reads and process CDC messages per table, schema, operation type, and pipeline.&#160;</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>errorMessageNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Errors by pipeline and cause (errors by Dimensions: pipelineId, errorCause (INVALID_TOPIC, MISSING_TABLE_NAME, MISSING_SCHEMA_NAME, MISSING_TRANSACTION_ID,&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p>
+                        <p>TABLE_NOT_CONFIGURED, PARTIAL_PATH, PARSE_MESSAGE, MISSING_TIMESTAMP).&#160;</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceSuccessOperationNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Successful operations written to space per type and partition. Dimensions: spaceName, typeName, operation, partitionId, pipelineId.</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceFailedOperationNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Failures to write to the space per type and partition. Dimensions: spaceName, typeName, operation, partitionId, pipelineId.</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceOperationTimeOnSpace</p>
+                    </td>
+                    <td align="left">
+                        <p>Time spent executing operations in GigaSpace only. Unit: milliseconds. Dimensions: spaceName, partitionId, pipelineId</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter of timings)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceOperationTimeTotal</p>
+                    </td>
+                    <td align="left">
+                        <p>Total operation time on space grouped by space, partition, pipeline</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter of timings)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceOperationSpaceTimeRate</p>
+                    </td>
+                    <td align="left">
+                        <p>Time per object for space operations only. Formula: (1000 * objectsRate) / spaceTimeRate</p>
+                    </td>
+                    <td align="left">
+                        <p>Gauge (Double)&#160;&#160;&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceOperationTotalTimeRate</p>
+                    </td>
+                    <td align="left">
+                        <p>Total time per object including network. Formula: (1000 * objectsRate) / totalTimeRate</p>
+                    </td>
+                    <td align="left">
+                        <p>Gauge (Double)&#160;&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceFlushMessageNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Number of messages flushed to GigaSpace in batches. Dimension: pipelineId</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>processedTransactionMessageNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Number of processed transactions</p>
+                        <p>Per pipeline</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>spaceOperationObjectsNumber</p>
+                    </td>
+                    <td align="left">
+                        <p>Number of objects/documents processed in space operations</p>
+                        <p>grouped by space, partition, pipeline</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>restTransformationMeter</p>
+                    </td>
+                    <td align="left">
+                        <p>REST API calls per transformation and HTTP response status code. Dimensions: transformationName, statusCode (200, 400, 500, 0/null).</p>
+                    </td>
+                    <td align="left">
+                        <p>Meter (Counter)&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <p>restTransformationResponseTimeHistogram</p>
+                    </td>
+                    <td align="left">
+                        <p>Response time distribution for REST API calls. Unit: microseconds. 1-minute sliding window. Dimension: transformationName.</p>
+                    </td>
+                    <td align="left">
+                        <p>Histogram (Dropwizard with SlidingTimeWindowReservoir)</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul MadCap:conditions="Version.17-1-born">
+            <li><b>Meter</b> (Counter): Apache Flink MeterView - monotonically increasing counter that tracks rate over time</li>
+            <li><b>Histogram</b>: Dropwizard histogram with sliding time window reservoir - tracks distribution of values with percentiles</li>
+            <li><b>Gauge</b>: Computed metric that derives a value from other metrics in real-time</li>
+        </ul>
     </body>
 </html>

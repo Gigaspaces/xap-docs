@@ -57,18 +57,20 @@
             <li>
                 <p>Use the <code class="language-bash">gsSecret.yaml</code> you received from <MadCap:variable name="General.ProductNameXAP" /> to install the software token.</p>
             </li>
-            <li> Get the Smart DIH&#160;Helm repo and update:</li><pre xml:space="preserve">helm repo add dih <a href="https://resources.gigaspaces.com/helm-charts-dih">https://resources.gigaspaces.com/helm-charts-dih</a> 
+            <li>
+                <p> Get the Smart DIH&#160;Helm repo and update:</p><pre xml:space="preserve">helm repo add dih <a href="https://resources.gigaspaces.com/helm-charts-dih">https://resources.gigaspaces.com/helm-charts-dih</a> 
 
 helm repo update dih
 </pre>
+            </li>
             <li>
-                <p>Fully install Smart DIH (including Ingress, H/A for SpaceDeck and IIDR): only 16.4.</p>
-            </li><pre xml:space="preserve" MadCap:conditions="Version.16-4-born">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,tags.iidr=true, 
-global.security.password=rootpassword</pre><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,tags.iidr=true</pre>
+                <p>Fully install Smart DIH (including Ingress, H/A for SpaceDeck and IIDR):</p><pre xml:space="preserve" MadCap:conditions="Version.16-4-born,Version.17-1-died">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,tags.iidr=true, 
+global.security.password=rootpassword</pre><pre xml:space="preserve" MadCap:conditions="Version.16-3-only,Version.17-1-died">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com,tags.iidr=true</pre><pre xml:space="preserve" MadCap:conditions="Version.17-1-born">helm install dih dih/dih --version 17.1.5 --set spacedeck.ingress.host=myhost.com,tags.iidr=true, global.security.password=rootpassword, license="your-license-key" --namespace your-namespace</pre>
+            </li>
             <li>
-                <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
-</pre><pre xml:space="preserve" MadCap:conditions="Version.16-4-born">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set global.ingressHost=myhost.com  
-</pre>
+                <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve" MadCap:conditions="Version.16-3-only,Version.17-1-died">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
+</pre><pre xml:space="preserve" MadCap:conditions="Version.16-4-born,Version.17-1-died">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set global.ingressHost=myhost.com  
+</pre><pre xml:space="preserve" MadCap:conditions="Version.17-1-born">helm install dih dih/dih --version 17.1.5 --set global.ingressHost=myhost.com, license="your-license-key" --namespace your-namespace</pre>
             </li>
             <li>
                 <p>Smart DIH is now installed in H/A mode. Wait for all pods to be ready.</p>
