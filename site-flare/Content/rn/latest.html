@@ -576,5 +576,101 @@
                 <p>&#160;</p>
             </div>
         </div>
+        <div MadCap:conditions="Version.17-2-only">
+            <h3>Release Date: March-2026</h3>
+            <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+            <h1>Modernized Metrics (Micrometer.io)</h1>
+            <p>We have transitioned from our proprietary metrics framework to <b>Micrometer.io</b>, the industry standard for JVM-based monitoring. This change ensures seamless integration with a wide range of monitoring ecosystems.</p>
+            <h2>Configuration and Management</h2>
+            <p>For more information, see <MadCap:xref href="../admin/metrics-configuration.html">Metrics Configuration</MadCap:xref>.</p>
+            <ul>
+                <li>
+                    <p><b>Property-Based Configuration:</b> Metric configuration has shifted from XML to a centralized properties file located at <b>gs-home\config\metrics\metrics.properties</b>.</p>
+                </li>
+                <li>
+                    <p><b>InfluxDB Integration:</b> The new V3 API includes a dedicated endpoint (POST /api/v3/metricsinfluxdb) to execute complex InfluxDB metrics queries directly through the manager to ensure backward compatibility.</p>
+                </li>
+            </ul>
+            <h2>Grafana Dashboard Migration</h2>
+            <p>Existing dashboards are updated to the new Micrometer-compatible versions (the old ones are in the <b>micrometer</b>/ refs). Key changes include:</p>
+            <ul>
+                <li>
+                    <p><b>Metric Renaming:</b> CPU usage has moved from <b>os_cpu_used-percent</b> (0–100) to <b>system_cpu_usage</b> (0.0–1.0).</p>
+                </li>
+                <li>
+                    <p><b>Throughput Logic:</b> Monotonically increasing cumulative counters replace pre-computed throughput. Queries now use the <b>non_negative_derivative(..., 1s)</b> function to calculate operations-per-second.</p>
+                </li>
+                <li>
+                    <p><b>Tagging Updates:</b> Template variables for object type drilldowns now use the <b>space_name</b> tag instead of <b>pu_name</b>.</p>
+                </li>
+            </ul>
+            <h1>Enhanced Observability (OpenTelemetry)</h1>
+            <p><MadCap:variable name="General.ProductNameXAP" /> now includes a built-in OpenTelemetry SDK (v1.40.0) for distributed tracing, exporting spans to Zipkin-compatible backends. For more information, see <MadCap:xref href="../admin/admin-distributed-tracing.html">Distributed Tracing</MadCap:xref>.</p>
+            <ul>
+                <li>
+                    <p><b>Automatic Instrumentation:</b> Child spans are automatically generated for core GigaSpace operations, including read, write, take, change, aggregate, and execute.</p>
+                </li>
+                <li>
+                    <p><b>Zero Overhead Tracing:</b> The framework uses "opt-in" tracing. Spans are only created if a valid parent context exists in the current thread, ensuring no performance impact on untraced requests.</p>
+                </li>
+                <li>
+                    <p><b>Context Propagation:</b> W3C Trace Context (traceparent / tracestate) is supported by default for correlation across multi-service environments.</p>
+                </li>
+            </ul>
+            <h1>Next-Gen Management: REST API V3</h1>
+            <p>The <b>V3 Manager API</b> is a complete modernization of our management interface, built on the <b>OpenAPI 3.1.0</b> specification. Configuration is located at <b>gs-home\config\ui\rest-v3.yaml</b>. Default port: <b>9090</b>.</p>
+            <p>Swagger URL: <b>http://&lt;manager&gt;:9090/api/v3/swagger-ui/index.html#</b></p>
+            <div class="tc-admon-note">
+                <p>The V2 manager remains active alongside V3, but is deprecated and will be removed in a future version. The ops-ui, which is based on the V2 API, is also deprecated.</p>
+            </div>
+            <h2>Key API Enhancements</h2>
+            <ul>
+                <li>
+                    <p><b>Processing Units (PUs):</b> Expanded endpoints for vertical and horizontal scaling, unquiescing, detailed instance utilization tracking, event container definitions and statistics, and remote services.</p>
+                </li>
+                <li>
+                    <p><b>Space Intelligence:</b> New endpoints for space utilization, durable task management, and detailed transaction monitoring, including the ability to identify specific locked objects, details about local cache and local views, registration of new types, generating demo data, and more.</p>
+                </li>
+                <li>
+                    <p><b>Monitoring Control:</b> Granular control over LRMI monitoring (Low-level Remote Method Invocation) can now be toggled per space via the API, allowing traffic monitoring per method and listing of recent alerts.</p>
+                </li>
+                <li>
+                    <p><b>Host and Container Data:</b> Enhanced "Extended" endpoints provide deeper operating system details and utilization metrics for physical hosts and their associated containers.</p>
+                </li>
+            </ul>
+            <h1>Unified Control: SpaceDeck UI Integration</h1>
+            <p>SpaceDeck, our premier data visualization and management interface, is now natively integrated into the <MadCap:variable name="General.ProductNameXAP" /> Manager. Configuration is located at <b>gs-home\config\ui\spacedeck.yaml</b>.</p>
+            <ul>
+                <li>
+                    <p><b>Centralized Access:</b> Manage the grid, explore data, and monitor performance through a single, unified interface.</p>
+                </li>
+                <li>
+                    <p><b>Environment Awareness:</b> You can now visually distinguish environments by setting labels and background colors via environment variables:</p>
+                    <ul>
+                        <li>
+                            <p><b>SPACEDECK_ENV_LABEL</b> (e.g., "PROD", "STAGING")</p>
+                        </li>
+                        <li>
+                            <p><b>SPACEDECK_ENV_BG_COLOR</b> (Hex color codes, e.g., #FF0000 for red)</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2>Security Note: CVE-2022-39135</h2>
+            <div class="tc-admon-note">
+                <p>We have addressed concerns regarding CVE-2022-39135, a critical vulnerability in versions of Apache Calcite.</p>
+            </div>
+            <p>The vulnerability involves XML External Entity (XXE) injection via specific Calcite functions. This is <b>not a risk in <MadCap:variable name="General.ProductNameXAP" /></b> for the following reasons:</p>
+            <ul>
+                <li>
+                    <p><b>Disabled Functions:</b> The specific functions and XML parsing features associated with this vulnerability are not utilized or exposed within the <MadCap:variable name="General.ProductNameXAP" /> implementation of Calcite.</p>
+                </li>
+                <li>
+                    <p><b>Sanitized Input:</b> All queries processed by the Calcite engine in <MadCap:variable name="General.ProductNameXAP" /> are strictly validated and handled as data-centric operations on the grid, preventing the execution of arbitrary external entity lookups.</p>
+                </li>
+            </ul>
+            <p>We continue to track industry standards and ensure our dependency management aligns with the latest security patches to maintain a robust and secure environment.</p>
+            <p>&#160;</p>
+        </div>
     </body>
 </html>

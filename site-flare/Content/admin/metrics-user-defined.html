@@ -94,5 +94,94 @@ The metric name provided in the annotation is automatically prefixed with <code>
 </code></pre>
         <h1><a name="prefix-and-tags"></a>Prefix And Tags</h1>
         <p>The specified metric name is automatically prefixed with <code>pu_</code> and reported with the processing unit tags, as explained <a href="metrics-bundled.html#processing-unit">here</a>.</p>
+        <div MadCap:conditions="Version.17-2-born">
+            <h1><a name="using-micrometer"></a>Using Micrometer API</h1>
+            <p>Starting from version 17.2, user-defined metrics in a GigaSpaces Processing Unit can use the native <a href="https://micrometer.io/">Micrometer</a> API.</p>
+            <p>See the following code example:</p><pre><code class="language-java">public class CustomMetricsBean implements ProcessingUnitContainerContextAware {
+
+					// --- Simulated application state ---
+					private final AtomicInteger queueSize = new AtomicInteger(0);
+					private final AtomicLong activeUsers = new AtomicLong(0);
+					private Counter requestsCounter;
+					private Timer requestTimer;
+					private final ScheduledExecutorService simulator = Executors.newSingleThreadScheduledExecutor();
+
+					@Override
+					public void setProcessingUnitContainerContext(ProcessingUnitContainerContext context) {
+					BeanMetricManager beanMetricManager = context.createBeanMetricManager("custom-metrics");
+					if (!(beanMetricManager instanceof MicrometerRegistrator metricsManager)) {
+					// Metrics are not configured - skip registration
+					return;
+					}
+
+					// --- Gauge: current queue depth ---
+					Gauge.builder(metricsManager.getFullMetricName("queue-size"), queueSize, AtomicInteger::get)
+					.tags(metricsManager.evaluateTags())
+					.description("Current depth of the simulated work queue")
+					.register(metricsManager.getMeterRegistry());
+
+					// --- Gauge: number of active users ---
+					Gauge.builder(metricsManager.getFullMetricName("active-users"), activeUsers, AtomicLong::get)
+					.tags(metricsManager.evaluateTags())
+					.description("Number of simulated active users")
+					.register(metricsManager.getMeterRegistry());
+
+					// --- Counter: total requests processed ---
+					requestsCounter = Counter.builder(metricsManager.getFullMetricName("requests-total"))
+					.tags(metricsManager.evaluateTags())
+					.description("Total number of requests processed")
+					.register(metricsManager.getMeterRegistry());
+
+					// --- Timer: request processing duration ---
+					requestTimer = Timer.builder(metricsManager.getFullMetricName("request-duration"))
+					.tags(metricsManager.evaluateTags())
+					.description("Time spent processing a single request")
+					.register(metricsManager.getMeterRegistry());
+
+					// Simulate changing metric values every 5 seconds
+					simulator.scheduleAtFixedRate(this::simulateWork, 0, 5, TimeUnit.SECONDS);
+					}
+
+					private void simulateWork() {
+					// Fluctuate queue size between 0 and 99
+					queueSize.set((int) (Math.random() * 100));
+					// Fluctuate active users between 0 and 49
+					activeUsers.set((long) (Math.random() * 50));
+					// Record a counter increment and a timer sample
+					requestsCounter.increment();
+					requestTimer.record(() -&gt; {
+					try {
+					Thread.sleep((long) (Math.random() * 50));
+					} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+					}
+					});
+					}
+					}
+			</code></pre>
+            <p>Add the Micrometer dependency to your pom:</p><pre><code class="language-xml">&lt;!-- Micrometer core - provided by the XAP container at runtime --&gt;
+					&lt;dependency&gt;
+					&lt;groupId&gt;io.micrometer&lt;/groupId&gt;
+					&lt;artifactId&gt;micrometer-core&lt;/artifactId&gt;
+					&lt;version&gt;${micrometer.version}&lt;/version&gt;
+					&lt;scope&gt;provided&lt;/scope&gt;
+					&lt;/dependency&gt;
+			</code></pre>
+            <p>In the pu.xml define the bean as:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+					&lt;beans xmlns="http://www.springframework.org/schema/beans"
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					xsi:schemaLocation="http://www.springframework.org/schema/beans
+					http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+					&lt;!-- Stateless PU: no embedded space, metrics only --&gt;
+					&lt;description&gt;pu-type=stateless&lt;/description&gt;
+
+					&lt;!-- Registers user-defined Micrometer metrics on PU startup --&gt;
+					&lt;bean class="com.gigaspaces.example.metrics.CustomMetricsBean" /&gt;
+
+					&lt;/beans&gt;
+			</code></pre>
+            <p>Please note that the <code>@ServiceMetric</code> annotation can still be used.</p>
+        </div>
     </body>
 </html>

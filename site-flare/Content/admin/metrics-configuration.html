@@ -15,63 +15,195 @@
             <p><a>Smart DIH</a>
             </p>
         </div>
-        <h1>Configuration</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identity trends in the system behaviour. Before you can start using the metrics framework you will need to first setup and configure InfluxDB &amp; Grafana to work with <MadCap:variable name="General.ProductNameXAP" />. You can follow this guide <a href="web-management-monitoring.html">here</a> on how to do this.</p>
-        <h1><a name="overview"></a>Overview</h1>
-        <p>The Metrics framework is composed of <span class="tc-bold">Metrics</span>, <span class="tc-bold">Metric Samplers</span> and <span class="tc-bold">Metric Reporters</span>.</p>
-        <p>A <span class="tc-bold">Metric</span> is a piece of code which provides a value of something at the current time (e.g. CPU percentage, free memory, active LRMI threads, etc.). <MadCap:variable name="General.ProductNameXAP" /> is bundled with an abundance of metrics which can be used to monitor its behaviour, and additional metrics can be <a href="metrics-user-defined.html">defined by the user</a>.</p>
-        <p>Each metric is registered in a <span class="tc-bold">Metric Sampler</span>, which periodically samples all its registered metrics and publishes them via one or more <span class="tc-bold">Metric Reporter</span>. <MadCap:variable name="General.ProductNameXAP" /> can be configured to modify the sample rate of the default sampler or configure additional samplers to provide different granularity for different metrics groups.</p>
-        <p>A <span class="tc-bold">Metric Reporter</span> receives a snapshot of metrics values from the sampler and reports them to wherever it wishes. <MadCap:variable name="General.ProductNameXAP" /> is bundled with an <a href="metrics-influxdb-reporter.html">InfluxDB Reporter</a>, and users can implement additional <a href="metrics-custom-reporter.html">custom reporters</a> as they wish.</p>
-        <h1><a name="configuration"></a>Configuration</h1>
-        <p MadCap:conditions="Version.15-8-born">By default, Metrics configuration is loaded from <code>$GS_HOME/config/metrics/metrics.xml</code>. This location can be overridden using the <code>com.gigaspaces.metrics.config </code>system property, which also supports URL.</p>
-        <h2><a name="samplers"></a>Samplers</h2>
-        <p>A <span class="tc-bold">Metric Sampler</span> is denoted by a name, and has two properties which determine its behaviour:</p>
-        <ul>
-            <li><code>sample-rate</code> - Determines the rate at which the sampler samples its metrics. can be specified in minutes (<code>m</code>), seconds (<code>s</code>) or even milliseconds (<code>ms</code>).</li>
-            <li><code>report-rate</code> - Determines the rate at which the sampler reports the samples via the reporters. If not configured, same as sample rate (i.e. each sample is reported immediately). Useful for reducing network burden when sample-rate is small (e.g. sample each second but report the last 10 samples every 10 seconds). Must be greater than sample-rate, and must be a multiple of sample-rate.</li>
-        </ul>
-        <p>The default configuration contains the following samplers. Users may modify their settings, or add/remove additional samplers as they please.</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
-    &lt;!-- define which sampling rates can be assigned to a metric --&gt;
-    &lt;samplers&gt;
-        &lt;!-- 'default' is configured to sample (and report) its metrics every 5 seconds --&gt;
-        &lt;sampler name="default" sample-rate="5s" /&gt;
-        &lt;!-- 'high' is configured to sample its metrics every second, and report in batch every 5 seconds --&gt;
-        &lt;sampler name="high" sample-rate="1s" report-rate="5s" /&gt;
-        &lt;!-- 'low' is configured to sample (and report) its metrics every minute --&gt;
-        &lt;sampler name="low" sample-rate="1m" /&gt;
-        &lt;!-- 'off' is configured to never sample (and report) its metrics --&gt;
-        &lt;sampler name="off" sample-rate="0" /&gt;
-    &lt;/samplers&gt;
-&lt;/metrics-configuration&gt;
-</code></pre>
-        <h2><a name="assigning-metrics-to-samplers"></a>Assigning Metrics to Samplers</h2>
-        <p>By default, metrics are assigned to the <code>default</code> sampler. A metric can be configured to use a different sampler. For example, to assign the "free memory' metric to the <code>high</code> sampler:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
-    &lt;metrics&gt;
-        &lt;metric prefix="os_memory_free-bytes" sampler="high"/&gt;
-    &lt;/metrics&gt;
-&lt;/metrics-configuration&gt;
-</code></pre>
-        <p>In fact, a more common user story is to assign a group of metrics to a sampler rather than a specific one. For example, to assign all memory metrics to the <code>high</code> sampler:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
-    &lt;metrics&gt;
-        &lt;metric prefix="os_memory" sampler="high"/&gt;
-    &lt;/metrics&gt;
-&lt;/metrics-configuration&gt;
-</code></pre>
-        <p>Now, suppose that you also want to turn off CPU metrics because you're not interested in them:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
-    &lt;metrics&gt;
-        &lt;metric prefix="os_memory" sampler="high"/&gt;
-        &lt;metric prefix="os_cpu"    sampler="off"/&gt;
-    &lt;/metrics&gt;
-&lt;/metrics-configuration&gt;
-</code></pre>
-        <p>And finally, suppose you want all other <code>os</code> metrics to use the <code>low</code> sampler:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
-    &lt;metrics&gt;
-        &lt;metric prefix="os"        sampler="low"/&gt;
-        &lt;metric prefix="os_memory" sampler="high"/&gt;
-        &lt;metric prefix="os_cpu"    sampler="off"/&gt;
-    &lt;/metrics&gt;
-&lt;/metrics-configuration&gt;
-</code></pre>
-        <p>As you can see, detailed prefix takes precedence over less detailed ones.</p>
+        <div MadCap:conditions="Version.17-2-died">
+            <h1>Configuration</h1>
+            <p><MadCap:variable name="General.ProductNameXAP" /> provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identity trends in the system behaviour. Before you can start using the metrics framework you will need to first setup and configure InfluxDB &amp; Grafana to work with <MadCap:variable name="General.ProductNameXAP" />. You can follow this guide <a href="web-management-monitoring.html">here</a> on how to do this.</p>
+            <h1><a name="overview"></a>Overview</h1>
+            <p>The Metrics framework is composed of <span class="tc-bold">Metrics</span>, <span class="tc-bold">Metric Samplers</span> and <span class="tc-bold">Metric Reporters</span>.</p>
+            <p>A <span class="tc-bold">Metric</span> is a piece of code which provides a value of something at the current time (e.g. CPU percentage, free memory, active LRMI threads, etc.). <MadCap:variable name="General.ProductNameXAP" /> is bundled with an abundance of metrics which can be used to monitor its behaviour, and additional metrics can be <a href="metrics-user-defined.html">defined by the user</a>.</p>
+            <p>Each metric is registered in a <span class="tc-bold">Metric Sampler</span>, which periodically samples all its registered metrics and publishes them via one or more <span class="tc-bold">Metric Reporter</span>. <MadCap:variable name="General.ProductNameXAP" /> can be configured to modify the sample rate of the default sampler or configure additional samplers to provide different granularity for different metrics groups.</p>
+            <p>A <span class="tc-bold">Metric Reporter</span> receives a snapshot of metrics values from the sampler and reports them to wherever it wishes. <MadCap:variable name="General.ProductNameXAP" /> is bundled with an <a href="metrics-influxdb-reporter.html">InfluxDB Reporter</a>, and users can implement additional <a href="metrics-custom-reporter.html">custom reporters</a> as they wish.</p>
+            <h1><a name="configuration"></a>Configuration</h1>
+            <p MadCap:conditions="Version.15-8-born">By default, Metrics configuration is loaded from <code>$GS_HOME/config/metrics/metrics.xml</code>. This location can be overridden using the <code>com.gigaspaces.metrics.config </code>system property, which also supports URL.</p>
+            <h2><a name="samplers"></a>Samplers</h2>
+            <p>A <span class="tc-bold">Metric Sampler</span> is denoted by a name, and has two properties which determine its behaviour:</p>
+            <ul>
+                <li><code>sample-rate</code> - Determines the rate at which the sampler samples its metrics. can be specified in minutes (<code>m</code>), seconds (<code>s</code>) or even milliseconds (<code>ms</code>).</li>
+                <li><code>report-rate</code> - Determines the rate at which the sampler reports the samples via the reporters. If not configured, same as sample rate (i.e. each sample is reported immediately). Useful for reducing network burden when sample-rate is small (e.g. sample each second but report the last 10 samples every 10 seconds). Must be greater than sample-rate, and must be a multiple of sample-rate.</li>
+            </ul>
+            <p>The default configuration contains the following samplers. Users may modify their settings, or add/remove additional samplers as they please.</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+					&lt;!-- define which sampling rates can be assigned to a metric --&gt;
+					&lt;samplers&gt;
+					&lt;!-- 'default' is configured to sample (and report) its metrics every 5 seconds --&gt;
+					&lt;sampler name="default" sample-rate="5s" /&gt;
+					&lt;!-- 'high' is configured to sample its metrics every second, and report in batch every 5 seconds --&gt;
+					&lt;sampler name="high" sample-rate="1s" report-rate="5s" /&gt;
+					&lt;!-- 'low' is configured to sample (and report) its metrics every minute --&gt;
+					&lt;sampler name="low" sample-rate="1m" /&gt;
+					&lt;!-- 'off' is configured to never sample (and report) its metrics --&gt;
+					&lt;sampler name="off" sample-rate="0" /&gt;
+					&lt;/samplers&gt;
+					&lt;/metrics-configuration&gt;
+			</code></pre>
+            <h2><a name="assigning-metrics-to-samplers"></a>Assigning Metrics to Samplers</h2>
+            <p>By default, metrics are assigned to the <code>default</code> sampler. A metric can be configured to use a different sampler. For example, to assign the "free memory' metric to the <code>high</code> sampler:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+					&lt;metrics&gt;
+					&lt;metric prefix="os_memory_free-bytes" sampler="high"/&gt;
+					&lt;/metrics&gt;
+					&lt;/metrics-configuration&gt;
+			</code></pre>
+            <p>In fact, a more common user story is to assign a group of metrics to a sampler rather than a specific one. For example, to assign all memory metrics to the <code>high</code> sampler:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+					&lt;metrics&gt;
+					&lt;metric prefix="os_memory" sampler="high"/&gt;
+					&lt;/metrics&gt;
+					&lt;/metrics-configuration&gt;
+			</code></pre>
+            <p>Now, suppose that you also want to turn off CPU metrics because you're not interested in them:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+					&lt;metrics&gt;
+					&lt;metric prefix="os_memory" sampler="high"/&gt;
+					&lt;metric prefix="os_cpu"    sampler="off"/&gt;
+					&lt;/metrics&gt;
+					&lt;/metrics-configuration&gt;
+			</code></pre>
+            <p>And finally, suppose you want all other <code>os</code> metrics to use the <code>low</code> sampler:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+					&lt;metrics&gt;
+					&lt;metric prefix="os"        sampler="low"/&gt;
+					&lt;metric prefix="os_memory" sampler="high"/&gt;
+					&lt;metric prefix="os_cpu"    sampler="off"/&gt;
+					&lt;/metrics&gt;
+					&lt;/metrics-configuration&gt;
+			</code></pre>
+            <p>As you can see, detailed prefix takes precedence over less detailed ones.</p>
+        </div>
+        <div MadCap:conditions="Version.17-2-born">
+            <h1>Configuration</h1>
+            <p><MadCap:variable name="General.ProductNameXAP" /> provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identify trends in the system behavior. Before you can start using the metrics framework you will need to first setup and configure your metric framework to work with <MadCap:variable name="General.ProductNameXAP" />. <MadCap:variable name="General.ProductNameXAP" /> reports metrics using the Micrometer API, a framework that supports Open Telemetry and can be plugged in.</p>
+            <h1><a name="overview"></a>Overview</h1>
+            <p>A <span class="tc-bold">Metric</span> is a piece of code which provides a value of something at the current time (e.g. CPU percentage, free memory, active LRMI threads, etc.). <MadCap:variable name="General.ProductNameXAP" /> is bundled with an abundance of <a href="metrics-bundled.html">metrics</a> which can be used to monitor its behaviour, and additional metrics can be <a href="metrics-user-defined.html">defined by the user</a>.</p>
+            <p>There are several frameworks that integrate out of the box with <MadCap:variable name="General.ProductNameXAP" />:</p>
+            <ul>
+                <li>InfluxDB</li>
+                <li>Prometheus</li>
+                <li>File reporter (for development time testing)</li>
+            </ul>
+            <h1><a name="configuration"></a>Configuration</h1>
+            <p>By default, Metrics configuration is loaded from <code>$GS_HOME/config/metrics/metrics.properties</code>. This location can be overridden using the <code>com.gigaspaces.metrics.config</code> system property, which also supports URL.</p>
+            <p>For example, setting multiple destinations for metrics to include all out-of-the-box integrations:</p><pre><code class="language-bash"># Multiple destinations
+					metrics.registries=influxdb,prometheus,file
+					metrics.influxdb.uri=http://localhost:8086
+					metrics.influxdb.db=xap_metrics
+					metrics.influxdb.step=10
+					metrics.file.path=/var/log/xap/metrics.log
+			metrics.file.step=1</code></pre>
+            <h1><a name="plug-in"></a>Plug in Other Frameworks</h1>
+            <p>As an example, the following shows how to use Datadog. XAP's <code>MicrometerRegistryBuilder</code> uses <code>ServiceLoader</code> to discover <code>GsMeterRegistryProvider</code> implementations at startup. When <code>metrics.registries=xyz</code> is set, it:</p>
+            <ul>
+                <li>Scans all JARs in <code>$GS_HOME/lib/optional/metrics/</code> for <code>META-INF/services/com.gigaspaces.metrics.micrometer.GsMeterRegistryProvider</code></li>
+                <li>Finds <code>DatadogRegistryProvider</code>, calls <code>getName()</code> which matches <code>xyz</code></li>
+                <li>Calls <code>create(config)</code> passing all properties from <code>metrics.properties</code> as a <code>Properties</code> object</li>
+                <li>The returned <code>DatadogMeterRegistry</code> is registered as the active backend</li>
+            </ul>
+            <p>In the example above, <code>xyz</code> can stand for datadog, dynatrace, or any other Open Telemetry framework.</p>
+            <h2><a name="comparison"></a>Comparison with Built-in Backends</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Backend</th>
+                        <th>How to Activate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>InfluxDB</td>
+                        <td>Built in — just set <code>metrics.registries=influxdb</code> and add required properties</td>
+                    </tr>
+                    <tr>
+                        <td>Prometheus</td>
+                        <td>Built in — just set <code>metrics.registries=prometheus</code></td>
+                    </tr>
+                    <tr>
+                        <td>Datadog / Graphite / New Relic / Wavefront / …</td>
+                        <td>Plugin JAR — drop in <code>lib/optional/metrics</code> and set in <code>metrics.properties</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="datadog-example"></a>Code Example: Datadog Implementation</h2>
+            <p>Project structure:</p><pre><code>datadog-metrics-provider/
+					├── pom.xml
+					├── README.md
+					└── src/main/
+					├── java/com/gigaspaces/example/metrics/datadog/
+					│   └── DatadogRegistryProvider.java
+					└── resources/META-INF/services/
+			└── com.gigaspaces.metrics.micrometer.GsMeterRegistryProvider</code></pre><pre><code class="language-java">/**
+					* Pluggable Datadog metrics backend for GigaSpaces XAP.
+					*
+					* Implements GsMeterRegistryProvider so that XAP discovers this class
+					* via ServiceLoader and activates it when metrics.registries=datadog is set
+					* in config/metrics/metrics.properties.
+					*
+					* Supported properties in metrics.properties:
+					*   metrics.registries=datadog
+					*   metrics.datadog.apiKey=&lt;your-api-key&gt;          # required
+					*   metrics.datadog.applicationKey=&lt;your-app-key&gt;  # optional
+					*   metrics.datadog.uri=https://api.datadoghq.com   # optional, default shown
+					*   metrics.datadog.step=10                          # optional, seconds (default: 10)
+					*/
+					public class DatadogRegistryProvider implements GsMeterRegistryProvider {
+
+					@Override
+					public String getName() {
+					return "datadog";
+					}
+
+					@Override
+					public MeterRegistry create(Properties config) {
+					DatadogConfig datadogConfig = new DatadogConfig() {
+
+					@Override
+					public String apiKey() {
+					String key = config.getProperty("metrics.datadog.apiKey");
+					if (key == null || key.isBlank()) {
+					throw new IllegalStateException(
+					"metrics.datadog.apiKey is required but not set in metrics.properties");
+					}
+					return key;
+					}
+
+					@Override
+					public String applicationKey() {
+					return config.getProperty("metrics.datadog.applicationKey", "");
+					}
+
+					@Override
+					public String uri() {
+					return config.getProperty("metrics.datadog.uri", "https://api.datadoghq.com");
+					}
+
+					@Override
+					public Duration step() {
+					String stepSeconds = config.getProperty("metrics.datadog.step");
+					if (stepSeconds != null &amp;&amp; !stepSeconds.isBlank()) {
+					try {
+					return Duration.ofSeconds(Long.parseLong(stepSeconds));
+					} catch (NumberFormatException ignored) {
+					}
+					}
+					return Duration.ofSeconds(10);
+					}
+
+					@Override
+					public String get(String key) {
+					return config.getProperty("metrics.datadog." + key);
+					}
+					};
+
+					return DatadogMeterRegistry.builder(datadogConfig)
+					.clock(Clock.SYSTEM)
+					.build();
+					}
+			}</code></pre>
+            <p>The resource file <code>com.gigaspaces.metrics.micrometer.GsMeterRegistryProvider</code> should contain:</p><pre><code>com.gigaspaces.example.metrics.datadog.DatadogRegistryProvider</code></pre>
+        </div>
     </body>
 </html>

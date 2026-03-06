@@ -15,13 +15,14 @@
   DefaultUrl="/Content/landing.html"
   MasterPage="/Content/Resources/MasterPages/inner-pages-new.flmsp"
   MobileBreakpoint="820"
-  ConditionTagExpression="include[NewSet.LatestOnly or Version.17-0-born or Version.17-1-born or Version.17-2-only], exclude[Default.DoNotShow or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-5-only or Version.15-8-died or Version.15-8-only or Version.16-0-died or Version.16-0-only or Version.16-1-1-died or Version.16-1-1-only or Version.16-1-died or Version.16-1-only or Version.16-2-1-died or Version.16-2-1-only or Version.16-2-died or Version.16-2-only or Version.16-3-died or Version.16-3-only or Version.16-4-died or Version.16-4-only or Version.17-0-died or Version.17-0-only or Version.17-1-died or Version.17-1-only or Version.17-2-died]"
+  ConditionTagExpression="include[NewSet.LatestOnly or Version.17-2-only], exclude[Default.DoNotShow or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-5-only or Version.15-8-died or Version.15-8-only or Version.16-0-died or Version.16-0-only or Version.16-1-1-died or Version.16-1-1-only or Version.16-1-died or Version.16-1-only or Version.16-2-1-died or Version.16-2-1-only or Version.16-2-died or Version.16-2-only or Version.16-3-died or Version.16-3-only or Version.16-4-died or Version.16-4-only or Version.17-0-died or Version.17-0-only or Version.17-1-died or Version.17-1-only or Version.17-2-died]"
   ContentInclusionType="Toc"
   MasterStylesheet="/Content/Resources/Stylesheets/tc-styles-2023.css"
   MasterStylesheetOverride="true"
   TopNavTocPath="true"
   EnableSitemap="true"
-  SitemapWebUrl="https://docs-staging.gigaspaces.com/latest/ ">
+  SitemapWebUrl="https://docs.gigaspaces.com/17.2/ "
+  ResultsPerPage="2">
   <PrintedOutput
     CollapseMargins="true"
     GenerateTOCProxy="true"
@@ -42,7 +43,7 @@
     <Variable
       Name="Versions/product-version-short">17.2.0</Variable>
     <Variable
-      Name="Versions/helm-version-MX">17.2-m1</Variable>
+      Name="Versions/helm-version-MX">14.2</Variable>
     <Variable
       Name="Versions/gshome-directory">gigaspaces-xap-enterprise-17.2.0</Variable>
     <Variable
@@ -58,7 +59,7 @@
     <Variable
       Name="Versions/gshome-net-directory">XAP.NET-17.2-x64</Variable>
     <Variable
-      Name="Versions/spring-short">6</Variable>
+      Name="Versions/spring-short">4.3</Variable>
     <Variable
       Name="Versions/mongo-java-driver">3.2.0</Variable>
     <Variable
@@ -107,8 +108,6 @@
       Name="Links/ApiJavaDoc">https://resources.gigaspaces.com/api/17.1.0/java/index.html</Variable>
     <Variable
       Name="Versions/hibernate-medium">6.4.8</Variable>
-    <Variable
-      Name="HTML2023_Variables/SU">d38wq0vgtrpxqz.cloudfront.net/b2d6caaee949b37036602c9a6c6e9ff7/search-clients/bf40851c-bf5f-11ee-b209-aa86cae4748a</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
   <MicroContentSearch>
@@ -118,13 +117,14 @@
       <microContentSubset />
     </FeaturedSnippets>
     <KnowledgePanel
-      type="Empty">
+      type="Empty"
+      numberOfResults="1">
       <microContentSubset />
     </KnowledgePanel>
   </MicroContentSearch>
   <Destinations>
     <Destination
-      Link="/Project/Destinations/Staging/AWS-DOC-S3-STAGING-latest.fldes"
+      Link="/Project/Destinations/Production/AWS-DOC-S3-PRODUCTION-17.1.fldes"
       Publish="true"
       IsResource="false" />
   </Destinations>
