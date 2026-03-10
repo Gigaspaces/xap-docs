@@ -579,6 +579,23 @@
         <div MadCap:conditions="Version.17-2-only">
             <h3>Release Date: March-2026</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+            <h1>Next-Gen Management: REST API V3</h1>
+            <p>The <b>V3 Manager API</b> is a complete modernization of our management interface, built on the <b>OpenAPI 3.1.0</b> specification. </p>
+            <p>The configuration is located at <b>gs-home\config\ui\rest-v3.yaml</b>.</p>
+            <p>The default port is <b>9090</b>. This can be changed by the environment variable <b>GS_REST_V3_PORT</b>.</p>
+            <p>
+            </p>
+            <p>Swagger URL: <b>http://&lt;manager&gt;:9090/api/v3/swagger-ui/index.html#</b></p>
+            <div class="tc-admon-note">
+                <ul>
+                    <li>
+                        <p>The V2 manager remains active alongside V3, but is deprecated and will be removed in a future version. The ops-ui, which is based on the V2 API, is also deprecated.</p>
+                    </li>
+                    <li>
+                        <p>Use <b>–restv3</b> and <b>–webui</b> flags to start the V3 REST API &amp; spacedeck using the gs cli in the host, where the manager is started as : <b>./gs.sh host run-agent --manager --restv3 --webui</b>.</p>
+                    </li>
+                </ul>
+            </div>
             <h1>Modernized Metrics (Micrometer.io)</h1>
             <p>We have transitioned from our proprietary metrics framework to <b>Micrometer.io</b>, the industry standard for JVM-based monitoring. This change ensures seamless integration with a wide range of monitoring ecosystems.</p>
             <h2>Configuration and Management</h2>
@@ -617,12 +634,6 @@
                     <p><b>Context Propagation:</b> W3C Trace Context (traceparent / tracestate) is supported by default for correlation across multi-service environments.</p>
                 </li>
             </ul>
-            <h1>Next-Gen Management: REST API V3</h1>
-            <p>The <b>V3 Manager API</b> is a complete modernization of our management interface, built on the <b>OpenAPI 3.1.0</b> specification. Configuration is located at <b>gs-home\config\ui\rest-v3.yaml</b>. Default port: <b>9090</b>.</p>
-            <p>Swagger URL: <b>http://&lt;manager&gt;:9090/api/v3/swagger-ui/index.html#</b></p>
-            <div class="tc-admon-note">
-                <p>The V2 manager remains active alongside V3, but is deprecated and will be removed in a future version. The ops-ui, which is based on the V2 API, is also deprecated.</p>
-            </div>
             <h2>Key API Enhancements</h2>
             <ul>
                 <li>
