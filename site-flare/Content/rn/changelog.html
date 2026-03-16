@@ -71,6 +71,85 @@
             </table>
         </div>
         <div MadCap:conditions="Version.17-1-only">
+            <h1>17.1.5</h1>
+            <h2>Features and Enhancements</h2>
+            <table>
+                <col style="width: 143px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5553</td>
+                        <td>K8S version support</td>
+                        <td>Support latest K8S version (tested with 1.34)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5814</td>
+                        <td>Update License in K8S</td>
+                        <td>Add ability to update xap license without causing a restart in K8S environment</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5799</td>
+                        <td>Support for SSO</td>
+                        <td>SSO (openID) security support for service grid</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5756</td>
+                        <td>Flink Upgrade</td>
+                        <td>Upgrade Flink version: 2.1.0</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5797</td>
+                        <td>Detailed error in DI</td>
+                        <td>Improve DI error handling</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5769</td>
+                        <td>Changes in DI images</td>
+                        <td>Stop using bitnami for DI in K8S</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5774</td>
+                        <td>Data validation</td>
+                        <td>
+                            <p>Pipeline Data Validation Rest API - compare pipeline tables data to source tables.<br /></p>
+                            <p><b>Example:</b>
+                                <br />
+                            </p><pre>curl -X 'POST' \ 'http://localhost:6080/api/v2/pipeline/bd9af4b5-f266-48ef-aae9-f47e03e94478/compare-indexes' \ -H 'accept: */*' \ -H 'Content-Type: application/json' \ -d '{ "sourceUsername": "user1", "sourcePassword": "mypwd"}'</pre>
+                            <br />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table style="margin-left: 0;margin-right: auto;">
+                <col style="width: 145px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Key</th>
+                        <th style="text-align: left;">Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5872</td>
+                        <td>Fix charts in ops-ui</td>
+                        <td>Fix : If hsqldb metrics are enabled should see metrics charts in ops-ui</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div MadCap:conditions="Version.17-1-only">
             <h1>17.1.4</h1>
             <h2>Features and Enhancements</h2>
             <table>
