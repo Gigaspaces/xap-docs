@@ -4,7 +4,7 @@
         <meta name="description" content="Overview of all the new features and enhancements for the latest product release." MadCap:metaTagSet="Meta Tags/NewMetaTagSet.flmeta" />
     </head>
     <body>
-        <h1 class="tc-pagetitle">What's New in <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> Version <MadCap:variable name="Versions.product-version-short"></MadCap:variable></h1>
+        <h1 class="tc-pagetitle">What's New in <MadCap:variable name="General.ProductNameXAP" /> Version <MadCap:variable name="Versions.product-version-short" /></h1>
         <div MadCap:conditions="Version.16-3-only">
             <h3> Release Date: April 27, 2023</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
@@ -127,8 +127,7 @@
         <div MadCap:conditions="Version.16-4-only">
             <div>
                 <p>
-                    <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;">
-                    </img>
+                    <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
                 </p>
                 <ol>
                     <li>
@@ -586,9 +585,8 @@
             <p>The <b>V3 Manager API</b> is a complete modernization of our management interface, built on the <b>OpenAPI 3.1.0</b> specification. </p>
             <p>The configuration is located at <b>gs-home\config\ui\rest-v3.yaml</b>.</p>
             <p>The default port is <b>9090</b>. This can be changed by the environment variable <b>GS_REST_V3_PORT</b>.</p>
-            <p>
-            </p>
             <p>Swagger URL: <b>http://&lt;manager&gt;:9090/api/v3/swagger-ui/index.html#</b></p>
+            <p>See more at <MadCap:xref href="../admin/admin-rest-manager-api.html">REST Manager API</MadCap:xref>.</p>
             <div class="tc-admon-note">
                 <ul>
                     <li>
@@ -599,6 +597,21 @@
                     </li>
                 </ul>
             </div>
+            <h2>Key API Enhancements</h2>
+            <ul>
+                <li>
+                    <p><b>Processing Units (PUs):</b> Expanded endpoints for vertical and horizontal scaling, unquiescing, detailed instance utilization tracking, event container definitions and statistics, and remote services.</p>
+                </li>
+                <li>
+                    <p><b>Space Intelligence:</b> New endpoints for space utilization, durable task management, and detailed transaction monitoring, including the ability to identify specific locked objects, details about local cache and local views, registration of new types, generating demo data, and more.</p>
+                </li>
+                <li>
+                    <p><b>Monitoring Control:</b> Granular control over LRMI monitoring (Low-level Remote Method Invocation) can now be toggled per space via the API, allowing traffic monitoring per method and listing of recent alerts.</p>
+                </li>
+                <li>
+                    <p><b>Host and Container Data:</b> Enhanced "Extended" endpoints provide deeper operating system details and utilization metrics for physical hosts and their associated containers.</p>
+                </li>
+            </ul>
             <h1>Modernized Metrics (Micrometer.io)</h1>
             <p>We have transitioned from our proprietary metrics framework to <b>Micrometer.io</b>, the industry standard for JVM-based monitoring. This change ensures seamless integration with a wide range of monitoring ecosystems.</p>
             <h2>Configuration and Management</h2>
@@ -635,21 +648,6 @@
                 </li>
                 <li>
                     <p><b>Context Propagation:</b> W3C Trace Context (traceparent / tracestate) is supported by default for correlation across multi-service environments.</p>
-                </li>
-            </ul>
-            <h2>Key API Enhancements</h2>
-            <ul>
-                <li>
-                    <p><b>Processing Units (PUs):</b> Expanded endpoints for vertical and horizontal scaling, unquiescing, detailed instance utilization tracking, event container definitions and statistics, and remote services.</p>
-                </li>
-                <li>
-                    <p><b>Space Intelligence:</b> New endpoints for space utilization, durable task management, and detailed transaction monitoring, including the ability to identify specific locked objects, details about local cache and local views, registration of new types, generating demo data, and more.</p>
-                </li>
-                <li>
-                    <p><b>Monitoring Control:</b> Granular control over LRMI monitoring (Low-level Remote Method Invocation) can now be toggled per space via the API, allowing traffic monitoring per method and listing of recent alerts.</p>
-                </li>
-                <li>
-                    <p><b>Host and Container Data:</b> Enhanced "Extended" endpoints provide deeper operating system details and utilization metrics for physical hosts and their associated containers.</p>
                 </li>
             </ul>
             <h1>Unified Control: SpaceDeck UI Integration</h1>

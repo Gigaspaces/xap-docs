@@ -6,8 +6,8 @@
         <h1 class="tc-pagetitle">Changelog</h1>
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
-        <div MadCap:conditions="Version.17-1-only">
-            <h1>17.1.5</h1>
+        <div MadCap:conditions="Version.17-2-only">
+            <h1>17.2.0</h1>
             <h2>Features and Enhancements</h2>
             <table>
                 <col style="width: 143px;" />
@@ -22,45 +22,30 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>PIC-5553</td>
-                        <td>K8S version support</td>
-                        <td>Support latest K8S version (tested with 1.34)</td>
-                    </tr>
-                    <tr>
-                        <td>PIC-5814</td>
-                        <td>Update License in K8S</td>
-                        <td>Add ability to update xap license without causing a restart in K8S environment</td>
-                    </tr>
-                    <tr>
-                        <td>PIC-5799</td>
-                        <td>Support for SSO</td>
-                        <td>SSO (openID) security support for service grid</td>
-                    </tr>
-                    <tr>
-                        <td>PIC-5756</td>
-                        <td>Flink Upgrade</td>
-                        <td>Upgrade Flink version: 2.1.0</td>
-                    </tr>
-                    <tr>
-                        <td>PIC-5797</td>
-                        <td>Detailed error in DI</td>
-                        <td>Improve DI error handling</td>
-                    </tr>
-                    <tr>
-                        <td>PIC-5769</td>
-                        <td>Changes in DI images</td>
-                        <td>Stop using bitnami for DI in K8S</td>
-                    </tr>
-                    <tr>
-                        <td>PIC-5774</td>
-                        <td>Data validation</td>
+                        <td>PIC-5616</td>
+                        <td>REST API V3</td>
                         <td>
-                            <p>Pipeline Data Validation Rest API - compare pipeline tables data to source tables.<br /></p>
-                            <p><b>Example:</b>
-                                <br />
-                            </p><pre>curl -X 'POST' \ 'http://localhost:6080/api/v2/pipeline/bd9af4b5-f266-48ef-aae9-f47e03e94478/compare-indexes' \ -H 'accept: */*' \ -H 'Content-Type: application/json' \ -d '{ "sourceUsername": "user1", "sourcePassword": "mypwd"}'</pre>
-                            <br />
+                            <p>New V3 Rest API. </p>
+                            <p>Default URL: <b>http://&lt;manager&gt;:9090/api/v3/swagger-ui/index.html</b><br />Configure: <b>gs-home\config\ui\rest-v3.yaml</b></p>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>PIC-2324</td>
+                        <td>Unified UI</td>
+                        <td>
+                            <p>One UI solution for xap/dih service grid &amp; Kubernetes. </p>
+                            <p>Configure: <b>gs-home\config\ui\spacedeck.yaml</b></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5517</td>
+                        <td>Metrics Framework</td>
+                        <td>Convert metrics to use micrometer.io and allow different monitoring frameworks</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5675</td>
+                        <td>OpenTelemetry Distributed Tracing</td>
+                        <td>Use OpenTelemetry for distributed tracing</td>
                     </tr>
                 </tbody>
             </table>
@@ -78,9 +63,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>PIC-5872</td>
-                        <td>Fix charts in ops-ui</td>
-                        <td>Fix : If hsqldb metrics are enabled should see metrics charts in ops-ui</td>
+                        <td>PIC-781</td>
+                        <td>Admin API Network Optimization</td>
+                        <td>High NW traffic between admin API and Manager</td>
                     </tr>
                 </tbody>
             </table>
