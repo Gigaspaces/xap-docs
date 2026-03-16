@@ -14,26 +14,26 @@
         <h1>REST Manager API</h1>
         <div MadCap:conditions="Version.17-2-died">
             <p>The <a href="xap-manager.html">Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
-            <p>To begin, start a standalone <MadCap:variable name="General.ProductNameXAP" /> Manager on your machine using the following command:</p>
-            <div class="easyui-tabs" plain="true" data-options="">
-                <div title="Unix" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs-agent.sh --manager-local
-				</code></pre>
-                </div>
-                <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs-agent.bat --manager-local
-				</code></pre>
-                </div>
+        <p>To begin, start a standalone <MadCap:variable name="General.ProductNameXAP" /> Manager on your machine using the following command:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Unix" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs-agent.sh --manager-local
+</code></pre>
             </div>
-            <p>After the <MadCap:variable name="General.ProductNameXAP" /> Manager has started, browse to <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><a href="http://localhost:8090/" target="_blank">localhost:8090/</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><a href="localhost:8090/v2">localhost:8090/v2</a></MadCap:conditionalText> and start working with the API.</p>
-            <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs-agent.bat --manager-local
+</code></pre>
+            </div>
+        </div>
+        <p>After the <MadCap:variable name="General.ProductNameXAP" /> Manager has started, browse to <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><a href="http://localhost:8090/" target="_blank">localhost:8090/</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><a href="localhost:8090/v2">localhost:8090/v2</a></MadCap:conditionalText> and start working with the API.</p>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
                 <p>If you had a previous version of <MadCap:variable name="General.ProductNameXAP" />, when you used the Manager IP&#160;address and port in the URL field of your browser to access the REST&#160;Manager API (<span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/</span>), you were automatically redirected to <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span>. This IP&#160;address now opens Ops Manager. If you want to open the REST&#160;Manager API, use the <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span> URL.</p>
-            </div>
-            <div class="tc-admon-note">
-                <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the REST Manager API. You can also start a cluster of <MadCap:variable name="General.ProductNameXAP" /> Managers to ensure high availability. To learn more about the <MadCap:variable name="General.ProductNameXAP" /> Manager, refer to <a href="xap-manager.html">the Manager</a>.</p>
-            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the REST Manager API. You can also start a cluster of <MadCap:variable name="General.ProductNameXAP" /> Managers to ensure high availability. To learn more about the <MadCap:variable name="General.ProductNameXAP" /> Manager, refer to <a href="xap-manager.html">the Manager</a>.</p>
+        </div>
             <p>The REST Manager API was built with <a href="http://swagger.io/" target="_blank">Swagger</a>. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the <code>Try it out!</code> button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the <code>curl</code> command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self-explanatory. You can also download the <code>yaml</code> specification and use Swagger's <code>Online Editor</code> to generate a client in your favorite language.</p>
-            <p>
-                <img src="../Resources/Images/RESTAPI.png" style="width: 937px;height: 849px;" />
-            </p>
+        <p>
+            <img src="../Resources/Images/RESTAPI.png" style="width: 937px;height: 849px;" />
+        </p>
         </div>
         <div MadCap:conditions="Version.17-2-born">
             <p>A new REST API V3 is introduced in this version. The V2 Manager is still active alongside the new V3 Manager, but is deprecated and will be removed in a future version. Ops Manager is based on the V2 API and is deprecated as well.</p>
@@ -192,7 +192,7 @@
         <h2><a name="enabling-security"></a>Enabling Security</h2>
         <p>The REST Manager API allows for secured access and operations when the security <code>enabled</code> property is set. This property should be configured using the <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</code> in the <code>setenv</code> script, and is applied to all <MadCap:variable name="General.ProductNameXAP" /> <a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
         <p>The property:</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
-		</code></pre>
+</code></pre>
         <div MadCap:conditions="Version.17-2-died">
             <p>By default, to get you up and running, if nothing was configured the fallback security implementation uses a local file to save credentials (see <a href="../security/default-file-based-security-implementation-ext.html">File-Based Security</a>).</p>
         </div>
@@ -250,52 +250,55 @@
             </tbody>
         </table>
         <h2><a name="security-properties-file"></a>Security Properties File</h2>
-        <p>The security properties file is used to configure the <code>SecurityManager</code>, which is responsible for the authentication and authorization process. The <code>security.properties</code> file is common to all components and is usually located under <code><MadCap:variable name="General.HomePath" />/config/security/security.properties</code>.</p>
-        <p>The REST component is part of the <MadCap:variable name="General.ProductNameXAP" /> Grid components. To only affect the Grid components, use the <code>grid-security.properties</code> instead.</p>
-        <p>The configuration file can be located anywhere in the classpath, or in the classpath under <code>config/security</code>.</p>
+        <p>The security properties file is used to configure the <code>SecurityManager</code>, that is responsible for the authentication and authorization process.
+The <code>security.properties</code> file is common to all components and is usually located under <code><MadCap:variable name="General.HomePath" />/config/security/security.properties</code>.</p>
+        <p>The REST component is part of the <MadCap:variable name="General.ProductNameXAP" /> Grid components.
+To only affect the Grid components, use the <code>grid-security.properties</code> instead.</p>
+        <p>The configuration file can be located anywhere in the classpath or in the classpath under <code>config/security</code>.</p>
         <p>Alternatively, a system property can be set to indicate the location of the properties file:</p><pre><code class="language-java">-Dcom.gs.security.properties-file = my-security.properties
-		</code></pre>
+</code></pre>
         <p>By setting <code>-Dcom.gs.security.properties-file</code>, the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>), a resource (e.g. <code>my-security.properties</code>) in the classpath, or in the classpath under <code>config/security</code>.</p>
         <div MadCap:conditions="Version.17-2-died">
-            <h1><a name="operations"></a>Operations</h1>
-            <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
-            <div class="tc-admon-note">
-                <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the pages using the links below.</p>
-            </div>
-            <ul>
-                <li>
-                    <p>Containers - [%=Versions.rest-version%] See [%=Versions.rest-version%] the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/index.html#/Containers" target="_blank">Containers</a> page.</p>
-                </li>
-                <li>
-                    <p>Hosts - See the <a href="http://localhost:8090/v2/index.html#/Hosts" target="_blank">Hosts</a> page.</p>
-                </li>
-                <li>
-                    <p>Information - See the <a href="http://localhost:8090/v2/index.html#/Information" target="_blank">Information</a> page.</p>
-                </li>
-                <li>
-                    <p>Processing Units - See the <a href="http://localhost:8090/v2/index.html#/Processing_Units" target="_blank">Processing Units</a> page.</p>
-                </li>
-                <li>
-                    <p>Requests - See the <a href="http://localhost:8090/v2/index.html#/Requests" target="_blank">Requests</a> page.</p>
-                </li>
-                <li>
-                    <p>Spaces - See the <a href="http://localhost:8090/v2/index.html#/Spaces" target="_blank">Spaces</a> page.</p>
-                </li>
-                <li>
-                    <p MadCap:conditions="Version.16-2-1-died">Spark - See the <a href="http://localhost:8090/v2/index.html#/Spark" target="_blank">Spark</a> page.</p>
-                </li>
-            </ul>
+        <h1><a name="operations"></a>Operations</h1>
+        <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
+        <div class="tc-admon-note">
+            <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the pages using the links below.</p>
         </div>
+        <ul>
+            <li>
+                <p>Containers - [%=Versions.rest-version%] See [%=Versions.rest-version%]
+the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/index.html#/Containers" target="_blank">Containers</a> page.</p>
+            </li>
+            <li>
+                <p>Hosts - See the <a href="http://localhost:8090/v2/index.html#/Hosts" target="_blank">Hosts</a> page.</p>
+            </li>
+            <li>
+                <p>Information - See the <a href="http://localhost:8090/v2/index.html#/Information" target="_blank">Information</a> page.</p>
+            </li>
+            <li>
+                <p>Processing Units - See the <a href="http://localhost:8090/v2/index.html#/Processing_Units" target="_blank">Processing Units</a> page.</p>
+            </li>
+            <li>
+                <p>Requests - See the <a href="http://localhost:8090/v2/index.html#/Requests" target="_blank">Requests</a> page.</p>
+            </li>
+            <li>
+                <p>Spaces - See the <a href="http://localhost:8090/v2/index.html#/Spaces" target="_blank">Spaces</a> page.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-2-1-died">Spark - See the <a href="http://localhost:8090/v2/index.html#/Spark" target="_blank">Spark</a> page.</p>
+            </li>
+        </ul>
+			 </div>
         <h1><a name="online-editor"></a>Online Editor</h1>
         <div MadCap:conditions="Version.17-2-died">
             <p>You can download the <code>yaml</code> configuration file from <a href="http://localhost:8090/v2/xap-manager-api.yaml" target="_blank">http://localhost:8090/v2/xap-manager-api.yaml</a> and import or copy and paste the yaml content into the <a href="http://editor.swagger.io/#!/" target="_blank">Swagger Editor</a>.</p>
-            <p>
-                <img src="../Resources/Static/attachment_files/rest-admin/swagger-ui.png" alt="image" class="tc-picture100" />
-            </p>
-            <p>From the Swagger user interface, you can generate client code in your preferred language:</p>
-            <p>
-                <img src="../Resources/Static/attachment_files/rest-admin/generate-client-code.png" alt="image" class="tc-picture100" />
-            </p>
+        <p>
+            <img src="../Resources/Static/attachment_files/rest-admin/swagger-ui.png" alt="image" class="tc-picture100" />
+        </p>
+        <p>From the Swagger user interface, you can generate client code in your preferred language:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/rest-admin/generate-client-code.png" alt="image" class="tc-picture100" />
+        </p>
         </div>
         <div MadCap:conditions="Version.17-2-born">
             <p>The REST API V3 is an OpenAPI specification. You can download its specification and use Swagger's Online Editor to generate a client in your favorite language.</p>
@@ -315,70 +318,72 @@
                 <p>Use JAX-RS parameter annotations (e.g. <code>@QueryParam</code>) to map HTTP request parameters to your method.</p>
             </li>
             <li>
-                <p>If you want to use <code>Admin</code>, create an appropriate field and annotate it with the JAX-RS <code>@Context</code> annotation.</p>
+                <p>If you want to use <code>Admin</code>, create an appropriate field and annotate it with JAX-RS <code>@Context</code> annotation.</p>
             </li>
         </ol>
         <p>For example:</p><pre><code class="language-java">@CustomManagerResource
-				@Path("/demo")
-				public class BasicPluggableOperationTest {
-				@Context Admin admin;
+@Path("/demo")
+public class BasicPluggableOperationTest {
+    @Context Admin admin;
 
-				@GET
-				@Path("/report")
-				public String report(@QueryParam("hostname") String hostname) {
-				Machine machine = admin.getMachines().getMachineByHostName(hostname);
-				return "Custom report: host=" + hostname + 
-				", containers=" + machine.getGridServiceContainers() + 
-				", PU instances=" + machine.getProcessingUnitInstances();
-				}
-				}
-		</code></pre>
-        <p>This class maps an HTTP <code>GET</code> operation at the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report). For example, <code>http://localhost:8090/demo/report?hostname=mypc</code>.</p>
+    @GET
+    @Path("/report")
+    public String report(@QueryParam("hostname") String hostname) {
+        Machine machine = admin.getMachines().getMachineByHostName(hostname);
+        return "Custom report: host=" + hostname + 
+                ", containers=" + machine.getGridServiceContainers() + 
+                ", PU instances=" + machine.getProcessingUnitInstances();
+    }
+}
+</code></pre>
+        <p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/demo/report?hostname=mypc</code>.</p>
         <p>To run the example, compile it and package it into a .jar file, then copy the .jar to <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> and start the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
         <p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
         <h2><a name="configuration"></a>Configuration</h2>
-        <p>When the <MadCap:variable name="General.ProductNameXAP" /> Manager starts, it scans <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> for classes in the jar files with JAX-RS annotations and registers them. You can override the location using the following system property:</p><pre><code class="language-bash">com.gs.manager.rest.plugins.path="pathToJar"
-		</code></pre>
+        <p>When the <MadCap:variable name="General.ProductNameXAP" /> Manager starts, it scans the <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> for classes in the jar files with the JAX-RS annotations and registers them.
+You can override the location using the following system property:</p><pre><code class="language-bash">com.gs.manager.rest.plugins.path="pathToJar"
+</code></pre>
         <h2><a name="response"></a>Response</h2>
         <p>In the example above the method returns a String, and in addition it implicitly returns an HTTP code 200 (OK). If you need to explicitly specify the HTTP result code, use <code>org.openspaces.admin.rest.Response</code> instead of a <code>String</code>.</p>
         <p>For example:</p><pre><code class="language-java">import org.openspaces.admin.rest.Response
 
-				@GET
-				@Path("/report")
-				public Response report(@QueryParam("hostname") String hostname) {
-				Machine machine = admin.getMachines().getMachineByHostName(hostname);
-				if (machine == null)
-				return Response.status(javax.ws.rs.core.Response.Status.NOT_FOUND).entity("Host not found").build();    
-				String result = "Custom report: host=" + hostname + 
-				", containers=" + machine.getGridServiceContainers() + 
-				", PU instances=" + machine.getProcessingUnitInstances();
-				return Response.ok().entity(result).build();
-				}
-		</code></pre>
+@GET
+@Path("/report")
+public Response report(@QueryParam("hostname") String hostname) {
+    Machine machine = admin.getMachines().getMachineByHostName(hostname);
+    if (machine == null)
+        return Response.status(javax.ws.rs.core.Response.Status.NOT_FOUND).entity("Host not found").build();    
+    String result = "Custom report: host=" + hostname + 
+            ", containers=" + machine.getGridServiceContainers() + 
+            ", PU instances=" + machine.getProcessingUnitInstances();
+    return Response.ok().entity(result).build();
+}
+</code></pre>
         <div class="tc-admon-note">
             <p>Make sure you use <code>org.openspaces.admin.rest.Response</code> and not JAX-RS Response.</p>
         </div>
         <h2><a name="security-1"></a>Security</h2>
-        <p>To define security privileges for a custom method, you have to import <code>org.openspaces.admin.rest.PrivilegeRequired</code> and <code>org.openspaces.admin.rest.RestPrivileges</code>, and use <code>@PrivilegeRequired</code>. The <code>@PrivilegeRequired</code> annotation accepts a <code>RestPrivileges</code> enum that corresponds to the Security privileges.</p>
+        <p>To define security privileges for a custom method, you have to import <code>org.openspaces.admin.rest.PrivilegeRequired</code> and <code>org.openspaces.admin.rest.RestPrivileges</code>, and use <code>@PrivilegeRequired</code>.
+The <code>@PrivilegeRequired</code> annotation accepts a <code>RestPrivileges</code> enum that corresponds to the Security privileges.</p>
         <div class="tc-admon-note">
             <p>For more information about security, see the <a href="../security/index.html">Security Guide</a>.</p>
         </div>
         <p>For example:</p><pre><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
-				import org.openspaces.admin.rest.RestPrivileges
+import org.openspaces.admin.rest.RestPrivileges
 
-				@CustomManagerResource
-				@Path("/secured/")
-				public class PluggableSecuredContoller {
-				@Context Admin admin;
+@CustomManagerResource
+@Path("/secured/")
+public class PluggableSecuredContoller {
+    @Context Admin admin;
 
-				@PrivilegeRequired(RestPrivileges.MANAGE_GRID)
-				@GET
-				@Path("/getBase")
-				public String getBase() {
-				return "hello";
-				}
-				}
-		</code></pre>
+    @PrivilegeRequired(RestPrivileges.MANAGE_GRID)
+    @GET
+    @Path("/getBase")
+    public String getBase() {
+        return "hello";
+    }
+}
+</code></pre>
         <h2><a name="jax-rs-support"></a>JAX-RS Support</h2>
         <p>The <code>JAX-RS</code> API is used for extension support because it is a well-known standard and commonly used by developers. The sections below list the annotations that are supported, and those that are not supported.</p>
         <h3><a name="supported-annotations"></a>Supported Annotations</h3>
