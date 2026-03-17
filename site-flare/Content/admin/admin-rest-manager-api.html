@@ -12,28 +12,34 @@
             </p>
         </div>
         <h1>REST Manager API</h1>
-        <div MadCap:conditions="Version.17-2-died">
-            <p>The <a href="xap-manager.html">Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
+        <p>The <a href="xap-manager.html">Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
         <p>To begin, start a standalone <MadCap:variable name="General.ProductNameXAP" /> Manager on your machine using the following command:</p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Unix" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs-agent.sh --manager-local
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.17-2-died">
+            <div title="Unix" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath"></MadCap:variable>/bin/gs-agent.sh --manager-local
 </code></pre>
             </div>
             <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs-agent.bat --manager-local
 </code></pre>
             </div>
         </div>
-        <p>After the <MadCap:variable name="General.ProductNameXAP" /> Manager has started, browse to <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><a href="http://localhost:8090/" target="_blank">localhost:8090/</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><a href="localhost:8090/v2">localhost:8090/v2</a></MadCap:conditionalText> and start working with the API.</p>
-        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.17-2-born">
+            <div title="Unix" style="padding:10px"><pre><code class="language-bash">./gs.sh host run-agent --auto --restv3 --webui</code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash">gs host run-agent --auto --restv3 --webui </code></pre>
+            </div>
+        </div>
+        <div MadCap:conditions="Version.17-2-died">
+            <p>After the <MadCap:variable name="General.ProductNameXAP" /> Manager has started, browse to <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><a href="http://localhost:8090/" target="_blank">localhost:8090/</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><a href="localhost:8090/v2">localhost:8090/v2</a></MadCap:conditionalText> and start working with the API.</p>
+            <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
                 <p>If you had a previous version of <MadCap:variable name="General.ProductNameXAP" />, when you used the Manager IP&#160;address and port in the URL field of your browser to access the REST&#160;Manager API (<span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/</span>), you were automatically redirected to <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span>. This IP&#160;address now opens Ops Manager. If you want to open the REST&#160;Manager API, use the <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span> URL.</p>
-        </div>
-        <div class="tc-admon-note">
-            <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the REST Manager API. You can also start a cluster of <MadCap:variable name="General.ProductNameXAP" /> Managers to ensure high availability. To learn more about the <MadCap:variable name="General.ProductNameXAP" /> Manager, refer to <a href="xap-manager.html">the Manager</a>.</p>
-        </div>
+            </div>
+            <div class="tc-admon-note">
+                <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the REST Manager API. You can also start a cluster of <MadCap:variable name="General.ProductNameXAP" /> Managers to ensure high availability. To learn more about the <MadCap:variable name="General.ProductNameXAP" /> Manager, refer to <a href="xap-manager.html">the Manager</a>.</p>
+            </div>
             <p>The REST Manager API was built with <a href="http://swagger.io/" target="_blank">Swagger</a>. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the <code>Try it out!</code> button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the <code>curl</code> command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self-explanatory. You can also download the <code>yaml</code> specification and use Swagger's <code>Online Editor</code> to generate a client in your favorite language.</p>
-        <p>
-            <img src="../Resources/Images/RESTAPI.png" style="width: 937px;height: 849px;" />
-        </p>
+            <p>
+                <img src="../Resources/Images/RESTAPI.png" style="width: 937px;height: 849px;" />
+            </p>
         </div>
         <div MadCap:conditions="Version.17-2-born">
             <p>A new REST API V3 is introduced in this version. The V2 Manager is still active alongside the new V3 Manager, but is deprecated and will be removed in a future version. Ops Manager is based on the V2 API and is deprecated as well.</p>
@@ -41,7 +47,7 @@
             <p>See the configuration for the new REST API at: <code><MadCap:variable name="General.HomePath" />/config/ui/rest-v3.yaml</code></p>
             <p>The default port is 9090, and can be changed using the environment variable <code>GS_REST_V3_PORT</code>.</p>
             <p>Swagger URL: <code>http://&lt;manager&gt;:9090/api/v3/swagger-ui/index.html#</code></p>
-            <p>Use the <code>--restv3</code> and <code>--webui</code> flags to start the V3 REST API and SpaceDeck using the GS CLI (add in the script section).</p>
+            <p>Use the <code>--restv3</code> and <code>--webui</code> flags to start the V3 REST API and SpaceDeck using the GS CLI.</p>
             <h2>List of API Groups</h2>
             <h3>Spaces</h3>
             <ul>
@@ -191,7 +197,7 @@
         <p>The REST component is part of the <MadCap:variable name="General.ProductNameXAP" /> Manager, and inherits the <MadCap:variable name="General.ProductNameXAP" /> Manager security configuration. As the REST API uses the HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access).</p>
         <h2><a name="enabling-security"></a>Enabling Security</h2>
         <p>The REST Manager API allows for secured access and operations when the security <code>enabled</code> property is set. This property should be configured using the <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</code> in the <code>setenv</code> script, and is applied to all <MadCap:variable name="General.ProductNameXAP" /> <a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
-        <p>The property:</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
+        <p>The property:</p><pre><code>-Dcom.gs.security.enabled=true
 </code></pre>
         <div MadCap:conditions="Version.17-2-died">
             <p>By default, to get you up and running, if nothing was configured the fallback security implementation uses a local file to save credentials (see <a href="../security/default-file-based-security-implementation-ext.html">File-Based Security</a>).</p>
@@ -255,50 +261,50 @@ The <code>security.properties</code> file is common to all components and is usu
         <p>The REST component is part of the <MadCap:variable name="General.ProductNameXAP" /> Grid components.
 To only affect the Grid components, use the <code>grid-security.properties</code> instead.</p>
         <p>The configuration file can be located anywhere in the classpath or in the classpath under <code>config/security</code>.</p>
-        <p>Alternatively, a system property can be set to indicate the location of the properties file:</p><pre><code class="language-java">-Dcom.gs.security.properties-file = my-security.properties
+        <p>Alternatively, a system property can be set to indicate the location of the properties file:</p><pre><code>-Dcom.gs.security.properties-file = my-security.properties
 </code></pre>
         <p>By setting <code>-Dcom.gs.security.properties-file</code>, the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>), a resource (e.g. <code>my-security.properties</code>) in the classpath, or in the classpath under <code>config/security</code>.</p>
         <div MadCap:conditions="Version.17-2-died">
-        <h1><a name="operations"></a>Operations</h1>
-        <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
-        <div class="tc-admon-note">
-            <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the pages using the links below.</p>
-        </div>
-        <ul>
-            <li>
-                <p>Containers - [%=Versions.rest-version%] See [%=Versions.rest-version%]
+            <h1><a name="operations"></a>Operations</h1>
+            <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
+            <div class="tc-admon-note">
+                <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the pages using the links below.</p>
+            </div>
+            <ul>
+                <li>
+                    <p>Containers - [%=Versions.rest-version%] See [%=Versions.rest-version%]
 the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/index.html#/Containers" target="_blank">Containers</a> page.</p>
-            </li>
-            <li>
-                <p>Hosts - See the <a href="http://localhost:8090/v2/index.html#/Hosts" target="_blank">Hosts</a> page.</p>
-            </li>
-            <li>
-                <p>Information - See the <a href="http://localhost:8090/v2/index.html#/Information" target="_blank">Information</a> page.</p>
-            </li>
-            <li>
-                <p>Processing Units - See the <a href="http://localhost:8090/v2/index.html#/Processing_Units" target="_blank">Processing Units</a> page.</p>
-            </li>
-            <li>
-                <p>Requests - See the <a href="http://localhost:8090/v2/index.html#/Requests" target="_blank">Requests</a> page.</p>
-            </li>
-            <li>
-                <p>Spaces - See the <a href="http://localhost:8090/v2/index.html#/Spaces" target="_blank">Spaces</a> page.</p>
-            </li>
-            <li>
-                <p MadCap:conditions="Version.16-2-1-died">Spark - See the <a href="http://localhost:8090/v2/index.html#/Spark" target="_blank">Spark</a> page.</p>
-            </li>
-        </ul>
-			 </div>
+                </li>
+                <li>
+                    <p>Hosts - See the <a href="http://localhost:8090/v2/index.html#/Hosts" target="_blank">Hosts</a> page.</p>
+                </li>
+                <li>
+                    <p>Information - See the <a href="http://localhost:8090/v2/index.html#/Information" target="_blank">Information</a> page.</p>
+                </li>
+                <li>
+                    <p>Processing Units - See the <a href="http://localhost:8090/v2/index.html#/Processing_Units" target="_blank">Processing Units</a> page.</p>
+                </li>
+                <li>
+                    <p>Requests - See the <a href="http://localhost:8090/v2/index.html#/Requests" target="_blank">Requests</a> page.</p>
+                </li>
+                <li>
+                    <p>Spaces - See the <a href="http://localhost:8090/v2/index.html#/Spaces" target="_blank">Spaces</a> page.</p>
+                </li>
+                <li>
+                    <p MadCap:conditions="Version.16-2-1-died">Spark - See the <a href="http://localhost:8090/v2/index.html#/Spark" target="_blank">Spark</a> page.</p>
+                </li>
+            </ul>
+        </div>
         <h1><a name="online-editor"></a>Online Editor</h1>
         <div MadCap:conditions="Version.17-2-died">
             <p>You can download the <code>yaml</code> configuration file from <a href="http://localhost:8090/v2/xap-manager-api.yaml" target="_blank">http://localhost:8090/v2/xap-manager-api.yaml</a> and import or copy and paste the yaml content into the <a href="http://editor.swagger.io/#!/" target="_blank">Swagger Editor</a>.</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/rest-admin/swagger-ui.png" alt="image" class="tc-picture100" />
-        </p>
-        <p>From the Swagger user interface, you can generate client code in your preferred language:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/rest-admin/generate-client-code.png" alt="image" class="tc-picture100" />
-        </p>
+            <p>
+                <img src="../Resources/Static/attachment_files/rest-admin/swagger-ui.png" alt="image" class="tc-picture100" />
+            </p>
+            <p>From the Swagger user interface, you can generate client code in your preferred language:</p>
+            <p>
+                <img src="../Resources/Static/attachment_files/rest-admin/generate-client-code.png" alt="image" class="tc-picture100" />
+            </p>
         </div>
         <div MadCap:conditions="Version.17-2-born">
             <p>The REST API V3 is an OpenAPI specification. You can download its specification and use Swagger's Online Editor to generate a client in your favorite language.</p>
@@ -402,7 +408,7 @@ public class PluggableSecuredContoller {
                 <p>HTTP operations: <code>@OPTIONS</code>, <code>@HEAD</code></p>
             </li>
             <li>
-                <p>Parameters: <code>@FormParam</code>, <code>@HeaderParam</code>, <code>@CookieParam</code>, `@Matrix</p>
+                <p>Parameters: <code>@FormParam</code>, <code>@HeaderParam</code>, <code>@CookieParam</code>, <code>@Matrix</code></p>
             </li>
         </ul>
     </body>
