@@ -13,7 +13,7 @@
         </div>
         <h1 class="tc-pagetitle">Kubernetes License Setup</h1>
         <p>First, install the umbrella and set the license:</p>
-        <p><pre><code class="language-bash">helm install xap xap/smart-cache --version 17.1.5 --set license="your-license-key"</code></pre>
+        <p><pre><code class="language-bash">helm install xap xap/smart-cache --version 17.1.5 --set global.license="your-license-key"</code></pre>
         </p>
         <div class="tc-admon-note">
             <p>If the license is not specified, a tryme license valid only for 24 hours will be used.</p>
@@ -25,7 +25,7 @@
         <p>Update the license value in your Helm values and upgrade the release:</p><pre><code class="language-bash"># Update the license in your values file or via --set flag
 helm upgrade xap-operator /path/to/xap-operator/chart \
   --reuse-values \
-  --set license="your-new-license-key" \
+  --set global.license="your-new-license-key" \
   --namespace your-namespace
 </code></pre>
         <p>This updates the ConfigMap without triggering pod restarts.</p>
