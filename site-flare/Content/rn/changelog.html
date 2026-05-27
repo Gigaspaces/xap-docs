@@ -49,19 +49,19 @@
                         <td>PIC-5929</td>
                         <td>Local Bean Injection Annotation
 </td>
-                        <td>Add specific annotation to allow injecting local beans in aggregations</td>
+                        <td>Add specific annotation to allow injecting local beans in aggregations (@AutowireAggregator)</td>
                     </tr>
                     <tr>
                         <td>PIC-5700</td>
                         <td>LUS Registration Count Config
 </td>
-                        <td>Allow configuration of number of LUS each space instance registers to</td>
+                        <td>Allow configuration of number of LUS each space instance registers to (com.gs.lus.registration.count)</td>
                     </tr>
                     <tr>
                         <td>PIC-6029</td>
                         <td>Code Change ID Placeholder
 </td>
-                        <td>Support code change ID - add placeholder as PID or system property to be calculated in client</td>
+                        <td>Support code change ID - add placeholder as PID or system property to be calculated in client (examples: v-${pid}-version, ${test.code.change.version})</td>
                     </tr>
                     <tr>
                         <td>PIC-5904</td>
@@ -88,10 +88,10 @@
                         <td>Simplify DI service structure - unify DI-Manager, Subscription &amp; Transformation managers into one DI-Manager</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">-</td>
-                        <td>Table Permissions
+                        <td>PIC-5987</td>
+                        <td>SpaceDeck Service Account Table Permissions
 </td>
-                        <td>Allow defining table permissions</td>
+                        <td>Allow defining table permissions as part of service account definition in SpaceDeck</td>
                     </tr>
                     <tr>
                         <td>PIC-5705</td>
@@ -111,6 +111,12 @@
 </td>
                         <td>Persistent semantic layer for XAP - preview</td>
                     </tr>
+                    <tr>
+                        <td>PIC-6033</td>
+                        <td>DI Postgres Data Loader
+</td>
+                        <td>DI - Support data loader from Postgres</td>
+                    </tr>
                 </tbody>
             </table>
             <h2>Resolved Issues</h2>
@@ -127,7 +133,32 @@
                     <tr>
                         <td>PIC-5991</td>
                         <td>K8S capacitor</td>
-                        <td>Fix Capacitor failure in K8S</td>
+                        <td>Fix Capacitor failure in K8S - OpenShift</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-2192</td>
+                        <td>K8S HA Antiaffinity Non-Default Namespace</td>
+                        <td>Fix HA antiaffinity in K8S in non-default namespace (cert-manager must be installed)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5993</td>
+                        <td>Ingress PathType Fix</td>
+                        <td>Fix ingress pathType from Prefix to ImplementationSpecific</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6038</td>
+                        <td>DI Datasource Connection Fix</td>
+                        <td>Fix DI compare space data to datasource - add connection parameter</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6049</td>
+                        <td>MemX Count Inconsistency</td>
+                        <td>Fix inconsistent count results in MemX in certain scenarios</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6042</td>
+                        <td>OrderByAggregator Concurrent Modification</td>
+                        <td>Fix ConcurrentModificationException in OrderByAggregator getIntermediateResult in rare cases</td>
                     </tr>
                 </tbody>
             </table>

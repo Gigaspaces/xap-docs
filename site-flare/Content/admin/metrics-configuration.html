@@ -84,6 +84,7 @@
             <ul>
                 <li>InfluxDB</li>
                 <li>Prometheus</li>
+                <li>OTLP (generic, since 17.2.2)</li>
                 <li>File reporter (for development time testing)</li>
             </ul>
             <h1><a name="configuration"></a>Configuration</h1>
@@ -96,6 +97,16 @@
 					metrics.file.path=/var/log/xap/metrics.log
 			metrics.file.step=1</code></pre>
             <h1><a name="plug-in"></a>Plug in Other Frameworks</h1>
+            <h2><a name="otlp-provider"></a>OTLP Provider</h2>
+            <p>Since version 17.2.2, an OTLP generic provider is available out of the box, requiring no additional code. In <code>metrics.properties</code>, define the following:</p><pre><code class="language-bash">metrics.registries=otlp
+# Protocol: http or grpc
+metrics.otlp.protocol=http
+# OTLP Collector endpoint
+metrics.otlp.url=
+# Export interval in seconds
+metrics.otlp.step=10</code></pre>
+            <p>A direct registry implementation is also available for use as a plugin.</p>
+            <h2><a name="custom-plugin"></a>Custom Plugin</h2>
             <p>As an example, the following shows how to use Datadog. XAP's <code>MicrometerRegistryBuilder</code> uses <code>ServiceLoader</code> to discover <code>GsMeterRegistryProvider</code> implementations at startup. When <code>metrics.registries=xyz</code> is set, it:</p>
             <ul>
                 <li>Scans all JARs in <code>$GS_HOME/lib/optional/metrics/</code> for <code>META-INF/services/com.gigaspaces.metrics.micrometer.GsMeterRegistryProvider</code></li>
@@ -120,6 +131,10 @@
                     <tr>
                         <td>Prometheus</td>
                         <td>Built in — just set <code>metrics.registries=prometheus</code></td>
+                    </tr>
+                    <tr>
+                        <td>OTLP (Generic)</td>
+                        <td>Built in since 17.2.2 — set <code>metrics.registries=otlp</code> and configure <code>metrics.otlp.*</code> properties. No code required.</td>
                     </tr>
                     <tr>
                         <td>Datadog / Graphite / New Relic / Wavefront / …</td>
