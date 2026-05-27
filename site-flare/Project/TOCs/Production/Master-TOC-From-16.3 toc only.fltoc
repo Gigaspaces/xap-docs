@@ -1454,10 +1454,18 @@
             Link="/Content/admin/data-partitioning-practical.html" />
           <TocEntry
             Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/failover.html" />
+            Link="/Content/admin/failover.html"></TocEntry>
           <TocEntry
             Title="[%=System.LinkedTitle%]"
             Link="/Content/admin/replication.html">
+            <TocEntry
+              Title="[%=System.LinkedTitle%] "
+              Link="/Content/admin/redolog-dropped-packet-listener.html"
+              conditions="Version.17-2-born"
+              StartSection="false"
+              SectionNumberReset="continue"
+              VolumeNumberReset="same"
+              ChapterNumberReset="continue" />
             <TocEntry
               Title="[%=System.LinkedTitle%]"
               Link="/Content/admin/replication-topologies.html" />
@@ -1469,7 +1477,7 @@
               Link="/Content/admin/replication-operations.html" />
             <TocEntry
               Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/controlling-the-replication-redo-log.html" />
+              Link="/Content/admin/controlling-the-replication-redo-log.html"></TocEntry>
             <TocEntry
               Title="[%=System.LinkedTitle%]"
               Link="/Content/admin/replication-parameters.html" />
@@ -1991,6 +1999,10 @@
           <TocEntry
             Title="[%=System.LinkedTitle%]"
             Link="/Content/dev-java/query-by-id.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/vector-search.html" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"
+            conditions="Version.17-2-born" />
           <TocEntry
             Title="[%=System.LinkedTitle%]"
             Link="/Content/dev-java/query-template-matching.html" />
@@ -3150,6 +3162,18 @@
           Title="[%=System.LinkedTitle%]"
           Link="/Content/admin/gigaspaces-dump.html" />
       </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/landing-pages/working-with-ai-agents.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+      <TocEntry
+        Title="XAP MCP Tools Overview"
+        Link="/Content/admin/xap-mcp.html"
+        conditions="Version.17-2-born" />
+      <TocEntry
+        Title="Semantic Layer Foundation"
+        Link="/Content/admin/semantic-layer.html"
+        conditions="Version.17-2-born" />
     </TocEntry>
   </TocEntry>
   <TocEntry

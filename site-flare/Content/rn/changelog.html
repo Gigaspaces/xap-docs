@@ -6,6 +6,132 @@
         <h1 class="tc-pagetitle">Changelog</h1>
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
+        <div MadCap:conditions="Version.17-2-born">
+            <h1>17.2.2</h1>
+            <h2>Features and Enhancements</h2>
+            <table class="tc-standard">
+                <col style="width: 105px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Type</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5902</td>
+                        <td>RedoLog Drop Listener
+</td>
+                        <td>Add embedded listener to redolog dropped messages (com.gs.drop-packet.listener)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5946</td>
+                        <td>Unsecured Space in Secured Grid (K8S)
+</td>
+                        <td>Allow secured grid without a secured space in K8S environment</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5988</td>
+                        <td>Topology &amp; Toleration Propagation
+</td>
+                        <td>Allow propagating topology &amp; toleration to space PU pods</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5903</td>
+                        <td>Eager Class Loading via Annotation
+</td>
+                        <td>Eager loading of classes in custom tasks &amp; aggregations using support code change annotation</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5929</td>
+                        <td>Local Bean Injection Annotation
+</td>
+                        <td>Add specific annotation to allow injecting local beans in aggregations</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5700</td>
+                        <td>LUS Registration Count Config
+</td>
+                        <td>Allow configuration of number of LUS each space instance registers to</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6029</td>
+                        <td>Code Change ID Placeholder
+</td>
+                        <td>Support code change ID - add placeholder as PID or system property to be calculated in client</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5904</td>
+                        <td>Concurrent RollingFileHandler
+</td>
+                        <td>Allow running different RollingFileHandler concurrently (thread safe)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5982</td>
+                        <td>DI Embedded Space Deck
+</td>
+                        <td>Integrate DI into XAP manager embedded space deck</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5984</td>
+                        <td>Zero-Code OTL Provider
+</td>
+                        <td>Add default OTL provider that requires no code additions</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5950</td>
+                        <td>Unified DI Manager
+</td>
+                        <td>Simplify DI service structure - unify DI-Manager, Subscription &amp; Transformation managers into one DI-Manager</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">-</td>
+                        <td>Table Permissions
+</td>
+                        <td>Allow defining table permissions</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5705</td>
+                        <td>Vector Search Preview
+</td>
+                        <td>Ability to query space type with a condition using text similarity (vector search) - preview</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5753</td>
+                        <td>MCP Service Grid Preview
+</td>
+                        <td>MCP preview for XAP in service grid</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5958</td>
+                        <td>Persistent Semantic Layer Preview
+</td>
+                        <td>Persistent semantic layer for XAP - preview</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table class="tc-standard">
+                <col style="width: 105px;" />
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>Key</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5991</td>
+                        <td>K8S capacitor</td>
+                        <td>Fix Capacitor failure in K8S</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div MadCap:conditions="Version.17-2-only">
             <h1>17.2.0</h1>
             <h2>Features and Enhancements</h2>

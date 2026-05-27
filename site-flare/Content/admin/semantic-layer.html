@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Semantic Layer Foundation</h1>
+        <p>The Semantic Layer is the foundation that enables intelligent data discovery and schema management across the entire MCP server. It automatically bridges AI models and the XAP data model by providing rich metadata, relationship information, and smart caching mechanisms. Its includes, type descriptions, field description, relationship definitions and description of user defined tools and their parameters.</p>
+        <p>The metadata information is kept on dedicated space with mode META that will be automatically deployed when the first MCP server is created.</p>
+        <h2>Core Semantic Tools
+</h2>
+        <ul>
+            <li>
+                <p><code>space_list_types</code> — Discover all data types registered in a space</p>
+            </li>
+            <li>
+                <p><code>space_describe_type</code> — Get complete schema with properties, indexes, and relations</p>
+            </li>
+            <li>
+                <p><code>meta_get_space</code> — Retrieve cached space metadata and type summaries</p>
+            </li>
+            <li>
+                <p><code>meta_get_types</code> — Get all type metadata with their FQNs and aliases</p>
+            </li>
+            <li>
+                <p><code>meta_get_user_details</code> — Access human-readable field aliases and format hints</p>
+            </li>
+            <li>
+                <p><code>meta_list_spaces </code>— List all spaces with metadata from the meta-space cache</p>
+            </li>
+        </ul>
+        <h2>Key Features</h2>
+        <h3>Schema Introspection</h3>
+        <p>Automatically discover exact property names, Java types, indexes, and ID/routing properties. Never guess column names — the semantic layer provides the ground truth.</p>
+        <p>Example output from <code>space_describe_type</code>:</p><pre><code class="language-csharp"> {
+  "typeName": "com.example.Order",
+  "properties": [
+    { "name": "id", "javaType": "long", "index": "BASIC" },
+    { "name": "customerId", "javaType": "String" },
+    { "name": "totalAmount", "javaType": "double" },
+    { "name": "status", "javaType": "String" }
+  ],
+  "idProperty": "id",
+  "routingProperty": "customerId"
+}</code></pre>
+        <h3>Relationship Mapping</h3>
+        <p>Understand foreign-key relationships between types (one-to-many, many-to-one, many-to-many). Relationships are cached with their FQN, join columns, and directionality.</p>
+        <p><b>Example</b>:</p><pre><code class="language-bash">Order → Customer (via customerId = id)Order → Product (via productId = id)</code></pre>
+        <h3>Metadata Caching</h3>
+        <p>A dedicated "meta-space" maintains fast, indexed access to schema metadata without hitting live space descriptors. This enables rapid schema discovery and eliminates repeated network calls. (Tiered storage space to keep metadata persistence)</p>
+        <h3>Human-Readable Aliases</h3>
+        <p>Maps technical field names to user-friendly aliases, providing format hints (e.g., date formats, enum values) to guide AI in generating correct data types and values.</p>
+        <p><b>Example</b>:</p><pre><code class="language-csharp">createdDate (technical name) → Created (alias) with format yyyy-MM-dd HH:mm:ss<br />tier (technical name) → Customer Tier (alias) with format GOLD|SILVER|BRONZE</code></pre>
+        <h3>FQN Resolution</h3>
+        <p>AI is instructed to use fully-qualified type names (FQN) as returned by the semantic layer. Never use human aliases or shortened names as typeName parameters — they will cause failures.</p>
+        <p>Correct: <code class="language-bash">com.gigaspaces.examples.model.Order</code></p>
+        <p>Incorrect: <code>Order </code>or <code>OrderData</code></p>
+        <h3>Semantic Workflow for MCP tools</h3>
+        <p>When performing any data operation, follow this workflow:</p>
+        <ol>
+            <li>
+                <p><b>Discover Space</b> → Call <code>meta_get_space(spaceName)</code> to get cached metadata and type list</p>
+            </li>
+            <li>
+                <p><b>Inspect Schema</b> → Call <code>space_describe_type(spaceName, typeName)</code> to get exact field names and types</p>
+            </li>
+            <li>
+                <p><b>Resolve Aliases</b> → If user provided human aliases, call<code> meta_get_user_details(uuid)</code> to resolve them to original field names</p>
+            </li>
+            <li>
+                <p><b>Construct Operation</b> → Use the exact FQN and field names from the semantic layer</p>
+            </li>
+        </ol><pre><code class="language-java"><p>User Input: "Write an order for customer John"</p><p>↓</p><p>meta_get_space("orders") → [Order, Customer, Product, ...]</p><p>↓</p><p>space_describe_type("orders", "com.example.Order") → fields: [id, customerId, productId, totalAmount, status, ...]</p><p>↓</p><p>meta_get_user_details(customerUuid) → customerId is field "customerId", not "customer_id"</p><p>↓</p><p>space_write("orders", "com.example.Order", {"id": 123, "customerId": "john", ...})</p></code></pre>
+        <h2>Why It Matters</h2>
+        <p>The semantic layer ensures that AI-generated queries and data operations are always semantically correct, even with:</p>
+        <ul>
+            <li>
+                <p>Complex schema with many types</p>
+            </li>
+            <li>
+                <p>Numerous relationships and JOINs</p>
+            </li>
+            <li>
+                <p>User-provided aliases and human-readable names</p>
+            </li>
+            <li>
+                <p>Multiple Java types and format conventions</p>
+            </li>
+        </ul>
+        <p><b>Prevents Common Mistakes:</b>
+        </p>
+        <ul>
+            <li>
+                <p>❌ Using human aliases instead of FQN in tool parameters</p>
+            </li>
+            <li>
+                <p>❌ Guessing at column names that don't match the actual schema</p>
+            </li>
+            <li>
+                <p>❌ Missing relationships that would require JOINs</p>
+            </li>
+            <li>
+                <p>❌ Using incorrect Java types when writing data</p>
+            </li>
+            <li>
+                <p>❌ Not understanding field formats (dates, enums, etc.)</p>
+            </li>
+        </ul>
+        <h1>Access Tier Summary</h1>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 33%;" />
+            <col style="width: 33%;" />
+            <col style="width: 33%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tier</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                    <th>
+                        <p>Examples</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tier 0: Read-Only
+
+</td>
+                    <td>Unrestricted read access, no confirmation needed
+
+</td>
+                    <td><code class="language-bash">space_query, space_sql, space_count, space_aggregate
+
+</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Tier 1: Write
+
+</p>
+                    </td>
+                    <td>Data modification operations
+
+</td>
+                    <td>
+                        <p><code class="language-bash">space_write, space_change, space_take, space_write_batch</code>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tier 2: Compute
+
+</td>
+                    <td>
+                        <p>Distributed task and remote service execution
+</p>
+                    </td>
+                    <td><code class="language-bash">space_execute_registered_task, space_execute_distributed_task</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Tier 3: Admin
+
+</p>
+                    </td>
+                    <td>
+                        <p>Cluster and infrastructure management
+
+</p>
+                    </td>
+                    <td>
+                        <p><code class="language-bash">cluster_get_topology, space_create, pu_deploy, manager_restart
+</code><![CDATA[
+]]></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

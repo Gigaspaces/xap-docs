@@ -272,6 +272,17 @@ This value can be modified via the following Space properties:</p>
         <div class="tc-admon-note">
             <p><code>@SupportCodeChange</code> annotations without an ID or with <code>id=""</code> are not cached.</p>
         </div>
+        <div MadCap:conditions="Version.17-2-born">
+            <h3>Starting from version 17.2.2:</h3>
+            <ul>
+                <li>
+                    <p>Support code change annotation will calculate the code ID in run time allowing pid and jvm arg to be used as: <code> v-${pid}-version, ${test.code.change.version}</code></p>
+                </li>
+                <li>
+                    <p>To allow eager class loading of all related classes when using support code annotation, set following system property: <code>com.gs.eagerRefLoad</code> to true.</p>
+                </li>
+            </ul>
+        </div>
         <h1><a name="limitations"></a>Limitations</h1>
         <ul>
             <li>When using <code>@SupportCodeChange</code>, no new types can be introduced to the Space.</li>

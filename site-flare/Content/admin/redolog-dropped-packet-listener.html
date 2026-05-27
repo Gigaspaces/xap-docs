@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>Dropped Packet Listener</h1>
+        <p>Starting from version 17.2.2 a new ability was added to define a listener to the redolog dropped packet and gain information on what data was dropped.</p><pre><code class="language-csharp"> public interface IDroppedPacketListener {
+      void onPacketDropped(DroppedPacketInfo info);
+  }</code></pre>
+        <p><code>com.gs.drop-packet.listener</code> system property should be set with the class name that implements the above listener interface.</p>
+        <p>To verify that the listener was initiated successfully, look at the log for:</p>
+        <p><code>INFO [com.gigaspaces.replication.backlog.async] - &lt;Your listener Class name&gt; listener was initialized successfully, event will be passed</code>
+        </p>
+        <div class="tc-admon-note">
+            <p>&#160;</p>
+            <p>1. Listener must have default constructor.</p>
+            <p>2. The listener is called synchronously with the operation and should not contain time consuming operations, in case such needed it should run code in asynchronous manner.</p>
+            <p>3. In case the listener throw exception it will not be invoked next time, and the following error will be added to the log: <b>onPacketDropped listener failed, listener will not be invoked next time</b></p>
+        </div>
+        <p><b>DroppedPacketInfo</b> includes information about the lost packet:</p>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th style="text-align: left;">
+                        <p style="text-align: left;">Property</p>
+                    </th>
+                    <th style="text-align: left;">
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>packetKey</p>
+                    </td>
+                    <td>
+                        <p>key value</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>targetMemberName</p>
+                    </td>
+                    <td>
+                        <p>name</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>operationType </p>
+                    </td>
+                    <td>
+                        <p>eg. "WRITE", "UPDATE", "REMOVE_ENTRY"</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>typeName </p>
+                    </td>
+                    <td>
+                        <p>          object class name</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>entryUid</p>
+                    </td>
+                    <td>
+                        <p>         entry UID (may be null)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>limitReachedPolicy </p>
+                    </td>
+                    <td>
+                        <p>which limit policy was reached</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>isTransient </p>
+                    </td>
+                    <td>
+                        <p>is related entry transient (should not be persisted to mirror)</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>Example for logging listener implementation:</p><pre><code class="language-csharp">public class LoggingDroppedPacketListener implements IDroppedPacketListener {
+
+   private static final Logger logger =
+           Logger.getLogger(LoggingDroppedPacketListener.class.getName());
+
+   /** Required no-arg constructor for reflective instantiation by GigaSpaces.  */
+   public LoggingDroppedPacketListener() {
+   }
+
+   @Override
+   public void onPacketDropped(DroppedPacketInfo info) {
+       if (logger.isLoggable(Level.WARNING))
+           logger.warning("Packet dropped from replication backlog: " + info);
+   }
+
+  }</code></pre>
+        <p> </p>
+        <p>In case of transaction there will be several lines with the same packet key, one per each operation. For example, writing 3 objects under transaction with the logging listener will result in the following output:</p><pre><code class="language-java">WARNING [com.gigaspaces.internal.cluster.node.impl.backlog.LoggingDroppedPacketListener] - Packet dropped from replication backlog: DroppedPacketInfo{packetKey=1, targetMemberName='DroppedPacketListenerTestSpace_container2:DroppedPacketListenerTestSpace', operationType='WRITE', typeName='com.gigaspaces.internal.cluster.node.impl.backlog.DroppedPacketListenerTest$TestEntry', entryUid='1824038474^85^500^0^0', policy=DROP_OLDEST, isTransient=false}
+WARNING [com.gigaspaces.internal.cluster.node.impl.backlog.LoggingDroppedPacketListener] - Packet dropped from replication backlog: DroppedPacketInfo{packetKey=1, targetMemberName='DroppedPacketListenerTestSpace_container2:DroppedPacketListenerTestSpace', operationType='WRITE', typeName='com.gigaspaces.internal.cluster.node.impl.backlog.DroppedPacketListenerTest$TestEntry', entryUid='1824038474^85^501^0^0', policy=DROP_OLDEST, isTransient=false}
+WARNING [com.gigaspaces.internal.cluster.node.impl.backlog.LoggingDroppedPacketListener] - Packet dropped from replication backlog: DroppedPacketInfo{packetKey=1, targetMemberName='DroppedPacketListenerTestSpace_container2:DroppedPacketListenerTestSpace', operationType='WRITE', typeName='com.gigaspaces.internal.cluster.node.impl.backlog.DroppedPacketListenerTest$TestEntry', entryUid='1824038474^85^502^0^0', policy=DROP_OLDEST, isTransient=false}
+</code></pre>
+    </body>
+</html>

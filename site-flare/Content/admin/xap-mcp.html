@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">XAP MCP Tools Overview</h1>
+        <h1>Introduction</h1>
+        <p>The XAP MCP Server provides a comprehensive set of tools for interacting with GigaSpaces XAP clusters through the Model Context Protocol (MCP). These tools are organized into three main categories based on their functionality, plus a foundational <MadCap:xref href="semantic-layer.html">Semantic Layer</MadCap:xref> that powers intelligent data discovery and schema management.</p>
+        <div class="tc-admon-note">
+            <p>&#160;</p>
+            <p>These features are IN PREVIEW mode, customers are welcome to experience them in a lower environment and send feedback. Please contact us if you want to cooperate on using XAP execution or data in agentic workflow, Or if your use case requires exposure of additional tools and capabilities.</p>
+        </div>
+        <h3>Access</h3>
+        <p>Access is controlled by the service account. In a secured environment the security service will be used to generate a token based on the role’s permissions This token will be added to the MCP configuration.</p>
+        <h3>Rate Limiting</h3>
+        <p>For each MCP service, this defines the number of operations allowed per minute, preventing an agent doing too many operations and attacking the grid environment.</p>
+        <h2>How to define new MCP service using spaceDeck</h2>
+        <h3>Management MCP:</h3>
+        <p>
+            <img src="../Resources/Images/XAP/management-MCP.png" />
+        </p>
+        <h3>Data Access &amp; Data computation MCP</h3>
+        <p>
+            <img src="../Resources/Images/XAP/Data-access.png" />
+        </p>
+        <h3>Pressing the + icon will list all related tools in the category and will show details on each one</h3>
+        <p>
+            <img src="../Resources/Images/XAP/list-related-tools.png" />
+        </p>
+        <p>After MCP service is deployed, copy or download the configuration file. When working in a secured environment, paste the token as well.</p>
+        <p>Place this configuration file on your agent settings. For example, in claude code it will be .mcp.json file.</p>
+        <h1>Group 1: Grid Management
+</h1>
+        <h2>Purpose</h2>
+        <p>Manage cluster topology, deploy and monitor Processing Units (PUs), control spaces, and access cluster infrastructure including containers (GSCs), managers, and hosts. These tools handle the operational aspects of running an XAP grid.</p>
+        <h3>Cluster &amp; Space Management</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>cluster_get_topology</p>
+                    </td>
+                    <td>
+                        <p>Retrieve complete runtime topology of managers, GSA agents, and GSC containers</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_get_topology</p>
+                    </td>
+                    <td>
+                        <p>Get partition topology showing instance IDs, primary/backup roles, and host info</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_get_health</p>
+                    </td>
+                    <td>
+                        <p>Return health status (HEALTHY/DEGRADED/UNREACHABLE) and running instance count</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_get_metrics</p>
+                    </td>
+                    <td>
+                        <p>Fetch operation statistics (reads, writes, takes) and throughput metrics</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_list</p>
+                    </td>
+                    <td>
+                        <p>List all deployed spaces with metadata and status</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_create</p>
+                    </td>
+                    <td>
+                        <p>Deploy a new Space with configurable partitions, backups, and env variables</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Processing Unit Management</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>pu_list</td>
+                    <td>
+                        <p>List all deployed Processing Units with their status
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>pu_deploy</p>
+                    </td>
+                    <td>Deploy a Processing Unit from an uploaded JAR with topology and SLA config
+
+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>pu_get
+
+</p>
+                    </td>
+                    <td>
+                        <p>Get detailed status and metrics for a specific Processing Unit
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>pu_undeploy
+
+</p>
+                    </td>
+                    <td>
+                        <p>Remove a deployed Processing Unit
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>pu_quiesce
+
+</td>
+                    <td>
+                        <p>Gracefully quiesce a Processing Unit (stop accepting new requests)
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>pu_unquiesce
+
+</p>
+                    </td>
+                    <td>
+                        <p>Resume a quiesced Processing Unit
+
+</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Infrastructure &amp; Cluster</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cluster_get_info
+
+</td>
+                    <td>Get cluster version, build info, and basic configuration
+
+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>hosts_list</p>
+                    </td>
+                    <td>List all physical/virtual hosts with identifiers and resource info
+
+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>host_get
+
+</p>
+                    </td>
+                    <td>
+                        <p>Get detailed information for a specific host
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>managers_list
+
+</p>
+                    </td>
+                    <td>
+                        <p>List all XAP managers with status, roles, and host assignments
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>manager_restart
+
+</td>
+                    <td>
+                        <p>Restart a manager instance (requires confirmation)
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>manager_get_dump_url
+
+</p>
+                    </td>
+                    <td>
+                        <p>Get download URL for manager diagnostic services dump
+
+</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Possible use is combining those tools with MCP of the metrics framework to troubleshoot grid issues and understand resource utilization.</p>
+        <h1>Group 2: Generic Access, Write &amp; Change Data
+</h1>
+        <h2>Purpose</h2>
+        <p>Execute data operations on XAP spaces including querying, reading, writing, updating, and deleting entries. Supports complex queries with filters, aggregations, SQL with JOINs, and surgical in-place mutations for efficient data manipulation.</p>
+        <h3>Read Operations (Query &amp; Browse)</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>space_query</td>
+                    <td>Fetch entries of a single type with optional SQL WHERE filter (max 500 rows)
+
+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_sql</p>
+                    </td>
+                    <td>Execute complete SQL with SELECT, FROM, WHERE, GROUP BY, ORDER BY, LIMIT. Supports JOINs
+
+</td>
+                </tr>
+                <tr>
+                    <td>space_count</td>
+                    <td>
+                        <p>Count entries matching an optional filter
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_read_by_id</p>
+                    </td>
+                    <td>
+                        <p>Read a single entry by its ID
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space_aggregate</td>
+                    <td>
+                        <p>Run collocated aggregations (count, sum, average, max, min) on large datasets
+
+</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Write Operations (Create &amp; Update)</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>space_write
+
+</td>
+                    <td>Create/write/update a single entry with optional lease configuration
+
+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_write_batch
+
+</p>
+                    </td>
+                    <td>Write/update multiple entries in one round-trip (max 100 entries)
+
+</td>
+                </tr>
+                <tr>
+                    <td>space_take
+
+</td>
+                    <td>
+                        <p>Read and remove an entry atomically
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_take_by_id
+
+</p>
+                    </td>
+                    <td>
+                        <p>Read and remove a single entry by ID atomically
+
+</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space_take_batch
+
+</td>
+                    <td>
+                        <p>Remove multiple entries matching a WHERE clause
+
+</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Change Operations (Surgical Mutations)</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>space_change
+
+</td>
+                    <td>Apply in-place mutations to entries (set, unset, increment, addToCollection, putInMap, etc.)
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Supported Change Operations</h3>
+        <ul>
+            <li>
+                <p>set — Update a field to a new value</p>
+            </li>
+            <li>
+                <p>unset — Remove a field from an entry</p>
+            </li>
+            <li>
+                <p>increment — Increase a numeric field by a value</p>
+            </li>
+            <li>
+                <p>addToCollection — Add an element to a collection field</p>
+            </li>
+            <li>
+                <p>removeFromCollection — Remove an element from a collection field</p>
+            </li>
+            <li>
+                <p>putInMap — Add/update a key-value pair in a map field</p>
+            </li>
+            <li>
+                <p>removeFromMap — Remove a key from a map field</p>
+            </li>
+        </ul>
+        <p>Possible use cases: Chat with the data, run agentic flows that consume some aggregations from  the space, write or change space data as result of other processes outside the XAP&#160;framework.</p>
+        <h1>Group 3: User-Defined Logic &amp; Compute
+</h1>
+        <h2>Purpose</h2>
+        <p>Execute custom business logic and distributed tasks co-located with data on XAP partitions. Enable push-computation (bring code to data) for efficient processing of large datasets without data movement.</p>
+        <h3>Task Execution</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;">
+            </col>
+            <col style="width: 50%;">
+            </col>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>space_execute_registered_task
+
+</td>
+                    <td>Execute a pre-registered single-partition task co-located with data
+
+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_execute_distributed_task
+
+</p>
+                    </td>
+                    <td>Execute a task on all partitions and aggregate results
+
+</td>
+                </tr>
+                <tr>
+                    <td>space_list_registered_tasks
+
+</td>
+                    <td>
+                        <p>Discover available pre-registered tasks in a space
+
+</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Remote Services</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;">
+            </col>
+            <col style="width: 50%;">
+            </col>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>space_execute_remote_service
+
+</td>
+                    <td>Execute a pre-registered remote service method on a partition
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Durable Tasks</h3>
+        <table style="width: 100%; margin-left: 0; margin-right: auto;">
+            <col style="width: 50%;">
+            </col>
+            <col style="width: 50%;">
+            </col>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Tool</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>space_get_durable_tasks
+
+</td>
+                    <td>Retrieve scheduled/executing durable tasks with status
+
+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>space_get_task_result</p>
+                    </td>
+                    <td>
+                        <p>Get the result of a previously executed task by ID
+
+</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Key Benefits</h3>
+        <ul>
+            <li>
+                <p><b>Push-Computation:</b> Execute code where the data lives, eliminating network overhead</p>
+            </li>
+            <li>
+                <p><b>Distributed Processing:</b> Run tasks on all partitions for parallel computation</p>
+            </li>
+            <li>
+                <p><b>Durable Execution:</b> Tasks persist across failures and recoveries</p>
+            </li>
+            <li>
+                <p><b>Pre-Registered:</b> Only whitelisted tasks from TaskRegistry can execute (security)</p>
+            </li>
+        </ul>
+        <h3>Possible use cases</h3>
+        <p>Use the XAP colocation abilities and push executions to data process. Use either predefined logic or dynamically define new logic that can be run on the grid. Instead of bringing data and analyze it by the LLM, save time and tokens by sending only code instructions to XAP, and get deterministic final answer back as part of agentic workflow.</p>
+        <h2>Notes</h2>
+        <ul>
+            <li>
+                <p>All tools support comprehensive logging and audit trails</p>
+            </li>
+            <li>
+                <p>Query operations are safe-guarded with result truncation (max 500 rows by default)</p>
+            </li>
+            <li>
+                <p>Write operations require explicit access permissions</p>
+            </li>
+            <li>
+                <p>Admin operations require confirmation flag (confirm=true)</p>
+            </li>
+            <li>
+                <p>Tasks execute asynchronously — use request IDs for tracking</p>
+            </li>
+            <li>
+                <p>The semantic layer is automatically maintained and indexed for optimal performance</p>
+            </li>
+        </ul>
+    </body>
+</html>

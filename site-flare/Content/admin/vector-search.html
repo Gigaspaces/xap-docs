@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Vector Search</h1>
+        <h2>What is Vector Search?</h2>
+        <p>Vector Search is an XAP extension that enables semantic similarity searches on high-dimensional vector embeddings. Instead of exact keyword matching, you can find conceptually similar items based on their vector representations.</p>
+        <h1><a name="core-concepts"></a>Core Concepts</h1>
+        <h2><a name="vector-embeddings"></a>Vector Embeddings</h2>
+        <p>Vector embeddings are numerical representations of data (text, images, etc.) converted into high-dimensional floating-point arrays. Similar concepts have vectors that are geometrically close to each other.</p>
+        <h2><a name="similarity-metrics"></a>Similarity Metrics</h2>
+        <p>Vector Search uses <span class="tc-bold">Cosine Similarity</span> to measure how alike two vectors are:</p>
+        <ul>
+            <li><span class="tc-bold">Score = 1.0:</span> Perfect match (identical vectors)</li>
+            <li><span class="tc-bold">Score = 0.5:</span> Moderately similar</li>
+            <li><span class="tc-bold">Score = 0.0:</span> Completely unrelated</li>
+        </ul>
+        <h2><a name="knn"></a>k-Nearest Neighbors (kNN)</h2>
+        <p>The algorithm finds the k most similar vectors to your query vector. For example, "find the 10 most similar documents" means searching for k=10 nearest neighbors. XAP uses efficient HNSW (Hierarchical Navigable Small World) indexing powered by Apache Lucene.</p>
+        <h2><a name="distributed-search"></a>Distributed Search</h2>
+        <p>When your data is partitioned across multiple XAP nodes, Vector Search automatically:</p>
+        <ol>
+            <li>Executes kNN search in parallel on each partition</li>
+            <li>Merges results from all partitions</li>
+            <li>Returns globally ranked top-k results</li>
+        </ol>
+        <h1><a name="setup-configuration"></a>Setup &amp; Configuration</h1>
+        <h2><a name="step1"></a>Step 1: Add Dependency</h2>
+        <p>Add the Vector Search module to your <code>pom.xml</code>:</p><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.openspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-vector-search&lt;/artifactId&gt;
+    &lt;version&gt;17.2.2&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+        <h2><a name="step2"></a>Step 2: Annotate Vector Fields</h2>
+        <p>Mark vector fields with the <code>@SpaceVectorIndex</code> annotation:</p><pre><code class="language-java">import org.openspaces.vectorsearch.SpaceVectorIndex;
+
+@SpaceClass
+public class Article {
+    private String id;
+    private String title;
+    private float[] embedding;
+
+    @SpaceId
+    public String getId() {
+        return id;
+    }
+
+    @SpaceVectorIndex(dimension = 384)
+    public float[] getEmbedding() {
+        return embedding;
+    }
+}</code></pre>
+        <div class="tc-admon-important">
+            <p>The dimension must match your embedding model:</p>
+            <ul>
+                <li>384 for all-MiniLM-L6-v2</li>
+                <li>768 for all-mpnet-base-v2</li>
+                <li>1536 for OpenAI text-embedding-3-small</li>
+                <li>3072 for OpenAI text-embedding-3-large</li>
+            </ul>
+        </div>
+        <h2><a name="step3"></a>Step 3: Configure Space</h2>
+        <p>Register the Vector Search Query Extension with your space:</p><pre><code class="language-java">import org.openspaces.vectorsearch.VectorSearchQueryExtensionProvider;
+
+EmbeddedSpaceConfigurer spaceConfigurer =
+    new EmbeddedSpaceConfigurer("mySpace");
+
+// Register vector search extension
+spaceConfigurer.addQueryExtensionProvider(
+    new VectorSearchQueryExtensionProvider());
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();</code></pre>
+        <p>Using PU:</p><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="spaceName" value="vector-space"/&gt;
+    &lt;property name="queryExtensionProviders"&gt;
+        &lt;list&gt;
+            &lt;bean class="org.openspaces.vectorsearch.VectorSearchQueryExtensionProvider"/&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+        <h1><a name="basic-usage"></a>Basic Usage</h1>
+        <h2><a name="simple-vector-search"></a>Simple Vector Search</h2>
+        <p>Find the 10 most similar articles:</p><pre><code class="language-java">import org.openspaces.vectorsearch.VectorQuery;
+import com.j_spaces.core.client.SQLQuery;
+
+// Create a query vector (e.g., from an embedding model)
+float[] queryVector = new float[] {0.1f, 0.2f, ..., -0.3f};  // 384 dimensions
+
+// Create vector query with k=10
+VectorQuery vq = new VectorQuery(queryVector, 10);
+
+// Execute SQL query with vector:match predicate
+SQLQuery&lt;Article&gt; query =
+    new SQLQuery&lt;&gt;(Article.class, "embedding vector:match ?");
+query.setParameter(1, vq);
+
+// Get results
+Article[] results = gigaSpace.readMultiple(query);</code></pre>
+        <h2><a name="search-with-filters"></a>Search with Filters</h2>
+        <p>Combine vector similarity with traditional predicates:</p><pre><code class="language-java">float[] queryVector = ...;
+
+SQLQuery&lt;Article&gt; query = new SQLQuery&lt;&gt;(
+    Article.class,
+    "category = ? AND publishDate &gt; ? AND embedding vector:match ?");
+
+query.setParameter(1, "Technology");
+query.setParameter(2, yesterday);
+query.setParameter(3, new VectorQuery(queryVector, 10));
+
+Article[] results = gigaSpace.readMultiple(query);</code></pre>
+        <h2><a name="distributed-search-usage"></a>Distributed Search</h2>
+        <p>For partitioned spaces, use <code>DistributedVectorSearch</code> for global ranking:</p><pre><code class="language-java">import org.openspaces.vectorsearch.DistributedVectorSearch;
+
+SQLQuery&lt;Article&gt; query =
+    new SQLQuery&lt;&gt;(Article.class, "embedding vector:match ?");
+query.setParameter(1, new VectorQuery(queryVector, 10));
+
+// Executes on all partitions, merges results, returns top 10
+List&lt;Article&gt; results = DistributedVectorSearch
+    .search(gigaSpace, Article.class, query);</code></pre>
+        <div class="tc-admon-tip">
+            <p>Always use <code>DistributedVectorSearch</code> for clustered or partitioned spaces to ensure globally correct ranking.</p>
+        </div>
+        <h1><a name="advanced-features"></a>Advanced Features</h1>
+        <h2><a name="understanding-k"></a>Understanding k (Number of Results)</h2>
+        <p>The <span class="tc-bold">k</span> parameter in <code>VectorQuery</code> controls the maximum number of results returned:</p><pre><code class="language-java">// Returns at most 10 results
+VectorQuery vq = new VectorQuery(queryVector, 10);
+
+// The readMultiple limit (50) is ignored if k is smaller
+Article[] results = gigaSpace.readMultiple(query, 50);
+// Returns 10 results, not 50</code></pre>
+        <div class="tc-admon-important">
+            <p>The k parameter takes precedence over <code>readMultiple()</code> maxResults. This ensures the HNSW algorithm knows exactly how many neighbors to retrieve.</p>
+        </div>
+        <h2><a name="handling-deleted-objects"></a>Handling Deleted Objects (Race Conditions)</h2>
+        <p>Between index search and object fetch, entries may be deleted. <code>DistributedVectorSearch</code> automatically handles this with a backfill strategy:</p>
+        <ol>
+            <li>Requests k × 2 results from the index</li>
+            <li>Fetches objects by UID</li>
+            <li>If an object is deleted (null), fetches the next candidate</li>
+            <li>Returns up to k available objects</li>
+        </ol>
+        <h2><a name="vector-dimensionality"></a>Vector Dimensionality</h2>
+        <p>Common embedding dimensions:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Model</th>
+                    <th align="left">Dimension</th>
+                    <th align="left">Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">all-MiniLM-L6-v2</td>
+                    <td align="left">384</td>
+                    <td align="left">Lightweight, fast embeddings</td>
+                </tr>
+                <tr>
+                    <td align="left">all-mpnet-base-v2</td>
+                    <td align="left">768</td>
+                    <td align="left">Balanced quality and performance</td>
+                </tr>
+                <tr>
+                    <td align="left">OpenAI text-embedding-3-small</td>
+                    <td align="left">1536</td>
+                    <td align="left">High-quality semantic embeddings</td>
+                </tr>
+                <tr>
+                    <td align="left">OpenAI text-embedding-3-large</td>
+                    <td align="left">3072</td>
+                    <td align="left">Top-tier semantic understanding</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="index-storage"></a>Index Storage</h2>
+        <p>Vector indexes are stored using Apache Lucene with memory-mapped I/O (MMapDirectory):</p>
+        <ul>
+            <li>Off-heap storage (does not consume Java heap)</li>
+            <li>Efficient disk caching</li>
+            <li>Scalability to very large indexes</li>
+        </ul>
+        <h1><a name="performance-scalability"></a>Performance &amp; Scalability</h1>
+        <h2><a name="performance-characteristics"></a>Performance Characteristics</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Metric</th>
+                    <th align="left">Value</th>
+                    <th align="left">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Search Complexity</td>
+                    <td align="left">O(log n) average</td>
+                    <td align="left">HNSW algorithm</td>
+                </tr>
+                <tr>
+                    <td align="left">Index Size</td>
+                    <td align="left">~4 bytes per dimension per entry</td>
+                    <td align="left">384-dim vectors ≈ 1.5 KB each</td>
+                </tr>
+                <tr>
+                    <td align="left">Network Transfer</td>
+                    <td align="left">~50–100 bytes per result</td>
+                    <td align="left">UID + score only, not full object</td>
+                </tr>
+                <tr>
+                    <td align="left">Insertion</td>
+                    <td align="left">O(log n) operations</td>
+                    <td align="left">Batched auto-commits every 1000 changes</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="scalability-tips"></a>Scalability Tips</h2>
+        <ul>
+            <li><span class="tc-bold">Use Partitioning:</span> Split vectors across nodes for parallel search.</li>
+            <li><span class="tc-bold">Optimize k:</span> Return only what you need (k=10 is much faster than k=1000).</li>
+            <li><span class="tc-bold">Batch Operations:</span> Write vectors in batches to reduce index commits.</li>
+            <li><span class="tc-bold">Monitor Index:</span> Track uncommitted changes and trigger commits when needed.</li>
+        </ul>
+        <h2><a name="network-efficiency"></a>Network Efficiency</h2>
+        <p>For distributed search with k=10 and 3 partitions:</p>
+        <ul>
+            <li>Network transfer: ~3 KB (30 ScoredResults × ~100 bytes)</li>
+            <li>vs. Sending full objects with vectors: ~45 KB</li>
+            <li><span class="tc-bold">93% reduction</span> in network bandwidth</li>
+        </ul>
+        <h1><a name="common-use-cases"></a>Common Use Cases</h1>
+        <h2><a name="recommendation-engine"></a>Recommendation Engine</h2>
+        <p>Find similar products or articles based on user preferences:</p><pre><code class="language-java">// User liked this article; find similar ones
+Article liked = gigaSpace.readById(Article.class, userId);
+VectorQuery vq = new VectorQuery(liked.getEmbedding(), 5);
+SQLQuery&lt;Article&gt; query =
+    new SQLQuery&lt;&gt;(Article.class,
+        "category = ? AND embedding vector:match ?");
+query.setParameter(1, liked.getCategory());
+query.setParameter(2, vq);
+
+List&lt;Article&gt; recommendations =
+    DistributedVectorSearch.search(gigaSpace, Article.class, query);</code></pre>
+        <h2><a name="semantic-search"></a>Semantic Search</h2>
+        <p>Search by meaning, not keywords:</p><pre><code class="language-java">// Get embedding for user query (using LLM or embedding model)
+String userQuery = "best machine learning frameworks";
+float[] queryEmbedding = embeddingModel.embed(userQuery);
+
+VectorQuery vq = new VectorQuery(queryEmbedding, 20);
+SQLQuery&lt;Article&gt; query =
+    new SQLQuery&lt;&gt;(Article.class, "embedding vector:match ?");
+query.setParameter(1, vq);
+
+List&lt;Article&gt; results =
+    DistributedVectorSearch.search(gigaSpace, Article.class, query);</code></pre>
+        <h2><a name="duplicate-detection"></a>Duplicate Detection</h2>
+        <p>Find near-duplicate documents:</p><pre><code class="language-java">// Find documents with &gt;0.95 similarity
+List&lt;Article&gt; candidates =
+    DistributedVectorSearch.search(gigaSpace, Article.class, query);
+
+for (Article candidate : candidates) {
+    float similarity = computeCosineSimilarity(original.getEmbedding(),
+                                              candidate.getEmbedding());
+    if (similarity &gt; 0.95f) {
+        // Mark as potential duplicate
+    }
+}</code></pre>
+        <h1><a name="faq"></a>Frequently Asked Questions</h1>
+        <h2><a name="faq-normalize"></a>Do I need to normalize vectors?</h2>
+        <p>Cosine similarity implicitly treats vectors as normalized. While XAP works with non-normalized vectors, it is best practice to normalize them before indexing for better performance and consistency with embedding model outputs.</p>
+        <h2><a name="faq-wrong-dimensions"></a>What happens if I index vectors with wrong dimensions?</h2>
+        <p>XAP validates dimensions at index time. If you try to index a vector with 768 dimensions into a field declared as <code>dimension=384</code>, you will get an <code>IllegalArgumentException</code>. Ensure your embedding model output matches the annotated dimension.</p>
+        <h2><a name="faq-multiple-fields"></a>Can I search multiple vector fields?</h2>
+        <p>XAP currently supports one vector field per query. For multiple semantic dimensions, either combine embeddings into a single vector or execute separate queries.</p>
+        <h2><a name="faq-update-vectors"></a>How do I update vectors?</h2>
+        <p>Vectors are indexed automatically on write operations. Simply write a new version of the object with an updated vector:</p><pre><code class="language-java">Article updated = gigaSpace.readById(Article.class, "article-1");
+updated.setEmbedding(newVector);
+gigaSpace.write(updated);  // Vector index updated automatically</code></pre>
+        <h2><a name="faq-memory"></a>What about memory usage?</h2>
+        <p>Vectors are stored in Lucene indexes on disk (with memory mapping), not in XAP's heap. One million 384-dimensional vectors requires roughly 1.5 GB on disk, with the working set in memory determined by the OS page cache.</p>
+        <h2><a name="faq-transactions"></a>Can I combine vector search with transactions?</h2>
+        <p>Vector indexes are updated atomically with the main data. Reading from a vector index respects space snapshots, ensuring consistent results.</p>
+        <h2><a name="faq-difference"></a>What is the difference between VectorQuery and DistributedVectorSearch?</h2>
+        <ul>
+            <li><code>VectorQuery</code> — Low-level building block; searches the local partition's index.</li>
+            <li><code>DistributedVectorSearch</code> — High-level API; executes on all partitions, merges results, and returns global top-k.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>Use <code>DistributedVectorSearch</code> for partitioned spaces.</p>
+        </div>
+        <h2><a name="faq-post-filter"></a>Can I filter results after vector search?</h2>
+        <p>Yes. Use SQL predicates in the query itself for efficient pre-filtering:</p><pre><code class="language-java">"category = 'tech' AND publishDate &gt; ? AND embedding vector:match ?"</code></pre>
+        <p>Filtering in the query is more efficient than fetching all results and filtering in application code.</p>
+    </body>
+</html>

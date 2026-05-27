@@ -66,7 +66,7 @@ helm repo update xap
         <h1>Next Steps</h1>
         <ol>
             <li>
-                <p>Use SpaceDeck to define <a href="../spacedeck/spacedeck-spaces-adding-a-space.html">Spaces</a> and run <a href="../spacedeck/spacedeck-data-query.html">data queries</a>.</p>
+                <p>Use SpaceDeck to define <a href="../spacedeck/spacedeck-spaces-adding-a-space.html">Spaces</a> and run <a href="../spacedeck/spacedeck-data-query.html">data queries</a>. <MadCap:conditionalText MadCap:conditions="Version.17-2-born">In a secured environment, by default, all of the space data will be secured as well. To change this behavior, set the space parameter “secured” to “false”. You can also use helm install to directly install your space pu without use of spacedeck.</MadCap:conditionalText></p>
                 <div class="tc-admon-important">
                     <p>By default, the root user has root/password credentials. &#160;This must be changed before installation using the parameter of <b>global.password</b> seen in step 2 of the <a href="#InstructionsK8s">Instructions</a> section above.</p>
                 </div>

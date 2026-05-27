@@ -49,8 +49,8 @@ managed-csi (default)    disk.csi.azure.com   	   Delete          			  WaitForFi
         </ol>
         <h1>Deploying a Space with Tiered&#160;Storage </h1>
         <p>When deploying with Tiered Storage, Space needs to be marked to be tiered storage and for every type when it is registered, if you want to cache some data you have to specify a cache rule. In the example below, space-config.engine.cache_policy = 4 is for Tiered Storage.</p>
-        <p>Run the following Kubernetes Helm command:</p><pre><code class="language-bash">helm install ${SPACE_NAME} ${REPO}/xap-pu --version ${GS_VERSION} --set properties\[0\].name=\"<span style="background-color: #ffff00;">space-config.engine.cache_policy\",properties\[0\].value=\"4\</span>",persistence.enabled=true, persistence.storageClassName=${STORAGE_CLASS},persistence.accessMode=ReadWriteOnce,persistence.size=${STORAGE_SIZE},env\[0\].name=GS_SA_PRAGMA_SYNCHRONOUS,env\[0\].value=\"${SQLITE_PRAGMA_SYNCHRONOUS}\",resources.limits.memory=${MEMORY_SIZE},partitions=${PARTITIONS},ha=${HA} 
-</code></pre>
+        <p>Run the following Kubernetes Helm command:</p><pre MadCap:conditions="Version.17-2-died"><code class="language-bash">helm install ${SPACE_NAME} ${REPO}/xap-pu --version ${GS_VERSION} --set properties\[0\].name=\"<span style="background-color: #ffff00;">space-config.engine.cache_policy\",properties\[0\].value=\"4\</span>",persistence.enabled=true, persistence.storageClassName=${STORAGE_CLASS},persistence.accessMode=ReadWriteOnce,persistence.size=${STORAGE_SIZE},env\[0\].name=GS_SA_PRAGMA_SYNCHRONOUS,env\[0\].value=\"${SQLITE_PRAGMA_SYNCHRONOUS}\",resources.limits.memory=${MEMORY_SIZE},partitions=${PARTITIONS},ha=${HA} 
+</code></pre><pre MadCap:conditions="Version.17-2-born"><code class="language-bash">helm install ${SPACE_NAME} ${REPO}/xap-pu --version ${GS_VERSION} --set properties\[0\].name=\"space-config.engine.cache_policy\",properties\[0\].value=\"4\",properties\[1\].name=\"secured\",properties\[1\].value=\"${SECURED_SPACE}\",persistence.enabled=true, persistence.storageClassName=${STORAGE_CLASS},persistence.accessMode=ReadWriteOnce,persistence.size=${STORAGE_SIZE},env\[0\].name=GS_SA_PRAGMA_SYNCHRONOUS,env\[0\].value=\"${SQLITE_PRAGMA_SYNCHRONOUS}\",resources.limits.memory=${MEMORY_SIZE},partitions=${PARTITIONS},ha=${HA}</code></pre>
         <h2>Parameters</h2>
         <table style="width: 100%;" class="tc-standard">
             <col style="width: 364px;" />
@@ -93,6 +93,14 @@ the corresponding storage class, e.g. 10Gi</td>
                     <td>HA</td>
                     <td>High Availability true/false, when set to true, append also
 ,antiAffinity.enabled=true</td>
+                </tr>
+                <tr MadCap:conditions="Version.17-2-born">
+                    <td>
+                        <p>SECURED_SPACE</p>
+                    </td>
+                    <td>
+                        <p>Secured space true/false</p>
+                    </td>
                 </tr>
             </tbody>
         </table>

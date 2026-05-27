@@ -519,6 +519,9 @@ topology.kubernetes.io/host
                 </tr>
             </tbody>
         </table>
+        <div>
+            <p>Topology &amp; Toleration can be injected to statefulSet Extension, see more at: <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/</a> and  <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/">https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/</a>.</p>
+        </div>
         <h2>Probes</h2>
         <p>Liveness and Readiness probes are the means for the Kubernetes and <MadCap:variable name="General.ProductNameIE" /> Manager to check the health of the PU. &#160;For a Space, the operator sets the default probes if they are not provided in the settings of the PU manifest. These defaults ensure that the manager has a way to detect a failing partition of the Space. &#160;If the user wishes to override this, for the case where there is additional logic that occurs at start-up of a PU, the probes can be set and support the URL. It is important to note that these endpoints still need to reflect the Space readiness. </p>
         <table style="width: 1124px;">

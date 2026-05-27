@@ -5,6 +5,25 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">What's New in <MadCap:variable name="General.ProductNameXAP" /> Version <MadCap:variable name="Versions.product-version-short" /></h1>
+        <div MadCap:conditions="Version.17-2-born">
+            <h2>MCP Server (Preview Mode)</h2>
+            <p>In version 17.2.2 we introduce the MCP Server, bringing native Model Context Protocol (MCP) support to GigaSpaces clusters. Currently in Preview Mode, this feature allows customers to expose XAP's ultra-low-latency data tier and distributed compute capabilities directly to autonomous AI agents and agentic workflows.</p>
+            <p>To protect grid environments from aggressive or runaway AI agent behavior, every deployed MCP service includes configurable Rate Limiting (operations per minute) and utilizes Service Account tokens to enforce strict role-based access control.</p>
+            <h3>The Agentic Compute &amp; Execution Engine</h3>
+            <p>Instead of moving massive enterprise datasets across the network to an LLM—which wastes critical time and API tokens—you can now bring the AI's code instructions directly to the data.</p>
+            <p>AI agents can leverage a suite of dedicated User-Defined Logic &amp; Compute Tools to trigger high-performance processing natively inside the cluster.</p>
+            <h3>Modular MCP Configurations &amp; Flexible System Capabilities</h3>
+            <p>Administrators can instantiate multiple, independent MCP servers targeted at different business needs. Through the user interface, you can precisely configure each service by selecting only the specific functional toolsets required for that target, allowing you to define grid administrator agent, various logic running agents and agents who change data based on insights from other flows. See more at <MadCap:xref href="../admin/xap-mcp.html">XAP MCP.</MadCap:xref></p>
+            <h2>Semantic Layer</h2>
+            <p>The Semantic Layer serves as the foundational bridge between Large Language Models (LLMs) and the XAP data model, automatically translating complex cluster schemas into clear, business-friendly concepts that AI agents can effortlessly navigate.</p>
+            <p>The entire Semantic Layer is hosted on a specialized, dedicated space configured with a META mode. It includes Unified Cluster Metadata &amp; Relationships and User-Defined Tool &amp; Parameter Descriptions. To further empower agentic decision-making, the Semantic Layer will be enhanced to actively track and expose real-time statistics on each table in future versions.</p>
+            <p>See more at <MadCap:xref href="../admin/semantic-layer.html">Semantic Layer Foundation</MadCap:xref></p>
+            <h2>Vector Search</h2>
+            <p>Vector Search is an XAP extension that enables semantic similarity search on high-dimensional vector embeddings. Instead of exact keyword matching, you can find conceptually similar items based on their vector representations. See more at <MadCap:xref href="../admin/vector-search.html">Vector Search</MadCap:xref>.</p>
+            <p>We value your input! As these capabilities are in preview, we want to hear about your unique use cases. Please contact us to collaborate on optimizing your agentic workflows or if your system requires any additional capabilities.</p>
+            <h2>Redolog drop packet listener</h2>
+            <p>Added ability to listen to drop packets in the embedded space see: <MadCap:xref href="../admin/redolog-dropped-packet-listener.html">Dropped Packet Listener</MadCap:xref></p>
+        </div>
         <div MadCap:conditions="Version.16-3-only">
             <h3> Release Date: April 27, 2023</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
