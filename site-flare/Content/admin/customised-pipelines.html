@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.17-3-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>Customised Data Integration</h1>
+        <p><span class="tc-bold">Aim</span>: Allow customised integration flows, but still allow focal control &amp; observability over all pipelines via DI-Manager &amp; SpaceDeck.</p>
+        <p><span class="tc-bold">How to implement</span>: implement your own service and expose the following REST APIs:</p>
+        <ul>
+            <li>
+                <p>Start pipeline,</p>
+                <p><code>POST {baseUrl}/v1/control/{pipelineId}/start?offsetStrategy={STRATEGY}&amp;topic={topic}</code>
+                </p>
+            </li>
+            <li>
+                <p>Stop pipeline,</p>
+                <p><code>POST {baseUrl}/v1/control/{pipelineId}/stop</code>
+                </p>
+            </li>
+            <li>
+                <p>Get status,</p>
+                <p><code>GET {baseUrl}/v1/control/{pipelineId}/status</code>
+                </p>
+            </li>
+            <li>
+                <p>Info,</p>
+                <p><code>GET {baseUrl}/v1/control/{pipelineId}/status</code>
+                </p>
+            </li>
+        </ul>
+        <p>See API details below.</p>
+        <p>The service implementation should have its own configuration and be responsible for knowing how to access and retrieve information from the source. Each pipeline is created by DI-Manager, which chooses the target space and keeps the configuration of that pipeline in the DI management layer.</p>
+        <h1>How to Add Your Connector Service</h1>
+        <p>The new service is considered a new datasource, so before creating new pipelines based on that datasource, a new datasource should be added to the system.</p>
+        <p>Using DI-Manager:</p>
+        <p><code>POST /api/v1/datasource/save-connection</code>
+        </p><pre><code class="language-json">{
+				"sorName": "my-datasource",
+				"dbProvider": "PLUGGABLE_CONNECTOR",
+				"url": "pluggable://kafka-broker:9092"
+				}
+		</code></pre>
+        <p>Create pipeline - will be done via DI-Manager / SpaceDeck as any other pipeline:</p>
+        <p><code>POST /api/v1/pipeline/</code>
+        </p><pre><code class="language-json">{
+				"name": "my-pipeline",
+				"sorName": "my-datasource",
+				"spaceName": "my-space",
+				"dataFormat": "PLUGGABLE"
+				}
+		</code></pre>
+        <p>start/stop/status/info -&gt; will be delegated to the connector service.</p>
+        <h1>1. Start a Pipeline</h1>
+        <p><code>POST {baseUrl}/v1/control/{pipelineId}/start?offsetStrategy={STRATEGY}&amp;topic={topic}</code>
+        </p>
+        <ul>
+            <li>
+                <p><code>offsetStrategy</code> — one of <code>EARLIEST</code>, <code>LATEST</code>, <code>COMMITTED</code>, <code>OFFSET</code> (DI Manager always sends one of these; return <code>400</code> for anything that specific implementations don't support).</p>
+            </li>
+            <li>
+                <p>The connector can call DI Manager's <code>GET /api/v1/pipeline/{pipelineId}</code> to fetch the full persisted pipeline record to know the target space &amp; other parameters.</p>
+            </li>
+            <li>
+                <p>On success, return the plain string <code>"started"</code>.</p>
+            </li>
+            <li>
+                <p>On failure, return a non-2xx status. DI Manager wraps any transport error or non-2xx response into an internal exception and marks the pipeline <code>START_FAILED</code> in MDM.</p>
+            </li>
+        </ul>
+        <h1>2. Stop a Pipeline</h1>
+        <p><code>POST {baseUrl}/v1/control/{pipelineId}/stop</code>
+        </p>
+        <ul>
+            <li>
+                <p>No body, no query params. Note: DI Manager's cancel flag is <span class="tc-bold">not</span> forwarded to your service — you decide what "stop" means (pause vs. hard-kill) unilaterally.</p>
+            </li>
+            <li>
+                <p>Response body ignored.</p>
+            </li>
+            <li>
+                <p>Non-2xx → pipeline marked <code>FAILED</code> in MDM.</p>
+            </li>
+        </ul>
+        <h1>3. Get Pipeline Status</h1>
+        <p><code>GET {baseUrl}/v1/control/{pipelineId}/status</code>
+        </p>
+        <div class="tc-admon-note">
+            <p>Must return a JSON body DI Manager deserializes as (unknown fields are ignored, so it's safe to return more):</p>
+        </div><pre><code class="language-json">{
+				"status": "Running",
+				"topic": "my-topic",
+				"assignedPartitions": [0, 1, 2],
+				"startTimeMs": 1718000000000,
+				"consumerGroup": "my-consumer-group",
+				"healthy": true,
+				"lastError": null
+				}
+		</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Field</p>
+                    </th>
+                    <th>
+                        <p>Type</p>
+                    </th>
+                    <th>
+                        <p>Required?</p>
+                    </th>
+                    <th>
+                        <p>Notes</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><code>status</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p><span class="tc-bold">Yes</span>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Only the literal <code>"Running"</code> (case-insensitive) is treated as running; anything else (including missing) maps to stopped.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><code>healthy</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>boolean</p>
+                    </td>
+                    <td>
+                        <p>No (defaults <code>true</code>)</p>
+                    </td>
+                    <td>
+                        <p><code>status=Running</code> + <code>healthy=false</code> → DI Manager reports the pipeline as <code>FAILING</code>, not <code>RUNNING</code>.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><code>lastError</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                    <td>
+                        <p>Surfaced verbatim in the DI Manager UI as the job message when <code>healthy=false</code>.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><code>topic</code>, <code>consumerGroup</code>, <code>assignedPartitions</code></p>
+                    </td>
+                    <td>
+                        <p>string</p>
+                    </td>
+                    <td>
+                        <p>No</p>
+                    </td>
+                    <td>
+                        <p>Cosmetic only — used to label synthetic "operators" in the pipeline detail UI.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>DI Manager's status → job-state mapping:</p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <p>our response</p>
+                    </th>
+                    <th>
+                        <p>DI Manager job status</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><code>status=Running</code>, <code>healthy=true</code></p>
+                    </td>
+                    <td>
+                        <p><code>RUNNING</code>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><code>status=Running</code>, <code>healthy=false</code></p>
+                    </td>
+                    <td>
+                        <p><code>FAILING</code>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>status anything else</p>
+                    </td>
+                    <td>
+                        <p><code>STOPPED</code>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Endpoint unreachable / non-2xx</p>
+                    </td>
+                    <td>
+                        <p>Internal exception, propagated up (does not silently mark <code>STOPPED</code>)</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>DI Manager polls this endpoint on its own schedule; there is no push/webhook mechanism.</p>
+        </div>
+        <h1>4. Component Info</h1>
+        <p><code>GET {baseUrl}/v1/info</code>
+        </p>
+        <div class="tc-admon-note">
+            <p>Used only for a components-status dashboard, fetched best-effort (failures are logged and shown as <code>UNAVAILABLE</code>, nothing breaks if you omit this).</p>
+        </div><pre><code class="language-json">{
+				"componentName": "Pluggable-Connector",
+				"host": "my-host",
+				"pid": 12345,
+				"version": "1.2.3",
+				"startTime": "2026-07-09T10:00:00Z",
+				"status": "RUNNING",
+				"restUrl": "http://my-host:6085"
+				}
+		</code></pre>
+        <h1>Error Response Convention</h1><pre><code class="language-json">{"error": "&lt;message&gt;",	"pipelineId": "&lt;id&gt;"}</code></pre>
+        <div class="tc-admon-note">
+            <p>Use <code>400</code> for validation errors and <code>500</code> for everything else. DI Manager doesn't parse this body — it only cares about the HTTP status code — but keeping this shape makes your service's logs/UI consistent with ours if you're troubleshooting side by side.</p>
+        </div>
+        <h1>Register a Datasource (One-Time, Before Creating a Pipeline)</h1>
+        <p>Using DI-Manager, register the connector as a data source:</p>
+        <p><code>POST /api/v1/datasource/save-connection</code>
+        </p><pre><code class="language-json">{
+				"sorName": "my-datasource",
+				"dbProvider": "PLUGGABLE_CONNECTOR",
+				"url": "pluggable://kafka-broker:9092"
+				}
+		</code></pre>
+        <ul>
+            <li>
+                <p><code>sorName</code>, <code>dbProvider</code>, <code>url</code> are required; <code>username</code>/<code>password</code> are optional (only meaningful if your broker needs SASL credentials); <code>offlineMode</code> optional, defaults <code>false</code>.</p>
+            </li>
+            <li>
+                <p>The url scheme (<code>pluggable://...</code>) is how DI Manager currently distinguishes this datasource type from other connector types. It's stored in DI Manager's own metadata store; nothing is sent to your connector at this point.</p>
+            </li>
+            <li>
+                <p>Response: <code>200</code> with:</p>
+            </li>
+        </ul><pre><code class="language-json">{
+				"status": "SUCCESS",
+				"sorName": "...",
+				"dbProvider": "PLUGGABLE_CONNECTOR",
+				"message": "...",
+				"offlineMode": false
+				}</code></pre>
+        <p>On failure the same shape comes back with status set to <code>FAILURE</code> (→ <code>500</code>), <code>NOT_FOUND</code> (→ <code>404</code>), or <code>INVALID_PARAMS</code> (→ <code>400</code>) and a message describing what went wrong — there's no separate error envelope, just a non-success status value in the normal response body.</p>
+    </body>
+</html>

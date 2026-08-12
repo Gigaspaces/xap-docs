@@ -268,7 +268,9 @@ long result = future.get(); // result will be the number of primary spaces
             <p>Durable Tasks can be created using the Durable Task API:</p>
             <p><code>interface DurableTask&lt;T extends  Serializable, R&gt; extends DistributedTask&lt;T, R&gt;</code>
             </p>
-            <table>
+            <table style="">
+                <col />
+                <col />
                 <tbody>
                     <tr>
                         <td>
@@ -301,6 +303,14 @@ long result = future.get(); // result will be the number of primary spaces
                         </td>
                         <td>
                             <p>Add logic as to what to do to terminate job or cancel business logic.</p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="Version.17-3-born">
+                        <td>
+                            <p>AsyncFuture executeDurable(UUID uuid, Object context)</p>
+                        </td>
+                        <td>
+                            <p>Each execution can pass its own context parameters.</p>
                         </td>
                     </tr>
                 </tbody>

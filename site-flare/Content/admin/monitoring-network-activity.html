@@ -21,6 +21,11 @@
         <h2><a name="system-property"></a>System Property</h2>
         <p>Up front by providing a system property when starting the relevant components (gs-agent, Grid service Manager/Container) - the following system property "com.gs.transport_protocol.lrmi.monitorActivity=true' should be set in order to do so.</p>
         <h2><a name="api"></a>API</h2>
+        <div MadCap:conditions="Version.17-3-born">
+            <h3>Using Rest API to enable/ disable space LRMI monitoring</h3>
+            <p><code>/api/v3/spaces/enableLRMIMonitoring</code>
+            </p>
+        </div>
         <p>Using the Admin API during runtime you can enable or disable the LRMI monitoring, for example enabling LRMI monitoring for Jvms hosting a specific processing unit.</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
 
 // wait a bit for components to be discovered (or use waitFor) ...
@@ -35,12 +40,21 @@ for(ProcessingUnitInstance puInstance : processingUnit)
   puInstance.getTransport().getLRMIMonitoring().enableMonitoring();
 }
 </code></pre>
-        <h2><a name="jmx"></a>JMX</h2>
-        <p>For GSC that contains a space instance, you can also access the GSC via JMX using JConsole for instance and enable or disable the LRMI monitoring as shown in the image.</p>
-        <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/jmx-lrmi-monitoring.jpg" alt="jmx-lrmi-monitoring.jpg" class="tc-picture100" />
+        <div MadCap:conditions="Version.17-3-born">
+            <h2>Space Deck</h2>
+            <p>For GSC that contains a space instance, you can also access the GSC via Space Deck:</p>
+            <p>
+                <img src="../Resources/Images/XAP/spacedecklrmi.png" class="tc-picture100" />
+            </p>
         </div>
-        <p>Note that when enabling it via JMX it will enable the monitoring for the entire Jvm and not just the space that was used to enable the monitoring.</p>
+        <div MadCap:conditions="Version.17-3-died">
+            <h2><a name="jmx"></a>JMX</h2>
+            <p>For GSC that contains a space instance, you can also access the GSC via JMX using JConsole for instance and enable or disable the LRMI monitoring as shown in the image.</p>
+            <div class="tc-align-center">
+                <img src="../Resources/Static/attachment_files/jmx-lrmi-monitoring.jpg" alt="jmx-lrmi-monitoring.jpg" class="tc-picture100" />
+            </div>
+            <p>Note that when enabling it via JMX it will enable the monitoring for the entire Jvm and not just the space that was used to enable the monitoring.</p>
+        </div>
         <h1><a name="retrieving-lrmi-monitoring-details"></a>Retrieving LRMI Monitoring Details</h1>
         <p>There are three ways to retrieve the LRMI monitoring details, all of which requires that the relevant Jvm will have the LRMI monitoring enabled which as done as described previously.</p>
         <h2><a name="using-dump"></a>Using Dump</h2>

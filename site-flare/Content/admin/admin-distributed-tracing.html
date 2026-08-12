@@ -55,6 +55,14 @@
 					}
 			</code></pre>
         </div>
+        <div MadCap:conditions="Version.17-3-born">
+            <h2>Tracing Information per Partition</h2>
+            <p>A space is typically split into multiple partitions for scale. For operations that run concurrently on different partitions its valuable to split the trace per partition to identify slow partitions.</p>
+            <p>Since version 17.3.0, every partition-spanning operation reports individual timings and success or failure. In addition, the 'related query' attribute was added to give a better understanding of the exact operation.</p>
+            <p>
+                <img src="../Resources/Images/17.3/Tracing info.png" />
+            </p>
+        </div>
         <h2>Zipkin Built-In Tracer</h2>
         <p>GigaSpaces provides a built-in bean <code class="language-java">com.gigaspaces.tracing.ZipkinTracerBean</code> that can be used to send the traces to Zipkin as the tracing endpoint. This bean will register a GlobalTracer that can be used by the user's code. Same GlobalTracer will be used in the GigaSpaces proxy for the synchronous methods.</p><pre><code class="language-java">@Bean
 				public ZipkinTracerBean tracerBean() {

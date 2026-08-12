@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.17-3-born">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>Kafka-GigaSpaces Connector Features</h1>
+        <p>The <span class="tc-bold">Pluggable Connector</span> is a flexible, YAML-based data integration solution that seamlessly connects Apache Kafka to GigaSpaces. It enables real-time ingestion of JSON, AVRO, XML, or CSV data from Kafka topics into GigaSpaces spaces, with support for complex transformations, CDC operations (Insert/Update/Delete), and automatic batching.</p>
+        <h2>Key Features</h2>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Declarative Configuration</span>: Define data pipelines using simple YAML files</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Multiple Data Formats</span>: Support for JSON, AVRO, XML, and CSV</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">CDC Support</span>: Automatic handling of Insert, Update, and Delete operations with pluggable CDC solutions (Debezium, HVR, IIDR)</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Complex Data Structures</span>: Full support for nested objects, lists, and their combinations</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Flexible Data Mapping</span>: One Kafka message can map to multiple GigaSpaces types; JSON arrays can be split and distributed</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Data Transformation</span>: Groovy scripting support for preprocessing data before writing to space</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Batch Processing</span>: Collocated task execution with space-side computation</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Scalability</span>: Horizontally scalable architecture with automatic partition management</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Tiered Storage</span>: Define policies for different space types</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Monitoring</span>: Built-in metrics reporting to InfluxDB and error tracking</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Broadcast Tables</span>: Support for read-only broadcast tables</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Deployment Flexibility</span>: Deploy as a Processing Unit (PU) or Spring Boot microservice</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Kubernetes Ready</span>: Helm chart for easy Kubernetes deployment</p>
+            </li>
+        </ul>
+        <h2>High-Level Flow</h2><pre><code>Kafka Topic(s)
+				↓
+				[Pluggable Connector]
+				├─ Reads messages from Kafka
+				├─ Parses data format (JSON/AVRO/XML/CSV)
+				├─ Applies data transformations (Groovy scripts)
+				├─ Determines operation type (Insert/Update/Delete)
+				└─ Writes to GigaSpaces space(s)
+				↓
+				GigaSpaces Space(s)
+				└─ Data available for real-time queries
+		</code></pre>
+        <h2>Key Components</h2>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Kafka Consumer</span>: Reads messages from one or more Kafka topics with configurable offset strategies</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Data Parser</span>: Parses incoming data in various formats</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Data Pipeline</span>: Maps Kafka messages to GigaSpaces space types using JSON Path selectors</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">CDC Engine</span>: Determines operation type (insert/update/delete) based on message content</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Space Writer</span>: Writes data to GigaSpaces using the Space API</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Error Handler</span>: Publishes failures to a dedicated error topic for debugging</p>
+            </li>
+        </ol>
+        <h1>Prerequisites</h1>
+        <p>Before deploying the Pluggable Connector, ensure you have:</p>
+        <h2>Required Components</h2>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Apache Kafka</span>: A running Kafka cluster with topics containing your data</p>
+                <ul>
+                    <li>
+                        <p>Minimum version: 2.4.0</p>
+                    </li>
+                    <li>
+                        <p>Verify connectivity and topic availability before starting</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-bold">GigaSpaces</span>: A running GigaSpaces instance</p>
+                <ul>
+                    <li>
+                        <p>Minimum version: 15.0.0 (check your specific release notes)</p>
+                    </li>
+                    <li>
+                        <p>At least one space created where data will be written</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-bold">Java</span>: Java 11 or later installed on your deployment machine</p>
+            </li>
+        </ol>
+        <h2>Network Requirements</h2>
+        <ul>
+            <li>
+                <p>Pluggable Connector must be able to reach Kafka brokers on their configured ports (default: 9092)</p>
+            </li>
+            <li>
+                <p>Pluggable Connector must be able to reach GigaSpaces lookup service (default: 4174)</p>
+            </li>
+            <li>
+                <p>(If using with DI Manager) DI Manager must be able to reach the Pluggable Connector's REST API endpoint</p>
+            </li>
+        </ul>
+        <h2>Optional Components</h2>
+        <ul>
+            <li>
+                <p><span class="tc-bold">InfluxDB</span>: For metrics collection and monitoring</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Debezium</span>: For Change Data Capture from databases</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">HVR</span>: For Change Data Capture from various sources</p>
+            </li>
+        </ul>
+        <h1>Configuration</h1>
+        <p>The Pluggable Connector is configured through two main YAML files:</p>
+        <h2>1. Data Pipeline Configuration (<code>data-pipeline.yml</code>)</h2>
+        <p>This file defines how data from Kafka is mapped to GigaSpaces space types.</p>
+        <h3>Basic Structure</h3><pre><code class="language-yaml">---
+				dataFormat: "JSON"              # Data format: JSON, AVRO, XML, or CSV
+
+				cdc:                            # Change Data Capture configuration
+				operations:
+				insert:                     # Insert operation definition
+				defaultOperation: true
+				ifExists: "update"
+				update:                     # Update operation definition
+				conditions:
+				- selector: "$.op_type"
+				value: 2
+				ifNotExists: "insert"
+				delete:                     # Delete operation definition
+				conditions:
+				- selector: "$.op_type"
+				value: 0
+
+				spaceTypes:                     # Define space types
+				- name: "Product"             # Space type name
+				dataSource:
+				topic: "products"         # Kafka topic
+				properties:
+				- name: "id"              # Space property name
+				type: "String"          # Property type
+				selector: "$.product_id" # JSONPath to extract from message
+				spaceid: true           # Mark as space ID
+				- name: "name"
+				type: "String"
+				selector: "$.product_name"
+				- name: "price"
+				type: "java.math.BigDecimal"
+				selector: "$.cost"
+				- name: "category"
+				type: "String"
+				selector: "$.category"
+		</code></pre>
+        <h3>Key Configuration Options</h3>
+        <p><span class="tc-bold">Data Format</span>:</p>
+        <ul>
+            <li>
+                <p><code>JSON</code>: Recommended for most use cases</p>
+            </li>
+            <li>
+                <p><code>AVRO</code>: For Avro-encoded messages</p>
+            </li>
+            <li>
+                <p><code>XML</code>: For XML documents</p>
+            </li>
+            <li>
+                <p><code>CSV</code>: For comma-separated values</p>
+            </li>
+        </ul>
+        <p><span class="tc-bold">CDC Operations</span>:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">insert</span>: Default operation or when conditions match</p>
+                <ul>
+                    <li>
+                        <p><code>defaultOperation: true</code> - Apply when no other condition matches</p>
+                    </li>
+                    <li>
+                        <p><code>ifExists: "update"</code> - If object exists, perform update instead</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-bold">update</span>: Applied when conditions match</p>
+                <ul>
+                    <li>
+                        <p><code>conditions</code>: List of JSONPath conditions</p>
+                    </li>
+                    <li>
+                        <p><code>ifNotExists: "insert"</code> - If object doesn't exist, insert instead</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-bold">delete</span>: Applied when conditions match for removal</p>
+            </li>
+        </ul>
+        <p><span class="tc-bold">Space Types</span>:</p>
+        <ul>
+            <li>
+                <p><code>name</code>: The GigaSpaces space type name</p>
+            </li>
+            <li>
+                <p><code>dataSource.topic</code>: Kafka topic to consume from</p>
+            </li>
+            <li>
+                <p><code>properties</code>: Array of mappings from Kafka to space</p>
+            </li>
+        </ul>
+        <p><span class="tc-bold">Property Mapping</span>:</p>
+        <ul>
+            <li>
+                <p><code>name</code>: Property name in the space type</p>
+            </li>
+            <li>
+                <p><code>type</code>: Java type (String, Integer, Long, java.math.BigDecimal, etc.)</p>
+            </li>
+            <li>
+                <p><code>selector</code>: JSONPath expression to extract data from message</p>
+            </li>
+            <li>
+                <p><code>spaceid: true</code>: Mark property as unique identifier (use for exactly one property)</p>
+            </li>
+            <li>
+                <p><code>routingkey: true</code>: Mark property for space routing (partition key)</p>
+            </li>
+        </ul>
+        <h3>Advanced Property Options</h3><pre><code class="language-yaml">properties:
+				- name: "nested_object"
+				type: "com.example.Address"      # Custom type for nested objects
+				selector: "$.address"
+  
+				- name: "items_list"
+				type: "java.util.List"           # List type
+				selector: "$.order_items"
+  
+				- name: "full_message"
+				type: "String"
+				serializer: "json"               # Serialize entire object as JSON
+  
+				- name: "dynamic_field"
+				type: "String"
+				selector: "$.field"
+				groovyScript: "value?.toUpperCase()" # Transform value
+		</code></pre>
+        <h3>Example: Multi-Type Mapping</h3><pre><code class="language-yaml">spaceTypes:
+				- name: "Customer"
+				dataSource:
+				topic: "customers"
+				properties:
+				- name: "customerId"
+				type: "String"
+				selector: "$.id"
+				spaceid: true
+				- name: "name"
+				type: "String"
+				selector: "$.name"
+
+				- name: "Order"
+				dataSource:
+				topic: "orders"
+				properties:
+				- name: "orderId"
+				type: "String"
+				selector: "$.order_id"
+				spaceid: true
+				- name: "customerId"
+				type: "String"
+				selector: "$.customer_id"
+				routingkey: true
+				- name: "total"
+				type: "java.math.BigDecimal"
+				selector: "$.amount"
+		</code></pre>
+        <h2>2. Application Configuration (<code>application.yml</code>)</h2>
+        <p>This file configures the connector's runtime behavior, Kafka connection, and space connection.</p>
+        <h3>Basic Structure</h3><pre><code class="language-yaml">---
+				# Kafka configuration
+				spring.kafka.bootstrap-servers: localhost:9092
+				spring.kafka.consumer-group: my-consumer-group
+
+				# GigaSpaces configuration
+				space.name: my-space                    # Space to write to
+				gs.lookup-locator: localhost:4174       # Lookup locator address
+				gs.lookup-groups: "my-group"            # Space group (optional)
+
+				# Connector configuration
+				server.port: 6085                       # REST API port
+
+				# Logging
+				logging.level:
+				root: WARN
+				com.gigaspaces.connector: INFO
+
+				---
+				# Learning mode configuration (auto-discovery)
+				spring.profiles: learning
+				spring.kafka.consumer-group: connector-learning
+				server.port: 7080
+
+				metadata-provider:
+				method: based-on-data
+				parser: JSON                          # AUTO, JSON, AVRO, HVR, DEBEZIUM
+				topics: [ products, orders ]
+				types-mapping:
+				use-string-for-unlisted-types: true
+				map:
+				- source-type: "timestamp"
+				dih-type: Long
+
+				---
+				# Connector mode configuration (production)
+				spring.profiles: connector
+				spring.kafka.consumer-group: connector
+		</code></pre>
+        <h3>Key Configuration Options</h3>
+        <p><span class="tc-bold">Kafka</span>:</p>
+        <ul>
+            <li>
+                <p><code>spring.kafka.bootstrap-servers</code>: Kafka broker addresses (comma-separated)</p>
+            </li>
+            <li>
+                <p><code>spring.kafka.consumer-group</code>: Consumer group ID</p>
+            </li>
+            <li>
+                <p><code>spring.kafka.security.protocol</code>: Security protocol (PLAINTEXT, SSL, SASL_PLAINTEXT, SASL_SSL)</p>
+            </li>
+            <li>
+                <p><code>spring.kafka.properties.*</code>: Additional Kafka properties</p>
+            </li>
+        </ul>
+        <p><span class="tc-bold">GigaSpaces</span>:</p>
+        <ul>
+            <li>
+                <p><code>space.name</code>: Target space name</p>
+            </li>
+            <li>
+                <p><code>gs.lookup-locator</code>: Lookup service address</p>
+            </li>
+            <li>
+                <p><code>gs.lookup-groups</code>: Space group name</p>
+            </li>
+            <li>
+                <p><code>gs.space-url</code>: Alternative to locator-based lookup</p>
+            </li>
+        </ul>
+        <p><span class="tc-bold">Connector</span>:</p>
+        <ul>
+            <li>
+                <p><code>server.port</code>: REST API port for DI Manager communication</p>
+            </li>
+            <li>
+                <p><code>connector.self-url</code>: Self-reported URL (for DI Manager reconciliation)</p>
+            </li>
+            <li>
+                <p><code>di-manager.url</code>: DI Manager base URL (for self-healing)</p>
+            </li>
+        </ul>
+        <p><span class="tc-bold">Learning Mode</span>:</p>
+        <ul>
+            <li>
+                <p><code>metadata-provider.method</code>: Discovery method (AUTO, based-on-data)</p>
+            </li>
+            <li>
+                <p><code>metadata-provider.parser</code>: Parser type (AUTO, JSON, AVRO, HVR, DEBEZIUM)</p>
+            </li>
+            <li>
+                <p><code>metadata-provider.topics</code>: Topics to analyze for auto-discovery</p>
+            </li>
+        </ul>
+        <h1>Data Mapping</h1>
+        <h2>JSONPath Selectors</h2>
+        <p>Data is extracted from Kafka messages using JSONPath expressions in the <code>selector</code> field.</p>
+        <h3>Common JSONPath Patterns</h3><pre><code class="language-yaml"># Root property
+				selector: "$.id"                    # Extract message.id
+
+				# Nested property
+				selector: "$.user.address.city"    # Extract nested value
+
+				# Array element (first item)
+				selector: "$.items[0].name"        # First item's name
+
+				# All array elements (returns array)
+				selector: "$.items[*].id"          # All item IDs
+
+				# Properties matching pattern
+				selector: "$.order_*"              # Properties starting with "order_"
+
+				# Conditional expression
+				selector: "$[?(@.status == 'active')]"  # Items where status is 'active'
+		</code></pre>
+        <h3>Example Data Mapping</h3>
+        <p><span class="tc-bold">Input Kafka Message</span> (JSON):</p><pre><code class="language-json">{
+				"event_id": "evt-123",
+				"timestamp": 1234567890,
+				"customer": {
+				"id": "cust-456",
+				"name": "John Doe",
+				"email": "john@example.com"
+				},
+				"order": {
+				"id": "ord-789",
+				"items": [
+				{"product_id": "prod-1", "quantity": 2},
+				{"product_id": "prod-2", "quantity": 1}
+				],
+				"total": 99.99
+				}
+				}
+		</code></pre>
+        <p><span class="tc-bold">Configuration</span>:</p><pre><code class="language-yaml">spaceTypes:
+				- name: "Customer"
+				dataSource:
+				topic: "orders"
+				properties:
+				- name: "customerId"
+				type: "String"
+				selector: "$.customer.id"
+				spaceid: true
+				- name: "name"
+				type: "String"
+				selector: "$.customer.name"
+				- name: "email"
+				type: "String"
+				selector: "$.customer.email"
+		</code></pre>
+        <p><span class="tc-bold">Result</span> in space:</p><pre><code>Customer {
+				customerId: "cust-456"
+				name: "John Doe"
+				email: "john@example.com"
+				}
+		</code></pre>
+        <h2>Type Conversion</h2>
+        <p>The connector automatically converts JSON values to the specified Java types:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <p>YAML Type</p>
+                    </th>
+                    <th>
+                        <p>Java Class</p>
+                    </th>
+                    <th>
+                        <p>Example</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>String</p>
+                    </td>
+                    <td>
+                        <p><code>java.lang.String</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>"hello"</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Integer</p>
+                    </td>
+                    <td>
+                        <p><code>java.lang.Integer</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>42</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Long</p>
+                    </td>
+                    <td>
+                        <p><code>java.lang.Long</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>9223372036854775807</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Double</p>
+                    </td>
+                    <td>
+                        <p><code>java.lang.Double</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>3.14</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>BigDecimal</p>
+                    </td>
+                    <td>
+                        <p><code>java.math.BigDecimal</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>"99.99"</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Boolean</p>
+                    </td>
+                    <td>
+                        <p><code>java.lang.Boolean</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>true</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Date</p>
+                    </td>
+                    <td>
+                        <p><code>java.util.Date</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>1234567890 (timestamp in ms)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Timestamp</p>
+                    </td>
+                    <td>
+                        <p><code>java.sql.Timestamp</code>
+                        </p>
+                    </td>
+                    <td>
+                        <p>1234567890</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Handling Null Values</h2><pre><code class="language-yaml">properties:
+				- name: "optional_field"
+				type: "String"
+				selector: "$.maybe_missing"
+				nullable: true              # Allow null values
+				defaultValue: "N/A"         # Use when field is missing
+		</code></pre>
+        <h2>Nested Objects</h2><pre><code class="language-yaml">properties:
+				- name: "address"
+				type: "com.example.Address"  # Custom class
+				selector: "$.customer.address"
+  
+				- name: "metadata"
+				type: "java.util.Map"        # Store as Map
+				selector: "$.extra"
+		</code></pre>
+        <h2>Arrays and Lists</h2><pre><code class="language-yaml">properties:
+				- name: "tags"
+				type: "java.util.List"
+				selector: "$.tags"
+  
+				- name: "items"
+				type: "java.util.List"
+				selector: "$.order_items"
+		</code></pre>
+        <h1>CDC Operations</h1>
+        <p>Change Data Capture (CDC) determines whether a message results in an Insert, Update, or Delete operation in the space.</p>
+        <h2>CDC Configuration Structure</h2><pre><code class="language-yaml">cdc:
+				operations:
+				insert:
+				defaultOperation: bool     # Is this the default?
+				ifExists: "update|delete"  # What to do if object exists
+				conditions:
+				- selector: JSONPath     # Condition 1
+				value: anyValue
+				- selector: JSONPath     # Condition 2
+				value: anyValue
+				ifNotExists: "insert"      # What to do if doesn't exist
+  
+				update:
+				conditions: [...]
+				ifNotExists: "insert"
+  
+				delete:
+				conditions: [...]
+		</code></pre>
+        <h2>How CDC Works</h2>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Evaluate Conditions</span>: Check each operation's conditions against the message</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Match Operation</span>: First matching operation determines the action</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Apply Fallback</span>: If no condition matches, use <code>defaultOperation: true</code></p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Handle Existence</span>: Consider <code>ifExists</code> and <code>ifNotExists</code> modifiers</p>
+            </li>
+        </ol>
+        <h2>Example: Debezium CDC</h2><pre><code class="language-yaml">cdc:
+				operations:
+				insert:
+				defaultOperation: false
+				conditions:
+				- selector: "$.op"
+				value: "c"             # Debezium create
+				ifExists: "update"
+  
+				update:
+				conditions:
+				- selector: "$.op"
+				value: "u"             # Debezium update
+				ifNotExists: "insert"
+  
+				delete:
+				conditions:
+				- selector: "$.op"
+				value: "d"             # Debezium delete
+		</code></pre>
+        <h2>Example: HVR CDC</h2><pre><code class="language-yaml">cdc:
+				operations:
+				insert:
+				defaultOperation: true     # Default if no condition matches
+				ifExists: "update"
+  
+				update:
+				conditions:
+				- selector: "$.payload.hvr_operation_type"
+				value: 2               # HVR update code
+				ifNotExists: "insert"
+  
+				delete:
+				conditions:
+				- selector: "$.payload.hvr_operation_type"
+				value: 0               # HVR delete code
+		</code></pre>
+        <h2>Example: Simple Timestamp-Based CDC</h2><pre><code class="language-yaml">cdc:
+				operations:
+				insert:
+				defaultOperation: true
+				conditions:
+				- selector: "$.event_type"
+				value: "created"
+  
+				update:
+				conditions:
+				- selector: "$.event_type"
+				value: "modified"
+  
+				delete:
+				conditions:
+				- selector: "$.event_type"
+				value: "deleted"
+		</code></pre>
+        <h1>Advanced Features</h1>
+        <h2>Groovy Script Transformations</h2>
+        <p>Transform values before writing to space using Groovy scripts:</p><pre><code class="language-yaml">properties:
+				- name: "full_name"
+				type: "String"
+				groovyScript: "firstName + ' ' + lastName"
+  
+				- name: "amount_cents"
+				type: "Long"
+				selector: "$.amount"
+				groovyScript: "value * 100"  # Convert dollars to cents
+  
+				- name: "status_upper"
+				type: "String"
+				selector: "$.status"
+				groovyScript: "value?.toUpperCase() ?: 'UNKNOWN'"
+		</code></pre>
+        <p>Available variables in scripts:</p>
+        <ul>
+            <li>
+                <p><code>value</code>: The extracted value from the message</p>
+            </li>
+            <li>
+                <p><code>message</code>: The entire Kafka message</p>
+            </li>
+            <li>
+                <p><code>payload</code>: The parsed payload object</p>
+            </li>
+            <li>
+                <p>Any property previously processed in the same message</p>
+            </li>
+        </ul>
+        <h2>Message Serialization</h2>
+        <p>Store entire message parts as JSON strings:</p><pre><code class="language-yaml">properties:
+				- name: "raw_data"
+				type: "String"
+				serializer: "json"           # Serialize as JSON string
+				selector: "$.extra_fields"
+		</code></pre>
+        <h2>Broadcast Tables</h2>
+        <p>Define read-only broadcast tables replicated across all partitions:</p><pre><code class="language-yaml">spaceTypes:
+				- name: "LookupTable"
+				broadcast: true              # Mark as broadcast
+				dataSource:
+				topic: "lookup"
+				properties:
+				- name: "code"
+				type: "String"
+				selector: "$.code"
+				spaceid: true
+		</code></pre>
+        <h2>Tiered Storage Policies</h2>
+        <p>Define storage policies for space types:</p><pre><code class="language-yaml">spaceTypes:
+				- name: "HighVolumeData"
+				storage-policy:
+				type: "tiered"
+				memoryThreshold: 80        # % of heap
+				spillPolicy: "disk"        # Spill to disk
+				dataSource:
+				topic: "events"
+				properties: [...]
+		</code></pre>
+        <h2>Batch Processing</h2>
+        <p>Configure batch parameters for optimized ingestion:</p><pre><code class="language-yaml">connector:
+				batch:
+				size: 1000                   # Process 1000 messages per batch
+				timeoutMs: 5000              # Or timeout after 5 seconds
+				parallelism: 4               # Process 4 batches concurrently
+		</code></pre>
+        <h2>Error Handling</h2>
+        <p>Configure error handling and reporting:</p><pre><code class="language-yaml">connector:
+				error-handling:
+				strategy: "dlq"              # dead-letter-queue or skip
+				dlq-topic: "connector-errors" # Topic for errors
+				max-retries: 3
+				retry-backoff-ms: 1000
+		</code></pre>
+        <p>Errors are published with the structure:</p><pre><code class="language-json">{
+				"pipelineId": "pipeline-id",
+				"timestamp": 1234567890,
+				"originalMessage": {...},
+				"error": "error message",
+				"stackTrace": "..."
+				}
+		</code></pre>
+        <div class="tc-admon-note">
+            <p>The Kafka Pluggable Connector is an example of a customized pipeline. For more information, see the <a href="customised-pipelines.html">Customised Pipelines</a> page.</p>
+        </div>
+        <h1>Installation</h1>
+        <h2>Option 1: Docker Deployment (Recommended for Development)</h2><pre><code class="language-bash"># Clone the repository
+				git clone https://github.com/giga-di/di-kafka-connector.git
+				cd di-kafka-connector
+
+				# Build the project
+				mvn clean install
+
+				# Navigate to an example
+				cd examples/cdc-debezium-mssql-standalone
+
+				# Start the environment (includes Kafka, Database, GigaSpaces)
+				./1-launch-environment-and-wait.sh
+
+				# Run the connector
+				./6-start-connector.sh
+		</code></pre>
+        <h2>Option 2: Kubernetes with Helm (Production)</h2>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Add the Helm repository</span>:</p><pre><code class="language-bash">helm repo add pluggable-connector &lt;your-repo-url&gt;
+						helm repo update
+				</code></pre>
+            </li>
+            <li>
+                <p><span class="tc-bold">Create a values file</span> (<code>values.yaml</code>):</p><pre><code class="language-yaml">image:
+						repository: your-registry/pluggable-connector
+						tag: "17.2.2"
+
+						kafka:
+						brokers: "kafka-broker:9092"
+
+						space:
+						lookupLocator: "gigaspaces-service:4174"
+						space: "my-space"
+
+						connector:
+						port: 6085
+						selfUrl: "http://pluggable-connector:6085"
+
+						diManager:
+						url: "http://di-manager:8080"
+				</code></pre>
+            </li>
+            <li>
+                <p><span class="tc-bold">Install the chart</span>:</p><pre><code class="language-bash">helm install pluggable-connector ./helm-chart/pluggable-connector \
+						-f values.yaml \
+						-n di-kafka \
+						--create-namespace
+				</code></pre>
+            </li>
+        </ol>
+        <h2>Option 3: Manual Spring Boot Deployment</h2>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Build the Spring Boot JAR</span>:</p><pre><code class="language-bash">mvn -DskipTests=true clean package
+						cd spring-boot
+						mvn spring-boot:run
+				</code></pre>
+            </li>
+            <li>
+                <p><span class="tc-bold">Configure via environment variables</span>:</p><pre><code class="language-bash">export SPRING_KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+						export SPACE_NAME=my-space
+						export GS_LOOKUP_LOCATOR=localhost:4174
+						export SERVER_PORT=6085
+
+						java -jar spring-boot/target/pluggable-connector-*.jar
+				</code></pre>
+            </li>
+        </ol>
+        <h1>Running the Connector</h1>
+        <h2>Starting the Connector</h2>
+        <p><span class="tc-bold">Using Docker</span>:</p><pre><code class="language-bash">docker run -d \
+				--name pluggable-connector \
+				-e SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092 \
+				-e SPACE_NAME=my-space \
+				-e GS_LOOKUP_LOCATOR=gigaspaces:4174 \
+				-p 6085:6085 \
+				your-registry/pluggable-connector:17.2.2
+		</code></pre>
+        <p><span class="tc-bold">Using Kubernetes</span>:</p><pre><code class="language-bash">kubectl apply -f pluggable-connector-deployment.yaml
+		</code></pre>
+        <div class="tc-admon-note">
+            <p>From version 17.3.0, the Pluggable Connector is installed as part of the DIH umbrella.</p>
+        </div>
+        <p><span class="tc-bold">Manually</span>:</p><pre><code class="language-bash">java -jar pluggable-connector.jar \
+				--spring.kafka.bootstrap-servers=kafka:9092 \
+				--space.name=my-space \
+				--gs.lookup-locator=gigaspaces:4174
+		</code></pre>
+        <h2>Verifying the Connector is Running</h2>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Check the health endpoint</span>:</p><pre><code class="language-bash">curl http://localhost:6085/v1/info
+				</code></pre>
+                <p>Expected response:</p><pre><code class="language-json">{
+						"componentName": "Pluggable-Connector",
+						"version": "17.2.2",
+						"status": "RUNNING",
+						"host": "connector-host",
+						"pid": 12345
+						}
+				</code></pre>
+            </li>
+            <li>
+                <p><span class="tc-bold">Check the logs</span>:</p><pre><code class="language-bash">kubectl logs -f deployment/pluggable-connector
+				</code></pre>
+            </li>
+            <li>
+                <p><span class="tc-bold">Verify Kafka connectivity</span>:</p>
+                <ul>
+                    <li>
+                        <p>Connector should connect to Kafka without errors in logs</p>
+                    </li>
+                    <li>
+                        <p>Look for: <code>Connected to Kafka broker</code></p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-bold">Verify GigaSpaces connectivity</span>:</p>
+                <ul>
+                    <li>
+                        <p>Connector should connect to the space</p>
+                    </li>
+                    <li>
+                        <p>Look for: <code>Connected to space: my-space</code></p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <h2>Stopping the Connector</h2><pre><code class="language-bash"># Docker
+				docker stop pluggable-connector
+
+				# Kubernetes
+				kubectl delete deployment pluggable-connector
+
+				# Manual
+				pkill -f "pluggable-connector"
+		</code></pre>
+        <h1>Connector URL</h1>
+        <p>The Pluggable Connector has a REST controller. It is exposed as a service and listens by default on port 6085.</p><pre><code>http://&lt;helm release name&gt;-pluggable-connector:6085
+		</code></pre>
+        <h1>Relationship to DI Manager</h1>
+        <p>The Pluggable Connector can be controlled via DI Manager, which orchestrates (create, start, stop, delete, and list) Kafka-to-Space pipelines, forwarding start/stop commands to the underlying connector.</p>
+        <div class="tc-admon-note">
+            <p>The commands below talk to the connector directly. If this connector instance is actually managed by DI Manager, don't invent your own <code>PIPELINE_ID</code> — use the <code>pipelineId</code> DI Manager assigned when it created the pipeline, otherwise metrics/state will disagree between the two.</p>
+        </div>
+        <h1>Starting the Pluggable Connector</h1>
+        <p>Run from inside the cluster (via <code>kubectl exec</code> into the pc pod):</p><pre><code class="language-bash">PC_POD=$(kubectl get pod -n &lt;namespace&gt; -l app.kubernetes.io/name=pluggable-connector -o jsonpath='{.items[0].metadata.name}')
+				PIPELINE_ID=$(python3 -c "import uuid;print(uuid.uuid4())")
+
+				kubectl exec -n &lt;namespace&gt; "$PC_POD" -- \
+				curl -s -X POST "http://localhost:6085/v1/control/${PIPELINE_ID}/start?offsetStrategy=EARLIEST&amp;topic=customers"
+		</code></pre>
+        <p>Or from your local machine (port-forward first):</p><pre><code class="language-bash">kubectl port-forward -n &lt;namespace&gt; svc/&lt;helm release name&gt;-pluggable-connector 6085:6085 &amp;
+				PIPELINE_ID=$(python3 -c "import uuid;print(uuid.uuid4())")
+
+				curl -X POST "http://localhost:6085/v1/control/${PIPELINE_ID}/start?offsetStrategy=EARLIEST&amp;topic=customers"
+		</code></pre>
+        <p>For direct/manual operation, see the note above about <code>PIPELINE_ID</code> when DI Manager owns the pipeline.</p>
+        <h1>Control API (Start / Stop / Status)</h1><pre><code class="language-bash"># Start a pipeline
+				curl -X POST "http://&lt;helm release name&gt;-pluggable-connector:6085/v1/control/${PIPELINE_ID}/start?offsetStrategy=EARLIEST&amp;topic=customers"
+
+				# Stop a pipeline
+				curl -X POST "http://&lt;helm release name&gt;-pluggable-connector:6085/v1/control/${PIPELINE_ID}/stop"
+
+				# Check status
+				curl "http://&lt;helm release name&gt;-pluggable-connector:6085/v1/control/${PIPELINE_ID}/status"
+		</code></pre>
+        <p>The <code>topic</code> parameter tells the connector which pipeline UUID owns which Kafka topic, so InfluxDB metrics are tagged with the correct <code>pipelineId</code> for SpaceDeck queries.</p>
+    </body>
+</html>

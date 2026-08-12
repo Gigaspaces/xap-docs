@@ -92,53 +92,251 @@
         <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
             <img src="../Resources/Images/x16.0-tiered-storage-no-border.png" style="width: 595px;height: 382px;" />
         </p>
-        <h1>Optimizing the Use of Tiered Storage</h1>
-        <p>In order to get the most out of Tiered Storage, please note the following:</p>
-        <ul>
-            <li>
+        <div MadCap:conditions="Version.17-3-died">
+            <h1>Optimizing the Use of Tiered Storage</h1>
+            <p>In order to get the most out of Tiered Storage, please note the following:</p>
+            <ul>
                 <li>
-                    <p>By analyzing the query criteria, if it is definitely seen that all data is in the Hot layer, only the cache will be queried.</p>
+                    <li>
+                        <p>By analyzing the query criteria, if it is definitely seen that all data is in the Hot layer, only the cache will be queried.</p>
+                    </li>
+                    <li>
+                        <p>If max entries for the read is specified and there are max entries in cache that meets the query condition, only cache will be queried. If there is no limit, the query will go to the disk.</p>
+                    </li>
+                    <li>
+                        <p>Using read API - ReadModifier : MEMORY_ONLY_SEARCH</p>
+                    </li>
+                    <li>
+                        <p>When running using jdbc init the connection with properties. add readModifiers property with MEMORY_ONLY_SEARCH value.</p>
+                    </li>
+                    <li>
+                        <p>Using the above modifier the number of objects in cache/total are revealed via the API.</p>
+                    </li>
+                    <li>
+                        <p>The metrics are reported by <MadCap:variable name="General.CompanyName" /> and can be viewed using a reporting tool such a Grafana.</p>
+                    </li>
+                    <li>
+                        <p>According to the query criteria versus the Hot tier criteria, queries use the Hot tier only if all of the required data is present in the Hot tier. You can modify the <a href="../dev-java/transaction-read-modifiers.html">read modifier</a> to allow memory search only or the number of objects to read can be limited and they can be found in the Hot tier.</p>
+                    </li>
                 </li>
-                <li>
-                    <p>If max entries for the read is specified and there are max entries in cache that meets the query condition, only cache will be queried. If there is no limit, the query will go to the disk.</p>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <p>Tiered Storage supports primitive property types, and Java Timestamp and Instant classes .</p>
                 </li>
-                <li>
-                    <p>Using read API - ReadModifier : MEMORY_ONLY_SEARCH</p>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/persistency-for-a-database.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
                 </li>
-                <li>
-                    <p>When running using jdbc init the connection with properties. add readModifiers property with MEMORY_ONLY_SEARCH value.</p>
-                </li>
-                <li>
-                    <p>Using the above modifier the number of objects in cache/total are revealed via the API.</p>
-                </li>
-                <li>
-                    <p>The metrics are reported by <MadCap:variable name="General.CompanyName" /> and can be viewed using a reporting tool such a Grafana.</p>
-                </li>
-                <li>
-                    <p>According to the query criteria versus the Hot tier criteria, queries use the Hot tier only if all of the required data is present in the Hot tier. You can modify the <a href="../dev-java/transaction-read-modifiers.html">read modifier</a> to allow memory search only or the number of objects to read can be limited and they can be found in the Hot tier.</p>
-                </li>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow">
-                <p>Tiered Storage supports primitive property types, and Java Timestamp and Instant classes .</p>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow">
-                <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/persistency-for-a-database.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
-            </li>
-        </ul>
-        <div class="tc-admon-note">
-            <p>Primitive property types and selected Java classes are supported in Tiered Storage. See <a href="tiered-storage-date-types.html">Tiered Storage Data Types</a> for a complete list of supported data types.</p>
+            </ul>
+            <div class="tc-admon-note">
+                <p>Primitive property types and selected Java classes are supported in Tiered Storage. See <a href="tiered-storage-date-types.html">Tiered Storage Data Types</a> for a complete list of supported data types.</p>
+            </div>
+            <div class="tc-admon-note">
+                <p>For tables configured as Tiered Storage, if no rules are defined for the table, its data will be stored in the Warm tier only.</p>
+            </div>
+            <div class="tc-admon-note">
+                <p>For Service Grid SLA, the Processing Unit must specify the <a href="https://docs-staging.gigaspaces.com/[%=Versions.xap-release%]/admin/the-sla-zones.html#InstanceLevelRequirements">instance level SLA with host requirement</a> for each instance or alternatively, specify  <code>pu.autogenerated-instance-sla=true</code> as a context property of the deployment. This will allow the system to automatically generate the SLA .</p>
+            </div>
+            <div class="tc-admon-note">
+                <p>For Service Grid, each instance is bound to a specific machine for the entire duration of the deployment. Redeployment is only possible with the <b>same </b>schema, unless delete was called.</p>
+            </div>
+            <div class="tc-admon-note" MadCap:conditions="Version.17-1-born">
+                <p>In order to improve recovery time from tiered storage space, counters initialization occurs in async mode, allowing the space to be ready before filling up statistics.</p>
+            </div>
+            <div MadCap:conditions="Version.17-3-born">
+                <h2>Push-down to Tier</h2>
+                <h3>Optimization</h3>
+                <p>Aggregations are pushed into tier when no cache rule on type and no transactions or parameter to ignore transaction are set. Custom aggregation should implement the relevant SQLight query.</p>
+                <p>See: https://docs.gigaspaces.com/latest/solution-hub/aggregators-custom.html</p>
+                <p>Reads are pushed down based on the cache rule, query condition and read modifier, evaluating if required info is in cache or must be retrieved from tier.</p>
+                <h3>Clear pushdown</h3>
+                <p>Clear is pushed to tier in certain conditions:</p>
+                <ul>
+                    <li>
+                        <p>Direct invocation of “clear” method of sqlite without processing in gigaspace engine</p>
+                    </li>
+                    <li>
+                        <p>Works both in Gigaspaces API and JDBC</p>
+                    </li>
+                    <li>
+                        <p>If there are no conditions, then the “Drop and recreate” table approach is used.</p>
+                    </li>
+                    <li>
+                        <p>If there is a condition, if it is not indexed -&gt; protective exception/warning</p>
+                    </li>
+                </ul>
+                <p>Conditions for using pushdown instead of read &amp; clear one by one:</p>
+                <ol>
+                    <li>
+                        <p>No cache rule</p>
+                    </li>
+                    <li>
+                        <p>No replication target</p>
+                    </li>
+                    <li>
+                        <p>No notify template for delete on this type, or ignore notification flag is set</p>
+                    </li>
+                    <li>
+                        <p>No active transaction on related objects, or ignore flag for transaction is set</p>
+                    </li>
+                    <li>
+                        <p>Space is not HA</p>
+                    </li>
+                    <li>
+                        <p>No Space filter related to clear, or ignore filter flag for clear is set</p>
+                    </li>
+                </ol>
+                <h3>Related configuration to clear push down</h3>
+                <p>engine.TieredStorage.ClearTablePushdown.ignoreNotifyTemplates  engine.TieredStorage.ClearTablePushdown.ignoreActiveTransaction engine.TieredStorage.ClearTablePushdown.ignoreFilter (default true)</p>
+                <p>engine.TieredStorage.ClearTablePushdown.chunkSize (default 1000)       engine.TieredStorage.ClearTablePushdown.chunkSize.min (default 5 - validation for chunksize)</p>
+                <p>engine.TieredStorage.ClearTablePushdown.chunkSize.max (default 50k -validation for chunksize)</p>
+            </div>
         </div>
-        <div class="tc-admon-note">
-            <p>For tables configured as Tiered Storage, if no rules are defined for the table, its data will be stored in the Warm tier only.</p>
-        </div>
-        <div class="tc-admon-note">
-            <p>For Service Grid SLA, the Processing Unit must specify the <a href="https://docs-staging.gigaspaces.com/[%=Versions.xap-release%]/admin/the-sla-zones.html#InstanceLevelRequirements">instance level SLA with host requirement</a> for each instance or alternatively, specify  <code>pu.autogenerated-instance-sla=true</code> as a context property of the deployment. This will allow the system to automatically generate the SLA .</p>
-        </div>
-        <div class="tc-admon-note">
-            <p>For Service Grid, each instance is bound to a specific machine for the entire duration of the deployment. Redeployment is only possible with the <b>same </b>schema, unless delete was called.</p>
-        </div>
-        <div class="tc-admon-note" MadCap:conditions="Version.17-1-born">
-            <p>In order to improve recovery time from tiered storage space, counters initialization occurs in async mode, allowing the space to be ready before filling up statistics.</p>
+        <div MadCap:conditions="Version.17-3-born">
+            <h1>Optimizing Tiered Storage Performance</h1>
+            <p>To get the most out of Tiered Storage, keep the following query routing behaviors, configuration options, and monitoring features in mind.</p>
+            <h3>1. Automatic Hot Tier (Cache) Routing</h3>
+            <p>A query automatically targets only the Hot tier (avoiding disk reads) under the following conditions:</p>
+            <ul>
+                <li>
+                    <p><b>Complete Criteria Match:</b> Analysis determines that 100% of the requested data resides within the Hot tier.</p>
+                </li>
+                <li>
+                    <p><b>Sufficient Cached Entries:</b> A maximum entry limit (<b>max entries</b>) is specified, and the Hot tier already contains enough matching entries to satisfy it.</p>
+                </li>
+            </ul>
+            <div class="tc-admon-note" MadCap:conditions="Version.16-2-born">
+                <p>If no limit is specified, or if the Hot Tier cannot guarantee all matching data is present, the query will search the disk.</p>
+            </div>
+            <h3>2. Explicit Hot-Tier Searches (MEMORY_ONLY_SEARCH)</h3>
+            <p>If you want to force queries to search only the Hot tier (in-memory) regardless of where the rest of the data resides, use the<code class="language-bash"> MEMORY_ONLY_SEARCH</code> modifier:</p>
+            <ul>
+                <li>
+                    <p><b>Read API:</b> Set the read modifier to <code class="language-bash">ReadModifier.MEMORY_ONLY_SEARCH</code>.</p>
+                </li>
+                <li>
+                    <p><b>JDBC Connection:</b> Add the <code class="language-bash">ReadModifiers </code>property during connection initialization:</p>
+                </li>
+            </ul>
+            <h3>3. Monitoring and Metrics</h3>
+            <p><b>See: </b>https://docs.gigaspaces.com/latest/admin/metrics-bundled.html<b> - TieredStorage section</b></p>
+            <div class="tc-admon-note" MadCap:conditions="Version.16-2-born">
+                <p>Primitive property types, date types, and array of primitives  are supported in Tiered Storage.</p>
+                <p>In order to improve recovery time from tiered storage, counters initialization occurs in async mode, allowing the space to be ready before filling up statistics.</p>
+            </div>
+            <h1>Push-down to Tier</h1>
+            <p>In certain scenarios, pushing operations directly to the storage tier significantly improves performance. Instead of loading large database tables into memory, executing operations, and writing back to the database, operations run directly on the storage tier without consuming memory resources.</p>
+            <div class="tc-admon-note" MadCap:conditions="Version.16-2-born">
+                <p>Direct tier operations bypass related Space filters, notifications, transactions, and lease expirations.</p>
+            </div>
+            <h1>Aggregation Pushdown</h1>
+            <p>Aggregations are pushed down to the storage tier when:</p>
+            <ul>
+                <li>
+                    <p>No cache rules are defined on the type.</p>
+                </li>
+                <li>
+                    <p>No active transactions exist (or parameters are configured to ignore active transactions).</p>
+                </li>
+            </ul>
+            <p>Custom aggregations must implement the corresponding SQLite query.</p>
+            <ul>
+                <li>
+                    <p>Documentation: GigaSpaces Custom Aggregators</p>
+                </li>
+            </ul>
+            <h1>Clear Pushdown</h1>
+            <p>The <b>clear</b> operation is pushed to the tier by directly invoking SQLite's <b>clear</b> method, bypassing processing in the GigaSpaces engine. This behavior applies to both the GigaSpaces API and JDBC interfaces.</p>
+            <ul>
+                <li>
+                    <p><b>Unconditional Clear:</b> If no conditions are specified, a "Drop and Recreate Table" approach is used.</p>
+                </li>
+                <li>
+                    <p><b>Conditional Clear:</b> If conditions are provided but the targeted field is not indexed, a protective exception/warning is raised.</p>
+                </li>
+            </ul>
+            <h2>Requirements for Clear Pushdown</h2>
+            <p>To use pushdown instead of reading and clearing entries one by one, all of the following conditions must be met:</p>
+            <ol>
+                <li>
+                    <p>No active cache rules.</p>
+                </li>
+                <li>
+                    <p>No replication targets configured.</p>
+                </li>
+                <li>
+                    <p>No notify template for <b>delete</b> on this type (or the <b>ignore notification</b> flag is set).</p>
+                </li>
+                <li>
+                    <p>No active transactions on related objects (or the <b>ignore transaction</b> flag is set).</p>
+                </li>
+                <li>
+                    <p>Space is not configured for High Availability (HA).</p>
+                </li>
+                <li>
+                    <p>No Space filter related to <b>clear</b> is active (or the <b>ignore filter</b> flag for clear is set).</p>
+                </li>
+            </ol>
+            <h2>Related Configuration Properties</h2>
+            <table style="width: 100%;" class="tc-standard">
+                <col style="width: 677px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th><b>Configuration Property</b>
+                        </th>
+                        <th style="text-align: left;font-weight: bold;">Default Value / Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>engine.TieredStorage.ClearTablePushdown.ignoreNotifyTemplates</p>
+                        </td>
+                        <td style="text-align: left;">
+                            <p>Enables ignoring notify templates</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>engine.TieredStorage.ClearTablePushdown.ignoreActiveTransaction</p>
+                        </td>
+                        <td style="text-align: left;">
+                            <p>Enables ignoring active transactions</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>engine.TieredStorage.ClearTablePushdown.ignoreFilter</p>
+                        </td>
+                        <td style="text-align: left;">
+                            <p>true</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>engine.TieredStorage.ClearTablePushdown.chunkSize</p>
+                        </td>
+                        <td style="text-align: left;">
+                            <p>1000</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>engine.TieredStorage.ClearTablePushdown.chunkSize.min</p>
+                        </td>
+                        <td style="text-align: left;">
+                            <p>5 (Validation minimum)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>engine.TieredStorage.ClearTablePushdown.chunkSize.max</p>
+                        </td>
+                        <td style="text-align: left;">
+                            <p>50k (Validation maximum)</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <h1>Deployment</h1>
         <p MadCap:conditions="Version.16-4-born">For details of how to deploy Tiered Storage in a Kubernetes environment, refer to <a href="intelligent-tiering-details-K8s.html">Intelligent Tiering Details for Kubernetes</a></p>

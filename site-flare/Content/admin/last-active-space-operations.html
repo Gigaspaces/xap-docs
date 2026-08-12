@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.17-3-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>Last &amp; Active Space Operations</h1>
+        <p>Understand what's currently running in a Space, or see which operations against a Space instance have just finished. This is powered by a lightweight, server-side operations tracker, exposed through the GigaSpace API.</p>
+        <h2>How to Activate</h2>
+        <p>Enable LRMI monitoring on the space via the REST API or via SpaceDeck, and disable it again once troubleshooting is complete. See <MadCap:xref href="monitoring-network-activity.html">Network Monitoring</MadCap:xref> for details on enabling and disabling LRMI monitoring.</p>
+        <h2>Configuration</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th style="text-align: left;">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>com.gs.operations.tracker.max-completed</code>
+                    </td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td><code>com.gs.operations.tracker.max-active</code>
+                    </td>
+                    <td>1000</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Related REST APIs</h2>
+        <p><code>PUT /api/v3/spaces/enableLRMIMonitoring</code>
+        </p>
+        <p>
+            <img src="../Resources/Images/17.3/Operations-EnableLRMIMonitoring.png" class="tc-picture100" />
+        </p>
+        <p><code>GET /api/v3/spaces/{id}/operations/active</code>
+        </p>
+        <p MadCap:conditions="Version.17-3-died">
+            <img src="../Resources/Images/17.3/Operations-Active-Params.png" class="tc-picture100" />
+        </p>
+        <p MadCap:conditions="Version.17-3-born">
+            <img src="../Resources/Images/17.3/REST API1.png" />
+        </p>
+        <p><code>GET /api/v3/spaces/{id}/operations/last</code>
+        </p>
+        <p MadCap:conditions="Version.17-3-died">
+            <img src="../Resources/Images/17.3/Operations-Last-Params.png" class="tc-picture100" />
+        </p>
+        <p MadCap:conditions="Version.17-3-born">
+            <img src="../Resources/Images/17.3/REST API2.png" />
+        </p>
+        <h2>SpaceDeck: Operations &amp; Traffic Tab</h2>
+        <p>Shows the active operations table and the last completed operations, including the exact query performed and the client IP.</p>
+        <p>Columns: start date, end date, duration, operation, query, client IP, partition ID, status, and error.</p>
+        <p>
+            <img src="../Resources/Images/17.3/Operations-SpaceDeck-Tab.png" class="tc-picture100" />
+        </p>
+    </body>
+</html>

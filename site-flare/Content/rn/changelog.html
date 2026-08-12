@@ -6,6 +6,172 @@
         <h1 class="tc-pagetitle">Changelog</h1>
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
+        <div MadCap:conditions="Version.17-3-born">
+            <h1>17.3.0</h1>
+            <h2>Features and Enhancements</h2>
+            <table class="tc-standard">
+                <col style="width: 105px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Type</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-5905</td>
+                        <td>Spring Upgrade</td>
+                        <td>Upgrade Spring to version 7.x</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5175</td>
+                        <td>Clear Push Down to Tiered Storage</td>
+                        <td>Push down clear to TS on simplest conditions (No HA, No Cache rules, No notify, No Rep Target)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6094</td>
+                        <td>Clear API with Limit</td>
+                        <td>Add API for clear with limit</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6099</td>
+                        <td>Auto-create Parent Span</td>
+                        <td>Create a span if a parent span does not exist</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6081</td>
+                        <td>Query in Span</td>
+                        <td>Span should include the query, to make it easier to find long-running queries</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6057</td>
+                        <td>Durable Task Execute with Parameters</td>
+                        <td>Add an execute method with parameters to durable task</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6095</td>
+                        <td>REST API Active &amp; Last Operations</td>
+                        <td>REST API for active and last operations in a space</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6058</td>
+                        <td>REST API Compare Spaces Data</td>
+                        <td>REST API for comparing spaces data</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6143</td>
+                        <td>REST API Change Operation</td>
+                        <td>REST API for the change operation</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6141</td>
+                        <td>REST API Instance Utilization Object Counts</td>
+                        <td>REST API for space instance utilization - add object counts per instance</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5983</td>
+                        <td>REST API OTL Metrics</td>
+                        <td>REST API for retrieving metrics based on OTL for customer use</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5951</td>
+                        <td>DI Manager Pluggable Connectors</td>
+                        <td>Manage pluggable connectors via DI manager (show related pipeline in SpaceDeck)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-2528</td>
+                        <td>SpaceDeck Cluster Alerts</td>
+                        <td>SpaceDeck - show cluster alerts</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6139</td>
+                        <td>SpaceDeck Partition View</td>
+                        <td>SpaceDeck - improve space partition view</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6100</td>
+                        <td>SpaceDeck &amp; REST API Compare Spaces &amp; Tables</td>
+                        <td>SpaceDeck and REST API to compare spaces and tables</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-2511</td>
+                        <td>SpaceDeck Connection Status &amp; Traffic</td>
+                        <td>SpaceDeck - show connection and traffic status for the space when monitoring is enabled (with a checkbox to enable it)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-2516</td>
+                        <td>SpaceDeck Event Containers</td>
+                        <td>SpaceDeck - show event containers for spaces (definitions and statistics)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5997</td>
+                        <td>SpaceDeck Deploy PU Jar Auto-Name</td>
+                        <td>SpaceDeck - deploy PU jar; PU name is derived automatically and can be overridden</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6160</td>
+                        <td>Span Propagation to Router</td>
+                        <td>Propagate span to router execution to break client span per partition</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6096</td>
+                        <td>SpaceDeck &amp; REST API Active &amp; Last Operations</td>
+                        <td>SpaceDeck and REST API to view active and last operations when monitoring is enabled</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table class="tc-standard">
+                <col style="width: 105px;" />
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>Key</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5993</td>
+                        <td>Ingress PathType Fix</td>
+                        <td>Fix ingress pathType from Prefix to ImplementationSpecific</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5990</td>
+                        <td>Deserialization Failure After Failover</td>
+                        <td>Deserialization failure after partition failover, requiring a cluster restart to recover</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6041</td>
+                        <td>LDAP Security Fix for REST v3</td>
+                        <td>Fix LDAP security issue with REST v3 API</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6084</td>
+                        <td>SpaceDeck Backend Error Display</td>
+                        <td>SpaceDeck - verify that backend errors are displayed correctly</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6187</td>
+                        <td>Per-PU Logging Fix (slf4j)</td>
+                        <td>Per-PU logging stopped working after the slf4j upgrade</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6178</td>
+                        <td>Large PU Jar Deploy via REST</td>
+                        <td>Can't deploy large PU jars using the REST API (added com.gs.rest.max-upload-size-mb; default 200MB, can be changed, -1 for unlimited)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6199</td>
+                        <td>Unmarshal Exception Under High Concurrency</td>
+                        <td>UnmarshalException occurs under very high concurrency of requests on the same channel</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div MadCap:conditions="Version.17-2-born">
             <h1>17.2.2</h1>
             <h2>Features and Enhancements</h2>

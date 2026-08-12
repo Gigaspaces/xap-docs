@@ -5,6 +5,73 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">What's New in <MadCap:variable name="General.ProductNameXAP" /> Version <MadCap:variable name="Versions.product-version-short" /></h1>
+        <div MadCap:conditions="Version.17-3-only">
+            <h3>Release Date: July-2026</h3>
+            <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+            <h1>Live Space Operations &amp; Traffic Tracker</h1>
+            <p>Administrators can now inspect real-time and historical database activity on any active Space instance using a lightweight, server-side tracking mechanism.</p>
+            <ul>
+                <li>
+                    <p><b>Live Inspection:</b> Adds dedicated tracking endpoints (<code>/operations/active</code> and <code>/operations/last</code>) to see exactly what queries are running right now or have just finished executing.</p>
+                </li>
+                <li>
+                    <p><b>SpaceDeck Visibility:</b> Introduces a brand-new Operations &amp; Traffic tab in SpaceDeck, showcasing rich diagnostic details such as the exact query string, client IP, affected partition ID, duration, and error codes.</p>
+                </li>
+                <li>
+                    <p><b>On-Demand Toggling:</b> Controlled entirely via an LRMI monitoring toggle REST API so it can be enabled exclusively during troubleshooting periods to preserve overhead.</p>
+                </li>
+            </ul>
+            <p>For more information, see <MadCap:xref href="../admin/monitoring.html">Monitoring Space Operations</MadCap:xref> and <MadCap:xref href="../admin/monitoring-network-activity.html">Monitoring Network Activity</MadCap:xref>.</p>
+            <h1>Tiered Storage "Push Down" Optimizations</h1>
+            <p>To significantly boost performance, specific operations can bypass the GigaSpaces execution engine entirely and execute directly on the underlying storage tier (SQLite).</p>
+            <ul>
+                <li>
+                    <p><b>Optimized Clear Table Operations:</b> Bypasses one-by-one object processing in favor of a direct "Drop and recreate table" approach when no query conditions exist.</p>
+                </li>
+                <li>
+                    <p><b>Safe Fallbacks:</b> Includes strict validation checks (e.g., checking for unindexed conditions, active transactions, and HA configurations) to safely fall back to safer processing channels when push-down conditions aren't met.</p>
+                </li>
+            </ul>
+            <h1>Hot-Pluggable Metric Providers Framework</h1>
+            <p>This release standardizes how metrics are queried from external telemetry systems by providing a unified query API wrapper (<code>GET /api/v3/metrics</code>).</p>
+            <ul>
+                <li>
+                    <p><b>Hot-Pluggable Backends:</b> Third-party metric platforms (such as InfluxDB, Datadog, or Dynatrace) can be plugged in or swapped on the fly by implementing the <code>GsMetricsQueryProvider</code> Java interface.</p>
+                </li>
+                <li>
+                    <p><b>Dynamic Loading:</b> New providers can be registered live using the JAR upload API or by dropping them into the optional metrics directory—no system restarts required.</p>
+                </li>
+                <li>
+                    <p><b>Note on Prometheus:</b> Out-of-the-box special relations for Prometheus have been removed from standard configurations; please use the generic OTLP provider instead.</p>
+                </li>
+            </ul>
+            <p>For API structures, time-range querying parameters, and developer implementation details, see <MadCap:xref href="../admin/metrics-configuration.html">Metrics Configuration</MadCap:xref>.</p>
+            <h1>Partition-Level Distributed Tracing Split</h1>
+            <p>To simplify performance debugging across highly distributed configurations, operations that span multiple partitions are now split natively within your tracing ecosystem.</p>
+            <ul>
+                <li>
+                    <p><b>Granular Child Spans:</b> Overarching cluster operations (like <code>read_multiple</code>) break down into individual child spans for every affected partition.</p>
+                </li>
+                <li>
+                    <p><b>Isolation of Slow Nodes:</b> Each partition-level trace accurately details its unique processing duration, status (UNSET or error states), and execution properties (<code>db.gigaspaces.partition_id</code>).</p>
+                </li>
+            </ul>
+            <p>To configure your OpenTelemetry tracing systems to catch partition-level child spans, see <MadCap:xref href="../admin/admin-distributed-tracing.html">Distributed Tracing</MadCap:xref>.</p>
+            <h1>Space Comparison Engine</h1>
+            <p>A brand-new comparison capability has been introduced to validate consistency and spot schema or data divergence between distinct spaces. This capability is highly integrated into disaster recovery and multi-region topology synchronization checks.</p>
+            <p>For details on using the space comparison tool within distributed environments, see <MadCap:xref href="../dev-java/multi-site-replication-intro.html">Multi-Site Replication Introduction</MadCap:xref>.</p>
+            <h1>Customized Data Integration &amp; Pluggable Connectors</h1>
+            <p>This release introduces the ability to implement custom integration flows while maintaining centralized management, tracking, and observability across pipelines via the DI-Manager and SpaceDeck. Developers can now build custom connector services that expose standard pipeline lifecycle REST APIs (start, stop, status, and info).</p>
+            <ul>
+                <li>
+                    <p><b>Pluggable Architecture:</b> Custom connectors act as standalone data sources. They are registered with a dedicated URL scheme (<code>pluggable://...</code>) without requiring any initial service disruption.</p>
+                </li>
+                <li>
+                    <p><b>Decoupled Control:</b> The DI-Manager automatically handles status polling and maps custom connector responses directly to UI health states (RUNNING, FAILING, STOPPED).</p>
+                </li>
+            </ul>
+            <p>For details on implementing a custom connector service, see <MadCap:xref href="../admin/customised-pipelines.html">Customised Pipelines</MadCap:xref>.</p>
+        </div>
         <div MadCap:conditions="Version.17-2-born">
             <h2>MCP Server (Preview Mode)</h2>
             <p>In version 17.2.2 we introduce the MCP Server, bringing native Model Context Protocol (MCP) support to GigaSpaces clusters. Currently in Preview Mode, this feature allows customers to expose XAP's ultra-low-latency data tier and distributed compute capabilities directly to autonomous AI agents and agentic workflows.</p>

@@ -83,14 +83,20 @@
             <p>There are several frameworks that integrate out of the box with <MadCap:variable name="General.ProductNameXAP" />:</p>
             <ul>
                 <li>InfluxDB</li>
-                <li>Prometheus</li>
+                <li MadCap:conditions="Version.17-3-died">Prometheus</li>
                 <li>OTLP (generic, since 17.2.2)</li>
                 <li>File reporter (for development time testing)</li>
             </ul>
             <h1><a name="configuration"></a>Configuration</h1>
             <p>By default, Metrics configuration is loaded from <code>$GS_HOME/config/metrics/metrics.properties</code>. This location can be overridden using the <code>com.gigaspaces.metrics.config</code> system property, which also supports URL.</p>
-            <p>For example, setting multiple destinations for metrics to include all out-of-the-box integrations:</p><pre><code class="language-bash"># Multiple destinations
+            <p>For example, setting multiple destinations for metrics to include all out-of-the-box integrations:</p><pre MadCap:conditions="Version.17-3-died"><code class="language-bash"># Multiple destinations
 					metrics.registries=influxdb,prometheus,file
+					metrics.influxdb.uri=http://localhost:8086
+					metrics.influxdb.db=xap_metrics
+					metrics.influxdb.step=10
+					metrics.file.path=/var/log/xap/metrics.log
+			metrics.file.step=1</code></pre><pre MadCap:conditions="Version.17-3-born"><code class="language-bash"># Multiple destinations
+					metrics.registries=influxdb,file
 					metrics.influxdb.uri=http://localhost:8086
 					metrics.influxdb.db=xap_metrics
 					metrics.influxdb.step=10
@@ -128,7 +134,7 @@ metrics.otlp.step=10</code></pre>
                         <td>InfluxDB</td>
                         <td>Built in — just set <code>metrics.registries=influxdb</code> and add required properties</td>
                     </tr>
-                    <tr>
+                    <tr MadCap:conditions="Version.17-3-died">
                         <td>Prometheus</td>
                         <td>Built in — just set <code>metrics.registries=prometheus</code></td>
                     </tr>
@@ -219,6 +225,61 @@ metrics.otlp.step=10</code></pre>
 					}
 			}</code></pre>
             <p>The resource file <code>com.gigaspaces.metrics.micrometer.GsMeterRegistryProvider</code> should contain:</p><pre><code>com.gigaspaces.example.metrics.datadog.DatadogRegistryProvider</code></pre>
+        </div>
+        <div MadCap:conditions="Version.17-3-born">
+            <h1>Metric Providers</h1>
+            <p>Each user implements his own metric framework.</p>
+            <p>OTLP has an interface to report metrics but no standard for retrieving them to allow easy integrations with application’s automations &amp; UI.</p>
+            <p>To address this issue, a single, simple API was added: ask for a metric by name (e.g. "active connections"). The user can pick a time window and choose which backend should answer — the built-in one, or another one plugged in later. New backends can be added on the fly (hot-plug), without restarting anything.</p>
+            <h2>API:</h2>
+            <p>
+                <img src="../Resources/Images/17.3/metrics config.png" />
+            </p>
+            <h3>Generic response body:</h3><pre><code class="language-java">[
+  { "timestamp": "2026-07-16T09:00:00Z", "value": 42.0 },
+  { "timestamp": "2026-07-16T09:05:00Z", "value": 47.5 }
+]
+</code></pre>
+            <h3>What should be implemented to support the above api?</h3>
+            <ol>
+                <li>
+                    <p>Implement the following interface:</p><pre><code class="language-java">public interface GsMetricsQueryProvider {
+
+/*** Unique name identifying this provider, e.g. "influxdb", "datadog", "dynatrace".Used to select a specific provider via {@code metrics.query.provider} property.*/
+String getName();
+
+/*** Returns true if the required configuration (URL, credentials, etc.) is present.Used for auto-detection when no explicit provider is configured.*/
+boolean isConfigured();
+
+/*** Query metric data points for the given metric name and time range.
+* @param metricName      the metric name (e.g "space_connections_incoming_active")
+    * @param from            start of the time range (inclusive)
+    * @param to              end of the time range (inclusive)
+    * @param aggregationMode aggregation function to apply per time bucket: "mean", "sum", "max", "min".
+    *                        Null or blank means raw data points with no aggregation.
+    * @return list of data points ordered by timestamp, never null
+    */
+   List&lt;MetricDataPoint&gt; query(String metricName, Instant from, Instant to, String aggregationMode);
+
+   /**
+    * Returns the last known value for the given metric, regardless of when it was reported.
+    * Each provider must implement this using their backend's native "last value" API.
+    *
+    * @param metricName the metric name
+    * @return single-element list with the last known data point, or empty if no data found
+    */
+   List&lt;MetricDataPoint&gt; queryLatest(String metricName);
+}</code></pre>
+                </li>
+                <li>
+                    <p>Upload query metric provider jar using Rest API , Or add the jar to</p>
+                    <p><code class="language-java">$GS_HOME/lib/optional/metrics/</code>
+                    </p>
+                </li>
+                <li>
+                    <p>Relevant Rest APIS:<br /><br /><img src="../Resources/Images/17.3/Rest APIS.png" style="width: 100%;" /></p>
+                </li>
+            </ol>
         </div>
     </body>
 </html>

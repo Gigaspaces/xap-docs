@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.17-3-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>Compare Spaces</h1>
+        <div>
+            <p>You can compare data between two spaces - this looks for tables that exist only in the source space or only in the destination space, and lists them. For tables that exist in both spaces, it compares counts, and min/max values of properties that have ordered indexes in both spaces' tables.</p>
+            <p>This can be used to understand the difference between two spaces that replicate to each other, or to understand gaps between environments. The spaces can be on the same cluster, or on different clusters.</p>
+            <p>You can also compare just a specific type instead of comparing all types.</p>
+            <h2>Using SpaceDeck</h2>
+            <p>
+                <img src="../Resources/Images/17.3/Compare-UI.png" class="tc-picture100" />
+            </p>
+            <h2>Using the REST API</h2>
+            <h3>Compare Spaces</h3>
+            <p><code>GET /api/v3/spaces/compare</code>
+            </p>
+            <p>Compares two spaces and reports types present only in source or destination, object count differences, and MIN/MAX statistics on ORDERED / EQUAL_AND_ORDERED indexed fields for common types. The source space must exist in the local cluster. If the destination space is not located locally, supply <code>destLookupLocator</code> and/or <code>destLookupGroup</code> to locate it in an external cluster (20 second discovery timeout).</p>
+            <p>
+                <img src="../Resources/Images/17.3/Compare-Params.png" class="tc-picture100" />
+            </p>
+            <p><span class="tc-italic">Response Schema:</span>
+            </p>
+            <p>
+                <img src="../Resources/Images/17.3/Compare-Result-Schema.png" />
+            </p>
+            <h3>Compare Types</h3>
+            <p><code>GET /api/v3/spaces/compareTypes</code>
+            </p>
+            <p>Compares a single type in the source space against a (potentially differently-named) type in the destination space. Reports object count difference and MIN/MAX statistics on ORDERED / EQUAL_AND_ORDERED indexed fields. The source space must exist in the local cluster. If the destination space is not located locally, supply <code>destLookupLocator</code> and/or <code>destLookupGroup</code> to locate it in an external cluster.</p>
+            <p>
+                <img src="../Resources/Images/17.3/CompareTypes-Params.png" class="tc-picture100" />
+            </p>
+            <p><span class="tc-italic">Response Schema:</span>
+            </p>
+            <p>
+                <img src="../Resources/Images/17.3/CompareTypes-Result-Schema.png" />
+            </p>
+        </div>
+    </body>
+</html>
