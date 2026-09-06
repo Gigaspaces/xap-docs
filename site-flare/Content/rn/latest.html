@@ -6,7 +6,7 @@
     <body>
         <h1 class="tc-pagetitle">What's New in <MadCap:variable name="General.ProductNameXAP" /> Version <MadCap:variable name="Versions.product-version-short" /></h1>
         <div MadCap:conditions="Version.17-3-only">
-            <h3>Release Date: July-2026</h3>
+            <h3>Release Date: August-2026</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
             <h1>Live Space Operations &amp; Traffic Tracker</h1>
             <p>Administrators can now inspect real-time and historical database activity on any active Space instance using a lightweight, server-side tracking mechanism.</p>
@@ -68,6 +68,9 @@
                 </li>
                 <li>
                     <p><b>Decoupled Control:</b> The DI-Manager automatically handles status polling and maps custom connector responses directly to UI health states (RUNNING, FAILING, STOPPED).</p>
+                </li>
+                <li>
+                    <p><b>Pluggable Kafka Connectors:</b> A flexible, YAML-based data integration solution that seamlessly connects Apache Kafka to GigaSpaces, enabling real-time ingestion of JSON, AVRO, XML, or CSV data from Kafka topics into GigaSpaces spaces, with support for complex transformations, CDC operations (Insert/Update/Delete), and automatic batching. It is implemented as a customized data integration; see <MadCap:xref href="../Data Integration/kafka-pluggable-connector.html">Kafka Pluggable Connector</MadCap:xref> for more information.</p>
                 </li>
             </ul>
             <p>For details on implementing a custom connector service, see <MadCap:xref href="../admin/customised-pipelines.html">Customised Pipelines</MadCap:xref>.</p>
