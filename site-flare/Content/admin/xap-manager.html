@@ -80,7 +80,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr MadCap:conditions="Version.18-0-died">
                     <td>REST</td>
                     <td><code>com.gs.manager.rest.port</code>
                     </td>
@@ -116,6 +116,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
             <p>When using the Admin API standalone client, you can configure the port using the Java system property or the environmental variable.</p>
         </div>
         <div MadCap:conditions="Version.15-0-born">
+        <div MadCap:conditions="Version.18-0-died">
             <h2>HSQLDB Configuration</h2>
             <p><MadCap:variable name="General.ProductNameXAP" /> Manager stores statistical data in an HSQLDB database. The data is held for a predefined period of time, in order to show related metrics in the Ops Manager.</p>
             <div class="tc-admon-important">
@@ -145,6 +146,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
             </p>
             <p MadCap:conditions="Version.15-8-died"><code class="language-bash">-Dcom.gs.newwebui.enabled=false</code>
             </p>
+        </div>
         </div>
         <h2><a name="apache-zookeeper"></a>Apache Zookeeper</h2>
         <p>Apache ZooKeeper's behavior is governed by its configuration file (<code>zoo.cfg</code>).
