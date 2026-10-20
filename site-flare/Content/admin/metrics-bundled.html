@@ -1028,6 +1028,73 @@ space_replication_mirror-service_container:mirror-service_received-traffic-bytes
 space_replication_mirror-service_container:mirror-service_retained-size-packets
 space_replication_redo-log_external-storage-bytes
 </code></pre>
+        <h2 MadCap:conditions="Version.18-0-born"><a name="adu"></a>ADU</h2>
+        <table MadCap:conditions="Version.18-0-born">
+            <thead>
+                <tr>
+                    <th align="left">Metric</th>
+                    <th align="left">Type</th>
+                    <th align="left">Tags</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">pu_adu_runs</td>
+                    <td align="left">counter</td>
+                    <td align="left"><code>persona</code>, <code>outcome</code></td>
+                    <td align="left">Runs that ended. The outcome is the terminal reason: COMPLETED, CANCELLED, MAX_TOOL_CALLS, API_ERROR, …</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_run_duration</td>
+                    <td align="left">timer</td>
+                    <td align="left"><code>persona</code>, <code>outcome</code></td>
+                    <td align="left">Duration of a run, from start to end, in buckets of 1, 2, 5, 10, 30, 60, 120, and 300 seconds.</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_runs_active</td>
+                    <td align="left">gauge</td>
+                    <td align="left"></td>
+                    <td align="left">Number of runs the unit is currently driving.</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_model_calls</td>
+                    <td align="left">timer</td>
+                    <td align="left"><code>llm</code>, <code>model</code>, <code>provider</code>, <code>outcome</code></td>
+                    <td align="left">Each model call: ok, or how it failed (RATE_LIMITED, TIMEOUT, CANCELLED, …).</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_model_tokens</td>
+                    <td align="left">counter</td>
+                    <td align="left"><code>llm</code>, <code>model</code>, <code>token_type</code></td>
+                    <td align="left">Tokens as reported by the model: input, output, and reasoning. A count that the provider did not report is not counted as zero.</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_tool_calls</td>
+                    <td align="left">timer</td>
+                    <td align="left"><code>tool</code>, <code>tool_source</code>, <code>outcome</code></td>
+                    <td align="left">Each tool call: OK, ERROR, DENIED, CANCELLED, or SKIPPED. The source is java, builtin, mcp, or peer.</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_peer_calls</td>
+                    <td align="left">timer</td>
+                    <td align="left"><code>peer</code>, <code>outcome</code></td>
+                    <td align="left">Each message sent to a peer agent: COMPLETED, FAILED, or TIMED_OUT.</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_a2a_requests</td>
+                    <td align="left">timer</td>
+                    <td align="left"><code>method</code>, <code>outcome</code></td>
+                    <td align="left">Each A2A request the unit answered: ok, or the JSON-RPC error code.</td>
+                </tr>
+                <tr>
+                    <td align="left">pu_adu_watch_changes</td>
+                    <td align="left">counter</td>
+                    <td align="left"><code>watch</code>, <code>operation</code>, <code>outcome</code></td>
+                    <td align="left">Changes delivered to watches, either handled or failed.</td>
+                </tr>
+            </tbody>
+        </table>
         <h2 MadCap:conditions="Version.17-1-born">DI_METRICS</h2>
         <table MadCap:conditions="Version.17-1-born">
             <thead>

@@ -12,6 +12,9 @@
             <p>If you are currently using a previous version of  <MadCap:variable name="General.ProductNameIE" />&#160;<MadCap:variable name="General.ProductXAP" />, you can download the newest version from the download tab in the support portal.</p>
             <h1><a name="backwards-compatibility"></a>Backwards Compatibility</h1>
             <p MadCap:conditions="Version.18-0-only">From version 18.0, REST V2 is removed from the product; REST V3 is used instead. REST V3 includes all the APIs that were present in REST V2, and adds more APIs. It starts as a stand-alone service rather than as part of the manager. See more at <MadCap:xref href="../admin/admin-rest-manager-api.html">REST Manager API</MadCap:xref>.</p>
+            <p MadCap:conditions="Version.18-0-born">Starting from version 18.0.1, REST data was removed. Similar APIs can be found in REST V3 and in the new gRPC space-based client. See <MadCap:xref href="../dev-java/grpc-client-for-space-operations.html">gRPC Client for Space Operations</MadCap:xref>.</p>
+            <p MadCap:conditions="Version.18-0-born">Until version 18.0.1, the Cursor iterator did not take projection into account. This was fixed. If you relied on this behavior and updated objects received by this iterator, consider using the change API or partial updates instead.</p>
+            <p MadCap:conditions="Version.18-0-born">The default redo log swap was changed to use SQLite instead of byte buffer. See <MadCap:xref href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</MadCap:xref> for more information.</p>
             <p> For information about GigaSpaces' backwards compatibility policy, refer to the <MadCap:xref href="lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
             <p>Regarding the node, if a change </p>
             <div class="tc-admon-important" MadCap:conditions="Version.14-2-born">

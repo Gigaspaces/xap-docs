@@ -31,12 +31,20 @@
         </div>
         <p>
             <MadCap:xref href="replication-parameters.html#Optional_values:_byte-buffer,_sqlite." class="two-options-are-available">Two options are available</MadCap:xref> for the format of the redo log: </p>
-        <ul>
+        <ul MadCap:conditions="Version.18-0-died">
             <li>
                 <p><code>byte-buffer</code> is the default format and consists of data in a binary format. </p>
             </li>
             <li>
                 <p><code>SQLite</code> format writes the redo log data into a SQLite database located in the work directory. </p>
+            </li>
+        </ul>
+        <ul MadCap:conditions="Version.18-0-born">
+            <li>
+                <p><code>byte-buffer</code> format stores the redo log data in a binary format. </p>
+            </li>
+            <li>
+                <p><code>SQLite</code> is the default format. It writes the redo log data into a SQLite database located in the work directory. </p>
             </li>
         </ul>
         <p>The <code>SQLite</code> format allows the user to browse through the redo log data using a <a href="https://sqlitebrowser.org/">SQLite JDBC viewer.</a></p>
@@ -131,7 +139,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr MadCap:conditions="Version.18-0-died">
                     <td align="left" style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 0;border-left-color: #e0e0e0;">cluster-config.groups.group.repl-policy.swap-redo-log.storage-type</td>
                     <td align="left">
                         <p align="left">Specifies the format of the redo log. Optional values: <code>byte-buffer</code>, <code>sqlite</code>.</p>
@@ -140,6 +148,52 @@
                     </td>
                     <td align="left">byte-buffer</td>
                 </tr>
+                <tr MadCap:conditions="Version.18-0-born">
+                    <td align="left" style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 0;border-left-color: #e0e0e0;">cluster-config.groups.group.repl-policy.swap-redo-log.storage-type</td>
+                    <td align="left">
+                        <p align="left">Specifies the format of the redo log. Optional values: <code>byte-buffer</code>, <code>sqlite</code>.</p>
+                        <p>- byte-buffer writes the log in a binary format.</p>
+                        <p>- sqlite (default) writes the log to a database. The database can be accessed using standard tools to view the details of the log. For more information, see <MadCap:xref href="#">Controlling the Replication Redo Log</MadCap:xref>.<br /></p>
+                    </td>
+                    <td align="left">sqlite</td>
+                </tr>
+                <tr MadCap:conditions="Version.18-0-died">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.flush-buffer-packet-count</td>
+                    <td align="left">Specifies the number of the packets/buffer size that the swap redo log uses when flushing packets to the disk.</td>
+                    <td align="left">500</td>
+                </tr>
+                <tr MadCap:conditions="Version.18-0-died">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.segment-size</td>
+                    <td align="left">Specifies the size (in bytes) of each swap redo log segment file.</td>
+                    <td align="left">10485760 (10MB)</td>
+                </tr>
+                <tr MadCap:conditions="Version.18-0-died">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.fetch-buffer-packet-count</td>
+                    <td align="left">Specifies the number of packets/buffer size that the swap redo log is uses when retrieving packets from disk to memory.</td>
+                    <td align="left">500</td>
+                </tr>
+                <tr MadCap:conditions="Version.18-0-died">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.max-scan-length</td>
+                    <td align="left">Specifies the maximum allowed scan length (in bytes) in the swap redo log file in order to locate a packet.</td>
+                    <td align="left">51200 (50KB)</td>
+                </tr>
+                <tr MadCap:conditions="Version.18-0-died">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.max-open-cursors</td>
+                    <td align="left">Specifies the maximum number of open file descriptors that the swap redo log will use.</td>
+                    <td align="left">10</td>
+                </tr>
+            </tbody>
+        </table>
+        <p MadCap:conditions="Version.18-0-born">The following parameters are relevant only when the swap redo log format is <code>byte-buffer</code>:</p>
+        <table MadCap:conditions="Version.18-0-born">
+            <thead>
+                <tr>
+                    <th align="left">Space Cluster Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.flush-buffer-packet-count</td>
                     <td align="left">Specifies the number of the packets/buffer size that the swap redo log uses when flushing packets to the disk.</td>
@@ -264,37 +318,50 @@ ptm.commit(status);
         <h1><a name="limitations"></a>Limitations</h1>
         <p>When EDS is used with the central data source set to false, (which means each cluster member has its own private database), a backup Space recovers from its private database once re-started, and not from its primary Space. Therefore if  <code>drop-oldest</code> replication mode is used, the dropped packets never reach the backup Space and these members remain out of sync.</p>
         <h1><a name="monitoring-the-redo-log-size"></a>Monitoring the Redo Log Size</h1>
-        <p>You can see the redo log size using the GigaSpaces Management Center, the Web Management Console, or the Administration API.</p>
-        <h2><a name="viewing-the-redo-size-in-the-gigaspaces-management-center"></a>Viewing the Redo Size in the GigaSpaces Management Center</h2>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" />
-        <p>To see the redo log size in the GigaSpaces Management Center, enable the redo log size monitoring:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/red-log1.jpg" alt="red-log1.jpg" class="tc-picture30" />
+        <p MadCap:conditions="Version.18-0-died">You can see the redo log size using the GigaSpaces Management Center, the Web Management Console, or the Administration API.</p>
+        <p MadCap:conditions="Version.18-0-born">You can see the redo log size using SpaceDeck, the REST API, or the Administration API.</p>
+        <div MadCap:conditions="Version.18-0-died">
+            <h2><a name="viewing-the-redo-size-in-the-gigaspaces-management-center"></a>Viewing the Redo Size in the GigaSpaces Management Center</h2>
+            <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" />
+            <p>To see the redo log size in the GigaSpaces Management Center, enable the redo log size monitoring:</p>
+            <p>
+                <img src="../Resources/Static/attachment_files/red-log1.jpg" alt="red-log1.jpg" class="tc-picture30" />
+            </p>
+            <p>A new column is added to the Space list table:</p>
+            <p>
+                <img src="../Resources/Static/attachment_files/red-log2.jpg" alt="red-log2.jpg" class="tc-picture100" />
+            </p>
+            <h2><a name="viewing-the-redo-size-in-the-web-management-console"></a>Viewing the Redo Size in the Web Management Console</h2>
+            <p>To see the redo log size in the Web Management Console:</p>
+            <ol>
+                <li>
+                    <p>From the Spaces view, drill through to the required Space instance.</p>
+                </li>
+                <li>
+                    <p>in any column header, click the down arrow and hover over the <span class="tc-bold">Columns</span> option to display the list of available columns.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/admin/web-ui-column-select.png" width="312" height="346" class="tc-picture50" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select <span class="tc-bold">Replication Redo Log</span>. The column is added to the Space instance table.
         </p>
-        <p>A new column is added to the Space list table:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/red-log2.jpg" alt="red-log2.jpg" class="tc-picture100" />
-        </p>
-        <h2><a name="viewing-the-redo-size-in-the-web-management-console"></a>Viewing the Redo Size in the Web Management Console</h2>
-        <p>To see the redo log size in the Web Management Console:</p>
-        <ol>
-            <li>
-                <p>From the Spaces view, drill through to the required Space instance.</p>
-            </li>
-            <li>
-                <p>in any column header, click the down arrow and hover over the <span class="tc-bold">Columns</span> option to display the list of available columns.</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/admin/web-ui-column-select.png" width="312" height="346" class="tc-picture50" />
-                </p>
-            </li>
-            <li>
-                <p>Select <span class="tc-bold">Replication Redo Log</span>. The column is added to the Space instance table.
-    </p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/admin/web-ui-column-redolog.png" width="878" height="183" class="tc-picture100" />
-                </p>
-            </li>
-        </ol>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/admin/web-ui-column-redolog.png" width="878" height="183" class="tc-picture100" />
+                    </p>
+                </li>
+            </ol>
+        </div>
+        <div MadCap:conditions="Version.18-0-born">
+            <h2><a name="viewing-the-redo-log-size-in-spacedeck"></a>Viewing the Redo Log Size in SpaceDeck</h2>
+            <p>In SpaceDeck, click a space instance to see the details of its replication statistics:</p>
+            <p>
+                <img src="../Resources/Images/18.0/redo-log-spacedeck-replication-statistics.png" alt="Replication statistics in SpaceDeck" class="tc-picture100" />
+            </p>
+            <h2><a name="viewing-the-redo-log-size-using-the-rest-api"></a>Viewing the Redo Log Size Using the REST API</h2>
+            <p>Use the following REST API call:</p>
+            <p><code>/api/v3/spaces/{id}/instances/{instanceId}/statistics/replication</code></p>
+        </div>
         <h2><a name="getting-the-redo-log-using-the-administration-api"></a>Getting the Redo Log Using the Administration API</h2>
         <p>The following example shows how to get the redo log size using the Administration API:</p><pre><code class="language-java">Admin   admin = new AdminFactory().createAdmin();
 Space space = admin.getSpaces().waitFor("mySpace", 10, TimeUnit.SECONDS);

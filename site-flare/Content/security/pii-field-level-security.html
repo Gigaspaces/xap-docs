@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.18-0-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>PII - Field Level Security</h1>
+        <div>
+            <div class="tc-admon-refer">
+                <p>For an example, see <code><MadCap:variable name="General.HomePath" />/examples/helloworld-security</code>.</p>
+            </div>
+            <h1><a name="what-is-field-security"></a>What is Field Security?</h1>
+            <p>Space security has always been <span class="tc-bold">type level</span>: a user either may or may not <code>READ</code>/<code>WRITE</code> a class. Field Security adds <span class="tc-bold">field-level</span> control for properties that hold personal data (PII - Personally Identifiable Information), such as a social security number or a credit card number.</p>
+            <p>Each PII field can be granted separately per type and per user (role / service account):</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">The user...</th>
+                        <th align="left">Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left" rowspan="3">has no <span class="tc-bold">read</span> access to a PII field</td>
+                        <td align="left"><code>SELECT *</code> returns only the fields the user may read - the PII value is omitted (<code>null</code> in the Space API, the column is missing in JDBC)</td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border-left: 1px solid #e0e0e0;">Selecting the PII field explicitly results in an <span class="tc-bold">access denied</span> error</td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border-left: 1px solid #e0e0e0;">A query with a condition (<code>WHERE</code>, <code>ORDER BY</code>, <code>GROUP BY</code>, aggregation) on the PII field results in an <span class="tc-bold">access denied</span> error</td>
+                    </tr>
+                    <tr>
+                        <td align="left" rowspan="3">has no <span class="tc-bold">write</span> access to a PII field</td>
+                        <td align="left">Writing an object with a non-null value in that field results in an <span class="tc-bold">access denied</span> error</td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border-left: 1px solid #e0e0e0;">Writing / updating an object <span class="tc-bold">without</span> that field is allowed; on update the existing PII value is <span class="tc-bold">preserved</span></td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border-left: 1px solid #e0e0e0;"><code>change()</code> on that field results in an <span class="tc-bold">access denied</span> error</td>
+                    </tr>
+                    <tr>
+                        <td align="left">has read and write access</td>
+                        <td align="left">Everything works as usual</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Type-level privileges (<code>READ</code>, <code>WRITE</code>, ...) are still required in addition to the PII privileges. Types without PII fields and non-secured spaces are not affected.</p>
+            <h1><a name="marking-fields-as-pii"></a>Marking Fields as PII</h1>
+            <p><span class="tc-bold">POJO annotation</span> - <code>@SpacePii</code> on the getter:</p><pre><code class="language-java">public class Customer {
+    private Integer id;
+    private String name;
+    private String ssn;
+    private String creditCard;
+
+    @SpaceId
+    public Integer getId() { return id; }
+
+    public String getName() { return name; }
+
+    @SpacePii                       // personal data
+    public String getSsn() { return ssn; }
+
+    @SpacePii                       // personal data
+    public String getCreditCard() { return creditCard; }
+    // setters ...
+}
+</code></pre>
+            <p><span class="tc-bold">gs.xml</span>:</p><pre><code class="language-xml">&lt;class name="com.acme.Customer"&gt;
+    &lt;property name="ssn" pii="true"/&gt;
+    &lt;property name="creditCard" pii="true"/&gt;
+&lt;/class&gt;
+</code></pre>
+            <p><span class="tc-bold">Space documents</span> - <code>SpaceTypeDescriptorBuilder</code>:</p><pre><code class="language-java">SpaceTypeDescriptor customerType = new SpaceTypeDescriptorBuilder("Customer")
+        .idProperty("id")
+        .addFixedProperty("id", Integer.class)
+        .addFixedProperty("name", String.class)
+        .addFixedProperty("ssn", String.class)
+        .addFixedProperty("creditCard", String.class)
+        .piiProperties("ssn", "creditCard")
+        .create();
+gigaSpace.getTypeManager().registerTypeDescriptor(customerType);
+</code></pre>
+            <p>A subclass inherits the PII fields of its superclass.</p>
+            <h1><a name="privileges"></a>Privileges</h1>
+            <p>Two new space privileges:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Privilege</th>
+                        <th align="left">Allows</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><code>READ_PII</code>
+                        </td>
+                        <td align="left">reading / querying PII fields</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>WRITE_PII</code>
+                        </td>
+                        <td align="left">writing / updating PII fields</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Each privilege can be restricted with a filter:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Authority</th>
+                        <th align="left">Grants</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><code>SpacePrivilege READ_PII</code>
+                        </td>
+                        <td align="left">all PII fields of all types</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>SpacePrivilege READ_PII FieldFilter com.acme.Customer#ssn</code>
+                        </td>
+                        <td align="left">only <code>ssn</code> of <code>com.acme.Customer</code></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>SpacePrivilege READ_PII FieldFilter com.acme.Customer#*</code>
+                        </td>
+                        <td align="left">all PII fields of <code>com.acme.Customer</code></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>SpacePrivilege READ_PII SpacenameFilter mySpace</code>
+                        </td>
+                        <td align="left">all PII fields in space <code>mySpace</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="tc-admon-note">
+                <p>&#160;</p>
+                <ul>
+                    <li>
+                        <p>The type name in the <code>FieldFilter</code> is the name the type is registered with (the fully qualified class name for POJOs, the type name for documents).</p>
+                    </li>
+                    <li>
+                        <p><code>FieldFilter</code> can be used only with <code>READ_PII</code> / <code>WRITE_PII</code>.</p>
+                    </li>
+                    <li>
+                        <p><code>ROLE_ADMIN</code> in the distribution (<code>config/security/security-openid.yaml</code>, <code>config/security/service-accounts.yaml</code>) and the <code>root</code> user have full PII privileges.</p>
+                    </li>
+                </ul>
+            </div>
+            <h1><a name="defining-roles-and-service-accounts"></a>Defining Roles and Service Accounts</h1>
+            <p><span class="tc-bold">Security server REST API</span> (OpenID mode - the auth server runs on port 9000). The following creates a role:</p><pre><code class="language-bash">curl -u root:password -H "Content-Type: application/json" -X POST http://localhost:9000/v1/roles -d '{
+  "roleName": "ROLE_PII_PARTIAL",
+  "description": "read ssn only",
+  "default": false,
+  "policies": [
+    {"authority":"SpacePrivilege","privilege":"READ",  "filter":null},
+    {"authority":"SpacePrivilege","privilege":"WRITE", "filter":null},
+    {"authority":"SpacePrivilege","privilege":"READ_PII",
+     "filter":{"type":"FieldFilter","parameter":"org.openspaces.example.helloworld.common.Customer#ssn"}}
+  ]}'
+</code></pre>
+            <p>The following creates a service account with that role and retrieves its secret:</p><pre><code class="language-bash">UUID=$(curl -s -u root:password -H "Content-Type: application/json" -X POST \
+  http://localhost:9000/v1/service-account/config \
+  -d '{"serviceName":"pii-partial","rolesNames":["ROLE_PII_PARTIAL"],"tokenExpInMinutes":30}' | tr -d '"')
+curl -s -u root:password http://localhost:9000/v1/service-account/config/$UUID   # -&gt; "clientSecret"
+</code></pre>
+            <p><span class="tc-bold">Configuration files</span> - the same policies can be written as strings in <code>config/security/security-openid.yaml</code>:</p><pre><code class="language-yaml">roles:
+  ROLE_PII_PARTIAL:
+      SpacePrivilege READ
+    , SpacePrivilege WRITE
+    , SpacePrivilege READ_PII FieldFilter org.openspaces.example.helloworld.common.Customer#ssn
+</code></pre>
+            <h1><a name="connecting-as-a-service-account"></a>Connecting as a Service Account</h1>
+            <p><span class="tc-bold">Space API:</span>
+            </p><pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(
+        new SpaceProxyConfigurer("piiSpace")
+                .credentialsProvider(new ServiceCredentialsProvider("pii-partial", clientSecret)))
+        .gigaSpace();
+
+Customer customer = gigaSpace.readById(Customer.class, 2);
+// -&gt; ssn is returned, creditCard is null (no READ_PII on creditCard)
+
+gigaSpace.readMultiple(new SQLQuery&lt;&gt;(Customer.class, "ssn = ?", "ssn-2"));          // OK
+gigaSpace.readMultiple(new SQLQuery&lt;&gt;(Customer.class, "creditCard like '4111%'"));  // AccessDeniedException
+</code></pre>
+            <p><span class="tc-bold">JDBC</span> - the service account JWT is used as the password:</p><pre><code class="language-bash">TOKEN=$(curl -s "http://localhost:9000/v1/accessTokenWithSecret?id=pii-none&amp;clientSecret=&lt;secret&gt;")
+</code></pre><pre><code class="language-java">Properties props = new Properties();
+props.setProperty("user", "pii-none");
+props.setProperty("password", token);
+Connection connection = DriverManager.getConnection("jdbc:gigaspaces:v3://localhost/piiSpace", props);
+
+// SELECT * FROM "org.openspaces.example.helloworld.common.Customer"          -&gt; columns CITY, ID, NAME
+// SELECT name, ssn FROM "...Customer"                                        -&gt; access denied (validation error)
+// SELECT * FROM "...Customer" WHERE ssn = 'ssn-1'                            -&gt; access denied (validation error)
+</code></pre>
+            <p>Error messages look similar to the following:</p><pre><code>User [service-account-pii-none] lacks [Write PII] privileges for field [ssn] of class [org.openspaces.example.helloworld.common.Customer]
+Access denied - lacking [Read PII] privileges for field [creditCard] of table [org.openspaces.example.helloworld.common.Customer]
+</code></pre>
+            <h1><a name="limitations"></a>Limitations</h1>
+            <ul>
+                <li>
+                    <p>Only fixed properties can be PII (not dynamic properties).</p>
+                </li>
+                <li>
+                    <p>Local view, local cache and durable notifications of a type require <code>READ_PII</code> on <span class="tc-bold">all</span> its PII fields. Regular notifications are delivered with the denied PII values omitted.</p>
+                </li>
+                <li>
+                    <p>Custom change operations on a PII type require <code>WRITE_PII</code> on all its PII fields.</p>
+                </li>
+                <li>
+                    <p>Custom query predicates (user code) cannot be inspected for PII references.</p>
+                </li>
+                <li>
+                    <p>In the legacy JDBC driver, <code>SELECT *, ssn</code> silently omits <code>ssn</code> instead of failing.</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

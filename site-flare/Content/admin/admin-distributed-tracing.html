@@ -12,6 +12,7 @@
             </p>
         </div>
         <h1 class="tc-pagetitle">Distributed Tracing</h1>
+        <div MadCap:conditions="Version.18-0-died">
         <p>This topic describes how to leverage Distributed Tracing in your GigaSpaces cluster to identify latency issues.</p>
         <h1><span class="tc-bold">Overview</span>
         </h1>
@@ -102,5 +103,191 @@
         <p MadCap:conditions="Version.15-2-died">
             <MadCap:xref href="../orchestration/elasticgrid-overview.html">ElasticGrid</MadCap:xref>
         </p>
+        </div>
+        <div MadCap:conditions="Version.18-0-born">
+            <p>This topic describes how to turn on distributed tracing in GigaSpaces (XAP) and connect it to your observability backend to identify latency issues and performance bottlenecks.</p>
+            <h1><a name="overview"></a>Overview</h1>
+            <p>Distributed tracing is a vendor-agnostic way to gather timing data and troubleshoot latency issues across your system architecture. GigaSpaces includes native support for the OpenTelemetry SDK (v1.62.0), allowing you to seamlessly trace Space operations and export spans to your preferred observability backend (for example, Jaeger or the OpenTelemetry Collector) via OTLP.</p>
+            <h1><a name="turning-on-tracing"></a>Turning on Tracing: <code>com.gs.tracing.exporter</code></h1>
+            <p>By default, tracing is set to a no-op (which incurs almost no performance cost and sends nothing). To enable tracing, configure the <code>com.gs.tracing.exporter</code> property.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Value</th>
+                        <th align="left">Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><code>none</code> (default)</td>
+                        <td align="left">No-op: nothing is sent anywhere.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>logging</code></td>
+                        <td align="left">Spans are written to the process log, useful for local debugging.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>otlp</code></td>
+                        <td align="left">Spans are exported over OTLP/HTTP to your observability backend.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>You must set this in <code>GS_OPTIONS_EXT</code> (for example, inside <code>setenv-overrides.sh</code>) so that every JVM gets the same configuration:</p><pre><code class="language-bash">export GS_OPTIONS_EXT="-Dcom.gs.tracing.exporter=otlp \
+  -Dotel.exporter.otlp.endpoint=http://&lt;backend&gt;:4318 \
+  -Dotel.exporter.otlp.headers=&lt;auth-header&gt;=&lt;value&gt;"      # optional, e.g. an API key
+</code></pre>
+            <p>Once configured, restart your cluster:</p><pre><code class="language-bash">./bin/gs.sh host kill-agent &amp;&amp; ./bin/gs.sh host run-agent --auto --gsc=1 --restv3
+</code></pre>
+            <h1><a name="standard-opentelemetry-configuration"></a>Standard OpenTelemetry Configuration</h1>
+            <p>Along with the XAP-specific <code>com.gs.tracing.exporter</code> property, the system relies on standard <span class="tc-bold">OpenTelemetry SDK configuration</span> properties (<code>otel.*</code> system properties or <code>OTEL_*</code> environment variables). These are read once per JVM at startup when the exporter is set to <code>otlp</code>.</p>
+            <p><span class="tc-bold">Naming Convention:</span> Every property can be defined as a system property (<code>-Dotel.exporter.otlp.endpoint</code>) or an environment variable (<code>OTEL_EXPORTER_OTLP_ENDPOINT</code>). Use whichever best fits your deployment.</p>
+            <p><span class="tc-italic">Precedence:</span> <code>-Dotel.*</code> system property &gt; <code>OTEL_*</code> environment variable &gt; XAP's default values.</p>
+            <h2><a name="known-restrictions"></a>Known Restrictions</h2>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Supported Protocol:</span> Only the <span class="tc-bold">OTLP/HTTP</span> sender is shipped (defaults to <code>http/protobuf</code>). <code>otel.exporter.otlp.protocol=grpc</code> will not work.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Exporters:</span> Third-party exporters/samplers requiring extra jars (such as <code>zipkin</code>, <code>prometheus</code>, <code>b3</code>, <code>jaeger</code>) are not shipped. You must use <code>otlp</code>, <code>logging</code>, or <code>none</code>, alongside <code>tracecontext</code>/<code>baggage</code>.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Metrics:</span> Enabling <code>otel.metrics.exporter</code> or <code>otel.logs.exporter</code> will send OpenTelemetry's internal metrics/logs, <span class="tc-bold">not</span> GigaSpaces metrics. (GigaSpaces metrics use Micrometer and are configured independently.)</p>
+                </li>
+            </ul>
+            <h1><a name="where-to-put-settings"></a>Where to Put Settings</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Option</th>
+                        <th align="left">Reaches every GigaSpaces JVM?</th>
+                        <th align="left">Visible in ps/CLI?</th>
+                        <th align="left">Recommended Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><code>-Dotel.…</code> in <code>GS_OPTIONS_EXT</code></td>
+                        <td align="left">Yes</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Endpoints, TLS file paths, samplers, and non-secret configs.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>OTEL_…</code> environment variable</td>
+                        <td align="left">Yes (GSA-spawned GSC and REST v3 JVMs inherit it)</td>
+                        <td align="left">No</td>
+                        <td align="left"><span class="tc-bold">Secrets</span> (API keys, authorization tokens).</td>
+                    </tr>
+                    <tr>
+                        <td align="left">OpenTelemetry Collector config</td>
+                        <td align="left">GigaSpaces only needs the Collector's address</td>
+                        <td align="left">N/A</td>
+                        <td align="left">Keeping all backend credentials completely out of XAP.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1><a name="setup-recipes-and-endpoint-rules"></a>Setup Recipes and Endpoint Rules</h1>
+            <p>When specifying your endpoint, use your backend's <span class="tc-bold">OTLP/HTTP</span> address (conventionally port <span class="tc-bold">4318</span>, not the 4317 gRPC port). Provide the <span class="tc-bold">base URL</span> (for example, <code>https://host:4318</code>), and the SDK will automatically append <code>/v1/traces</code>.</p>
+            <p>Below are common setup recipes (to be used in addition to <code>-Dcom.gs.tracing.exporter=otlp</code>):</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Use Case</th>
+                        <th align="left">Additional Settings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><span class="tc-bold">Unsecured</span> (local Jaeger/Collector)</td>
+                        <td align="left"><code>-Dotel.exporter.otlp.endpoint=http://collector:4318</code></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><span class="tc-bold">TLS, public CA</span> (SaaS, HTTPS)</td>
+                        <td align="left"><code>-Dotel.exporter.otlp.endpoint=https://otlp.vendor.example</code> <span class="tc-italic">(uses the JDK's default trust store)</span></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><span class="tc-bold">TLS, private / self-signed CA</span></td>
+                        <td align="left">Add <code>-Dotel.exporter.otlp.certificate=/path/ca.pem</code></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><span class="tc-bold">Mutual TLS</span></td>
+                        <td align="left">
+                            <p>Add <code>-Dotel.exporter.otlp.client.key=/path/client.key</code></p>
+                            <p>Add <code>-Dotel.exporter.otlp.client.certificate=/path/client.pem</code></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left"><span class="tc-bold">API key / token header</span></td>
+                        <td align="left"><code>OTEL_EXPORTER_OTLP_HEADERS="&lt;header-name&gt;=&lt;key&gt;"</code></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><span class="tc-bold">Bearer token</span></td>
+                        <td align="left"><code>OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer%20&lt;token&gt;"</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><span class="tc-bold">Combined Secure Example:</span> This example demonstrates TLS with a private CA, keeping the API key secret by passing it as an environment variable.</p><pre><code class="language-bash">export OTEL_EXPORTER_OTLP_HEADERS="api-key=${TRACING_API_KEY}"
+export GS_OPTIONS_EXT="-Dcom.gs.tracing.exporter=otlp \
+  -Dotel.exporter.otlp.endpoint=https://otel.internal.example:4318 \
+  -Dotel.exporter.otlp.certificate=/opt/certs/internal-ca.pem"
+./bin/gs.sh host run-agent --auto --gsc=2 --restv3
+</code></pre>
+            <h1><a name="what-gets-traced"></a>What Gets Traced?</h1>
+            <p>Context propagates automatically, but not every Space operation produces its own dedicated span.</p>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Covered Operations (Generate Spans):</span> <code>read</code>, <code>readByIds</code>, <code>readMultiple</code>, <code>take</code>, <code>takeIfExists(ById)</code>, <code>takeById</code> (Class variants only), <code>takeMultiple</code>, <code>write</code>, <code>writeMultiple</code>, <code>change</code>, <code>aggregate</code>.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Not Covered (Participate in trace without creating a new span):</span> <code>readById</code>, <code>readIfExists(ById)</code>, <code>takeByIds</code>, <code>takeById(IdQuery …)</code>, <code>count</code>, <code>clear</code>, <code>execute</code>, async variants, <code>iterator</code>.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Server-side (GSC):</span> Currently, only single reads generate a server-side span (<code>gigaspaces:space_query</code>).</p>
+                </li>
+                <li>
+                    <p>Client-side traces are broken down per partition so that slow partitions can be identified.</p>
+                </li>
+            </ul>
+            <div class="tc-admon-important">
+                <p>Do not enable the older <code>ZipkinTracerBean</code> together with <code>com.gs.tracing.exporter</code>. Both will attempt to own the process's global tracer and cause conflicts.</p>
+            </div>
+            <h1><a name="troubleshooting"></a>Troubleshooting</h1>
+            <p>Export failures will <span class="tc-bold">never</span> break GigaSpaces operations. If an export fails, the SDK simply logs the error and drops the batch. If spans aren't appearing, check your <code>logs/…-restv3_….log</code> or <code>logs/…-gsc_….log</code> for <code>Failed to export spans</code>:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Log Message</th>
+                        <th align="left">Cause</th>
+                        <th align="left">Resolution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><code>SSLHandshakeException: … PKIX path building failed</code></td>
+                        <td align="left">Server certificate is not trusted (private CA).</td>
+                        <td align="left">Set <code>otel.exporter.otlp.certificate=&lt;ca.pem&gt;</code>.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>HTTP status code 401</code> or <code>403</code></td>
+                        <td align="left">Missing or incorrect authentication header.</td>
+                        <td align="left">Check <code>OTEL_EXPORTER_OTLP_HEADERS</code> formatting and values.</td>
+                    </tr>
+                    <tr>
+                        <td align="left">Handshake failure against an mTLS server</td>
+                        <td align="left">Missing or incorrect client certificate.</td>
+                        <td align="left">Set <code>client.key</code> (must be PKCS#8) and <code>client.certificate</code>.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>HTTP status code 404</code></td>
+                        <td align="left">Wrong path (for example, a traces-only endpoint missing <code>/v1/traces</code>).</td>
+                        <td align="left">Use the base-URL property, or manually include the path.</td>
+                    </tr>
+                    <tr>
+                        <td align="left">Connection refused / timeout</td>
+                        <td align="left">Wrong host/port, or aimed at the gRPC port (4317).</td>
+                        <td align="left">Switch to the OTLP/<span class="tc-bold">HTTP</span> address (4318).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

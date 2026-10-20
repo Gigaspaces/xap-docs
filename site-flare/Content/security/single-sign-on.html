@@ -7,52 +7,224 @@
             <p><a><MadCap:variable name="General.ProductXAP" /></a>
             </p>
         </div>
-        <h1>Single Sign-On for Service Grid</h1>
-        <p><b>Single Sign-On (SSO)</b> is a concept that allows a user to log in once with a single set of credentials and access multiple applications without re-authenticating.</p>
-        <p><b>OpenID Connect (OIDC)</b> is an authentication protocol built on top of the OAuth 2.0 authorization framework that enables SSO. It's the technical standard that makes "Sign in with Google" or "Sign in with Facebook" possible.</p>
-        <p>Since version 17.1.5, SSO is also available in the service grid installation.</p>
-        <p>To use SSO you must first define the IDP and use the groups field for specifying roles.</p>
-        <p>See <MadCap:xref href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO&#160;IDP&#160;Setup</MadCap:xref> for IDP setup example.</p>
-        <div>
-            <h2>Setting up a cluster with SSO in Service Grid</h2>
+        <div MadCap:conditions="Version.18-0-died">
+            <h1>Single Sign-On for Service Grid</h1>
+            <p><b>Single Sign-On (SSO)</b> is a concept that allows a user to log in once with a single set of credentials and access multiple applications without re-authenticating.</p>
+            <p><b>OpenID Connect (OIDC)</b> is an authentication protocol built on top of the OAuth 2.0 authorization framework that enables SSO. It's the technical standard that makes "Sign in with Google" or "Sign in with Facebook" possible.</p>
+            <p>Since version 17.1.5, SSO is also available in the service grid installation.</p>
+            <p>To use SSO you must first define the IDP and use the groups field for specifying roles.</p>
+            <p>See <MadCap:xref href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO&#160;IDP&#160;Setup</MadCap:xref> for IDP setup example.</p>
+            <div>
+                <h2>Setting up a cluster with SSO in Service Grid</h2>
+                <ol>
+                    <li>
+                        <p>
+                            <p>Edit gs-home/config/security/openid-security.properties:</p>
+                            <p><code>com.gs.security.security-manager.class=com.gigaspaces.security.openid.OpenIdSecurityManager</code>
+                            </p>
+                            <p># OpenID Provider Configuration</p><code class="language-bash">com.gs.openid.clientId=</code><code class="language-bash">com.gs.openid.clientSecret=</code><code class="language-bash">com.gs.openid.issueURL=</code><code class="language-bash">com.gs.openid.redirectUris=http://&lt;xap-manager-host&gt;:9000/oauth2/authorization-code/callback</code><code class="language-bash">com.gs.openid.authorityClaim=groups  (default roles fields)</code><code class="language-bash">com.gs.openid.id=1</code><code class="language-bash">com.gs.openid.spacedeckUrl=https://&lt;xap-manager-host&gt;:8888/api/auth/login</code><code class="language-bash">com.gs.openid.providerType=OKTA (as example)</code><code class="language-bash">spring-security-config-location=../config/security/security-config-openid.xml</code><code class="language-bash">spring.config.additional-location=file:../config/security/security-openid.yaml</code>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <p>Edit gs-home/bin/setenv-overrides.sh to point to the openid security properties and turn on security:</p>
+                            <p><code>export GS_OPTIONS_EXT="-Dcom.gs.security.enabled=true -Dcom.gs.security.properties-file=$HOME/config/security/openid-security.properties -Dcom.gs.manager.rest.ssl.enabled=false"</code>
+                            </p>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <p>As a result of starting the service grid with the above settings a new security service will be started on the manager machine with default port 9000</p>
+                            <p>You can see the available REST API for this service at: </p>
+                            <p>http://&lt;xap-manager-host&gt;:9000/swagger-ui/index.html</p>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <p>In order to use XAP manager api in the secured environment, a token from the security service is required.</p>
+                            <p>To obtain a token - http://&lt;xap-manager-ip&gt;:9000/oauth2/authorize</p>
+                            <p>If the user is already logged in, token will be retrieved directly; otherwise, a step redirecting to IDP login will be performed. (use  https://www.jwt.io/ for debug tokens)</p>
+                            <p>The token should be used in xap manager Rest API to access the APIs.</p>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <p>Service accounts are used for long-running services, both for internal services as pipelines and can also be created for external pus or long-running space clients</p>
+                            <p>See more at: https://docs.gigaspaces.com/latest/security/security-service-account-privilege-mgmt.html</p>
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div MadCap:conditions="Version.18-0-born">
+            <h1>SSO</h1>
+            <p>GigaSpaces supports Single Sign-On (SSO) integration using the OpenID Connect (OIDC) standard. This enables centralized user authentication and access control through standard Identity Providers (IdPs) such as Okta, Keycloak, or Azure AD.</p>
+            <h2><a name="enabling-sso-security"></a>Enabling SSO Security</h2>
+            <p>To activate SSO across the Service Grid, update the environment overrides script to enable security and point to your OpenID configuration file.</p>
+            <p>Edit <code>gs-home/bin/setenv-overrides.sh</code> and add the following export directive:</p><pre><code class="language-bash">export GS_OPTIONS_EXT="-Dcom.gs.security.enabled=true -Dcom.gs.security.properties-file=$HOME/config/security/openid-security.properties -Dcom.gs.manager.rest.ssl.enabled=false"
+</code></pre>
+            <div class="tc-admon-note">
+                <p>When the Service Grid starts with these settings, a dedicated Security Service is automatically launched on the Manager host on default port <span class="tc-bold">9000</span>.</p>
+            </div>
+            <h2><a name="configuring-openid-provider-properties"></a>Configuring OpenID Provider Properties</h2>
+            <p>Define your SSO settings in your security properties file (for example, <code>$HOME/config/security/openid-security.properties</code>).</p>
+            <h3><a name="property-file-example"></a>Property File Example</h3><pre><code class="language-bash"># OpenID Provider Identification
+com.gs.openid.id=1
+com.gs.openid.providerType=OKTA
+
+# Identity Provider Credentials &amp; Issuer URL
+com.gs.openid.clientId=&lt;client_id_from_idp&gt;
+com.gs.openid.clientSecret=&lt;client_secret_from_idp&gt;
+com.gs.openid.issueURL=https://&lt;your-org&gt;.okta.com/oauth2/default
+
+# Browser Flow &amp; Redirect Endpoints
+com.gs.openid.redirectUris=http://&lt;host&gt;:9000/oauth2/authorization-code/callback
+com.gs.openid.spacedeckUrl=https://&lt;host&gt;:8888/api/auth/login
+
+# Role &amp; Group Claim Mapping
+com.gs.openid.authorityClaim=groups
+</code></pre>
+            <h3><a name="property-reference"></a>Property Reference</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Property</th>
+                        <th align="left">Type</th>
+                        <th align="left">Required</th>
+                        <th align="left">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.id</code></td>
+                        <td align="left">Integer</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Unique numeric identifier for the OpenID provider configuration.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.providerType</code></td>
+                        <td align="left">String</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Identity Provider type (for example, <code>OKTA</code>, <code>KEYCLOAK</code>).</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.clientId</code></td>
+                        <td align="left">String</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Unique Client ID issued by your IdP.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.clientSecret</code></td>
+                        <td align="left">String</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Confidential Client Secret issued by your IdP.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.issueURL</code></td>
+                        <td align="left">String</td>
+                        <td align="left">Yes</td>
+                        <td align="left">
+                            <p>Issuer URL of the IdP token server.</p>
+                            <ul>
+                                <li>
+                                    <p><span class="tc-bold">Okta:</span> <code>https://&lt;your-org&gt;.okta.com/oauth2/default</code></p>
+                                </li>
+                                <li>
+                                    <p><span class="tc-bold">Keycloak:</span> <code>http://&lt;host&gt;:8080/realms/&lt;realm-name&gt;</code></p>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.redirectUris</code></td>
+                        <td align="left">URI</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Callback URI registered with your IdP for the authorization code flow.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.spacedeckUrl</code></td>
+                        <td align="left">URI</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Endpoint URL required for the browser login flow through SpaceDeck.</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>com.gs.openid.authorityClaim</code></td>
+                        <td align="left">String</td>
+                        <td align="left">Yes</td>
+                        <td align="left">Token claim that contains user roles or groups. Must match the payload emitted by your IdP. (Inspect token claims at <a href="https://jwt.io">jwt.io</a>.)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="authenticating-and-accessing-the-xap-manager-rest-api"></a>Authenticating &amp; Accessing XAP Manager REST API</h2>
+            <p>When security is enabled, accessing the XAP Manager REST API requires a bearer token issued by the Security Service.</p>
+            <h3><a name="rest-api-documentation-swagger-ui"></a>REST API Documentation (Swagger UI)</h3>
+            <p>You can view and test the available REST API endpoints for the Security Service at:</p>
+            <p><code>http://&lt;xap-manager-host&gt;:9000/swagger-ui/index.html</code></p>
+            <h3><a name="obtaining-an-access-token"></a>Obtaining an Access Token</h3>
+            <p>Request an authorization token by navigating to: <code>http://&lt;xap-manager-ip&gt;:9000/oauth2/authorize</code></p>
+            <p><span class="tc-bold">Authentication Flow:</span></p>
+            <ul>
+                <li>
+                    <p>If you are already logged in, the Security Service retrieves the token directly.</p>
+                </li>
+                <li>
+                    <p>If you are not authenticated, you will be redirected to your Identity Provider's login page.</p>
+                </li>
+            </ul>
+            <p><span class="tc-bold">Using the Token:</span> Include the token in the <code>Authorization</code> header of your XAP Manager REST API requests: <code>Authorization: Bearer &lt;access_token&gt;</code></p>
+            <div class="tc-admon-tip">
+                <p>You can decode and debug tokens by pasting them into <a href="https://jwt.io">jwt.io</a>.</p>
+            </div>
+            <h2><a name="service-accounts-for-long-running-tasks"></a>Service Accounts for Long-Running Tasks</h2>
+            <p>For non-interactive or background processes, such as data pipelines, external Processing Units (PUs), or persistent Space clients, use dedicated <span class="tc-bold">Service Accounts</span> rather than user credentials.</p>
+            <p>For details on configuring permissions and service accounts, refer to the <MadCap:xref href="security-service-account-privilege-mgmt.html">Service Account &amp; Privilege Management Documentation</MadCap:xref>.</p>
+            <h2><a name="local-development-and-testing-with-keycloak"></a>Local Development &amp; Testing with Keycloak</h2>
+            <p>For local testing and validation of OpenID Connect flows, deploy a standalone Keycloak instance using Docker.</p>
+            <h3><a name="step-1-start-keycloak-container"></a>Step 1: Start Keycloak Container</h3>
+            <p>Run the following command to start Keycloak in development mode:</p><pre><code class="language-bash">docker run -p 8080:8080 \
+  -e KEYCLOAK_ADMIN=admin \
+  -e KEYCLOAK_ADMIN_PASSWORD=admin \
+  quay.io/keycloak/keycloak:21.0.1 start-dev
+</code></pre>
+            <h3><a name="step-2-configure-keycloak-admin-console"></a>Step 2: Configure Keycloak Admin Console</h3>
             <ol>
                 <li>
-                    <p>
-                        <p>Edit gs-home/config/security/openid-security.properties:</p>
-                        <p><code>com.gs.security.security-manager.class=com.gigaspaces.security.openid.OpenIdSecurityManager</code>
-                        </p>
-                        <p># OpenID Provider Configuration</p><code class="language-bash">com.gs.openid.clientId=</code><code class="language-bash">com.gs.openid.clientSecret=</code><code class="language-bash">com.gs.openid.issueURL=</code><code class="language-bash">com.gs.openid.redirectUris=http://&lt;xap-manager-host&gt;:9000/oauth2/authorization-code/callback</code><code class="language-bash">com.gs.openid.authorityClaim=groups  (default roles fields)</code><code class="language-bash">com.gs.openid.id=1</code><code class="language-bash">com.gs.openid.spacedeckUrl=https://&lt;xap-manager-host&gt;:8888/api/auth/login</code><code class="language-bash">com.gs.openid.providerType=OKTA (as example)</code><code class="language-bash">spring-security-config-location=../config/security/security-config-openid.xml</code><code class="language-bash">spring.config.additional-location=file:../config/security/security-openid.yaml</code>
-                    </p>
+                    <p>Access the console at <code>http://localhost:8080</code> (log in with <code>admin</code> / <code>admin</code>).</p>
                 </li>
                 <li>
-                    <p>
-                        <p>Edit gs-home/bin/setenv-overrides.sh to point to the openid security properties and turn on security:</p>
-                        <p><code>export GS_OPTIONS_EXT="-Dcom.gs.security.enabled=true -Dcom.gs.security.properties-file=$HOME/config/security/openid-security.properties -Dcom.gs.manager.rest.ssl.enabled=false"</code>
-                        </p>
-                    </p>
+                    <p><span class="tc-bold">Create Realm</span>: Set up a new realm (for example, <code>demo-realm</code>).</p>
                 </li>
                 <li>
-                    <p>
-                        <p>As a result of starting the service grid with the above settings a new security service will be started on the manager machine with default port 9000</p>
-                        <p>You can see the available REST API for this service at: </p>
-                        <p>http://&lt;xap-manager-host&gt;:9000/swagger-ui/index.html</p>
-                    </p>
+                    <p><span class="tc-bold">Create Client</span>:</p>
+                    <ul>
+                        <li>
+                            <p>Create a new confidential client.</p>
+                        </li>
+                        <li>
+                            <p>Set <span class="tc-bold">Client Authentication</span> to <span class="tc-bold">ON</span>.</p>
+                        </li>
+                        <li>
+                            <p>Enable <span class="tc-bold">Direct Access Grants</span> to allow token retrieval via cURL.</p>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <p>
-                        <p>In order to use XAP manager api in the secured environment, a token from the security service is required.</p>
-                        <p>To obtain a token - http://&lt;xap-manager-ip&gt;:9000/oauth2/authorize</p>
-                        <p>If the user is already logged in, token will be retrieved directly; otherwise, a step redirecting to IDP login will be performed. (use  https://www.jwt.io/ for debug tokens)</p>
-                        <p>The token should be used in xap manager Rest API to access the APIs.</p>
-                    </p>
+                    <p><span class="tc-bold">Roles &amp; Users</span>: Create roles and users, then assign the roles to users.</p>
                 </li>
                 <li>
-                    <p>
-                        <p>Service accounts are used for long-running services, both for internal services as pipelines and can also be created for external pus or long-running space clients</p>
-                        <p>See more at: https://docs.gigaspaces.com/latest/security/security-service-account-privilege-mgmt.html</p>
-                    </p>
+                    <p><span class="tc-bold">Configure Mappers</span>: Ensure user roles are mapped to the claim specified in <code>com.gs.openid.authorityClaim</code>.</p>
                 </li>
             </ol>
+            <h3><a name="step-3-retrieve-token-via-curl-direct-grant"></a>Step 3: Retrieve Token via cURL (Direct Grant)</h3>
+            <p>To retrieve a token programmatically without a browser:</p><pre><code class="language-bash">curl -X POST http://localhost:8080/realms/&lt;realm-name&gt;/protocol/openid-connect/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=password" \
+  -d "client_id=&lt;clientId&gt;" \
+  -d "client_secret=&lt;clientSecret&gt;" \
+  -d "username=&lt;user&gt;" \
+  -d "password=&lt;password&gt;"
+</code></pre>
+            <p>Extract the <code>access_token</code> from the JSON response and pass it in the <code>Authorization: Bearer &lt;access_token&gt;</code> header for REST API, SpaceDeck, or XAP requests.</p>
         </div>
     </body>
 </html>

@@ -22,6 +22,29 @@ These differences are described in the following sections.</p>
 config.setDurableNotifications(true);
 DataEventSession session = space.newDataEventSession(config);
 </code></pre>
+        <div MadCap:conditions="Version.18-0-born">
+            <p>In <code>pu.xml</code>:</p><pre><code class="language-xml">&lt;os-events:notify-container id="notifyContainer" giga-space="gigaSpace" durable="true" client-id="${clientId:demo-client}"&gt;
+</code></pre>
+            <p>Code example:</p><pre><code class="language-java">SimpleNotifyEventListenerContainer container = new SimpleNotifyContainerConfigurer(gigaSpace)
+       .template(new Trade())
+       .durable(true)
+       .clientId("my-client-id")
+       .eventListenerAnnotation(myListenerBean)
+       .create();
+</code></pre>
+            <p>The <code>clientId</code> parameter was added in version 18.0.1.</p>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Purpose:</span> Preserves pending events across client restarts.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Requirement:</span> Each durable notification client must have its own unique ID.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Default behavior:</span> If this parameter is omitted, the system automatically generates a new ID upon each registration, resulting in the loss of all pending events when the client restarts.</p>
+                </li>
+            </ul>
+        </div>
         <h1><a name="batch-parameters"></a>Batch Parameters</h1>
         <p>Durable notifications are always sent as batches over the network (even if the client will receive them one by one), so tuning these parameters might be beneficial in certain cases.</p><pre><code class="language-java">EventSessionConfig#setBatch(int size, long delay, int pendingThreshold)
 </code></pre>

@@ -39,6 +39,26 @@ userPassword: koala
 ...
 </code></pre>
         <p>Download the <a href="/download_files/sample.ldif">sample.ldif</a></p>
+        <div MadCap:conditions="Version.18-0-born">
+            <p>The following example, from <code>ldap-sample.ldif</code> in <code>config/security</code>, is for a <code>com.acme.Customer</code> type with PII fields <code>ssn</code> and <code>creditCard</code>:</p><pre><code class="language-bash">dn: cn=ROLE_CUSTOMER_SUPPORT,ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: ROLE_CUSTOMER_SUPPORT
+member: uid=support-user,ou=people,dc=example,dc=org
+ou: SPACE_READ ClassFilter com.acme.Customer
+ou: SPACE_WRITE ClassFilter com.acme.Customer
+ou: SPACE_READ_PII FieldFilter com.acme.Customer#ssn
+
+dn: cn=ROLE_CUSTOMER_ADMIN,ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: ROLE_CUSTOMER_ADMIN
+member: uid=customer-admin,ou=people,dc=example,dc=org
+ou: SPACE_READ ClassFilter com.acme.Customer
+ou: SPACE_WRITE ClassFilter com.acme.Customer
+ou: SPACE_READ_PII FieldFilter com.acme.Customer#*
+</code></pre>
+        </div>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/SpringSecurity-LDAP.png" alt="SpringSecurity-LDAP.png" class="tc-picture100" />
@@ -96,6 +116,7 @@ userPassword: koala
     &lt;property name="password" value="password" /&gt;
 &lt;/bean&gt;
 </code></pre>
+        <div MadCap:conditions="Version.18-0-died">
         <h2><a name="declaring-the-populator"></a>Declaring the Populator</h2>
         <p>Once the user identity is confirmed, <code>LdapAuthenticationProvider</code> must retrieve a list of the user's granted authorities. Spring Security comes with <code>DefaultLdapAuthoritiesPopulator</code>. Here's how a populator is configured:</p><pre><code class="language-xml">&lt;bean id="populator"
       class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator"&gt;
@@ -119,8 +140,35 @@ userPassword: koala
             <p>Notice that the <code>convertToUpperCase</code> and <code>rolePrefix</code> are different than the defaults. The granted authorities should be returned as-is, without any conversion. For example, the authority <code>SpacePrivilege READ ClassFilter eg.cinema.Movie</code> <span class="tc-bold">should not</span> be converted to upper case, nor should it be prefixed with a role prefix "ROLE_".</p>
         </div>
         <p>Configured this way, the <code>DefaultLdapAuthoritiesPopulator</code> will retrieve all groups (roles) that the user is a member of - that is, all groups that have a <code>member</code> attribute with the user's DN.</p>
+        </div>
+        <div MadCap:conditions="Version.18-0-born">
+        <h2><a name="declaring-the-populator"></a>Declaring the Populator</h2>
+        <p>Once the user identity is confirmed, <code>LdapAuthenticationProvider</code> must retrieve a list of the user's granted authorities. Spring Security comes with <code>DefaultLdapAuthoritiesPopulator</code>. However, this populator should be replaced with <code>com.gigaspaces.security.ldap.XAPLdapAuthoritiesPopulator</code> as in the default <code>ldap-security-config.xml</code>. Here is how a populator is configured:</p><pre><code class="language-xml">&lt;bean id="populator"
+      class="com.gigaspaces.security.ldap.XAPLdapAuthoritiesPopulator"&gt;
+    &lt;constructor-arg ref="contextSource" /&gt;
+    &lt;!--  group based DN - we will be searching for groups in "ou=groups,dc=example,dc=com" --&gt;
+    &lt;constructor-arg value="ou=groups" /&gt;
+
+    &lt;!-- the name of the attribute that will contain role information (which
+         effectively translates to a user's granted authorities. Default is "cn" --&gt;
+    &lt;property name="groupRoleAttribute" value="ou" /&gt;
+
+    &lt;!-- case normalization to upper case. Default is true --&gt;
+    &lt;property name="convertToUpperCase" value="false" /&gt;
+
+    &lt;!-- role prefix to append to the group name. Default is "ROLE_". --&gt;
+    &lt;property name="rolePrefix" value="" /&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>The <code>groupRoleAttribute</code> property specifies the name of the attribute that will contain role information which effectively translates into a user's granted authorities. It defaults to <code>cn</code>, but for our example, we've set it to <code>ou</code>.</p>
+        <div class="tc-admon-note">
+            <p>Notice that the <code>convertToUpperCase</code> and <code>rolePrefix</code> properties differ from the defaults. The granted authorities should be returned as-is, without any conversion. For example, the authority <code>SpacePrivilege READ ClassFilter eg.cinema.Movie</code> <span class="tc-bold">should not</span> be converted to upper case, nor should it be prefixed with a role prefix "ROLE_".</p>
+        </div>
+        <p>Configured this way, the <code>XAPLdapAuthoritiesPopulator</code> will retrieve all groups (roles) that the user is a member of; that is, all groups that have a <code>member</code> attribute with the user's DN.</p>
+        </div>
         <h3><a name="additional-roles"></a>Additional Roles</h3>
-        <p>The <code>DefaultLdapAuthoritiesPopulator</code> allows us to obtain any additional roles for the given user (on top of those obtained from the standard search implemented by this class). This is done by overriding <code>getAdditionalRoles</code> to return the extra roles which will be merged with those returned by the group search.</p>
+        <p MadCap:conditions="Version.18-0-died">The <code>DefaultLdapAuthoritiesPopulator</code> allows us to obtain any additional roles for the given user (on top of those obtained from the standard search implemented by this class). This is done by overriding <code>getAdditionalRoles</code> to return the extra roles which will be merged with those returned by the group search.</p>
+        <p MadCap:conditions="Version.18-0-born">The <code>XAPLdapAuthoritiesPopulator</code> allows us to obtain any additional roles for the given user (on top of those obtained from the standard search implemented by this class). This is done by overriding <code>getAdditionalRoles</code> to return the extra roles which will be merged with those returned by the group search.</p>
         <p>Take for example Emily, our "Box-Office Administrator" which needs extra authorities which are not part of the "Box-Office Administrator" role. We would like to be able to grant specific authorities on top of the user record, as illustrated below:</p>
         <div class="tc-align-center">
             <p>

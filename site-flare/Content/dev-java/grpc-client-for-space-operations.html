@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.18-0-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1>gRPC Client for Space Operations</h1>
+        <div>
+            <p>Implementing a gRPC client provides a lightweight, multi-language interface designed for modern cloud-native architectures. It enables low-overhead integration with serverless environments like AWS Lambda, allows polyglot applications to interact directly with the IMDG Space, and offers Java services a minimal dependency footprint to eliminate classpath and library conflicts.</p>
+            <h1><a name="overview"></a>Overview</h1>
+            <p>The GigaSpaces XAP REST v3 API provides a gRPC interface for Space operations through a service called <code>SpaceService</code>. This guide explains how to build a gRPC client to perform simple Space operations like Write, Read, Take, Clear, Count, and Query.</p>
+            <p>Key features:</p>
+            <ul>
+                <li>
+                    <p>Type-safe Protocol Buffer definitions</p>
+                </li>
+                <li>
+                    <p>Efficient binary serialization</p>
+                </li>
+                <li>
+                    <p>Support for single and batch operations</p>
+                </li>
+                <li>
+                    <p>Query expression support</p>
+                </li>
+                <li>
+                    <p>Security and audit logging</p>
+                </li>
+                <li>
+                    <p>OpenTelemetry tracing integration</p>
+                </li>
+                <li>
+                    <p>Full error handling with proper status codes</p>
+                </li>
+            </ul>
+            <h1><a name="prerequisites"></a>Prerequisites</h1>
+            <h2><a name="software-requirements"></a>Software Requirements</h2>
+            <ul>
+                <li>
+                    <p>gRPC Framework (version 1.50+)</p>
+                </li>
+                <li>
+                    <p>Protocol Buffer Compiler (<code>protoc</code>) 3.x or higher</p>
+                </li>
+                <li>
+                    <p>Java 11+ (Java 8 is supported with additional ALPN configuration)</p>
+                </li>
+                <li>
+                    <p>Maven or Gradle (for build management)</p>
+                </li>
+                <li>
+                    <p>Running GigaSpaces XAP instance with REST v3 server enabled</p>
+                </li>
+            </ul>
+            <h2><a name="knowledge-requirements"></a>Knowledge Requirements</h2>
+            <ul>
+                <li>
+                    <p>Basic understanding of gRPC concepts</p>
+                </li>
+                <li>
+                    <p>Familiarity with Protocol Buffers</p>
+                </li>
+                <li>
+                    <p>Understanding of XAP Space operations (Write, Read, Take, etc.)</p>
+                </li>
+                <li>
+                    <p>Basic knowledge of the data types you plan to store</p>
+                </li>
+            </ul>
+            <h1><a name="getting-the-protocol-buffer-definitions"></a>Getting the Protocol Buffer Definitions</h1>
+            <p>The server provides a convenient endpoint to download all required <code>.proto</code> files.</p>
+            <h2><a name="download-proto-files"></a>Download Proto Files</h2>
+            <p>URL: <code>http://&lt;server-host&gt;:&lt;server-port&gt;/grpc/proto.zip</code></p>
+            <p>Example:</p><pre><code class="language-bash">curl -o space-grpc-proto.zip http://localhost:8090/grpc/proto.zip
+</code></pre>
+            <p>This downloads a ZIP containing:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">File</th>
+                        <th align="left">Contents</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left"><code>space_service.proto</code></td>
+                        <td align="left">Service definition with all RPC methods</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>space_crud.proto</code></td>
+                        <td align="left">Create, Read, Update, Delete operations</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>space_admin.proto</code></td>
+                        <td align="left">Admin operations like RegisterType, Clear</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>space_tasks.proto</code></td>
+                        <td align="left">Task execution operations</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><code>common.proto</code></td>
+                        <td align="left">Common message types and enumerations</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="extract-the-files"></a>Extract the Files</h2><pre><code class="language-bash">unzip space-grpc-proto.zip
+</code></pre>
+            <p>This creates a <code>space/</code> directory with all <code>.proto</code> files.</p>
+            <h2><a name="proto-file-dependencies"></a>Proto File Dependencies</h2>
+            <p>The <code>.proto</code> files are organized with clear dependencies:</p><pre><code>space_service.proto
+  ├── imports space_crud.proto
+  ├── imports space_admin.proto
+  └── imports space_tasks.proto
+</code></pre>
+            <p>All of the above import <code>common.proto</code>.</p>
+            <h1><a name="project-setup-for-java-thin-client"></a>Project Setup for Java Thin Client</h1>
+            <h2><a name="for-maven-projects"></a>For Maven Projects</h2>
+            <p>Add the following dependencies to your <code>pom.xml</code>:</p><pre><code class="language-xml">&lt;dependencies&gt;
+    &lt;!-- gRPC --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+        &lt;artifactId&gt;grpc-netty-shaded&lt;/artifactId&gt;
+        &lt;version&gt;1.53.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+        &lt;artifactId&gt;grpc-protobuf&lt;/artifactId&gt;
+        &lt;version&gt;1.53.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+        &lt;artifactId&gt;grpc-stub&lt;/artifactId&gt;
+        &lt;version&gt;1.53.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- Protocol Buffers --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.google.protobuf&lt;/groupId&gt;
+        &lt;artifactId&gt;protobuf-java&lt;/artifactId&gt;
+        &lt;version&gt;3.21.12&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+            <p>Add the <code>protobuf-maven-plugin</code> to your build section:</p><pre><code class="language-xml">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.xolstice.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;protobuf-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;0.6.1&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;protocArtifact&gt;com.google.protobuf:protoc:3.21.12:exe:${os.detected.classifier}&lt;/protocArtifact&gt;
+                &lt;pluginId&gt;grpc-java&lt;/pluginId&gt;
+                &lt;pluginArtifact&gt;io.grpc:protoc-gen-grpc-java:1.53.0:exe:${os.detected.classifier}&lt;/pluginArtifact&gt;
+            &lt;/configuration&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;compile&lt;/goal&gt;
+                        &lt;goal&gt;compile-custom&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+            <h2><a name="project-directory-structure"></a>Project Directory Structure</h2><pre><code>my-space-client/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/spaceclient/
+│   │   │       ├── SpaceClient.java
+│   │   │       ├── operations/
+│   │   │       │   ├── WriteOperation.java
+│   │   │       │   ├── ReadOperation.java
+│   │   │       │   └── QueryOperation.java
+│   │   │       └── config/
+│   │   │           └── ClientConfig.java
+│   │   └── proto/
+│   │       └── space/
+│   │           ├── space_service.proto
+│   │           ├── space_crud.proto
+│   │           ├── space_admin.proto
+│   │           ├── space_tasks.proto
+│   │           └── common.proto
+│   └── test/
+│       └── java/
+│           └── com/example/spaceclient/
+│               └── SpaceClientTest.java
+├── pom.xml (or build.gradle)
+└── README.md
+</code></pre>
+            <h2><a name="java-client-code-example"></a>Java Client Code Example</h2>
+            <p>The client code for Java 8 is identical to Java 11+, with one exception when using TLS. If your server uses TLS/SSL, you should explicitly enable transport security for better ALPN negotiation:</p><pre><code class="language-java">import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+
+public class SpaceClientJava8 {
+    private final ManagedChannel channel;
+    private final SpaceServiceGrpc.SpaceServiceBlockingStub blockingStub;
+
+    public SpaceClientJava8(String host, int port, boolean useTls) {
+        // For Java 8 with TLS: explicitly enable transport security
+        // to ensure ALPN negotiation works properly
+        if (useTls) {
+            this.channel = ManagedChannelBuilder.forAddress(host, port)
+                .useTransportSecurity()  // TLS with ALPN support
+                .build();
+        } else {
+            this.channel = ManagedChannelBuilder.forAddress(host, port)
+                .usePlaintext()          // No encryption
+                .build();
+        }
+
+        this.blockingStub = SpaceServiceGrpc.newBlockingStub(channel);
+    }
+
+    public void shutdown() throws InterruptedException {
+        channel.shutdown();
+        if (!channel.awaitTermination(5, java.util.concurrent.TimeUnit.SECONDS)) {
+            channel.shutdownNow();
+        }
+    }
+}
+</code></pre>
+            <h1><a name="building-a-basic-client"></a>Building a Basic Client</h1>
+            <h2><a name="client-initialization"></a>Client Initialization</h2><pre><code class="language-java">import io.grpc.Channel;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+
+public class SpaceClient {
+    private final ManagedChannel channel;
+    private final SpaceServiceGrpc.SpaceServiceBlockingStub blockingStub;
+
+    public SpaceClient(String host, int port) {
+        this.channel = ManagedChannelBuilder.forAddress(host, port)
+            .usePlaintext()
+            .build();
+        this.blockingStub = SpaceServiceGrpc.newBlockingStub(channel);
+    }
+
+    public void shutdown() throws InterruptedException {
+        channel.shutdown();
+        if (!channel.awaitTermination(5, java.util.concurrent.TimeUnit.SECONDS)) {
+            channel.shutdownNow();
+        }
+    }
+}
+</code></pre>
+            <h2><a name="basic-write-operation"></a>Basic Write Operation</h2><pre><code class="language-java">public WriteResponse writeObject(String spaceName, String typeName,
+                                 Map&lt;String, Object&gt; properties) {
+    WriteRequest request = WriteRequest.newBuilder()
+        .setSpaceName(spaceName)
+        .setTypeName(typeName)
+        .putAllProperties(convertToProtoValues(properties))
+        .build();
+
+    return blockingStub.write(request);
+}
+</code></pre>
+            <h2><a name="basic-read-operation"></a>Basic Read Operation</h2><pre><code class="language-java">public ReadByIdResponse readById(String spaceName, String id) {
+    ReadByIdRequest request = ReadByIdRequest.newBuilder()
+        .setSpaceName(spaceName)
+        .setId(id)
+        .build();
+
+    return blockingStub.readById(request);
+}
+</code></pre>
+            <h2><a name="helper-method-for-type-conversion"></a>Helper Method for Type Conversion</h2><pre><code class="language-java">private Map&lt;String, Value&gt; convertToProtoValues(Map&lt;String, Object&gt; properties) {
+    Map&lt;String, Value&gt; protoValues = new HashMap&lt;&gt;();
+
+    for (Map.Entry&lt;String, Object&gt; entry : properties.entrySet()) {
+        Value.Builder valueBuilder = Value.newBuilder();
+        Object value = entry.getValue();
+
+        if (value instanceof String) {
+            valueBuilder.setStringValue((String) value);
+        } else if (value instanceof Integer) {
+            valueBuilder.setIntValue((Integer) value);
+        } else if (value instanceof Long) {
+            valueBuilder.setLongValue((Long) value);
+        } else if (value instanceof Double) {
+            valueBuilder.setDoubleValue((Double) value);
+        } else if (value instanceof Boolean) {
+            valueBuilder.setBoolValue((Boolean) value);
+        } else if (value instanceof byte[]) {
+            valueBuilder.setBytesValue(com.google.protobuf.ByteString.copyFrom((byte[]) value));
+        }
+
+        protoValues.put(entry.getKey(), valueBuilder.build());
+    }
+
+    return protoValues;
+}
+</code></pre>
+            <h1><a name="supported-space-operations"></a>Supported Space Operations</h1>
+            <p>The <code>SpaceService</code> interface provides the following RPC methods:</p>
+            <h2><a name="write-operations"></a>WRITE Operations</h2>
+            <ul>
+                <li>
+                    <p><code>write(WriteRequest) -&gt; WriteResponse</code> - Write a single object to the Space.</p>
+                </li>
+                <li>
+                    <p><code>writeMultiple(WriteMultipleRequest) -&gt; WriteMultipleResponse</code> - Write multiple objects in a batch operation.</p>
+                </li>
+            </ul>
+            <h2><a name="read-operations"></a>READ Operations</h2>
+            <ul>
+                <li>
+                    <p><code>readById(ReadByIdRequest) -&gt; ReadByIdResponse</code> - Read a single object by ID.</p>
+                </li>
+                <li>
+                    <p><code>readByIds(ReadByIdsRequest) -&gt; ReadByIdsResponse</code> - Read multiple objects by IDs.</p>
+                </li>
+                <li>
+                    <p><code>readMultiple(ReadMultipleRequest) -&gt; ReadMultipleResponse</code> - Read objects matching a query expression.</p>
+                </li>
+            </ul>
+            <h2><a name="take-operations"></a>TAKE Operations</h2>
+            <ul>
+                <li>
+                    <p><code>takeById(TakeByIdRequest) -&gt; TakeByIdResponse</code> - Take (remove and return) a single object by ID.</p>
+                </li>
+                <li>
+                    <p><code>takeByIds(TakeByIdsRequest) -&gt; TakeByIdsResponse</code> - Take multiple objects by IDs.</p>
+                </li>
+                <li>
+                    <p><code>takeMultiple(TakeMultipleRequest) -&gt; TakeMultipleResponse</code> - Take objects matching a query expression.</p>
+                </li>
+            </ul>
+            <h2><a name="query-operations"></a>QUERY Operations</h2>
+            <ul>
+                <li>
+                    <p><code>queryExpression(QueryExpressionRequest) -&gt; QueryExpressionResponse</code> - Execute a SQL-like query expression against the Space.</p>
+                </li>
+            </ul>
+            <h2><a name="admin-operations"></a>ADMIN Operations</h2>
+            <ul>
+                <li>
+                    <p><code>registerType(RegisterTypeRequest) -&gt; RegisterTypeResponse</code> - Register a new data type with the Space.</p>
+                </li>
+                <li>
+                    <p><code>clear(ClearRequest) -&gt; ClearResponse</code> - Clear all objects of a type from the Space.</p>
+                </li>
+                <li>
+                    <p><code>count(CountRequest) -&gt; CountResponse</code> - Count objects of a type in the Space.</p>
+                </li>
+                <li>
+                    <p><code>change(ChangeRequest) -&gt; ChangeResponse</code> - Update specific properties of objects in the Space.</p>
+                </li>
+            </ul>
+            <h2><a name="task-operations"></a>TASK Operations</h2>
+            <ul>
+                <li>
+                    <p><code>executeDurableTask(ExecuteDurableTaskRequest) -&gt; ExecuteDurableTaskResponse</code> - Execute a durable task on the Space.</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
