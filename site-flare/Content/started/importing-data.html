@@ -12,6 +12,33 @@
             </p>
         </div>
         <h1 class="tc-pagetitle">Importing Data Using CSV Files</h1>
+        <div MadCap:conditions="Version.18-0-born">
+            <p>The ability to load table data from a CSV file was added to SpaceDeck and the REST V3 API. You must specify the routing and ID properties. The following options are available:</p>
+            <ol>
+                <li>
+                    <p>Use the write-only modifier. An error is returned if the entry already exists.</p>
+                </li>
+                <li>
+                    <p>Drop and recreate the type if it exists.</p>
+                </li>
+                <li>
+                    <p>Skip errors.</p>
+                </li>
+            </ol>
+            <p>Table data is loaded in chunks, and a progress bar is shown.</p>
+            <p>
+                <img src="../Resources/Images/18.0/load-table-from-csv.png" alt="Load Table from CSV in SpaceDeck" class="tc-picture100" />
+            </p>
+            <p>Related REST APIs:</p>
+            <ul>
+                <li>
+                    <p><code>/api/v3/data-resources</code></p>
+                </li>
+                <li>
+                    <p><code>/api/v3/spaces/{id}/loadDataFromResource</code></p>
+                </li>
+            </ul>
+        </div>
         <p>A comma-separated value (CSV) file is a popular way to represent simple text data and exchange it between systems. Fields in each data record are separated by a comma (or another delimiter). <MadCap:variable name="General.CompanyName" /> provides a <code>CsvReader</code> class  to import data from CSV files to the data grid. The CsvReader is a relatively simple method for reading moderate amounts of CSV data. This can be very useful when first getting started with <MadCap:variable name="General.CompanyName" /> products, or when prototyping scenarios.</p>
         <h1>Usage</h1>
         <p>The CsvReader class reads CSV files and returns a stream of Space entries. The first line of the CSV file must be metadata, listing the fields names (and optionally the field types). The user can opt to read the CSV file to the data grid using either POJOs or documents.</p>

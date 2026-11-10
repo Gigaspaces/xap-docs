@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.18-0-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">xap-ai-sdk: Developer Guide</h1>
+        <p><code>xap-ai-sdk</code> lets your application call large language models (LLMs) through one entry point, <code>AgenticAIGateway</code>. It builds on Spring AI and adds four things on top of a plain chat call:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Model profiles.</span> Name a provider and model once, then pick a profile per call.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Personas and tools.</span> Give the model a role and Java methods it can call.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Self-checking calls.</span> <code>advancedCall</code> has a judge score each answer and asks for a better one until it passes.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Planning and agentic calls.</span> <code>taskPlanner</code> breaks a goal into steps. <code>agenticCall</code> plans, runs, validates, and synthesizes the result.</p>
+            </li>
+        </ul>
+        <p>The gateway is stateless, so one instance can serve your whole application.</p>
+        <p><span class="tc-bold">Reference examples:</span> <code>gs-home/examples/ai-sdk</code> and <code>gs-home/examples/ai-sdk-nospring</code></p>
+        <h1><a name="add-the-dependencies"></a>Add the Dependencies</h1><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.gigaspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-ai-sdk&lt;/artifactId&gt;
+    &lt;version&gt;${gs.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.ai&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-ai-starter-model-anthropic&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <p>Add the Spring AI starter for each provider you use. The SDK includes the Anthropic and OpenAI modules as optional dependencies, so an application needs only the providers it calls.</p>
+        <h1><a name="configure-a-profile-spring-boot"></a>Configure a Profile (Spring Boot)</h1>
+        <p>Spring Boot registers the gateway automatically. Only the <code>default</code> profile is required:</p><pre><code class="language-bash">spring.ai.anthropic.api-key=${ANTHROPIC_API_KEY}
+ai-sdk.profiles.default.provider=anthropic
+ai-sdk.profiles.default.model=claude-sonnet-5-5
+ai-sdk.profiles.default.timeout=5m
+
+# Optional: a second profile. Unset fields fall back to the default profile.
+ai-sdk.profiles.cheap.provider=openai
+ai-sdk.profiles.cheap.model=gpt-5-mini
+
+# Optional: price per million tokens. Adds a dollar price to Response.cost().
+ai-sdk.pricing[claude-sonnet-5-5].input-per-million=2.00
+ai-sdk.pricing[claude-sonnet-5-5].output-per-million=10.00
+</code></pre>
+        <p>Each Spring AI <code>ChatModel</code> bean becomes a provider, named after the bean's class with <code>ChatModel</code> removed: <code>AnthropicChatModel</code> gives <code>anthropic</code>, and <code>OpenAiChatModel</code> gives <code>openai</code>. Startup fails if the <code>default</code> profile is missing, or if a profile names a provider with no <code>ChatModel</code> bean.</p>
+        <p>Some settings are provider-specific and fail at startup if they are wrong for the provider:</p>
+        <ul>
+            <li>
+                <p><code>effort</code> works only with Anthropic and OpenAI models.</p>
+            </li>
+            <li>
+                <p><code>timeout</code> works only with Anthropic and OpenAI models, and it must be positive.</p>
+            </li>
+            <li>
+                <p>Recent Claude models reject <code>temperature</code>, so leave it unset for them.</p>
+            </li>
+        </ul>
+        <h1><a name="use-it-without-spring"></a>Use It Without Spring</h1>
+        <p>For a plain Java application, build the Spring AI <code>ChatModel</code>s yourself and pass them to <code>AgenticAIGateway.create</code>:</p><pre><code class="language-java">ChatModel anthropic = AnthropicChatModel.builder()
+        .options(AnthropicChatOptions.builder().apiKey(System.getenv("ANTHROPIC_API_KEY")).build())
+        .build();
+
+AgenticAIProperties properties = new AgenticAIProperties();
+properties.getProfiles().put("default", new AgenticAIProperties.Profile("anthropic", "claude-sonnet-5-5", null));
+properties.getProfiles().put("precise", new AgenticAIProperties.Profile(null, "claude-opus-5-5", null, "high"));
+
+AgenticAIGateway gateway = AgenticAIGateway.create(properties, Map.of("anthropic", anthropic));
+</code></pre>
+        <p>The map keys are the provider names that profiles use. <code>create</code> throws the same startup errors as the Spring configuration. In a plain Spring (non-Boot) application, declare the gateway as a bean with <code>create(...)</code>. Component scanning alone does not register its collaborators.</p>
+        <h1><a name="make-a-call"></a>Make a Call</h1>
+        <p>Inject <code>AgenticAIGateway</code> and choose one of four entry points. Each returns a builder, and nothing is sent until <code>execute()</code>.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Entry Point</th>
+                    <th align="left">Use It For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><code>simpleCall(prompt)</code></td>
+                    <td align="left">One request, with optional tools.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>advancedCall(prompt)</code></td>
+                    <td align="left">An answer that a judge scores, and that is regenerated until it passes.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>taskPlanner(goal)</code></td>
+                    <td align="left">An ordered plan for a goal. The plan is not executed.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>agenticCall(goal)</code></td>
+                    <td align="left">Plans, runs, validates, and synthesizes a goal end to end.</td>
+                </tr>
+            </tbody>
+        </table><pre><code class="language-java">Response&lt;String&gt; response = gateway.simpleCall("Is it safe to land at KJFK right now?")
+        .persona(flightOpsPersona)                 // system prompt and the persona's tools
+        .systemMessage("Answer in 3 sentences.")   // added after the persona's system prompt
+        .tools(new AviationWeatherTools())         // call-specific tools
+        .config(CallConfig.builder().modelProfile("cheap").build())
+        .execute();                                // or execute(MyRecord.class) for typed output
+
+String answer = response.result();
+</code></pre>
+        <p>Every builder accepts <code>persona</code>, <code>systemMessage</code>, <code>tools</code>, <code>config</code>, and <code>conversationId</code>. <code>execute()</code> returns text. <code>execute(Class&lt;T&gt;)</code> returns typed output, which is parsed from the model's JSON. <code>taskPlanner</code> returns <code>PlanResult</code> and has no <code>execute(Class)</code>.</p>
+        <h2><a name="personas"></a>Personas</h2>
+        <p>A <code>Persona</code> is a name, a system prompt, and optionally tools:</p><pre><code class="language-java">Persona flightOpsAdvisor = Persona.builder()
+        .name("Flight Operations Advisor")
+        .systemPrompt("You are an experienced flight operations advisor. Answer clearly.")
+        .tools(new RunwayTools())
+        .build();
+</code></pre>
+        <p>A <code>JudgePersona</code> is the same kind of object, used to score answers. <code>JudgePersona.defaultJudge()</code> provides a general-purpose judge.</p>
+        <h2><a name="tools"></a>Tools</h2>
+        <p>Tools are plain Java methods annotated with Spring AI's <code>@Tool</code> and <code>@ToolParam</code>:</p><pre><code class="language-java">public class RunwayTools {
+
+    @Tool(description = "List the runways of an airport with heading, length and ILS availability")
+    public List&lt;Runway&gt; getRunways(@ToolParam(description = "4-letter ICAO airport code, e.g. KJFK") String icaoCode) {
+        return RUNWAYS.getOrDefault(icaoCode.toUpperCase(), List.of());
+    }
+}
+</code></pre>
+        <p>Pass tools with <code>.tools(...)</code>. You can pass <code>@Tool</code> objects, Spring AI <code>ToolCallback</code>s, or <code>ToolCallbackProvider</code>s such as an MCP client. The model gets the persona's tools plus the call's tools. If a call tool has the same name as a persona tool, the call tool replaces it.</p>
+        <h2><a name="typed-output"></a>Typed Output</h2><pre><code class="language-java">record LandingAssessment(String airport, boolean safeToLand, String recommendedRunway, List&lt;String&gt; hazards) {}
+
+Response&lt;LandingAssessment&gt; assessment = gateway.simpleCall("Assess landing conditions at KJFK.")
+        .persona(dispatcher)
+        .tools(new AviationWeatherTools(), new RunwayTools())
+        .execute(LandingAssessment.class);
+</code></pre>
+        <h2><a name="conversations"></a>Conversations</h2>
+        <p>Pass <code>conversationId(...)</code> to continue an earlier call. A conversation ID is generated when you don't pass one, and it comes back in <code>response.conversationId()</code>. Conversations are not persisted yet, so the SDK does not keep them between runs.</p>
+        <h1><a name="model-profiles-and-callconfig"></a>Model Profiles and <code>CallConfig</code></h1>
+        <p>A profile is a named set of provider, model, temperature, effort, and timeout. <code>CallConfig</code> overrides any of them for one call.</p>
+        <p>For each field, the value comes from the first source that sets it:</p>
+        <ol>
+            <li>
+                <p>The field on the <code>CallConfig</code></p>
+            </li>
+            <li>
+                <p>The profile named by <code>CallConfig.modelProfile</code></p>
+            </li>
+            <li>
+                <p>The <code>default</code> profile</p>
+            </li>
+        </ol>
+        <p>If <code>modelProfile</code> names a profile that does not exist, the <code>default</code> profile is used.</p><pre><code class="language-java">CallConfig config = CallConfig.builder()
+        .modelProfile("precise")     // profile for the generate step
+        .effort("low")               // overrides the profile's effort for this call
+        .timeout(Duration.ofMinutes(10))
+        .build();
+</code></pre>
+        <p><code>CallConfig</code> also holds the settings for the judge and the reflection and validation limits. The next section lists them.</p>
+        <p>Effort is sent in each provider's own field: <code>output_config.effort</code> for Anthropic and <code>reasoning_effort</code> for OpenAI. The value is passed through lowercased, so the provider decides which values are valid.</p>
+        <h1><a name="self-checking-calls"></a>Self-Checking Calls</h1>
+        <h2><a name="advancedcall"></a><code>advancedCall</code></h2>
+        <p><code>advancedCall</code> generates an answer, asks a judge to score it from 0.0 to 1.0 with improvement notes, and regenerates with those notes until the score reaches the threshold or the iteration limit is hit.</p><pre><code class="language-java">Response&lt;String&gt; brief = gateway.advancedCall("Draft a go/no-go decision brief for departing KJFK.")
+        .persona(flightOpsAdvisor)
+        .tools(new NotamTools())
+        .judgePersona(safetyReviewJudge)
+        .config(CallConfig.builder()
+                .judgeModelProfile("precise")       // the judge runs on this profile
+                .reflectionThreshold(0.9)           // overrides ai-sdk.reflection.threshold
+                .reflectionMaxIterations(2)         // overrides ai-sdk.reflection.max-iterations
+                .build())
+        .execute();
+
+brief.steps().forEach(step -&gt;
+        System.out.println(step.name() + ": " + step.judgment().score()));
+</code></pre>
+        <p>The judge's tools are the judge persona's own. The caller's tools are not given to the judge. The judge's model comes only from <code>judgeModelProfile</code>, or from <code>default</code>. Other model fields in <code>CallConfig</code> apply to the generate step only.</p>
+        <p><code>response.result()</code> is the accepted answer. If no answer reaches the threshold, it is the highest-scoring one.</p>
+        <h2><a name="taskplanner"></a><code>taskPlanner</code></h2>
+        <p><code>taskPlanner</code> produces an ordered plan of steps and checks it with the same generate-and-judge loop. It does not execute the plan.</p><pre><code class="language-java">Response&lt;PlanResult&gt; plan = gateway.taskPlanner("Prepare a flight dispatch release for JFK to LHR.")
+        .persona(dispatchPlanner)                   // optional: a built-in planner otherwise
+        .availableTools(new AviationWeatherTools(), new NotamTools())  // described to the planner, never called
+        .systemMessage("Use at most 8 steps.")
+        .execute();
+
+plan.result().steps().forEach(step -&gt;
+        System.out.println(step.order() + ": " + step.description()));
+</code></pre>
+        <p>Each <code>PlanStep</code> has an <code>order</code> starting at 1, a <code>description</code>, a <code>passOutputToNextStep</code> flag, and optional model settings and <code>suggestedToolUsage</code>. The planner sees the profiles and tools you give it. A step's model settings always come from one configured profile, so the planner cannot invent a model. <code>availableTools</code> describes tools to the planner, but the planner cannot invoke them.</p>
+        <h2><a name="agenticcall"></a><code>agenticCall</code></h2>
+        <p><code>agenticCall</code> does the whole job: it plans, runs each step, checks that the steps together reach the goal, and writes the final answer.</p><pre><code class="language-java">record DispatchReleaseBrief(String weatherSummary, String fuelPlanSummary, String recommendation) {}
+
+Response&lt;DispatchReleaseBrief&gt; brief = gateway.agenticCall(
+                "Prepare a full dispatch release brief for JFK to LHR, including weather, fuel and a go/no-go recommendation.")
+        .persona(dispatchOfficer)
+        .tools(new AviationWeatherTools(), new FuelPlanningTools())
+        .config(CallConfig.builder()
+                .judgeModelProfile("precise")     // used by every internal judge and the validator
+                .validationThreshold(0.9)
+                .validationMaxRetries(1)
+                .build())
+        .execute(DispatchReleaseBrief.class);
+</code></pre>
+        <p>It runs four stages:</p>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Plan.</span> A <code>taskPlanner</code> call plans the goal, using the persona's and the call's tools.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Execute.</span> Each step runs as an <code>advancedCall</code> with the persona's tools. A step receives the previous step's result only when that step's <code>passOutputToNextStep</code> is <code>true</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Validate.</span> A validator checks whether all the step results, together, accomplish the goal. If not, the steps run again from the same plan, with the validator's notes added, up to <code>validationMaxRetries</code> times. If no attempt passes, the call still returns the last attempt, and the low score is recorded in the steps.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Synthesize.</span> A final <code>advancedCall</code> combines the results into the output type.</p>
+            </li>
+        </ol>
+        <p><code>agenticCall</code> has no <code>judgePersona(...)</code>. Its internal calls use built-in judges.</p>
+        <h1><a name="reading-the-response"></a>Reading the Response</h1><pre><code class="language-java">Response&lt;T&gt; response = ...;
+
+response.result();          // the answer, typed if you used execute(Class)
+response.steps();           // one Step per iteration or stage; empty for simpleCall
+response.cost();            // token counts, plus a price when every model in the call is priced
+response.rtt();             // total round-trip time
+response.conversationId();  // pass to the next call to continue the conversation
+</code></pre>
+        <p>Each <code>Step</code> has a <code>name</code>, an <code>output</code>, a <code>judgment</code> (score and notes, where there is one), and its own <code>cost</code> and <code>rtt</code>. For <code>agenticCall</code>, steps are named <code>plan</code>, <code>implementation-N.step-K</code>, <code>implementation-N.validation</code>, and <code>synthesis</code>.</p>
+        <p><code>cost.price()</code> is <code>null</code> unless every model in the call has a price. Pricing is configured per model with <code>ai-sdk.pricing[model]</code>. A total that is only partly priced is not reported as a price.</p>
+        <h1><a name="limits"></a>Limits</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Setting</th>
+                    <th align="left">Default</th>
+                    <th align="left">Applies To</th>
+                    <th align="left">Set With</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><code>ai-sdk.reflection.threshold</code></td>
+                    <td align="left">0.8</td>
+                    <td align="left"><code>advancedCall</code>, <code>taskPlanner</code></td>
+                    <td align="left"><code>reflectionThreshold</code> in <code>CallConfig</code></td>
+                </tr>
+                <tr>
+                    <td align="left"><code>ai-sdk.reflection.max-iterations</code></td>
+                    <td align="left">3</td>
+                    <td align="left"><code>advancedCall</code>, <code>taskPlanner</code></td>
+                    <td align="left"><code>reflectionMaxIterations</code> in <code>CallConfig</code></td>
+                </tr>
+                <tr>
+                    <td align="left"><code>ai-sdk.agentic.validation.threshold</code></td>
+                    <td align="left">0.8</td>
+                    <td align="left"><code>agenticCall</code></td>
+                    <td align="left"><code>validationThreshold</code> in <code>CallConfig</code></td>
+                </tr>
+                <tr>
+                    <td align="left"><code>ai-sdk.agentic.validation.max-retries</code></td>
+                    <td align="left">2</td>
+                    <td align="left"><code>agenticCall</code></td>
+                    <td align="left"><code>validationMaxRetries</code> in <code>CallConfig</code></td>
+                </tr>
+                <tr>
+                    <td align="left"><code>ai-sdk.profiles.&lt;name&gt;.timeout</code></td>
+                    <td align="left">60s (provider default)</td>
+                    <td align="left">each request</td>
+                    <td align="left"><code>timeout</code> in <code>CallConfig</code></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>An invalid value in properties fails startup. An invalid value in a <code>CallConfig</code> fails the call before any request is sent.</p>
+        <p>Set <code>ai-sdk.profiles.&lt;name&gt;.timeout</code> rather than <code>spring.ai.openai.timeout</code>. Spring AI's OpenAI client sends its own 60-second timeout with every request, which overrides the Spring setting.</p>
+        <h1><a name="examples"></a>Examples</h1>
+        <p>Two runnable examples are in <code>xap-examples</code>. Both use the same tools and personas, and both are configured for Anthropic by default.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">&#160;</th>
+                    <th align="left"><code>ai-sdk</code></th>
+                    <th align="left"><code>ai-sdk-nospring</code></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Style</td>
+                    <td align="left">Spring Boot application</td>
+                    <td align="left">Plain Java, <code>AgenticAIGateway.create</code></td>
+                </tr>
+                <tr>
+                    <td align="left">Config</td>
+                    <td align="left"><code>application*.properties</code> per provider</td>
+                    <td align="left">Code in <code>AiSdkNoSpringExample.properties(...)</code></td>
+                </tr>
+                <tr>
+                    <td align="left">Calls shown</td>
+                    <td align="left">Five examples, one per feature (below)</td>
+                    <td align="left">Three: simple call, typed output, <code>advancedCall</code></td>
+                </tr>
+                <tr>
+                    <td align="left">Providers</td>
+                    <td align="left">Anthropic, OpenAI, OpenRouter (Llama and Claude)</td>
+                    <td align="left">Anthropic, OpenAI, and OpenRouter (through <code>--provider=openai</code>)</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="ai-sdk-examples"></a><code>ai-sdk</code> Examples</h2>
+        <p>Each run executes one example, chosen with <code>--example=&lt;name&gt;</code>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Name</th>
+                    <th align="left">Feature</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><code>flight-ops</code></td>
+                    <td align="left"><code>simpleCall</code> with a persona and tools</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>landing-assessment</code></td>
+                    <td align="left">Persona tools merged with call tools, typed output, profile selection, conversation continuation</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>go-no-go</code></td>
+                    <td align="left"><code>advancedCall</code> with a judge and the reflection trace</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>dispatch-plan</code></td>
+                    <td align="left"><code>taskPlanner</code> with available tools and a judge</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>dispatch-brief</code></td>
+                    <td align="left"><code>agenticCall</code>: plan, execute, validate, and synthesize</td>
+                </tr>
+            </tbody>
+        </table><pre><code class="language-bash">mvn package
+export ANTHROPIC_API_KEY=...
+java -jar target/xap-example-ai-sdk-*.jar --example=flight-ops
+</code></pre>
+        <p>To use another provider, activate its Spring profile: <code>openai</code>, <code>openrouter</code>, or <code>openrouter-anthropic</code>. The example code does not change. Only the properties change.</p>
+        <p><code>dispatch-brief</code> makes the most model requests, so expect it to take the longest and cost the most.</p>
+        <h2><a name="ai-sdk-nospring-example"></a><code>ai-sdk-nospring</code> Example</h2><pre><code class="language-bash">mvn package
+export ANTHROPIC_API_KEY=...
+java -jar target/xap-example-ai-sdk-nospring-*.jar
+</code></pre>
+        <p>Use <code>--provider=openai</code> with <code>OPENAI_API_KEY</code> for OpenAI. For OpenRouter, set <code>OPENAI_BASE_URL</code> to <code>https://openrouter.ai/api/v1</code> and change the model names in the code to OpenRouter IDs, such as <code>openai/gpt-5-mini</code>.</p>
+        <p>Run the jar from the module directory, or keep its <code>lib/</code> directory next to the jar. The manifest refers to the dependencies there.</p>
+        <h1><a name="troubleshooting"></a>Troubleshooting</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Symptom</th>
+                    <th align="left">Likely Cause</th>
+                    <th align="left">What to Do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Startup fails: no <code>default</code> profile</td>
+                    <td align="left"><code>ai-sdk.profiles.default</code> is not set</td>
+                    <td align="left">Add the <code>default</code> profile.</td>
+                </tr>
+                <tr>
+                    <td align="left">Startup fails: unknown provider</td>
+                    <td align="left">A profile names a provider with no <code>ChatModel</code> bean</td>
+                    <td align="left">Add the provider's Spring AI starter, or fix the provider name.</td>
+                </tr>
+                <tr>
+                    <td align="left">Startup fails: effort or timeout not allowed</td>
+                    <td align="left">Set on a provider that does not support it</td>
+                    <td align="left">Remove it, or use an Anthropic or OpenAI profile.</td>
+                </tr>
+                <tr>
+                    <td align="left">Request rejected: temperature not supported</td>
+                    <td align="left">A newer Claude or GPT-5 model rejects <code>temperature</code></td>
+                    <td align="left">Leave <code>temperature</code> unset for that profile.</td>
+                </tr>
+                <tr>
+                    <td align="left">Requests time out on large tasks</td>
+                    <td align="left">Default 60 s per request</td>
+                    <td align="left">Set <code>ai-sdk.profiles.&lt;name&gt;.timeout</code>, such as <code>5m</code>.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>advancedCall</code> returns a low score</td>
+                    <td align="left">No draft reached the threshold in the allowed iterations</td>
+                    <td align="left">Raise <code>reflectionMaxIterations</code>, or lower <code>reflectionThreshold</code>, after checking the judge's notes in <code>steps()</code>.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>cost.price()</code> is <code>null</code></td>
+                    <td align="left">One model in the call is not priced</td>
+                    <td align="left">Add <code>ai-sdk.pricing[model]</code> for every model the call uses, including the judge's.</td>
+                </tr>
+                <tr>
+                    <td align="left">Tool not called</td>
+                    <td align="left">The model did not choose it, or its description is unclear</td>
+                    <td align="left">Improve the <code>@Tool</code> description, and check the persona's system prompt.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="checklist"></a>Checklist</h1>
+        <ul>
+            <li>
+                <p>The <code>default</code> profile is set, and each other profile names an existing provider.</p>
+            </li>
+            <li>
+                <p>The API key for each provider is set in the environment.</p>
+            </li>
+            <li>
+                <p>Temperature and effort are set only for models that accept them.</p>
+            </li>
+            <li>
+                <p><code>timeout</code> is set for profiles that run tool-using calls on large models.</p>
+            </li>
+            <li>
+                <p>Every <code>@Tool</code> method has a clear description, and every parameter has a <code>@ToolParam</code> description.</p>
+            </li>
+            <li>
+                <p>Judges run on a profile you trust, because they decide when an answer is accepted.</p>
+            </li>
+            <li>
+                <p>Pricing is set for every model used, if you need dollar costs.</p>
+            </li>
+            <li>
+                <p>Conversation IDs are stored by your application if you need to continue a conversation later.</p>
+            </li>
+        </ul>
+    </body>
+</html>

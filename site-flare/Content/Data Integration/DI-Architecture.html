@@ -133,6 +133,15 @@ IIDR publishes changes to the Kafka topic and theDI Processor (Flink job) consum
 ]]><b>Kafka Port: 9092</b></p>
                         </td>
                     </tr>
+                    <tr MadCap:conditions="Version.18-0-born">
+                        <td>Flink configuration</td>
+                        <td>Custom Flink work directory</td>
+                        <td>
+                            <p>The default value is <code>/tmp</code>. This is not recommended, because the operating system deletes this folder every few days, which causes Flink (DI) to stop.</p>
+                            <p>To change the work directory, edit <code>/&lt;di dir&gt;/di-flink/latest-flink/conf/conf.yaml</code> and add:</p><pre><code class="language-bash">io.tmp.dirs=/path/to/your/custom/tmp
+</code></pre>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <h2>High-Level Data Flow</h2>

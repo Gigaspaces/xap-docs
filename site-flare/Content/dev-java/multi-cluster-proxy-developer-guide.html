@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.18-0-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Multi-Cluster Proxy: Developer Guide</h1>
+        <p><code>MultiClusterGigaSpace</code> lets your application reach several clusters through one <code>GigaSpace</code>, and fail over between them when one cluster goes down. It implements the standard <code>GigaSpace</code> interface, so only the bean or factory that creates the <code>GigaSpace</code> changes. Your application code stays the same.</p>
+        <p>For the full set of options, failure cases, and runnable code, see the example in <code>gs-home/examples/multicluster</code>.</p>
+        <h1><a name="connect-to-each-cluster"></a>Connect to Each Cluster</h1>
+        <p>Create one ordinary <code>GigaSpace</code> per cluster. The proxy never opens or closes these connections.</p><pre><code class="language-java">SpaceProxyConfigurer eastConfigurer = new SpaceProxyConfigurer("mySpace")
+        .lookupLocators("east-host:4174")
+        .lookupGroups("dr-us");
+GigaSpace east = new GigaSpaceConfigurer(eastConfigurer).gigaSpace();
+
+SpaceProxyConfigurer westConfigurer = new SpaceProxyConfigurer("mySpace")
+        .lookupLocators("west-host:4174")
+        .lookupGroups("dr-emea");
+GigaSpace west = new GigaSpaceConfigurer(westConfigurer).gigaSpace();
+</code></pre>
+        <p>Check each connection before you combine them, for example with <code>east.count(null)</code>. A proxy built on an unreachable cluster fails at its first operation, and the resulting stack trace rarely points to the real cause.</p>
+        <h1><a name="build-the-proxy"></a>Build the Proxy</h1><pre><code class="language-java">MultiClusterGigaSpace proxy = new MultiClusterGigaSpaceConfigurer()
+        .cluster("us-east", east)
+        .cluster("us-west", west)
+        .activeCluster("us-east")
+        .clusterPriority("us-east", "us-west")
+        .writeMode(WriteMode.WRITE_SYNC)
+        .readMode(ReadMode.READ_ROUND_ROBIN)
+        .gigaSpace();
+</code></pre>
+        <ul>
+            <li>
+                <p><code>activeCluster</code> takes writes. The first registered cluster is the default.</p>
+            </li>
+            <li>
+                <p><code>clusterPriority</code> sets the order in which clusters are promoted when the active one fails.</p>
+            </li>
+            <li>
+                <p>You can also build the proxy from <code>SpaceConfigurer</code> instances, or register clusters at runtime with <code>new DefaultMultiClusterGigaSpace(name)</code> and <code>registerCluster(name, space)</code>. The example shows both.</p>
+            </li>
+        </ul>
+        <p>Closing the proxy stops its heartbeat scheduler. It does not close your cluster connections, so close those yourself.</p>
+        <h1><a name="choose-the-two-modes"></a>Choose the Two Modes</h1>
+        <p>These two settings are the main design decisions.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Setting</th>
+                    <th align="left">Option</th>
+                    <th align="left">Behavior</th>
+                    <th align="left">Use When</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><code>writeMode</code></td>
+                    <td align="left"><code>WRITE_ONCE</code> (default)</td>
+                    <td align="left">Writes go to the active cluster only.</td>
+                    <td align="left">You have a WAN gateway or another way to sync the clusters.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>writeMode</code></td>
+                    <td align="left"><code>WRITE_SYNC</code></td>
+                    <td align="left">Changes go to every cluster and wait for all of them.</td>
+                    <td align="left">You have no gateway and every cluster must hold the data.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>readMode</code></td>
+                    <td align="left"><code>READ_ACTIVE</code> (default)</td>
+                    <td align="left">Reads go to the active cluster. Read-your-writes is guaranteed.</td>
+                    <td align="left">You need current data and one active site.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>readMode</code></td>
+                    <td align="left"><code>READ_ROUND_ROBIN</code></td>
+                    <td align="left">Reads are spread over healthy clusters. A read can miss the latest write.</td>
+                    <td align="left">You want to spread the read load and accept eventual consistency.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Both settings can be changed at runtime with <code>proxy.setWriteMode(...)</code> and <code>proxy.setReadMode(...)</code>.</p>
+        <p>Common setups:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Active/standby DR:</span> <code>WRITE_ONCE</code> with <code>READ_ACTIVE</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Two symmetric sites, no gateway:</span> <code>WRITE_SYNC</code> with <code>READ_ROUND_ROBIN</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Separate read and write clusters:</span> pin reads with <code>.readActiveCluster("reader")</code>, or use the read rotation.</p>
+            </li>
+        </ul>
+        <h1><a name="use-the-proxy"></a>Use the Proxy</h1>
+        <p>Your existing <code>GigaSpace</code> code works unchanged:</p><pre><code class="language-java">proxy.write(new Order("o-1", "NEW", 5));
+Order order = proxy.readById(Order.class, "o-1");
+proxy.change(new IdQuery&lt;&gt;(Order.class, "o-1"), new ChangeSet().set("status", "SHIPPED"));
+</code></pre>
+        <p>Some results differ from a single Space:</p>
+        <ul>
+            <li>
+                <p><code>count</code> answers from one cluster, not the sum of all of them.</p>
+            </li>
+            <li>
+                <p><code>clear</code> returns the total removed across clusters by default.</p>
+            </li>
+            <li>
+                <p>Inside a transaction, all operations go to the active cluster.</p>
+            </li>
+            <li>
+                <p><code>getCluster("us-east")</code> gives you the raw handle for one cluster, for verification or diagnostics.</p>
+            </li>
+        </ul>
+        <h1><a name="failover-in-brief"></a>Failover in Brief</h1>
+        <ul>
+            <li>
+                <p>If the active cluster fails, the active role moves to the next cluster in <code>clusterPriority</code>.</p>
+            </li>
+            <li>
+                <p>A cluster is marked unhealthy after <code>failureThreshold</code> failures (default 3) within <code>failureWindow</code> (default 30s). Unhealthy clusters receive no traffic.</p>
+            </li>
+            <li>
+                <p>Nothing brings an unhealthy cluster back automatically. Unregister it, register it again when it is ready, then move the active role back with <code>setActiveCluster(name)</code>.</p>
+            </li>
+            <li>
+                <p><code>failoverPolicy</code> decides what happens to the failing operation. The default, <code>AUTO_FAILOVER_NEXT_AVAILABLE</code>, retries it once on another cluster.</p>
+            </li>
+            <li>
+                <p>Under <code>WRITE_SYNC</code>, if only some clusters take a write, you get a <code>PartialWriteException</code>. The cluster that missed it is unregistered so balanced reads cannot return stale data.</p>
+            </li>
+            <li>
+                <p>Application errors such as a duplicate ID are thrown to you unchanged. They do not count against cluster health.</p>
+            </li>
+        </ul>
+        <p>The example covers each of these in its own scenario, with the exact failure rules.</p>
+        <h1><a name="monitor"></a>Monitor</h1><pre><code class="language-java">proxy.addClusterEventListener(event -&gt; {
+    switch (event.type()) {
+        case CLUSTER_FAILED -&gt; log.error("{} failed: {}", event.clusterName(), event.cause());
+        case CLUSTER_RECOVERED -&gt; log.info("{} is answering again", event.clusterName());
+        case ACTIVE_CLUSTER_CHANGED -&gt; log.warn("active {} -&gt; {}", event.previousActive(), event.clusterName());
+        default -&gt; { }
+    }
+});
+</code></pre>
+        <ul>
+            <li>
+                <p>Alert on <code>NoAvailableClusterException</code>. It means the proxy has no cluster left to use.</p>
+            </li>
+            <li>
+                <p><code>proxy.getStats()</code> gives per-cluster operation, failure, and latency counters.</p>
+            </li>
+            <li>
+                <p>Set <code>.jmx(true)</code> on the configurer to expose the proxy through JMX, and give each proxy a distinct <code>.name(...)</code>.</p>
+            </li>
+        </ul>
+        <h1><a name="spring"></a>Spring</h1>
+        <p>Use <code>MultiClusterGigaSpaceFactoryBean</code> instead of building the proxy by hand. It takes the same settings as the configurer and closes the proxy when the context closes.</p>
+        <h1><a name="try-it-and-read-more"></a>Try It and Read More</h1>
+        <p>The example in <code>xap-examples/multicluster</code> runs the proxy end to end against embedded Spaces, or against clusters you already have:</p><pre><code class="language-bash">./build.sh run                                             # two embedded spaces, no infrastructure
+./build.sh run us=wanSpaceUS@127.0.0.1:4266 emea=wanSpaceEMEA@127.0.0.1:4166
+./build.sh probe us=wanSpaceUS@127.0.0.1:4266              # check that a cluster is reachable
+</code></pre>
+        <p>You can also have two separate active clusters, one for reads and another for writes.</p>
+        <p>On Windows, use <code>build.bat</code> with the same commands. The example's README covers its 14 scenarios, which map to each feature in this guide, and explains how to deploy two local clusters to run it against.</p>
+    </body>
+</html>
