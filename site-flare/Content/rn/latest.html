@@ -5,6 +5,63 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">What's New in <MadCap:variable name="General.ProductNameXAP" /> Version <MadCap:variable name="Versions.product-version-short" /></h1>
+        <div MadCap:conditions="Version.18-0-only">
+            <h3>Release Date: November-2026</h3>
+            <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+            <h1>Off-Heap Optimization (Java 25 Arena)</h1>
+            <p>Version 18.0.1 introduces a foundational off-heap arena memory architecture on Java 25, delivering direct off-heap allocation with zero-GC overhead execution. Benchmarks on 1,000,000-entry datasets demonstrate up to 2.4x faster direct querying, an 85% reduction in zero-entry aggregation time, and 77%–85% faster optimized iteration across both <code>CURSOR</code> and <code>PREFETCH</code> modes, compared with the previous off-heap solution.</p>
+            <p>For more information, see <MadCap:xref href="../admin/memoryxtend-ohr.html">MemoryXtend for Off-Heap RAM</MadCap:xref>.</p>
+            <h1>gRPC Thin Client Support</h1>
+            <p>A new language-neutral thin-client API over HTTP/2 is served by REST v3 on port 9091, enabling clients in 10+ languages (including Python and JDK 8 applications targeting JDK 25 XAP) with minimal dependencies, suited for cloud serverless workloads. It supports 14 core Space operations with column projections, Basic/Bearer authentication, XAP Space privileges, distributed tracing, and audit logging. Dedicated TLS and mTLS support (PEM or PKCS12) includes hot-swappable certificate rotation without requiring a restart.</p>
+            <p>For more information, see <MadCap:xref href="../dev-java/grpc-client-for-space-operations.html">gRPC Client for Space Operations</MadCap:xref>.</p>
+            <h1>Field-Level Security (PII Protection)</h1>
+            <p>Sensitive fields can now be marked as PII via <code>@SpacePii</code>, <code>gs.xml</code>, or the descriptor builder, and protected by granular <code>READ_PII</code> and <code>WRITE_PII</code> Space privileges, filterable by type, field, or Space. The Space enforces access by masking unauthorized fields in reads, iterators, and notifications, hiding columns in SQL results, and denying queries that filter on restricted PII fields. Additionally, REST v3 write operations now enforce grid privileges, REST Space, PU, and scaling actions work on secured grids, and MCP supports service-account JWT and OpenID SSO.</p>
+            <p>For more information, see <MadCap:xref href="../security/pii-field-level-security.html">PII - Field Level Security</MadCap:xref>.</p>
+            <h1>Multi-Cluster Proxy to Space</h1>
+            <p><code>MultiClusterGigaSpace</code> connects an application to multiple XAP clusters simultaneously behind the standard <code>GigaSpace</code> API, with no application code changes. It supports live runtime switching for combined or separate read/write active clusters, automatic priority-based failover with retry, and configurable write (<code>WRITE_ONCE</code>, <code>WRITE_SYNC</code>) and read (<code>READ_ACTIVE</code>, <code>READ_ROUND_ROBIN</code>) routing modes.</p>
+            <p>For more information, see <MadCap:xref href="../dev-java/multi-cluster-proxy-developer-guide.html">Multi-Cluster Proxy: Developer Guide</MadCap:xref>.</p>
+            <h1>Managed DI-Manager by XAP</h1>
+            <p>DI-Manager (5.1.x) is now bundled directly inside the XAP package and runs natively as a GSA-managed grid service via <code>--dimanager</code>, storing state in ZooKeeper so that no separate server or SQLite database is required. Data sources and pipelines survive restarts and are managed seamlessly through SpaceDeck, the XAP Admin API (<code>admin.getDIManagers()</code>), and REST v3 (<code>/api/v3/di-managers</code>), with unified logging and dynamic log-level switching without restarts.</p>
+            <h1>CSV Data Import</h1>
+            <p>Spaces can now be populated directly from CSV files via SpaceDeck or the REST v3 API (<code>/api/v3/data-resources</code> and <code>/api/v3/spaces/{id}/loadDataFromResource</code>). Imports require routing and ID property configuration, run via chunked ingestion with real-time progress feedback, and support Write-Only, Drop &amp; Recreate Type, and Skip Errors execution modes.</p>
+            <p>For more information, see <MadCap:xref href="../started/importing-data.html">Importing Data Using CSV Files</MadCap:xref>.</p>
+            <h1>Durable Notifications</h1>
+            <p>Durable notification containers now support unique client ID tracking, configurable via <code>client-id</code> in <code>pu.xml</code> or <code>.clientId(...)</code> in <code>SimpleNotifyContainerConfigurer</code>. This preserves pending events across client restarts to ensure zero event loss.</p>
+            <p>For more information, see <MadCap:xref href="../dev-java/durable-notifications.html">Durable Notifications</MadCap:xref>.</p>
+            <h1>Aggregation Timeout</h1>
+            <p>Administrators can enforce a global default aggregation timeout on partition JVMs via <code>com.gs.aggregation.default-timeout-ms</code> and override it per call with <code>AggregationSet.withExecutionTimeout(...)</code>. Timed-out aggregations throw <code>AggregationTimeoutException</code> (surfaced as <code>SpaceTimeoutException</code>) and are tracked through the <code>space_aggregation_timeout_count</code> metric.</p>
+            <p>For more information, see <MadCap:xref href="../dev-java/aggregators.html#aggregation-timeout">Aggregation Timeout</MadCap:xref>.</p>
+            <h1>Redolog Swap &amp; Flush REST API</h1>
+            <p>SQLite is the default redolog swap mechanism, with enhanced observability. A new asynchronous REST v3 endpoint (<code>POST /api/v3/spaces/{id}/flushRedoLog</code>, requiring <code>MANAGE_PU</code>) flushes in-memory primary redolog packets to SQLite, with an optional <code>copyToBackupDir=true</code> flag to persist copies across restarts. It also resolves an issue where Spaces stopped accepting writes after a flush.</p>
+            <p>For more information, see <MadCap:xref href="../admin/controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</MadCap:xref> and <MadCap:xref href="../admin/flush-redolog-to-disk.html">Flush Redo Log to Disk</MadCap:xref>.</p>
+            <h1>XAP Developer Skills</h1>
+            <p>New AI-assisted coding resources and developer agent skills are available via the <code>gs-dev-skill</code> repository. Included skills cover XAP Core Dev, Persistency, WAN-GW, environment variable configuration, and firewall/port mappings.</p>
+            <p>For more information, see <MadCap:xref href="../admin/ai-agent-skills.html">AI Agent Skills for GigaSpaces</MadCap:xref>.</p>
+            <h1>ADU — Agentic Data Unit Add-On (Preview)</h1>
+            <p>ADU enables deploying AI agents directly inside the XAP data grid as standard Processing Units next to business data, executing queries and aggregations in-process while storing conversations, runs, and memory as queryable grid rows. Agents can be invoked over the standard Agent2Agent (A2A) HTTP protocol (<code>adu.a2a.port</code>) or triggered automatically by data changes (<code>AduWatch</code>), with persona-scoped tool permissions, MCP server support, and OpenTelemetry observability.</p>
+            <p>For more information, see <MadCap:xref href="../admin/adu-preview.html">XAP Agentic Data Units (ADU) - Preview</MadCap:xref>.</p>
+            <h1>AI SDK</h1>
+            <p>Built on Spring AI, the XAP AI SDK exposes <code>AgenticAIGateway</code> for Spring Boot or plain Java applications, supporting any Spring AI model provider via named profiles, per-call <code>CallConfig</code> overrides, reusable personas, <code>@Tool</code>/MCP integration, and typed Java record outputs. It offers four progressive execution levels (<code>simpleCall</code>, <code>advancedCall</code> with a judge-review loop, <code>taskPlanner</code>, and end-to-end <code>agenticCall</code>), alongside automatic persona routing, cost and latency tracking, and 14 execution hooks to observe or stop runs.</p>
+            <p>For more information, see <MadCap:xref href="../admin/xap-ai-sdk-developer-guide.html">xap-ai-sdk: Developer Guide</MadCap:xref>.</p>
+            <h1>SpaceDeck UI/UX Evolution &amp; Operations</h1>
+            <ul>
+                <li>
+                    <p><b>Refreshed UI &amp; Legacy Parity:</b> SpaceDeck features a modernized visual identity with standardized components, legacy management parity in a unified console, and dedicated Last Operations tables for full visibility into recent cluster tasks and state changes.</p>
+                </li>
+                <li>
+                    <p><b>Multi-Cluster View:</b> Switch between multiple XAP clusters from a single SpaceDeck instance by listing targets in <code>spacedeck.yaml</code>, with server-side proxying to keep URLs and tokens hidden from the browser. See <MadCap:xref href="../spacedeck/spacedeck-multiple-clusters.html">Working with Multiple Clusters in SpaceDeck</MadCap:xref>.</p>
+                </li>
+                <li>
+                    <p><b>Scale In/Out for Spaces:</b> Dynamically add or remove partitions on running HA Spaces with dynamic partitioning directly from SpaceDeck, supporting automated container planning on Service Grid and RAM/CPU configuration on Kubernetes.</p>
+                </li>
+                <li>
+                    <p><b>Client-Side Caches Visibility:</b> Monitor all connected local views live from the Space page, including host, PID, version, channel state, redolog metrics, and cached query templates, refreshed every 5 seconds.</p>
+                </li>
+                <li>
+                    <p><b>Data Query Improvements:</b> Execute only highlighted SQL statements, work in a unified editor across pages, search and filter across all result rows, and inspect detailed manager error messages on failed operations.</p>
+                </li>
+            </ul>
+        </div>
         <div MadCap:conditions="Version.17-3-only">
             <h3>Release Date: August-2026</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
@@ -76,6 +133,7 @@
             <p>For details on implementing a custom connector service, see <MadCap:xref href="../admin/customised-pipelines.html">Customised Pipelines</MadCap:xref>.</p>
         </div>
         <div MadCap:conditions="Version.17-2-born">
+            <div MadCap:conditions="Version.18-0-died">
             <h2>MCP Server (Preview Mode)</h2>
             <p>In version 17.2.2 we introduce the MCP Server, bringing native Model Context Protocol (MCP) support to GigaSpaces clusters. Currently in Preview Mode, this feature allows customers to expose XAP's ultra-low-latency data tier and distributed compute capabilities directly to autonomous AI agents and agentic workflows.</p>
             <p>To protect grid environments from aggressive or runaway AI agent behavior, every deployed MCP service includes configurable Rate Limiting (operations per minute) and utilizes Service Account tokens to enforce strict role-based access control.</p>
@@ -93,6 +151,7 @@
             <p>We value your input! As these capabilities are in preview, we want to hear about your unique use cases. Please contact us to collaborate on optimizing your agentic workflows or if your system requires any additional capabilities.</p>
             <h2>Redolog drop packet listener</h2>
             <p>Added ability to listen to drop packets in the embedded space see: <MadCap:xref href="../admin/redolog-dropped-packet-listener.html">Dropped Packet Listener</MadCap:xref></p>
+            </div>
         </div>
         <div MadCap:conditions="Version.16-3-only">
             <h3> Release Date: April 27, 2023</h3>

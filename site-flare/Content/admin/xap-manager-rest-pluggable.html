@@ -21,7 +21,10 @@
             <li>Use JAX-RS parameter annotations (e.g. <code>@QueryParam</code>) to map HTTP request parameters to your method.</li>
             <li>If you wish to use <code>Admin</code>, create an appropriate field and annotate it with JAX-RS <code>@Context</code> annotation.</li>
         </ol>
-        <p>For example:</p><pre><code class="language-java">@CustomManagerResource
+        <div class="tc-admon-note" MadCap:conditions="Version.18-0-born">
+            <p>All paths must start with <code>/api</code>.</p>
+        </div>
+        <p>For example:</p><pre MadCap:conditions="Version.18-0-died"><code class="language-java">@CustomManagerResource
 @Path("/demo")
 public class BasicPluggableOperationTest {
     @Context Admin admin;
@@ -36,11 +39,30 @@ public class BasicPluggableOperationTest {
     }
 }
 </code></pre>
-        <p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/v2/demo/report?hostname=mypc</code>.</p>
+        <pre MadCap:conditions="Version.18-0-born"><code class="language-java">@CustomManagerResource
+@Path("/api/demo")
+public class BasicPluggableOperationTest {
+    @Context Admin admin;
+
+    @GET
+    @Path("/report")
+    public String report(@QueryParam("hostname") String hostname) {
+        Machine machine = admin.getMachines().getMachineByHostName(hostname);
+        return "Custom report: host=" + hostname + 
+                ", containers=" + machine.getGridServiceContainers() + 
+                ", PU instances=" + machine.getProcessingUnitInstances();
+    }
+}
+</code></pre>
+        <p MadCap:conditions="Version.18-0-died">This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/v2/demo/report?hostname=mypc</code>.</p>
+        <p MadCap:conditions="Version.18-0-born">This class maps an HTTP <code>GET</code> operation in the <code>/api/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/api/demo/report?hostname=mypc</code>.</p>
         <p>To run the example, compile it and package it into a .jar file, then copy the .jar to <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> and start the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
         <p>Some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.18-0-died">
             <p>You must declare a new path, not one that already exists in the built-in REST&#160;Manager API. For example, <code>@Path("/pus/...")</code> won't work because <code>path/pus</code> already exists in the REST&#160;Manager API.</p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.18-0-born">
+            <p>You must declare a new path, not one that already exists in the built-in REST&#160;Manager API. For example, <code>@Path("/api/pus/...")</code> won't work because <code>/api/pus</code> already exists in the REST&#160;Manager API.</p>
         </div>
         <h1><a name="configuration"></a>Configuration</h1>
         <p>When the <MadCap:variable name="General.ProductNameXAP" /> Manager starts, it scans the <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> for classes in the jar files with the JAX-RS annotations and registers them.
@@ -71,11 +93,27 @@ The <code>@PrivilegeRequired</code> annotation accepts a <code>RestPrivileges</c
         <div class="tc-admon-refer">
             <p>For more information about security, see the <a href="../security/index.html">Security Guide</a>.</p>
         </div>
-        <p>For example:</p><pre><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
+        <p>For example:</p><pre MadCap:conditions="Version.18-0-died"><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
 import org.openspaces.admin.rest.RestPrivileges
 
 @CustomManagerResource
 @Path("/secured/")
+public class PluggableSecuredContoller {
+    @Context Admin admin;
+
+    @PrivilegeRequired(RestPrivileges.MANAGE_GRID)
+    @GET
+    @Path("/getBase")
+    public String getBase() {
+        return "hello";
+    }
+}
+</code></pre>
+        <pre MadCap:conditions="Version.18-0-born"><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
+import org.openspaces.admin.rest.RestPrivileges
+
+@CustomManagerResource
+@Path("/api/secured/")
 public class PluggableSecuredContoller {
     @Context Admin admin;
 

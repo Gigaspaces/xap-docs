@@ -26,9 +26,9 @@
                 <p>com.gigaspaces.utils.RedologFlushNotifier - Using this method the full Space name will be included.</p>
                 <p>The instructions on how to achieve this can be found in this <a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training/blob/updates_v15/xap-persist-training-lab9-redolog/redolog-client/src/main/java/com/gs/FlushRedoLogTask.java">Git</a>.</p>
             </div>
-            <h1 MadCap:conditions="Version.18-0-born">Persisting the Redo Log</h1>
+            <h1 MadCap:conditions="Version.18-0-born">Persisting the Redolog</h1>
             <div MadCap:conditions="Version.18-0-born">
-                <p>You may need to manually persist the redo log in scenarios such as:</p>
+                <p>You may need to manually persist the redolog in scenarios such as:</p>
                 <ul>
                     <li>
                         <p>A cluster restart is required while the mirror to the remote database is disconnected.</p>
@@ -37,8 +37,8 @@
                         <p>A durable notification client is offline, and you need to save its pending messages.</p>
                     </li>
                 </ul>
-                <p><span class="tc-bold">For version 18.0.1 and later:</span> A new REST API has been introduced to support this operation: <code>POST /spaces/{id}/flushRedoLog</code>, with the parameter <code>copyToBackupDir=false</code>. The <code>copyToBackupDir</code> parameter controls whether the redo log is copied to the backup folder.</p>
-                <p><span class="tc-bold">For versions prior to 18.0.1:</span> Refer to this [insert GitHub link].</p>
+                <p><span class="tc-bold">For version 18.0.1 and later:</span> A new REST API has been introduced to support this operation: <code>POST /spaces/{id}/flushRedoLog</code>, with the parameter <code>copyToBackupDir=false</code>. The <code>copyToBackupDir</code> parameter controls whether the redolog is copied to the backup folder.</p>
+                <p><span class="tc-bold">For versions prior to 18.0.1:</span> Refer to this <a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training/tree/main/lab08-redolog">GitHub example</a>.</p>
             </div>
         </div>
         <div MadCap:conditions="Version.16-4-born">

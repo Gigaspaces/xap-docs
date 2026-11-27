@@ -19,8 +19,11 @@
         <h1 class="tc-pagetitle">SpaceDeck Installation and Operation</h1>
         <h2>Installation</h2>
         <p>When deployed onto a Kubernetes cluster, SpaceDeck is automatically installed as part of the Smart DIH or <MadCap:variable name="General.ProductXAPSkyline" /> Kubernetes orchestration as explained in the Kubernetes instructions for <a href="../admin/DIH-installation-kubernetes.html">Smart DIH</a> and for <a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html"><MadCap:variable name="General.ProductXAPSkyline" /></a>.</p>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.18-0-died">
             <p>These instructions are for the Kubernetes environment. If you are using the <MadCap:xref href="../admin/runtime-configuration.html">Service Grid</MadCap:xref> component of GigaSpaces, please contact your GigaSpaces representative for instructions how to install and run SpaceDeck.</p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.18-0-born">
+            <p>These instructions are for the Kubernetes environment. In the <MadCap:xref href="../admin/runtime-configuration.html">Service Grid</MadCap:xref> component of GigaSpaces, SpaceDeck is configured in <code>spacedeck.yaml</code> under <code>gs-home/config/ui</code>. SpaceDeck starts with the <code>gs</code> script and the <code>--webui</code> flag. The default port is 9090.</p>
         </div>
         <h1 MadCap:conditions="Default.DoNotShow">Sample for docker-compose File</h1><pre MadCap:conditions="Default.DoNotShow"><code>
 version: ‘2’

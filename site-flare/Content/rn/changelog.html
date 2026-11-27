@@ -7,6 +7,217 @@
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
         <div MadCap:conditions="Version.18-0-only">
+            <h1>18.0.1</h1>
+            <h2>Features and Enhancements</h2>
+            <table class="tc-standard">
+                <col style="width: 105px;" />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th style="text-align: left;">Type</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIC-6154</td>
+                        <td>Default SQLite Redolog Swap Format</td>
+                        <td>Change default redolog swap file format to SQLite</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6061</td>
+                        <td>Remove ZooKeeper from DI</td>
+                        <td>Remove ZK from DI (upgrade Kafka)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6272</td>
+                        <td>SpaceDeck Change Streaming</td>
+                        <td>Ability to stream changes from server to SpaceDeck</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6022</td>
+                        <td>MCP Support in Kubernetes</td>
+                        <td>Support MCP in k8s env</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5949</td>
+                        <td>Off-Heap Optimization</td>
+                        <td>Optimize off-heap solution</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6342</td>
+                        <td>Off-Heap Aggregation and Iteration</td>
+                        <td>Aggregation &amp; iteration off-heap improvement</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6265</td>
+                        <td>SpaceDeck Cluster Switching</td>
+                        <td>Ability to switch between clusters in SpaceDeck</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6261</td>
+                        <td>Durable Client ID</td>
+                        <td>Durable client ID for keeping redolog</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6085</td>
+                        <td>Multi-Cluster Proxy</td>
+                        <td>Add multi cluster configuration proxy to allow switching easily between DR clusters</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6268</td>
+                        <td>ADU Preview</td>
+                        <td>ADU Preview - develop AI agents embedded in PUs</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6103</td>
+                        <td>gRPC Space Operations</td>
+                        <td>gRPC API support for simple space operations</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6173</td>
+                        <td>PII Field Security</td>
+                        <td>Fields security level (PII)</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6361</td>
+                        <td>Secured gRPC</td>
+                        <td>Secured gRPC</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6230</td>
+                        <td>DI Manager as Service Grid Component</td>
+                        <td>DI-Manager as a service grid component</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5917</td>
+                        <td>SpaceDeck Async Calls</td>
+                        <td>SpaceDeck async calls handling and error responses</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6287</td>
+                        <td>Load Table Data from CSV</td>
+                        <td>Add REST API to load table data from CSV file</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5906</td>
+                        <td>SpaceDeck Horizontal PU Scaling</td>
+                        <td>SpaceDeck - scale PU horizontally</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6102</td>
+                        <td>Tracing Spans for REST v3 and gRPC</td>
+                        <td>Add a span to each endpoint of REST v3 &amp; gRPC</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6362</td>
+                        <td>Aggregation Timeout</td>
+                        <td>Server side aggregation timeout</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6136</td>
+                        <td>Thin Client Benchmarks</td>
+                        <td>Benchmarks for thin client performance &amp; load</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6528</td>
+                        <td>Ignore Replication on Clear Pushdown</td>
+                        <td>Ignore replication on clear pushdown option</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Resolved Issues</h2>
+            <table class="tc-standard">
+                <col style="width: 105px;" />
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>Key</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5996</td>
+                        <td>Secured Space Creation in Kubernetes Fix</td>
+                        <td>In secured k8s env, creating a new space with the toggle set to not secured results in a secured space</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Space Iterator Projection Fix</td>
+                        <td>Space Iterator should retrieve only the projection properties</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6253</td>
+                        <td>Spring Boot Jar Optimization</td>
+                        <td>Optimize Spring Boot jars - minimize double dependencies</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-5510</td>
+                        <td>Inconsistent REST APIs Fix</td>
+                        <td>Inconsistent REST APIs as a result of losing admin events</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6290</td>
+                        <td>Local View Cross-Version Connection Fix</td>
+                        <td>Fix backward issue - support old client with local view connecting to new version server</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6344</td>
+                        <td>Misleading Web UI Log Fix</td>
+                        <td>Misleading Web UI log</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6318</td>
+                        <td>Resolve PU Alerts on Undeploy</td>
+                        <td>Resolve all PU alerts when PU is undeployed</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6001</td>
+                        <td>Resolve Channel Alerts on Close</td>
+                        <td>Resolve all channel alerts when channel is closed</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6315</td>
+                        <td>Manager COMPROMISED State Fix</td>
+                        <td>XAP Manager inconsistent COMPROMISED state</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6529</td>
+                        <td>Java Process Creation Loop Fix</td>
+                        <td>Loop of creating Java processes in case of error starting</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6457</td>
+                        <td>Redolog Data Loss Fix</td>
+                        <td>Data loss due to redolog capacity reached in recovery in certain scenario</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6436</td>
+                        <td>Partition Unavailable - Suspended Fix</td>
+                        <td>Partition stays unavailable indefinitely due to suspended not cleared</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-1447</td>
+                        <td>Dynamic Index Recovery in Tiered Storage Fix</td>
+                        <td>Dynamic index recovery doesn't work for Tiered Storage</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6466</td>
+                        <td>Partition Unavailable - Frozen Instance Fix</td>
+                        <td>Partition stays unavailable indefinitely due to timeout not honored in frozen instance</td>
+                    </tr>
+                    <tr>
+                        <td>PIC-6571</td>
+                        <td>Partition Data Loss on ZooKeeper Hang Fix</td>
+                        <td>Partition data loss due to hang request to update ZK and new instance starts as primary</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div MadCap:conditions="Version.18-0-only">
             <h1>18.0.0</h1>
             <h2>Features and Enhancements</h2>
             <table class="tc-standard">

@@ -74,6 +74,7 @@ $(document).ready(function(){
         $('.sidenav').on('loaded', function () {
         $('#footer').addClass('show');
         });
+        $("#download-docs").prependTo(".sidenav-container")
         $("#sidenav-toggle-closed").prependTo(".sidenav-container")
         $("#sidenav-toggle-open").prependTo(".sidenav-container")
         $("#ipn-toggle-closed").prependTo(".ipn-content")

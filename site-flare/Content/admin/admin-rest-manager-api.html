@@ -327,7 +327,10 @@ the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/inde
                 <p>If you want to use <code>Admin</code>, create an appropriate field and annotate it with JAX-RS <code>@Context</code> annotation.</p>
             </li>
         </ol>
-        <p>For example:</p><pre><code class="language-java">@CustomManagerResource
+        <div class="tc-admon-note" MadCap:conditions="Version.18-0-born">
+            <p>All paths must start with <code>/api</code>.</p>
+        </div>
+        <p>For example:</p><pre MadCap:conditions="Version.18-0-died"><code class="language-java">@CustomManagerResource
 @Path("/demo")
 public class BasicPluggableOperationTest {
     @Context Admin admin;
@@ -342,7 +345,23 @@ public class BasicPluggableOperationTest {
     }
 }
 </code></pre>
-        <p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/demo/report?hostname=mypc</code>.</p>
+        <pre MadCap:conditions="Version.18-0-born"><code class="language-java">@CustomManagerResource
+@Path("/api/demo")
+public class BasicPluggableOperationTest {
+    @Context Admin admin;
+
+    @GET
+    @Path("/report")
+    public String report(@QueryParam("hostname") String hostname) {
+        Machine machine = admin.getMachines().getMachineByHostName(hostname);
+        return "Custom report: host=" + hostname + 
+                ", containers=" + machine.getGridServiceContainers() + 
+                ", PU instances=" + machine.getProcessingUnitInstances();
+    }
+}
+</code></pre>
+        <p MadCap:conditions="Version.18-0-died">This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/demo/report?hostname=mypc</code>.</p>
+        <p MadCap:conditions="Version.18-0-born">This class maps an HTTP <code>GET</code> operation in the <code>/api/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/api/demo/report?hostname=mypc</code>.</p>
         <p>To run the example, compile it and package it into a .jar file, then copy the .jar to <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> and start the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
         <p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
         <h2><a name="configuration"></a>Configuration</h2>
@@ -374,11 +393,27 @@ The <code>@PrivilegeRequired</code> annotation accepts a <code>RestPrivileges</c
         <div class="tc-admon-note">
             <p>For more information about security, see the <a href="../security/index.html">Security Guide</a>.</p>
         </div>
-        <p>For example:</p><pre><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
+        <p>For example:</p><pre MadCap:conditions="Version.18-0-died"><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
 import org.openspaces.admin.rest.RestPrivileges
 
 @CustomManagerResource
 @Path("/secured/")
+public class PluggableSecuredContoller {
+    @Context Admin admin;
+
+    @PrivilegeRequired(RestPrivileges.MANAGE_GRID)
+    @GET
+    @Path("/getBase")
+    public String getBase() {
+        return "hello";
+    }
+}
+</code></pre>
+        <pre MadCap:conditions="Version.18-0-born"><code class="language-java">import org.openspaces.admin.rest.PrivilegeRequired
+import org.openspaces.admin.rest.RestPrivileges
+
+@CustomManagerResource
+@Path("/api/secured/")
 public class PluggableSecuredContoller {
     @Context Admin admin;
 

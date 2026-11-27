@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.18-0-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Working with Multiple Clusters in SpaceDeck</h1>
+        <p>One SpaceDeck instance can view and manage several XAP clusters. You don't need a separate SpaceDeck for each cluster. An administrator defines the clusters once in <code>spacedeck.yaml</code>. Users then switch between them from a cluster selector at the top of every screen.</p>
+        <h1><a name="how-it-works"></a>How It Works</h1>
+        <ul>
+            <li>
+                <p>The cluster whose REST service hosts SpaceDeck is the <span class="tc-bold">local cluster</span>. You can give it a display name.</p>
+            </li>
+            <li>
+                <p>Each additional cluster is reached through the local REST service, which forwards SpaceDeck's requests to that cluster's own REST service. The browser never calls a remote cluster directly, so no CORS or extra firewall rules are needed for end users.</p>
+            </li>
+            <li>
+                <p>Remote cluster URLs and credentials stay on the server. The browser receives only each cluster's ID and display name.</p>
+            </li>
+        </ul>
+        <h1><a name="configuring-clusters"></a>Configuring Clusters (Administrators)</h1>
+        <ol>
+            <li>
+                <p>Open <code>spacedeck.yaml</code>. SpaceDeck reads it from either of these locations:</p>
+                <ul>
+                    <li>
+                        <p><code>&lt;XAP_HOME&gt;/config/ui/spacedeck.yaml</code></p>
+                    </li>
+                    <li>
+                        <p>The path set in the <code>SPACEDECK_CONFIG_PATH</code> environment variable</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Under the <code>spacedeck:</code> key, add a name for the local cluster and a list of additional clusters:</p><pre><code class="language-yaml">spacedeck:
+  config:
+    # ... existing settings ...
+
+  clusterName: "London Prod"            # display name of the local cluster (default: "Local")
+  clusters:
+    - id: ny-dr                          # unique ID, used internally and in URLs
+      name: "New York DR"                # name shown in the cluster selector
+      url: "http://ny-manager-host:9090" # REST (v3) base URL of that cluster's manager
+    - id: emea-wan-lab
+      name: "EMEA (WAN lab)"
+      url: "http://emea-manager-host:9090"
+</code></pre>
+            </li>
+            <li>
+                <p>Restart the REST service (or the XAP manager that hosts it) so it picks up the change.</p>
+            </li>
+        </ol>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Field</th>
+                    <th align="left">Required</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><code>clusterName</code></td>
+                    <td align="left">No</td>
+                    <td align="left">Display name for the local cluster. Default: <code>Local</code>.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>clusters[].id</code></td>
+                    <td align="left">Yes</td>
+                    <td align="left">Unique, URL-safe identifier.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>clusters[].name</code></td>
+                    <td align="left">Yes</td>
+                    <td align="left">Name shown to users.</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>clusters[].url</code></td>
+                    <td align="left">Yes</td>
+                    <td align="left">Base URL of the remote cluster's REST service, without a trailing <code>/api/v3</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Entries missing <code>id</code> or <code>name</code> are skipped and logged as a warning. They don't break the other clusters.</p>
+        <h1><a name="seeing-which-cluster-you-are-viewing"></a>Seeing Which Cluster You Are Viewing</h1>
+        <p>The current cluster's name always appears above the page title.</p>
+        <p>On Administration screens, the cluster name appears next to the SpaceDeck logo.</p>
+        <h1><a name="switching-clusters"></a>Switching Clusters</h1>
+        <ol>
+            <li>
+                <p>Click the cluster name above the page title.</p>
+            </li>
+            <li>
+                <p>Pick a cluster from the list. The local cluster is marked <span class="tc-bold">(this cluster)</span>.</p>
+            </li>
+        </ol>
+        <p>The page reloads. Every screen now shows the selected cluster's data, and its name appears in the selector.</p>
+        <p>Your selection lasts for the current browser session. Closing the browser or logging out always returns you to the local cluster.</p>
+        <h1><a name="notes-and-limitations"></a>Notes and Limitations</h1>
+        <ul>
+            <li>
+                <p>Only clusters defined in <code>spacedeck.yaml</code> can be selected. Users can't add clusters from the UI.</p>
+            </li>
+            <li>
+                <p>If an administrator removes the cluster a user is currently viewing, that user is moved back to the local cluster on the next page load.</p>
+            </li>
+        </ul>
+    </body>
+</html>

@@ -16,59 +16,33 @@
             <p>ADU might require a different license in newer versions.</p>
         </div>
         <p><span class="tc-bold">Reference examples:</span> <code>gs-home/examples/ADU</code></p>
-        <p>An Agentic Data Unit (ADU) is an autonomous agent attached to a Processing Unit (PU). An ADU goes beyond standard deterministic business logic by enabling complex agentic flows.</p>
-        <p>
-            <img src="../Resources/Images/18.0/adu-overview.png" alt="ADU and A2A architecture" class="tc-picture100" />
-        </p>
-        <p>An <span class="tc-bold">Agentic Data Unit (ADU)</span> is designed specifically for intelligent, autonomous computing. Instead of treating AI agents as external consumers that pull massive datasets over the wire to make decisions, an ADU embeds autonomous reasoning capabilities directly alongside real-time state.</p>
-        <h1><a name="core-concepts-and-terminology"></a>Core Concepts and Terminology</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th align="left">Term</th>
-                    <th align="left">Definition</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td align="left"><span class="tc-bold">ADU (Agentic Data Unit)</span></td>
-                    <td align="left">A deployed Processing Unit hosting an embedded Space, an inbox, event watches, and optional agent runtimes.</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Persona (<code>AduPersona</code>)</span></td>
-                    <td align="left">The operational profile of an agent, defining instructions, accessible tools, model configurations, and reasoning round-trip bounds.</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Externally Offered Persona</span></td>
-                    <td align="left">The designated persona exposed to external callers through the A2A HTTP server (maximum of one per unit).</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Conversation</span></td>
-                    <td align="left">A stateful sequence of messages sharing a common <code>contextId</code>, evaluated sequentially in strict FIFO order.</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Task / Run</span></td>
-                    <td align="left">The execution lifecycle resolving a single admitted message. The protocol <code>taskId</code> matches the internal Run row ID.</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Inbox Row</span></td>
-                    <td align="left">The admitted work record stored in the local Space, marked <code>DONE</code> after processing and subject to configurable retention.</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Intake Container</span></td>
-                    <td align="left">The polling container that pulls pending inbox rows and delivers them to the execution dispatcher.</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Agent Loop</span></td>
-                    <td align="left">The runtime turn engine, which alternates between model inferences and batched tool executions until completion.</td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="tc-bold">Peer Agent</span></td>
-                    <td align="left">A remote agent declared via <code>adu.external-agent.&lt;alias&gt;.*</code> and exposed to the model as an executable tool.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h1><a name="triggers-and-tools"></a>Triggers and Tools</h1>
+        <h1><a name="what-an-adu-is"></a>What an ADU Is</h1>
+        <p>An <span class="tc-bold">Agentic Data Unit (ADU)</span> is a GigaSpaces Processing Unit (PU) that embeds an autonomous AI agent directly inside the in-memory data grid, alongside the data it operates on. Instead of treating AI agents as external services that pull datasets over the network, an ADU executes indexed queries and processing directly against the grid. It also persists its entire operational state, as conversations, runs, transcripts, tool calls, and memory, inside its own embedded Space. An ADU is a new, advanced type of stateful PU.</p>
+        <p>An ADU is built from seven parts:</p>
+        <ol>
+            <li>
+                <p><span class="tc-bold">Personas.</span> An agent identity with its instructions, model, allowed tools, and limits on model round trips and tool calls. A tool that a persona does not list is never offered to it.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Tools.</span> Space tools built into the unit (for example, <code>space_query</code> and <code>space_aggregate</code>), memory tools (<code>Remember</code> and <code>Recall</code>), your own Java tools, and peer-agent tools.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Watches.</span> React to a change in a Space, filtered by a <code>where</code> clause and an operation (write or update). The handler is either plain Java (no model) or a persona (the model decides).</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">An A2A server.</span> Publishes an agent card and answers <code>SendMessage</code>, <code>GetTask</code>, <code>CancelTask</code>, and <code>SendStreamingMessage</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Peers.</span> A unit can call another agent over A2A and use the answer.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Models.</span> Declared as <code>adu.llm.&lt;id&gt;.*</code>. A persona names the model it uses. The <code>smoke</code> model answers with one fixed sentence and needs no key, which is useful for testing the wiring.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Embedded Space.</span> Holds the data related to the agent's activities: conversations, runs, memory, and notes. Business data lives in a separate Space.</p>
+            </li>
+        </ol>
+        <p><span class="tc-bold">Use an ADU when</span> the agent should answer or process data that lives in the grid, when a data change needs either a judgement (a model) or a deterministic reaction (Java), or when interaction with other agents is required. A unit that only reacts with Java needs no model at all and can use the A2A protocol.</p>
         <p>ADUs react in real time via two primary triggers:</p>
         <ul>
             <li>
@@ -78,65 +52,131 @@
                 <p><span class="tc-bold">External Agent Requests:</span> Calls routed over the standard Agent-to-Agent (A2A) protocol allow external multi-agent systems to invoke the unit.</p>
             </li>
         </ul>
-        <p>ADU agents can invoke tools sourced dynamically from three layers:</p>
-        <ol>
-            <li>
-                <p><span class="tc-bold">Hardcoded Custom Tools:</span> Low-latency native functions written directly within the platform.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Model Context Protocol (MCP) Integrations:</span> Out-of-the-box connectivity to declared MCP servers.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Exposed Agent Tools:</span> Interfaces published by peer and external registered agents.</p>
-            </li>
-        </ol>
-        <p>An ADU can communicate with external agents, both inbound and outbound.</p>
-        <h1><a name="adu-space-and-types"></a>ADU Space and Types</h1>
-        <p>The <code>AduSpace</code> bean names the reference Space and the types in it that the agent may use. Its main purpose is to limit the Space tools to this Space and these types only. Calls on any other types are refused with <code>DENIED</code>.</p>
-        <p>In addition, each type definition is added to the prompt, with property names and Java types, so the model knows the fields before its first query.</p>
-        <div class="tc-admon-note">
-            <p>The reference Space and the listed types must exist before you deploy the ADU that refers to them.</p>
-        </div>
-        <p>Example:</p><pre><code class="language-xml">&lt;bean class="com.gigaspaces.adu.AduSpace"&gt;
-   &lt;property name="gigaSpace" ref="orderSpace"/&gt;
-   &lt;property name="types"
-             value="com.gigaspaces.example.adu.core.Order"/&gt;
-&lt;/bean&gt;
-</code></pre>
-        <p>For multiple types, use comma-separated values.</p>
-        <h1><a name="data-driven-triggers"></a>Data-Driven Triggers</h1>
-        <p>Within an ADU, every data change trigger can be bound to either a deterministic or a non-deterministic execution path:</p>
-        <ul>
-            <li>
-                <p><span class="tc-bold">Deterministic Logic:</span> Traditional deterministic code. No LLM is required, but the code can push a notification to an external agent using the A2A protocol.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Non-Deterministic Logic (Agentic Personas):</span> LLM-powered agents defined by a clear role, prompt instructions, operational boundaries, and a declared set of tools.</p>
-            </li>
-        </ul>
-        <h2><a name="aduwatch"></a>AduWatch: Defining Triggers and Handlers</h2>
-        <p><code>AduWatch</code> defines the specific condition that triggers an activity and how that activity should be handled. Under the hood, this works similarly to an event-driven definition (data change triggers).</p>
-        <h3><a name="deterministic-handler"></a>Deterministic Handler</h3>
-        <p>In a deterministic handler, Java code directly handles the change. The key differentiator from a standard PU is the built-in capability to send data to another agent via the A2A protocol.</p><pre><code class="language-xml">&lt;bean id="order-cancelled" class="com.gigaspaces.adu.AduWatch"&gt;
-    &lt;!-- Trigger condition referencing GigaSpace of a remote order Space --&gt;
+        <p>
+            <img src="../Resources/Images/18.0/adu-agentic-data-unit.png" alt="Agentic Data Unit overview" class="tc-picture100" />
+        </p>
+        <h1><a name="data-driven-triggers-aduwatch"></a>Data-Driven Triggers (AduWatch)</h1>
+        <p>An <code>AduWatch</code> monitors a reference Space for matching operations (write, update, take), filtered by a SQL <code>where</code> clause. Every watch binds to either a <span class="tc-bold">deterministic Java handler</span> or a <span class="tc-bold">non-deterministic persona handler</span>.</p>
+        <h2><a name="deterministic-handler"></a>Deterministic Handler (Java, No LLM)</h2>
+        <p>This handler executes Java code directly in response to a Space event, with built-in support for pushing notifications to external agents over A2A. Use <code>dispatch="inline"</code> for fast execution on the calling thread, or <code>dispatch="queued"</code> for a separate thread pool.</p><pre><code class="language-xml">&lt;bean id="order-cancelled" class="com.gigaspaces.adu.AduWatch"&gt;
     &lt;property name="gigaSpace" ref="orderSpace"/&gt;
     &lt;property name="type" value="com.gigaspaces.example.adu.core.Order"/&gt;
     &lt;property name="where" value="status = 'CANCELLED'"/&gt;
-    &lt;property name="operations" value="update" /&gt;
-    &lt;!-- Deterministic handler: Java code to call when trigger is raised --&gt;
+    &lt;property name="operations" value="update"/&gt;
     &lt;property name="handler" value="noteTheCancellation"/&gt;
-    &lt;!-- Dispatch method: 'queued' or 'inline' (inline for fast executions on calling thread) --&gt;
     &lt;property name="dispatch" value="inline"/&gt;
 &lt;/bean&gt;
 </code></pre>
-        <h3><a name="persona-based-handler"></a>Persona-Based (Model) Handler</h3>
-        <p>When an LLM is required, the handler uses a persona to dictate the actions taken when the trigger is raised. Instead of defining the <code>handler</code> property, define the <code>persona</code> property.</p><pre><code class="language-xml">&lt;bean id="large-order" class="com.gigaspaces.adu.AduWatch"&gt;
-    &lt;!-- Trigger condition referencing a remote space and condition … --&gt;
-    &lt;!-- Persona definition describing what to do --&gt;
+        <p>The handler must implement the <code>AduChangeHandler</code> interface:</p><pre><code class="language-java">void handle(AduChange change);
+</code></pre>
+        <h2><a name="persona-based-handler"></a>Persona-Based Handler (LLM)</h2>
+        <p>This handler delegates the Space event to an <code>AduPersona</code>. Set <code>persona</code> instead of <code>handler</code>, and dispatch asynchronously via <code>queued</code>.</p><pre><code class="language-xml">&lt;bean id="large-order" class="com.gigaspaces.adu.AduWatch"&gt;
+    &lt;property name="gigaSpace" ref="orderSpace"/&gt;
+    &lt;property name="type" value="com.gigaspaces.example.adu.core.Order"/&gt;
+    &lt;property name="where" value="status = 'NEW' AND amount &amp;gt; 10000"/&gt;
+    &lt;property name="operations" value="write"/&gt;
     &lt;property name="persona" value="reviewer"/&gt;
-    &lt;!-- queued - not using the notify thread but rather a separate thread pool --&gt;
     &lt;property name="dispatch" value="queued"/&gt;
 &lt;/bean&gt;
+</code></pre>
+        <h1><a name="personas-and-tools"></a>Personas and Tools</h1>
+        <p>An <code>AduPersona</code> encapsulates an agent's role, instructions, model reference (<code>llm</code>), allowed tools, and execution guardrails (<code>maxModelRoundTrips</code> and <code>maxToolCalls</code>). If a persona references a tool name that does not match any declared tool, deployment fails at startup.</p>
+        <p>ADU personas can invoke tools from four sources:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Built-in Space and Memory Tools:</span> <code>space_query</code>, <code>space_aggregate</code>, <code>Remember</code>, and <code>Recall</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Custom Java Tools:</span> Defined as <code>AduTool</code> beans (with <code>AduParam</code> parameter definitions) backed by classes that implement <code>AduToolBody</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">MCP Server Integrations:</span> Configured by placing an <code>mcp.json</code> file alongside <code>pu.xml</code> and referencing the desired tools in the persona declaration.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Peer Agent Tools:</span> External A2A agents exposed as callable tools via their configured alias or advertised skills.</p>
+            </li>
+        </ul>
+        <p>Example persona:</p><pre><code class="language-xml">&lt;bean class="com.gigaspaces.adu.AduPersona"&gt;
+   &lt;property name="id" value="reviewer"/&gt;
+   &lt;property name="displayName" value="The Order Reviewer"/&gt;
+   &lt;property name="llm" value="review"/&gt;
+   &lt;property name="tools" value="MarkReviewed,Remember"/&gt;
+   &lt;property name="maxModelRoundTrips" value="8"/&gt;
+   &lt;property name="maxToolCalls" value="6"/&gt;
+   &lt;property name="instructions"&gt;
+       &lt;value&gt;
+           You review one large order at a time, inside the data grid it lives in.
+           The message you are given already carries everything about the order, and what
+           you remember about its customer is already listed above. Two things to do, in
+           this order:
+
+           1. Record the review of the order, once. If the memories listed above already
+              name this customer, begin the finding with "Repeat customer:"; if none of them
+              does, begin it with "First order:". Name the amount and the customer in the
+              same sentence.
+           2. Remember the customer, with the customer's name in lower case as the memory
+              id — so a second order from the same customer updates one memory instead of
+              making another — and the order id and amount in the body.
+
+           Then answer with that same finding. Answering before the customer is remembered
+           leaves the next order from this customer unrecognisable, which is the one thing
+           this review exists to do.
+       &lt;/value&gt;
+   &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>Example tool:</p><pre><code class="language-xml">&lt;bean class="com.gigaspaces.adu.AduTool"&gt;
+   &lt;property name="name" value="MarkReviewed"/&gt;
+   &lt;property name="description"&gt;
+       &lt;value&gt;
+           Records that one order has been reviewed: writes the finding as a note against
+           the order and moves the order to REVIEWED. Call it once per order, after you
+           have read the order itself. It is safe to call on an order that is already
+           reviewed, which it will say.
+       &lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property name="params"&gt;
+       &lt;map&gt;
+           &lt;entry key="orderId"&gt;
+               &lt;bean class="com.gigaspaces.adu.AduParam"&gt;
+                   &lt;property name="description" value="the order's id, such as o-1"/&gt;
+                   &lt;property name="required" value="true"/&gt;
+               &lt;/bean&gt;
+           &lt;/entry&gt;
+           &lt;entry key="finding"&gt;
+               &lt;!--
+                 The format is stated HERE as well as in the persona's instructions, and
+                 that is not duplication: the instructions are read once at the top of the
+                 turn, and this is read at the moment the argument is written. A rule about
+                 the shape of a value belongs beside the value.
+               --&gt;
+               &lt;bean class="com.gigaspaces.adu.AduParam"&gt;
+                   &lt;property name="description"&gt;
+                       &lt;value&gt;
+                           One sentence, recorded as the note. It must begin with "Repeat
+                           customer:" if an earlier order of this customer is remembered,
+                           or with "First order:" if it is not, and then name the amount
+                           and the customer.
+                       &lt;/value&gt;
+                   &lt;/property&gt;
+                   &lt;property name="required" value="true"/&gt;
+               &lt;/bean&gt;
+           &lt;/entry&gt;
+       &lt;/map&gt;
+   &lt;/property&gt;
+   &lt;!--
+     The body writes to the orders space, so that space's GigaSpace is injected into it, like
+     into any Spring bean. call.space() inside a tool body is this unit's own space.
+   --&gt;
+   &lt;property name="body"&gt;
+       &lt;bean class="com.gigaspaces.example.adu.core.MarkReviewed"&gt;
+           &lt;property name="orders" ref="ordersSpace"/&gt;
+       &lt;/bean&gt;
+   &lt;/property&gt;
+   &lt;property name="externallyOffered" value="true"/&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>Each tool body must implement the <code>AduToolBody</code> interface:</p><pre><code class="language-java">String call(AduToolCall call);
 </code></pre>
         <h1><a name="external-agent-requests-triggers"></a>External Agent Requests Triggers</h1>
         <p>When <code>adu.a2a.port</code> is specified, the ADU launches an HTTP server exposing the standard Agent2Agent (A2A) protocol.</p>
@@ -226,49 +266,6 @@ A2A-Version: 1.0
                 <p><code>taskId</code>: Identifies a specific execution run. Pass it only when querying status via <code>GetTask</code>. Submitting new messages to an active or completed <code>taskId</code> is rejected.</p>
             </li>
         </ul>
-        <h2><a name="request-admission-sequence"></a>Request Admission Sequence</h2>
-        <p>The admission of an inbound <code>SendMessage</code> follows this sequence:</p>
-        <ol>
-            <li>
-                <p><span class="tc-bold">Method and Version Verification:</span> The process begins with <code>A2AHttpServer.rpcCall</code>, which validates the JSON-RPC method and ensures the protocol version is correct (it must be 1.0).</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Active Task Rejection:</span> <code>RunningTaskGuard</code> checks whether the request targets a task ID that is already executing, and rejects it if so. Messages intended for queuing must not specify a <code>taskId</code>.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Caller Principal Resolution:</span> <code>AduAgentExecutor.callerOf</code> determines the identity of the caller using the configured identity provider, based on the request headers.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Persona and Version Selection:</span> <code>A2ADoor.admit</code> routes the request to the active persona and its corresponding instruction version.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Atomic Transaction Execution:</span> <code>SpaceDoor.admitAsk</code> performs a critical single transaction within the embedded Space. It verifies conversation ownership and writes two synchronized records: an <code>InboxRow</code> (keyed by the caller and <code>messageId</code>) and a <code>Run</code> record with the status <code>SUBMITTED</code>.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Request Thread Blocking:</span> The incoming HTTP request thread (<code>AduAgentExecutor.awaitTheRun</code>) blocks, polling the Run state at one-second intervals until the task completes.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Decoupled Intake Processing:</span> Operating independently, the <code>IntakeContainer</code> dequeues the <code>InboxRow</code> strictly in First-In-First-Out (FIFO) order within the conversation.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Run State Transition:</span> <code>RunDispatcher.onMessage</code> changes the Run state from <code>SUBMITTED</code> to <code>WORKING</code> and appends the user's message to the dialogue transcript.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Agent Turn Execution:</span> <code>DefaultAgentLoop.run</code> executes the agent's turn. It iterates between model inferences and batch tool executions, persisting step transitions to the Space until the model signals that it has finished.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Turn Finalization:</span> Upon completion, the Run is marked with a terminal state (<code>COMPLETED</code>, <code>FAILED</code>, or <code>CANCELED</code>), and the <code>InboxRow</code> is marked <code>DONE</code>, which releases the next queued message for that conversation.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Terminal State Observation:</span> The blocked request thread (<code>A2ADoor.awaitTerminal</code>) observes the terminal state of the Run.</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Client Response:</span> Finally, the HTTP response returns the execution result and any artifacts to the A2A client.</p>
-            </li>
-        </ol>
-        <p>Request threads write the tracking rows and block until completion. Model inference is driven entirely by the decoupled intake container.</p>
-        <p>A conversation's inbox record remains locked in a transaction throughout turn execution. Succeeding messages for the same <code>contextId</code> queue behind active tasks.</p>
-        <p><span class="tc-bold">Hard Wall-Clock Limits:</span> A strict maximum wall-clock ceiling is enforced (<code>Budgets.TURN_HOLD_MS</code>, default 30 minutes). Inferences or tool invocations running past this boundary terminate with <code>MAX_WALL_CLOCK</code>.</p>
         <h1><a name="outbound-multi-agent-collaboration"></a>Outbound Multi-Agent Collaboration</h1>
         <p>ADU agents can invoke remote external agents over A2A by declaring them as peers in the configuration.</p>
         <h2><a name="declaring-remote-peers"></a>Declaring Remote Peers</h2>
@@ -303,135 +300,24 @@ adu.external-agent.passenger-consent.timeout-millis=60000
             </li>
         </ul>
         <p>Cancelling an internal ADU run automatically dispatches <code>CancelTask</code> to all pending downstream peer tasks.</p>
-        <h1><a name="adu-persona-and-tools-definitions"></a>ADU Persona and Tools Definitions</h1>
-        <h2><a name="defining-tools"></a>Defining Tools</h2>
-        <p>Tools can be provided as Model Context Protocol (MCP) servers, external agent tools, or custom-coded tools. Agent tools (including ADU tools) can also be used by other agents when externally offered.</p>
-        <h3><a name="mcp-server-json"></a>MCP Server JSON</h3>
-        <p>You can supply MCP servers by placing an <code>mcp.json</code> file alongside your <code>pu.xml</code>, and specifying the tools in the persona declaration.</p>
-        <h3><a name="user-defined-tools"></a>User-Defined Tools (Java-Based)</h3>
-        <p>To define a custom tool, configure an <code>AduTool</code> bean where the executing class implements <code>AduToolBody</code>.</p>
-        <h2><a name="defining-a-persona"></a>Defining a Persona</h2>
-        <p>A persona encapsulates a specific role, defined by a description, a set of instructions, the specific tools it is allowed to use, <code>maxModelRoundTrips</code>, and <code>maxToolCalls</code>.</p>
-        <h1><a name="adu-processing-unit-configuration"></a>ADU Processing Unit (PU) Configuration</h1>
-        <p>ADUs can reference Space proxies and types, and use an embedded Space to store their internal data. Each ADU can define multiple personas, tools, and <code>AduWatch</code> triggers.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th align="left">Property Key</th>
-                    <th align="left">Default</th>
-                    <th align="left">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td align="left"><code>isAdu</code></td>
-                    <td align="left"><span class="tc-italic">None</span></td>
-                    <td align="left"><span class="tc-bold">Mandatory.</span> Enables ADU inbox structures, watch dispatchers, and intake containers.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>--partitions</code></td>
-                    <td align="left">1</td>
-                    <td align="left"><span class="tc-bold">Mandatory.</span> ADUs must run as single-partition units.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.a2a.port</code></td>
-                    <td align="left">0 (Disabled)</td>
-                    <td align="left">HTTP port exposing the inbound A2A server.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.a2a.url</code></td>
-                    <td align="left"><code>http://127.0.0.1:&lt;port&gt;/</code></td>
-                    <td align="left">External service address advertised in the discovery agent card.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.a2a.persona</code></td>
-                    <td align="left">First declared</td>
-                    <td align="left">Target persona handling inbound A2A invocations.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.persona.&lt;id&gt;.externally-offered</code></td>
-                    <td align="left">false</td>
-                    <td align="left">Designates the persona bound to inbound A2A requests (limit one per unit).</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.external-agent.&lt;alias&gt;.url</code></td>
-                    <td align="left"><span class="tc-italic">None</span></td>
-                    <td align="left">Target A2A endpoint address of a remote peer agent.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.external-agent.&lt;alias&gt;.description</code></td>
-                    <td align="left"><span class="tc-italic">Generic</span></td>
-                    <td align="left">Operational description guiding the model on when and why to invoke this peer.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.external-agent.&lt;alias&gt;.message-description</code></td>
-                    <td align="left">what to say to &lt;alias&gt;</td>
-                    <td align="left">Argument documentation provided to the model for the peer's message parameter.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.external-agent.&lt;alias&gt;.timeout-millis</code></td>
-                    <td align="left">30000</td>
-                    <td align="left">Turn execution timeout for remote peer operations.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.AduSpace</code></td>
-                    <td align="left"><span class="tc-italic">None</span></td>
-                    <td align="left">Target Space and types the agent is allowed to access.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.type</code></td>
-                    <td align="left"><span class="tc-italic">None</span></td>
-                    <td align="left">Target Space entry class to monitor.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.where</code></td>
-                    <td align="left"><span class="tc-italic">None</span></td>
-                    <td align="left">SQL query expression filtering target Space records.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.operations</code></td>
-                    <td align="left">all</td>
-                    <td align="left">Monitored Space operations: a comma-separated list of <code>write</code>, <code>update</code>, <code>take</code>.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.handler</code></td>
-                    <td align="left"><span class="tc-italic">None</span></td>
-                    <td align="left">Bean name of the deterministic <code>AduChangeHandler</code> implementation.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.persona</code></td>
-                    <td align="left"><span class="tc-italic">None</span></td>
-                    <td align="left">ID of the <code>AduPersona</code> handling matching change events.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.dispatch</code></td>
-                    <td align="left">inline</td>
-                    <td align="left">Handler dispatch strategy: <code>inline</code> (calling thread) or <code>queued</code> (thread pool).</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.batchSize</code></td>
-                    <td align="left">1</td>
-                    <td align="left">Notification batching threshold for high-volume Space updates.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.watch.&lt;id&gt;.fifo</code></td>
-                    <td align="left">false</td>
-                    <td align="left">Enforces strict in-order notification processing per watch.</td>
-                </tr>
-                <tr>
-                    <td align="left"><code>adu.retention.inbox-days</code></td>
-                    <td align="left">7</td>
-                    <td align="left">Retention window in days for completed (<code>DONE</code>) inbox rows.</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2><a name="steps-to-define-the-adu-pu"></a>Steps to Define the ADU PU</h2>
+        <h1><a name="observability-and-troubleshooting"></a>Observability and Troubleshooting</h1>
+        <h2><a name="metrics"></a>Metrics</h2>
+        <p>ADU runtime metrics are documented in the <MadCap:xref href="metrics-bundled.html#adu">Bundled Metrics</MadCap:xref> reference, under the ADU metrics section.</p>
+        <h2><a name="activity-logging"></a>Activity Logging</h2>
+        <p>Every step of an agent run is logged at <code>FINE</code> level to the unit-specific logger <code>com.gigaspaces.adu.activity.&lt;unit&gt;</code>. Enable <code>FINE</code> logging dynamically via the REST v3 API:</p><pre><code class="language-bash">curl -X POST -H 'Content-Type: application/json' \
+  http://127.0.0.1:9090/api/v3/pus/CoreAduA/log-level \
+  -d '{"log": "com.gigaspaces.adu.activity.CoreAduA", "level": "FINE"}'
+</code></pre>
+        <h2><a name="distributed-tracing-opentelemetry"></a>Distributed Tracing (OpenTelemetry)</h2>
+        <p>Configure <code>adu.otel.endpoint</code> to export traces over OTLP/HTTP. For local testing, run Jaeger (OTLP/HTTP on port <code>4318</code>, UI on port <code>16686</code>):</p><pre><code class="language-bash">docker run -d --name jaeger \
+  -p 16686:16686 -p 4318:4318 \
+  jaegertracing/all-in-one:1.76.0
+</code></pre>
+        <h1><a name="create-your-own-adu"></a>Create Your Own ADU</h1>
+        <p>Use the examples bundled with the installation to get started: <code>gs-home/examples/ADU</code></p>
         <ol>
             <li>
-                <p>Add the <code>AduBootstrap</code> bean (<code>com.gigaspaces.adu.runtime.AduBootstrap</code>) to start the embedded Space used by the agent.</p>
-            </li>
-            <li>
-                <p>When deploying the ADU JAR, ensure that the PU property <code>isAdu</code> is set to <code>true</code>.</p>
+                <p>Add the <code>AduBootstrap</code> bean (<code>com.gigaspaces.adu.runtime.AduBootstrap</code>) to start the embedded Space used by the agent and the agent capabilities.</p>
             </li>
             <li>
                 <p>Define your <code>AduWatch</code> triggers and their corresponding handlers.</p>
@@ -440,10 +326,13 @@ adu.external-agent.passenger-consent.timeout-millis=60000
                 <p>Define your <code>AduPersona</code> beans if required for LLM integration.</p>
             </li>
             <li>
-                <p>For each persona, define the tools (custom, MCP, or other agents) it is permitted to use.</p>
+                <p>For each persona, define the tools (custom, MCP, or other agents) that it is permitted to use.</p>
             </li>
             <li>
                 <p>If necessary, define a remote agent and allow the persona to use its external tools.</p>
+            </li>
+            <li>
+                <p>When deploying the ADU JAR, ensure that the PU property <code>isAdu</code> is set to <code>true</code>.</p>
             </li>
         </ol>
         <h1><a name="deployment-guide"></a>Deployment Guide</h1>
@@ -489,14 +378,5 @@ adu.external-agent.passenger-consent.timeout-millis=60000
                 </li>
             </ul>
         </div>
-        <h1><a name="metrics-logs-and-traces"></a>Metrics, Logs, and Traces</h1>
-        <p><span class="tc-bold">Metrics:</span> See the ADU section in <MadCap:xref href="metrics-bundled.html#adu">Predefined Metrics</MadCap:xref>.</p>
-        <p><span class="tc-bold">Log:</span> Every step of a run is logged at <code>FINE</code> level to a logger specific to the unit: <code>com.gigaspaces.adu.activity.&lt;unit&gt;</code>. To troubleshoot, set it to <code>FINE</code>:</p><pre><code class="language-bash">curl -X POST -H 'Content-Type: application/json' http://127.0.0.1:9090/api/v3/pus/CoreAduA/log-level \
-     -d '{"log": "com.gigaspaces.adu.activity.CoreAduA", "level": "FINE"}'
-</code></pre>
-        <p><span class="tc-bold">Traces:</span> A unit exports its traces over OpenTelemetry (OTLP/HTTP) when it is given a collector with <code>adu.otel.endpoint</code>.</p>
-        <p>For local testing, start a local Jaeger, which accepts OTLP over HTTP on port 4318 and shows traces on port 16686:</p><pre><code class="language-bash">docker run -d --name jaeger -p 16686:16686 -p 4318:4318 jaegertracing/all-in-one:1.76.0
-</code></pre>
-        <p>See the full examples to learn more: <code>gs-home/examples/ADU</code></p>
     </body>
 </html>

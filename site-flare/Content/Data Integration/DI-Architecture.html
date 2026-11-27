@@ -81,7 +81,7 @@ IIDR AS Port: 10101</p>
                             <p style="font-weight: bold;">Port: 6080</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr MadCap:conditions="Version.18-0-died">
                         <td>DI MDM (Metadata Manager)</td>
                         <td>Stores and retrieves metadata in Zookeeper</td>
                         <td>
@@ -106,12 +106,29 @@ Data dictionary about tables, columns and indexes</p>
 Port: 6081</p>
                         </td>
                     </tr>
+                    <tr MadCap:conditions="Version.18-0-born">
+                        <td>DI MDM (Metadata Manager)</td>
+                        <td>Stores and retrieves metadata</td>
+                        <td>
+                            <p>Stores and retrieves metadata that is essential for a DI operation:
+</p>
+                            <p>1) 
+Data dictionary about tables, columns and indexes</p>
+                            <p>
+
+2) Pipeline configuration
+
+</p>
+                            <p>3) Other important metadata records that are required for ongoing DI operations
+</p>
+                        </td>
+                    </tr>
                     <tr>
                         <td>DI&#160;Processor</td>
                         <td>Java library run by Flink as a job. It is responsible for writing changes to the space.</td>
                         <td>Java library , deployed to Flink and invoked as a Flink job. Main responsibility to read messages from Kafka , perform a transformation from a Kafka message into a space document and write this change into the space relevant object. </td>
                     </tr>
-                    <tr>
+                    <tr MadCap:conditions="Version.18-0-died">
                         <td>Zookeeper (ZK)</td>
                         <td>Serves as a persistent data store for DI&#160;components. Serves as a ZK that is required by Kafka.</td>
                         <td>

@@ -22,6 +22,90 @@
                 <img src="../Resources/Static/attachment_files/blobstore/ohr3.png" alt="image" class="tc-picture80" />
             </p>
         </div>
+        <div MadCap:conditions="Version.18-0-born">
+            <h1><a name="off-heap-optimization"></a>Off-Heap Optimization</h1>
+            <p>See a code example and benchmark at: <a href="https://github.com/GigaSpaces-ProfessionalServices/gs-core-dev-training/tree/main/lab22-offheap_blobstore-example" target="_blank">lab22-offheap_blobstore-example</a></p>
+            <p>The 18.0.1 update introduces advanced off-heap storage optimizations that enable the engine to read specific properties directly in place. By leveraging Java 25 Panama memory segments and embedding a per-field offset table (costing roughly 10 to 400 bytes per entry, depending on the property count), the engine can now efficiently evaluate conditions and apply projections directly against the byte block, without needing to decode the full object.</p>
+            <h2><a name="performance-improvements"></a>Performance Improvements and Testing Methodology</h2>
+            <p>All baseline hardware measurements were conducted on an Apple Silicon laptop running JDK 25, testing the engine just before and just after the changes in alternating rounds (medians are shown).</p>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Storage Layer and Query Conditions:</span> Base storage operations are 7–24% faster (median 18%), non-indexed scans are 22% faster, and temporary garbage per write-read pair dropped 11.5x (from 4504 bytes to 392 bytes). Query conditions tested directly at the block are 2.4x faster when matching 100 entries, and 1.5x faster when matching 500,000 entries.</p>
+                    <ul>
+                        <li>
+                            <p><span class="tc-italic">How it was tested:</span> Measured over 7 alternating rounds using an embedded Space containing 1,000,000 entries of a narrow 6-property type. Condition metrics were based on a <code>readMultiple</code> operation targeting a non-indexed property.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Aggregation:</span> Sum and average operations on non-indexed properties dropped from roughly 5.7 seconds to 0.86 seconds, an 85% time reduction for both embedded and remote topologies.</p>
+                    <ul>
+                        <li>
+                            <p><span class="tc-italic">How it was tested:</span> Measured over 6 rounds using 1,000,000 wide entries consisting of 200 properties (including a 256-byte payload). Tests were run with a 16 GB JVM heap and the blobstore internal cache turned off.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Space Iterators:</span> Iterators assembling a 3-property projection directly from the block saw large gains. <code>CURSOR</code> iteration times dropped by about 80% for embedded Spaces and about 85% for remote Spaces, while <code>PREFETCH_UIDS</code> improved by about 82% embedded and about 77% remote.</p>
+                    <ul>
+                        <li>
+                            <p><span class="tc-italic">How it was tested:</span> Evaluated across the same 1,000,000-entry, 200-property wide dataset over 6 rounds, with a 16 GB heap and the internal cache disabled.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Off-Heap vs. Heap Gap:</span> The performance gap between off-heap and heap reads has narrowed significantly. While off-heap reads used to cost 5–9x more than heap reads, they are now only 1.1–1.7x slower. For instance, remote aggregation dropped from 9.0x slower to just 1.34x slower than heap.</p>
+                    <ul>
+                        <li>
+                            <p><span class="tc-italic">How it was tested:</span> Compared using the same 1,000,000-entry, 200-property dataset on a 16 GB JVM heap.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2><a name="remaining-trade-offs"></a>Remaining Trade-Offs</h2>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Memory Advantage vs. Write Penalty:</span> Off-heap memory still provides a massive footprint advantage, using 1.9 KB per entry versus 6.6 KB on the heap. However, the write penalty remains unchanged at roughly 5.0x slower for embedded Spaces and 1.7x slower for remote Spaces.</p>
+                    <ul>
+                        <li>
+                            <p><span class="tc-italic">How it was tested:</span> 1,000,000 wide entries (200 properties) consumed 1.9 GB off-heap instead of 6.66 GB on the heap, evaluated over 6 rounds.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2><a name="choosing-between-heap-and-off-heap-space"></a>Choosing Between Heap and Off-Heap Space</h2>
+            <p>Off-heap storage is primarily used to optimize memory capacity and footprint. With the introduction of XAP 18.0.1, the performance gap between off-heap and heap has narrowed significantly, so targeted off-heap reads now incur minimal speed penalties.</p>
+            <h3>Optimal Use Cases for Off-Heap Storage</h3>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Large Datasets and GC Relief:</span> Use off-heap when the data size exceeds comfortable heap limits, or when garbage collection (GC) pressure becomes a bottleneck. Off-heap stores data several times more compactly than heap storage.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Targeted Reads:</span> Off-heap performs exceptionally well when operations only require specific fields, such as aggregations, iterators that use projections, or queries with selective conditions. Under these conditions, off-heap read performance is nearly on par with heap.</p>
+                </li>
+            </ul>
+            <h3>When Off-Heap Storage Is Less Efficient</h3>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Unprojected Reads:</span> Off-heap is slower if operations consistently fetch entire objects without applying a projection.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Write-Heavy Workloads:</span> Off-heap retains a serialization write penalty, making it less optimal for applications dominated by bulk loads or frequent updates.</p>
+                </li>
+            </ul>
+            <h2><a name="important-behavior-changes"></a>Important Behavior Changes</h2>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Projection Overwrites:</span> Because iterators now strictly apply projections, read-modify-write loops that use projected iterators silently overwrite non-projected properties with nulls. Remove the projection, use the change API, or apply <code>WriteModifiers.PARTIAL_UPDATE</code>.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Custom Aggregators:</span> Custom aggregators must explicitly opt in by overriding <code>SpaceEntriesAggregator.getAggregatedPaths()</code> and strictly using <code>getPathValue</code>.</p>
+                </li>
+                <li>
+                    <p><span class="tc-bold">Exclusions:</span> These optimizations do not apply to SSD-based MemoryXtend (RocksDB), the blobstore internal cache, unprojected reads, or projected batch reads that use a read Space filter.</p>
+                </li>
+            </ul>
+        </div>
         <h1><a name="basic-configuration"></a>Basic Configuration</h1>
         <p>You can create a Space with the MemoryXtend off-heap storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' that can use up to 20GB of off-heap RAM:</p>
         <div class="easyui-tabs" plain="true" data-options="">

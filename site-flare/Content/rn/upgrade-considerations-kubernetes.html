@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.18-0-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">Upgrade Considerations in a Kubernetes Environment</h1>
+        <h1><a name="mcp-services"></a>MCP Services</h1>
+        <p>The 18.0.1 cache-operator image watches a new resource, <code>mcpservices.gigaspaces.com/v1</code>.</p>
+        <p>Using SpaceDeck, you can now create new MCP servers that expose various tools. See <MadCap:xref href="../admin/xap-mcp.html">XAP MCP Tools Overview</MadCap:xref>.</p>
+        <p>This feature can be disabled by setting <code>MCP_RECONCILER_ENABLED</code> to <code>false</code>. In that case, this CRD is not scanned.</p>
+    </body>
+</html>

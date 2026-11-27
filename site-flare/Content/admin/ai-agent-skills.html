@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="Version.18-0-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAP" /></a>
+            </p>
+        </div>
+        <div class="product-bar">
+            <p><a><MadCap:variable name="General.ProductXAPSkyline" /></a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle">AI Agent Skills for GigaSpaces</h1>
+        <p>GigaSpaces provides an open-source collection of <span class="tc-bold">Agent Skills</span> in the <span class="tc-bold">gs-dev-skill</span> repository under the <a href="https://github.com/GigaSpaces-ProfessionalServices" target="_blank">GigaSpaces Professional Services GitHub organization</a>.</p>
+        <p>Built on the open <a href="https://agentskills.io/specification" target="_blank">Agent Skills specification</a>, each skill is a self-contained folder of instructions, references, and field-validated examples that AI coding assistants load on demand for a given task. These skills are built and tested with <span class="tc-bold">Claude</span> (Claude.ai and Claude Code) and also work with <span class="tc-bold">GitHub Copilot</span>, <span class="tc-bold">OpenAI Codex</span>, and other compatible agents. Each skill folder is independent, allowing you to install only the capabilities relevant to your environment.</p>
+        <h1><a name="available-skills"></a>Available Skills</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Skill</th>
+                    <th align="left">Use For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><span class="tc-bold">gigaspaces-xap</span></td>
+                    <td align="left">Java code generation and expert development guidance for GigaSpaces XAP.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">iidr-cdc-operations</span></td>
+                    <td align="left">Field-validated operational runbooks for IBM InfoSphere Data Replication (IIDR) CDC engines.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">xap-wan</span></td>
+                    <td align="left">GigaSpaces XAP WAN Gateway: multi-site replication, bootstrapping, replication filters, and conflict resolution.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">xap-persist</span></td>
+                    <td align="left">GigaSpaces XAP external-database persistence: full Mirror service setup, initial load, custom hand-written JDBC persistence, and redolog internals.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">xap-upgrade</span></td>
+                    <td align="left">Planning a GigaSpaces XAP upgrade: reusable pre-upgrade and during-upgrade checklists, Spring and Hibernate compatibility, and upgrade notes.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">environment-variables-and-manager</span></td>
+                    <td align="left">GigaSpaces XAP environment variables (<code>setenv</code>/<code>setenv-overrides</code>, current vs. legacy <code>GS_*</code>), system properties, and GigaSpaces Manager setup, including HA and ZooKeeper.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">firewall-and-static-ports</span></td>
+                    <td align="left">Running GigaSpaces XAP across a firewall or NAT: static ports, required open ports, and LRMI network mapping.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">remote-proxy-connectivity</span></td>
+                    <td align="left">Troubleshooting remote SpaceProxy connectivity: locators/groups discovery, <code>CannotFindSpaceException</code>, and deployed-PU vs. standalone client behavior.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="skill-overviews"></a>Skill Overviews</h1>
+        <h2><a name="gigaspaces-xap"></a>gigaspaces-xap</h2>
+        <p>Provides expert guidance for GigaSpaces XAP Java development, including Space POJOs, querying with <code>SQLQuery</code>, event-driven processing (Polling and Notify containers), colocated task execution (<code>Task</code>, <code>DistributedTask</code>, and <code>DurableTask</code>), space-based remoting, custom aggregators, transactions, Processing Unit design, Spring Boot integration, Maven setup, and OpenTelemetry distributed tracing.</p>
+        <h2><a name="iidr-cdc-operations"></a>iidr-cdc-operations</h2>
+        <p>Provides field-validated operational guidance for IIDR CDC engines replicating from Oracle sources, covering TLS encryption for IIDR component-to-component traffic, configuring an IIDR Oracle CDC agent to decrypt TDE-encrypted redo logs, and handling source DDL and schema changes safely.</p>
+        <h2><a name="xap-wan"></a>xap-wan</h2>
+        <p>Covers GigaSpaces XAP WAN Gateway architectures and operations: active-passive and active-active multi-site replication, bootstrapping a new site from an existing site's data, selective replication filters, cross-site conflict resolution, and adding or removing gateway targets on a live Space at runtime.</p>
+        <h2><a name="xap-persist"></a>xap-persist</h2>
+        <p>Provides guidance for GigaSpaces XAP external-database persistence, including full Hibernate-backed Mirror service setup, initial load (including custom initial-load queries), fully custom hand-written JDBC persistence, and redolog internals.</p>
+        <h2><a name="xap-upgrade"></a>xap-upgrade</h2>
+        <p>Outlines a general methodology for planning a GigaSpaces XAP upgrade, featuring a reusable checklist of dependency-compatibility categories (including Spring and Hibernate), deprecated or removed configuration formats, breaking changes, and planned deprecations.</p>
+        <h2><a name="environment-variables-and-manager"></a>environment-variables-and-manager</h2>
+        <p>Covers configuring GigaSpaces XAP environment variables and the GigaSpaces Manager: the <code>setenv</code>/<code>setenv-overrides</code> mechanism, current versus legacy <code>GS_*</code> variables, key <code>-D</code> system properties, and Manager setup ranging from a local single-instance development setup to a production 3-Manager HA cluster (ports, embedded ZooKeeper configuration, and ZooKeeper TLS).</p>
+        <h2><a name="firewall-and-static-ports"></a>firewall-and-static-ports</h2>
+        <p>Provides guidance for making a GigaSpaces XAP cluster reachable across a firewall or NAT boundary: disabling multicast, statically pinning listener ports, identifying which ports must cross the network boundary, and configuring LRMI network mapping for NAT.</p>
+        <h2><a name="remote-proxy-connectivity"></a>remote-proxy-connectivity</h2>
+        <p>Offers structured troubleshooting for clients unable to establish a working SpaceProxy to a remote GigaSpaces XAP Space: a triage checklist, locators and groups discovery (<code>GS_LOOKUP_LOCATORS</code>, <code>GS_LOOKUP_GROUPS</code>, and their <code>-D</code> equivalents), diagnosing <code>CannotFindSpaceException</code> and <code>FinderException</code>, smart-externalizable considerations, and behavioral differences between proxies created inside a deployed Processing Unit and standalone clients.</p>
+        <h1><a name="installation"></a>Installation</h1>
+        <p>Each skill folder (for example, <code>gigaspaces-xap/</code>) is a complete, standalone skill containing its <code>SKILL.md</code> file and <code>references/</code> directory.</p>
+        <h2><a name="claude-ai"></a>Claude.ai</h2>
+        <ol>
+            <li>
+                <p>Clone the <span class="tc-bold">gs-dev-skill</span> repository, or download it as a ZIP and extract it.</p>
+            </li>
+            <li>
+                <p>Zip the specific skill folder you want from inside the repository root, so that the archive's top level is the skill folder itself:</p><pre><code class="language-bash">zip -r gigaspaces-xap.zip gigaspaces-xap
+</code></pre>
+            </li>
+            <li>
+                <p>In Claude.ai, navigate to <span class="tc-bold">Settings &gt; Capabilities &gt; Skills &gt; Upload skill</span> and select the zip file.</p>
+            </li>
+            <li>
+                <p>Verify the installation by asking a targeted prompt, such as <span class="tc-italic">"Write a GigaSpaces @SpaceClass POJO with a routing field"</span> or <span class="tc-italic">"How do I set mirror_on_ddl_operation on an IIDR Oracle CDC subscription?"</span></p>
+            </li>
+        </ol>
+        <h2><a name="claude-code"></a>Claude Code</h2>
+        <ol>
+            <li>
+                <p>Clone the <span class="tc-bold">gs-dev-skill</span> repository.</p>
+            </li>
+            <li>
+                <p>Copy or symlink the skill folder you want into your Claude Code skills directory (user-level or project-level).</p>
+            </li>
+            <li>
+                <p>Test the skill with a relevant GigaSpaces prompt.</p>
+            </li>
+        </ol>
+        <h2><a name="other-compatible-agents"></a>Other Compatible Agents (GitHub Copilot, OpenAI Codex, and Others)</h2>
+        <p>Because these skills follow the open Agent Skills format, copy or symlink each skill folder into the directory your agent scans:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Agent</th>
+                    <th align="left">Repo-Level (Project)</th>
+                    <th align="left">User-Level (All Projects)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><span class="tc-bold">GitHub Copilot</span></td>
+                    <td align="left"><code>.github/skills/</code>, <code>.claude/skills/</code>, or <code>.agents/skills/</code></td>
+                    <td align="left"><code>~/.copilot/skills/</code> or <code>~/.agents/skills/</code></td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">OpenAI Codex</span></td>
+                    <td align="left"><code>.agents/skills/</code></td>
+                    <td align="left"><code>~/.agents/skills/</code></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Using <code>.agents/skills/</code> works across multiple agents, making it ideal for teams that use more than one tool:</p><pre><code class="language-bash">mkdir -p ~/.agents/skills
+cp -r gigaspaces-xap ~/.agents/skills/
+</code></pre>
+        <h2><a name="installation-notes"></a>Installation Notes</h2>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Install each skill as its own top-level folder:</span> The <code>xap-configurations/</code> directory only groups related skills and is not a skill itself. Copy each individual skill folder inside it separately (for example, <code>cp -r xap-configurations/firewall-and-static-ports ~/.agents/skills/</code>).</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Cross-skill references:</span> Some skills reference another skill by name (for example, <code>xap-persist</code> references <code>gigaspaces-xap</code>, and <code>xap-upgrade</code> references <code>xap-persist</code>). Install related skills together for complete coverage.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Verify activation:</span> Each agent decides when to load a skill based on its description. Run a quick test prompt after installation to confirm that the skill triggers as expected.</p>
+            </li>
+        </ul>
+        <h1><a name="continuous-evolution-and-community-contributions"></a>Continuous Evolution and Community Contributions</h1>
+        <p>The <span class="tc-bold">gs-dev-skill</span> repository is actively maintained and continuously evolving. We regularly add new skills, expand coverage for additional GigaSpaces capabilities, and refine existing operational guidance.</p>
+        <p><span class="tc-bold">Customers and community members are welcome to contribute!</span> If you have created a helpful skill, operational runbook, or improvement for GigaSpaces workflows, please open a pull request or submit an issue directly in the repository under <a href="https://github.com/GigaSpaces-ProfessionalServices" target="_blank">GigaSpaces Professional Services on GitHub</a>.</p>
+    </body>
+</html>
